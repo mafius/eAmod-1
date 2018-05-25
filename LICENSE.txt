@@ -18,10 +18,7 @@
 /---------------------------------------------/
 
 eAmod is an extended project of eAthena, a Ragnarok Private Server Emulator, created by
-Andres Garbanzo Mora, also known as Zephyrus, owner and administrator of eAthena Modifications,
-site http://dev.terra-gaming.com.
-
-Information about eAthena can be found at http://www.eathena.ws.
+Andres Garbanzo Mora, also known as Zephyrus, owner and administrator of eAthena Modifications.
 
 eAthena is the base project of eAmod, and it works under GNU General Public License, and
 everybody can read about it at http://www.gnu.org/licenses/gpl.html
@@ -32,8 +29,7 @@ created only for commercial purposes, and to be sold on our website, and sometim
 resellers.
 
 Licenses owners can use eAmod files to mount their server(s). No limit in the amount of servers
-as long as they belong to the License Owner. All authorized servers must be announced by the License
-owner at http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+as long as they belong to the License Owner.
 
 License owners are not allowed to distribute eAmod files, including any source file with eAmod
 Modifications. All eAmod or modified files contains information about License.
@@ -42,7 +38,4 @@ This project is NOT PUBLIC.
 
 More information, support or reports about illegal distribution of files, please contact:
 
-  - gaiaro.staff@yahoo.com
-  - MSN andresjgm.cr@hotmail.com
-  - Skype: Zephyrus_cr
-  - Site: http://dev.terra-gaming.com
+  - eamodifications@gmail.com
