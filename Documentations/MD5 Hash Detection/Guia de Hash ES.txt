@@ -14,28 +14,28 @@
 
 // Sistema de Hash Check para Cliente - Servidor
 
-Esta modificaciÛn activa una protecciÛn que hace que tu servidor solamente acepte
+Esta modificaci√≥n activa una protecci√≥n que hace que tu servidor solamente acepte
 un ejecutable para conectarse al mismo. Si alguien intenta usar otro .exe diferente
-o un .exe modificado, no podr· logear. Util para combatir OpenKore (consola) y
+o un .exe modificado, no podr√° logear. Util para combatir OpenKore (consola) y
 algunas modificaciones al cliente que no permites en tu comunidad.
 
 // Modificando el Ejecutable, tu cliente:
 
-Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que har·s ser·
+Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que har√°s ser√°
 abrir tu .exe y buscar la siguiente cadena hexadecimal:
 
 33C083F906740D
 
-Y vas a reemplazar en esa cadena el 74 por EB para que quede asÌ:
+Y vas a reemplazar en esa cadena el 74 por EB para que quede as√≠:
 
 33C083F906EB0D
 
-Esta modificaciÛn activa que tu cliente envie el Hash al servidor al logear.
+Esta modificaci√≥n activa que tu cliente envie el Hash al servidor al logear.
 
 // Modificaciones al Servidor (Actualmente en eAmod-A):
 
 Aca va la parte para que tu servidor entienda el paquete de Hash y lo valide.
-Esta guÌa indica con ++ lo que hay que agregar, y con -- lo que debes quitar.
+Esta gu√≠a indica con ++ lo que hay que agregar, y con -- lo que debes quitar.
 
 Primero abre el archivo socket.h
 
@@ -196,8 +196,8 @@ static struct{
 
 // ************* login.c
 
-Con esto tendremos listo la modificaciÛn de Source, pero queda pendiente
-modificar tambiÈn las opciones de login_athena.conf para poder estar cambiando el Hash.
+Con esto tendremos listo la modificaci√≥n de Source, pero queda pendiente
+modificar tambi√©n las opciones de login_athena.conf para poder estar cambiando el Hash.
 
 // @login_athena.conf ************
 
@@ -213,11 +213,11 @@ import: conf/import/login_conf.txt
 // ************* login_athena.conf
 
 Con estas modificaciones realizadas en tu cliente y en tu servidor, ejecuta el servidor
-e intenta logear con tu cliente. Al principio fallar· por que el Hash no es v·lido, pero
-el mensaje de error te mostrar· el Hash del cliente que intenta logear. Copialo y luego lo
-pones en la opcion de client_hash: que pusimos en el ˙ltimo paso.
+e intenta logear con tu cliente. Al principio fallar√° por que el Hash no es v√°lido, pero
+el mensaje de error te mostrar√° el Hash del cliente que intenta logear. Copialo y luego lo
+pones en la opcion de client_hash: que pusimos en el √∫ltimo paso.
 
-Suerte. Recuerda que esta guÌa es un beneficio por el servicio que contrataste.
+Suerte. Recuerda que esta gu√≠a es un beneficio por el servicio que contrataste.
 No compartas el source a nadie, es tu responsabilidad, pues si cae en manos equivocadas
-podrÌa llegar a lugares como OpenKore y otros, en donde solo buscan daÒar los servidores
+podr√≠a llegar a lugares como OpenKore y otros, en donde solo buscan da√±ar los servidores
 buenos de Ragnarok.
