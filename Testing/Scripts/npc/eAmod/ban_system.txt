@@ -36,8 +36,7 @@
 //================================================
 
 OnInit:
-		bindatcmd "eamodban",strnpcinfo(3)+"::OnAtCommand",10,99; // Creating an instance of command for Game Masters around of level 10 to 99.
-		//bindatcmd "command","<NPC object name>::<event label>"{,<atcommand level>,<charcommand level>};
+		bindatcmd "eamodban",strnpcinfo(3)+"::OnAtCommand",10,99;
 		end;
 		
 OnAtCommand:
