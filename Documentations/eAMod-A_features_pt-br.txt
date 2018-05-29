@@ -1,0 +1,61 @@
+//  ________________________________________________________
+// /           ______  __                                   \
+// |          /\  _  \/\ \__                                 |
+// |        __\ \ \L\ \ \ ,_\   ___  ___     __  ______      |
+// |      /'__`\ \  __ \ \ \/ /' _ `\   \  /'__`\  ___ \     |
+// |     /\  __/\ \ \/\ \ \ \_/\ \/\ \/\ \/\ \_\.\ \___\\    |
+// |     \ \____\\ \_\ \_\ \__\ \_\ \_\ \_\ \____/\______\   |
+// |      \/____/ \/_/\/_/\/__/\/_/\/_/\/_/\/___/\/______/   |
+// |                 _   _   _   _   _                       |
+// |                / \ / \ / \ / \ / \                      |
+// |               ( e | A | m | o | d )                     |
+// |                \_/ \_/ \_/ \_/ \_/                      |
+// \________________________________________________________/
+
+Lista de recursos eAmod-A
+=============================================================
+
+Este documento contém a lista de todos os recursos no eAmod-A. Manteremos ele atualizado e ele será útil a todos os interessados no eAmod.
+
+
+- Batalha Campal: Capture a Bandeira com marcas sobre as posições da bandeira no mini-mapa.
+- Batalha Campal: Olho da Tempestade baseado em World of Warcraft. Isso combina a Dominação e o sistema de captura de bandeiras.
+- Batalha Campal: Team Death Match.
+- Batalha Campal: Tierra Boosnia (Estilo Alterac Valley).
+- Batalha Campal: Stone Control (Múltipla Capture a Bandeira)
+- Batalha Campal: Tierra Tiple Infierno (TeamDeathMatch Triplo)
+- Batalha Campal: Conquista (Simulação da WoE SE - WoE Second Edition)
+- Batalha Campal: Loja de itens de suprimento usando medalhas.
+- WoE: Loja de itens de suprimento usando medalhas.
+- Arena de Duelo: 1 vs 1 com anúncios globais, usando o sistema KvM.
+- Batalha Campal: Sistema Expert de Ranking da Batalha Campal.
+
+- Sistema Expert de Ranking da WoE. Dê uma olhada em www.chronos-ro.com em Rankings, nos submenus de Clã, WoE e Castelo.
+- Múltiplos eventos de Guerra do Emperium, com diferentes castelos cada um auto bloqueio dos castelos não jogáveis.
+- Ancient WoE, para jogar apenas com personagens de 1ª e 2ª classe, e equipamentos e itens da 9ª temporada, e anteriores.
+
+- Sistema de Aluguel de Casas.
+- Mineração usando o sistema WoW. As Minas nascem em mapas especificados e em diferentes tipos de minas.
+- Script oficial da Torre Sem Fim.
+- NPC All Service para servidores de Rate Alta.
+- Salas de jogos com Emperium Breaker, Barricada e simulações dos eventos Pedra Guardiã, Memorial, Audio Memorial e Simon Says games.
+- Sistema de caçada. Onde você recebe uma lista de mobs para matar a cada 24 horas.
+- Sistema Cash Shop, para inspirar doações. Sistema de conta Premium.
+
+- Sistema de Canal do World of Warcraft.
+- Sistema de serialização de itens, onde cada Equipamento possui um número de série único, para que você possa rastrear facilmente itens ou detectar duplicatas.
+- Comando @security para jogadores. Isso permite definir uma senha para bloquear quedas de itens, negociações, com qualquer tipo de item.
+- @aura para definir diferentes auras entre os jogadores.
+- Scripts de GameMaster Tools para definir desligamento programado e com delay, ou um editor de variáveis de jogador (para editar ou verificar variáveis de quest dos jogadores).
+- Comandos de [GM]s para Eventos.
+- @pvpmode para entrar no modo PK, onde você pode matar outros jogadores em qualquer lugar.
+
+
+- Mecânica de Renovação. A maioria das novas fórmulas (ASPD, dano, cartas, defesa, etc).
+- Todas as classes 3-1 da 3CeAM, melhoradas e corrigidas.
+- Atualmente trabalhando em 3-2 Classes, um por um.
+- Bancos de dados de renovação: Experiência, Monstros (até Dicastes), Pontos de Estatísticas, ASPD, Itens, Elementos, etc.
+- A Mecânica de Renovação pode ser ativada / desativada usando apenas uma configuração de batalha.
+- El Dicastes, Scarabah Dungeon, Nyd.
+
+- E muito mais que agora eu não me lembro.
