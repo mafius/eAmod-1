@@ -1,42 +1,42 @@
-//  ________________________________________________________
-// /           ______  __                                   \
-// |          /\  _  \/\ \__                                 |  
-// |        __\ \ \L\ \ \ ,_\   ___  ___     __  ______      | 
-// |      /'__`\ \  __ \ \ \/ /' _ `\   \  /'__`\  ___ \     |
-// |     /\  __/\ \ \/\ \ \ \_/\ \/\ \/\ \/\ \_\.\ \___\\    |
-// |     \ \____\\ \_\ \_\ \__\ \_\ \_\ \_\ \____/\______\   |
-// |      \/____/ \/_/\/_/\/__/\/_/\/_/\/_/\/___/\/______/   |
-// |                 _   _   _   _   _                       |
-// |                / \ / \ / \ / \ / \                      |
-// |               ( e | A | m | o | d )                     |
-// |                \_/ \_/ \_/ \_/ \_/                      |
-// |---------------------------------------------------------|
-// | Script Name: eAmod Banishment System                    |
-// |---------------------------------------------------------|
-// | Created by: J3MK1                                       |
-// |---------------------------------------------------------|
-// | Versions eA: all                                        |
-// |---------------------------------------------------------|
-// | Description: A Banishment System developed exclusive    |
-// |to eAmod System                                          |
-// |---------------------------------------------------------|
-// | Changelog:                                              |
-// | 1.0 - Initial Script Developed [J3MK1]                  |
-// | 1.1 - Corrections on some Syntax and Messages [J3MK1]   |
-// | 1.2 - Added Global Offline Functions [J3MK1]            |
-// | 1.3 - Added Cutin and Sleep 10s to Banishment [J3MK1]   | 
-// | 1.4 - Corrections on some Syntax and Messages [J3MK1]   |
-// | 1.5 - Add some Messages [J3MK1]                         |
-// \________________________________________________________/
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: eAmod Banishment System                                     |
+// |--------------------------------------------------------------------------|
+// | Created by: J3MK1 & shellTeMP                                            |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all/all/all/all                        |
+// |--------------------------------------------------------------------------|
+// | Description: A Banishment System developed exclusive to eAmod System     |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Initial Script Developed [J3MK1]                                   |
+// | 1.1 - Corrections on some Syntax and Messages [J3MK1]                    |
+// | 1.2 - Added Global Offline Functions [shellTeMP]                         |
+// | 1.3 - Added Cutin and Sleep 10s to Banishment [J3MK1]                    | 
+// | 1.4 - Corrections on some Syntax and Messages [J3MK1]                    |
+// | 1.5 - Add some Messages [J3MK1]                                          |
+// | 1.6 - Corrections in the Offline Jailing and Ban System [shellTeMP]      |
+// | 1.7 - Corrected in the Mute System [J3MK1]                               |
+// \_________________________________________________________________________/
 
 -	script	eamodcmdban	-1,{
 
-//================================================
-//= NPC Settings
-//================================================
+//---------------
+//- NPC Settings 
+//---------------
 
 OnInit:
-		bindatcmd "eamodban",strnpcinfo(3)+"::OnAtCommand",10,99;
+		bindatcmd "eAmodban",strnpcinfo(3)+"::OnAtCommand",10,99;
 		end;
 		
 OnAtCommand:
@@ -322,7 +322,11 @@ end;
 
 OnPCLoginEvent:
 OnPCDieEvent:
-// Offline Jailing System
+
+//------------------------------------
+//- Offline Jailing System
+//------------------------------------
+
 	if(agitcheck() || agitcheck2())
 	{
 		for(set .@i,0; .@i < getarraysize($WoEJailed$); set .@i,.@+1)
@@ -354,8 +358,10 @@ OnPCDieEvent:
 		}
 	}
 
-
+//------------------------------------
 // Offline Banning System
+//------------------------------------
+
 	if(agitcheck() || agitcheck2())
 	{
 		for(set .@i,0; .@i < getarraysize($WoEBan$); set .@i,.@+1)
@@ -390,7 +396,10 @@ OnPCDieEvent:
 		}
 	}
 
+//------------------------------------
 // Offline Muting System
+//------------------------------------
+
 	if(agitcheck() || agitcheck2())
 	{
 		for(set .@i,0; .@i < getarraysize($WoEMute$); set .@i,.@i + 1)
