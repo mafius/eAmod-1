@@ -14,8 +14,7 @@
 // |                         Lista de Recursos eAmod-A                        |
 // \_________________________________________________________________________/
 
-Lista de recursos eAmod-A
-=============================================================
+/*
 
 Este documento contém a lista de todos os recursos no eAmod-A. Manteremos ele atualizado e ele será útil a todos os interessados no eAmod.
 
@@ -61,3 +60,5 @@ Este documento contém a lista de todos os recursos no eAmod-A. Manteremos ele a
 - El Dicastes, Scarabah Dungeon, Nyd.
 
 - E muito mais que agora eu não me lembro.
+
+*/
