@@ -3,7 +3,7 @@
 //===== De: =================================================
 //= rAthena Dev Team
 //===== Última atualização: =================================
-//= 20140831
+//= 20180615
 //===== Descrição: ==========================================
 //= Lista de todos os pacotes usados em login-serv (A), char-serv (H),
 //= e map-serv (Z) para se comunicar entre eles.
@@ -116,7 +116,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- bank_vault: valor em banco para este AID
 		- isvip: se este AID é atualmente vip ou não
 		- char_vip: número de charslot que são vip (só pode fazer a criação se você é vip)
-		- MAX_CHAR_BILLING: número de slots de personagem que estão para o jogador após assinatura VIP
+		- MAX_CHAR_BILLING: número de slots de personagem que estão disponíveis para o jogador após assinatura VIP
 	desc:
 		- Solicita dados da conta
 
