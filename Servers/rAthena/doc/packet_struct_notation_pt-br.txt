@@ -578,7 +578,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- group_lv
 		- query
 	desc:
-		- Request acc info
+		- Solicitar informações da conta
 
 0x3018
 	Tipo: ZI
@@ -590,7 +590,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- gid
 	desc:
-		- Request guild storage
+		- Solicita armazém de guilda
 
 0x3019
 	Tipo: ZI
@@ -603,7 +603,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- gid
 	desc:
-		- Send guild storage
+		- Envie o armazém da guilda
 
 0x3020
 	Tipo: ZI
@@ -618,7 +618,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- item2
 		- member
 	desc:
-		- Party creation request
+		- Pedido de criação de Party
 
 0x3021
 	Tipo: ZI
@@ -630,7 +630,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- party_id
 		- cid
 	desc:
-		- Party information request
+		- Pedido de informação de Party
 
 0x3022
 	Tipo: ZI
@@ -643,7 +643,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- party_id
 		- member
 	desc:
-		- Request to add a member to party
+		- Pedido para adicionar um membro à Party
 
 0x3023
 	Tipo: ZI
@@ -657,7 +657,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- exp
 		- item
 	desc:
-		- Request to change party configuration (exp,item share)
+		- Solicitação para alterar a configuração da party (exp,compartilhamento de item)
 
 0x3024
 	Tipo: ZI
@@ -670,7 +670,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- cid
 	desc:
-		- Request to leave party
+		- Pedido para deixar a party
 
 0x3025
 	Tipo: ZI
@@ -686,7 +686,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- online
 		- base_level
 	desc:
-		- Party change map
+		- Mapa de mudança da party
 
 0x3026
 	Tipo: ZI
@@ -697,7 +697,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3026)
 		- party_id
 	desc:
-		- Request breaking party
+		- Pedido de quebra da party
 
 0x3027
 	Tipo: ZI
@@ -711,7 +711,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- mes
 	desc:
-		- Sending party chat
+		- Envia chat da party
 
 0x3029
 	Tipo: ZI
@@ -724,7 +724,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- cid
 	desc:
-		- Request a new leader for party
+		- Solicita um novo líder para a party
 
 0x302A
 	Tipo: ZI
@@ -735,7 +735,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x302a)
 		- share_lvl
 	desc:
-		- Request to update party share level
+		- Solicitação para atualizar o nível de compartilhamento da party
 
 0x3030
 	Tipo: ZI
@@ -749,7 +749,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- name
 		- master
 	desc:
-		- Request a Guild creation
+		- Solicita uma criação de guilda
 
 0x3031
 	Tipo: ZI
@@ -760,7 +760,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3031)
 		- guild_id
 	desc:
-		- Request Guild information
+		- Solicita informações da guilda
 
 0x3032
 	Tipo: ZI
@@ -770,7 +770,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x3032)
 	desc:
-		- Request to add member to the guild
+		- Solicita para adicionar um membro à guilda
 
 0x3033
 	Tipo: ZI
@@ -783,7 +783,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- guild_id
 		- name
 	desc:
-		- Request a new leader for guild
+		- Solicita um novo líder para a guilda
 
 0x3034
 	Tipo: ZI
@@ -798,7 +798,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- flag
 		- mes
 	desc:
-		- Request to leave guild
+		- Pedido para sair da guilda
 
 0x3035
 	Tipo: ZI
@@ -814,7 +814,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- lv
 		- class_
 	desc:
-		- Update request / Lv online status of the guild members
+		- Atualizar pedido / status on-line do Lv dos membros da guilda
 
 0x3036
 	Tipo: ZI
@@ -825,7 +825,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3036)
 		- guild_id
 	desc:
-		- Guild disbanded notification
+		- Notificação de guilda desbanida
 
 0x3037
 	Tipo: ZI
@@ -839,7 +839,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- mes
 	desc:
-		- Send a guild message
+		- Envia uma mensagem da guilda
 
 0x3039
 	Tipo: ZI
@@ -853,7 +853,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- Tipo
 		- data
 	desc:
-		- Request a change of Guild basic information
+		- Solicita uma alteração da informação básica da guilda
 
 0x303a
 	Tipo: ZI
@@ -869,7 +869,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- Tipo
 		- data
 	desc:
-		- Request a change of Guild member information
+		- Solicita uma alteração das informações do membro da guilda
 
 0x303b
 	Tipo: ZI
@@ -883,7 +883,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- idx
 		- p
 	desc:
-		- Request a change of Guild title
+		- Solicita uma alteração do título da guilda
 
 0x303c
 	Tipo: ZI
@@ -897,7 +897,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- max
 	desc:
-		- Request an update of Guildskill skill_id
+		- Solicita uma atualização de Guildskill skill_id
 
 0x303d
 	Tipo: ZI
@@ -912,7 +912,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id2
 		- flag
 	desc:
-		- Request a new guild alliance
+		- Solicitar uma nova aliança de guilda
 
 0x303e
 	Tipo: ZI
@@ -925,7 +925,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- mes1
 		- mes2
 	desc:
-		- Request to change guild notice
+		- Solicitação para alterar o aviso da guilda
 
 0x303f
 	Tipo: ZI
@@ -935,7 +935,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x303f)
 	desc:
-		- Request to change guild emblem
+		- Solicitação para alterar o emblema da guilda
 
 0x3040
 	Tipo: ZI
@@ -947,7 +947,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- num
 		- castle_ids
 	desc:
-		- Requests guild castles data from char-server
+		- Solicita dados de castelos da guilda a partir do char-server
 
 0x3041
 	Tipo: ZI
@@ -960,7 +960,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- index
 		- value
 	desc:
-		- Request change castle guild owner and save data
+		- Solicita mudança do proprietário da guilda do castelo e salva os dados
 
 0x3048
 	Tipo: ZI
@@ -972,7 +972,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- flag
 	desc:
-		- Inbox request
+		- Pedido de caixa de entrada
 
 0x3049
 	Tipo: ZI
@@ -983,7 +983,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3049)
 		- mail_id
 	desc:
-		- Mail read
+		- e-mail lido
 
 0x304a
 	Tipo: ZI
@@ -995,7 +995,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- mail_id
 	desc:
-		- Mail get attachment
+		- e-mail obteve o anexo
 
 0x304b
 	Tipo: ZI
@@ -1007,7 +1007,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- mail_id
 	desc:
-		- Mail delete
+		- e-mail deletado
 
 0x304c
 	Tipo: ZI
@@ -1019,7 +1019,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- mail_id
 	desc:
-		- Mail return
+		- e-mail retornou
 
 0x304d
 	Tipo: ZI
@@ -1032,7 +1032,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- msg
 	desc:
-		- Mail send
+		- e-mail enviado
 
 0x3050
 	Tipo: ZI
@@ -1048,7 +1048,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- page
 		- searchtext
 	desc:
-		- Auction request list
+		- Lista de pedidos de leilão
 
 0x3051
 	Tipo: ZI
@@ -1060,7 +1060,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- len
 		- auction_data
 	desc:
-		- Auction register
+		- Registro do leilão
 
 0x3052
 	Tipo: ZI
@@ -1072,7 +1072,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- auction_id
 	desc:
-		- Auction cancel
+		- Cancelamento do leilão
 
 0x3053
 	Tipo: ZI
@@ -1084,7 +1084,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- auction_id
 	desc:
-		- Auction close
+		- Leilão fechado
 
 0x3055
 	Tipo: ZI
@@ -1098,7 +1098,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- auction_id
 		- bid
 	desc:
-		- Auction bid
+		- Lance do leilão
 
 0x3056
 	Tipo: ZI
@@ -1111,7 +1111,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- guild_id
 	desc:
-		- Itembound request
+		- Pedido Itembound
 
 0x3060
 	Tipo: ZI
@@ -1122,7 +1122,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3093)
 		- cid
 	desc:
-		- Requests a character's quest log entries to the inter server.
+		- Solicita as entradas do log de missões de um personagem ao inter server.
 
 0x3061
 	Tipo: ZI
@@ -1132,7 +1132,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x3093)
 	desc:
-		- Requests to the inter server to save a character's quest log entries.
+		- Solicitações ao inter server para salvar as entradas do log de missões de um personagem.
 
 0x3070
 	Tipo: ZI
@@ -1144,7 +1144,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- merc
 	desc:
-		- Mercenary create
+		- Cria Mercenary
 
 0x3071
 	Tipo: ZI
@@ -1156,7 +1156,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- merc_id
 		- cid
 	desc:
-		- Mercenary request
+		- Solicita Mercenary
 
 0x3072
 	Tipo: ZI
@@ -1167,7 +1167,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3072)
 		- merc_id
 	desc:
-		- Mercenary delete
+		- Deleta Mercenary
 
 0x3073
 	Tipo: ZI
@@ -1179,7 +1179,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- merc
 	desc:
-		- Mercenary save
+		- Salva Mercenary
 
 0x307c
 	Tipo: ZI
@@ -1191,7 +1191,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- ele
 	desc:
-		- Elemental create
+		- Cria Elemental
 
 0x307d
 	Tipo: ZI
@@ -1203,7 +1203,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ele_id
 		- cid
 	desc:
-		- Elemental request
+		- Solicita Elemental 
 
 0x307e
 	Tipo: ZI
@@ -1214,7 +1214,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x307e)
 		- ele_id
 	desc:
-		- Elemental delete
+		- Deleta Elemental
 
 0x307f
 	Tipo: ZI
@@ -1226,7 +1226,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- ele
 	desc:
-		- Elemental save
+		- Salva Elemental
 
 0x3080
 	Tipo: ZI
@@ -1246,7 +1246,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- rename_flag
 		- incubate
 	desc:
-		- Pet create
+		- Cria Pet 
 
 0x3081
 	Tipo: ZI
@@ -1259,7 +1259,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- pet_id
 	desc:
-		- Request pet data
+		- Solicita dados do pet
 
 0x3082
 	Tipo: ZI
@@ -1270,9 +1270,9 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3082)
 		- size
 		- aid
-		- s_pet: Pet data
+		- s_pet: Dados do Pet
 	desc:
-		- Save pet data
+		- Salva dados do pet
 
 0x3083
 	Tipo: ZI
@@ -1283,7 +1283,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3083)
 		- pet_id
 	desc:
-		- Delete pet data
+		- Deleta os dados do pet
 
 0x3090:
 	Tipo: ZI
@@ -1296,7 +1296,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- sh
 	desc:
-		- Homunculus create
+		- Cria homúnculo 
 
 0x3091:
 	Tipo: ZI
@@ -1308,7 +1308,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- homun_id
 	desc:
-		- Homunculus request load
+		- Solicita o carregamento de homúnculo 
 
 0x3092:
 	Tipo: ZI
@@ -1321,7 +1321,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- sh
 	desc:
-		- Homunculus request save
+		- Solicita o salvamento do homúnculo 
 
 0x3093:
 	Tipo: ZI
@@ -1332,7 +1332,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3093)
 		- homun_id
 	desc:
-		- Homunculus request delete
+		- Solicita o deletamento do homúnculo 
 
 0x3094:
 	Tipo: ZI
@@ -1345,7 +1345,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- name
 	desc:
-		- Homunculus rename
+		- Renomeia o homúnculo 
 
 
 
@@ -1364,7 +1364,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- fontY
 		- mes
 	desc:
-		- Send broadcast message
+		- Enviar mensagem broadcast
 
 0x3801
 	Tipo: IZ
@@ -1379,7 +1379,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- dst
 		- msg
 	desc:
-		- Send whisper message
+		- Enviar mensagem whisper
 
 0x3802
 	Tipo: IZ
@@ -1391,7 +1391,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- src
 		- flag
 	desc:
-		- Whisper sending result
+		- Whisper enviando o resultado
 
 0x3803
 	Tipo: IZ
@@ -1405,7 +1405,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- permission
 		- message
 	desc:
-		- Parse whisper to GM
+		- Analisa whisper para GM
 
 0x3804
 	Tipo: IZ
@@ -1419,7 +1419,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cid
 		- Tipo
 	desc:
-		- Account registry transfer to map-server
+		- Transferência de registro de conta para o map-server
 
 0x3806
 	Tipo: IZ
@@ -1448,7 +1448,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- msg_out
 	desc:
-		- sends a mesasge to map server (fd) to a user (u_fd) although we use fd we keep aid for safe-check
+		- envia uma mensagem para map-server(fd) para um usuário (umfd) embora usemos fd, nós mantemos aid para verificação segura.
 
 0x3818
 	Tipo: IZ
@@ -1491,7 +1491,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- party_id
 		- name
 	desc:
-		- ACK party creation
+		- Confirmação da criação da party
 
 0x3821
 	Tipo: IZ
@@ -1504,7 +1504,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- party_id
 	desc:
-		- Party information not found
+		- Informação de Party não encontrada
 
 0x3822
 	Tipo: IZ
@@ -1534,7 +1534,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- flag
 		- ?
 	desc:
-		- Party setting change notification
+		- Notificação de alteração de configuração da party
 
 0x3824
 	Tipo: IZ
@@ -1548,7 +1548,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- ?
 	desc:
-		- Withdrawal notification party
+		- Notificação de retirada da party
 
 0x3825
 	Tipo: IZ
@@ -1565,7 +1565,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- lv
 		- ?
 	desc:
-		- Party map update notification
+		- Notificação de atualização do mapa da party
 
 0x3826
 	Tipo: IZ
@@ -1578,7 +1578,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- flag
 		- ?
 	desc:
-		- Dissolution party notification
+		- Notificação da dissolução da party
 
 0x3827
 	Tipo: IZ
@@ -1631,7 +1631,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- flag
 	desc:
-		- ACK member add
+		- Confirmação da Adição de um membro
 
 0x3834
 	Tipo: IZ
@@ -1663,7 +1663,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- lv
 		- class_
 	desc:
-		- Send short guild member's info
+		- Envia pequenas informações do membro da guilda 
 
 0x3836
 	Tipo: IZ
@@ -1689,7 +1689,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- mes
 	desc:
-		- Send guild message
+		- Envia mensagem da guilda
 
 0x3839
 	Tipo: IZ
@@ -1746,7 +1746,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- skill_id
 		- account_id
 	desc:
-		- ACK guild skill up
+		- Confirmação do aumento das habilidades da guilda 
 
 0x383d
 	Tipo: IZ
@@ -1760,7 +1760,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id1
 		- account_id2
 	desc:
-		- ACK guild alliance
+		- Confirmação da aliança da guilda
 
 0x383e
 	Tipo: IZ
@@ -1774,7 +1774,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- mes2
 		- ?
 	desc:
-		- Send the guild notice
+		- Envia um aviso da guilda
 
 0x383f
 	Tipo: IZ
@@ -1788,7 +1788,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- emblem_id
 		- emblem_data
 	desc:
-		- Send emblem data
+		- Envia dados do emblema
 
 0x3840
 	Tipo: IZ
@@ -1827,7 +1827,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- flag
 		- md : Mail
 	desc:
-		- A player request for mail inbox
+		- Um pedido de jogador para a caixa de entrada de email
 
 0x3849
 	Tipo: IZ
@@ -1841,7 +1841,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- sender_name
 		- mail_title
 	desc:
-		- Report New Mail to Map Server
+		- Informar novo email no map-server
 
 0x384a
 	Tipo: IZ
@@ -1855,7 +1855,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- zeny
 		- item
 	desc:
-		- Get mail attachment
+		- Obter anexo de email
 
 0x384b
 	Tipo: IZ
@@ -1866,9 +1866,9 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x384b)
 		- char_id
 		- mail_id
-		- failed: Fail status when delete a mail
+		- failed: Status de falha ao excluir um email
 	desc:
-		- Status about mail deletion to player
+		- Status sobre a exclusão de email para o player
 
 0x384c
 	Tipo: IZ
@@ -1881,7 +1881,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- mail_id
 		- new_mail
 	desc:
-		- Received a returned mail
+		- Recebeu um email retornado
 
 0x384d
 	Tipo: IZ
@@ -1893,7 +1893,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- mail_message
 	desc:
-		- Mail sent status (to player if the sender is player and online)
+		- Email envia o status (para o jogador, se o remetente for um jogador e estiver on-line)
 
 0x3850
 	Tipo: IZ
@@ -1908,7 +1908,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- pages
 		- auction_data
 	desc:
-		- Auction list
+		- Lista de leilões
 
 0x3851
 	Tipo: IZ
@@ -1920,7 +1920,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- auction_data
 	desc:
-		- Status auction registration
+		- Registro do status do leilão
 
 0x3852
 	Tipo: IZ
@@ -1932,7 +1932,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- result
 	desc:
-		- Cancel an auction that requested by player
+		- Cancela um leilão solicitado pelo jogador
 
 0x3853
 	Tipo: IZ
@@ -1944,7 +1944,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- result
 	desc:
-		- Receive a notification that the auction has ended
+		- Recebe uma notificação de que o leilão terminou
 
 0x3855
 	Tipo: IZ
