@@ -1,30 +1,30 @@
-//===== rAthena Documentation ================================
-//= Source Documentation
-//===== By: ==================================================
+//===== Documentação rAthena ================================
+//= Documentação da Source
+//===== De: =================================================
 //= rAthena Dev Team
-//===== Last Updated: ========================================
-//= 20140831
-//===== Description: =========================================
-//= List of all packets used by login-serv (A), char-serv (H),
-//= and map-serv (Z) to communicate with each other.
-//= See packet_client.txt for communication to client (C).
+//===== Última atualização: =================================
+//= 20180615
+//===== Descrição: ==========================================
+//= Lista de todos os packets usados pelo Login-server (A),
+//= char-server (H), e map-server (Z) para se comunicarem entre si.
+//= Veja packet_client.txt para entender a comunicação do client (C).
 //============================================================
 
-This file provides information about rAthena's packets, ordered by number.
-This assumes knowledge of packet notation, which is detailed in
-'doc/packet_struct_notation.txt'.
+Este arquivo fornece informações sobre os pacotes de rAthena, ordenados por número.
+Isso pressupõe o conhecimento da notação de pacotes, que é detalhada em
+'eAmod/Documentation/Packet Structure/packet_struct_notation_pt-br.txt'.
 
-The format of this file is as follows:
-	1. Notes
+O formato deste arquivo é o seguinte:
+	1. Notas
 	2. Login-Char Packets
 	3. Char/Inter Packets
 	- 3.1 Inter-Map Packets
 	- 3.2 Char-Map Packets
 
 ============
-| 1. Notes |
+| 1. Notas |
 ============
-Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.c').
+Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.c').
 
 =========================
 | 2. Login-Char Packets |
@@ -35,15 +35,15 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,19
 	len: 23
 	parameter:
-		- cmd : packet identification (0x2712)
-		- aid : account identification
+		- cmd : identificação de packet (pacote) (0x2712)
+		- aid : identificação da conta
 		- login_id1: unknown @FIXME
 		- login_id2: unknown @FIXME
-		- sex: the sex of the account
-		- ip: the ip of the connection (obsolete)
+		- sex: o sexto da conta
+		- ip: o ip da conexão (obsoleto)
 		- request_id: unknown @FIXME
 	desc:
-		- Request from char-server to authenticate an account.
+		- Solicita ao servidor de personagens (char-server) para autenticar uma conta.
 
 0x2713:
 	Type: AH
@@ -51,17 +51,17 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,16,20,24
 	len: 25
 	parameter:
-		- cmd : packet identification (0x2713)
-		- aid : account identification
+		- cmd : identificação de packet (pacote) (0x2713)
+		- aid : identificação da conta
 		- login_id1: unknown @FIXME
 		- login_id2: unknown @FIXME
-		- sex: the sex of the account
-		- ok : 1=auth failed, 1=ok
+		- sex: sexo da conta
+		- ok : 1=falha de autenticação, 1=sucesso na autenticação
 		- request_id: unknown @FIXME
-		- version: client version, (clientinfo version)
+		- version: versão do client, (versão do clientinfo)
 		- clienttype: unknown @FIXME
 	desc:
-		- Acknowledge the authentication request from char-serv
+		- Confirma a solicitação da autenticação do char-server
 
 0x2714:
 	Type: HA
@@ -69,10 +69,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2714)
-		- user_count: number of user present on the char-serv
+		- cmd : identificação do packet (pacote) (0x2714)
+		- user_count: número de usuários presentes no char-server
 	desc:
-		- Retrieve the number of user present on a char-serv
+		- Restabelecer o número de usuários presentes em um char-server
 
 0x2715:
 	Type: HA
@@ -80,11 +80,11 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 46
 	parameter:
-		- cmd : packet identification (0x2715)
-		- aid: account identification
-		- email: new email for account id
+		- cmd : identificação do packet (pacote) (0x2715)
+		- aid: identificação da conta
+		- email: um novo email para a identificação da conta
 	desc:
-		- Request to update the email linked to this aid
+		- Solicitação para atualizar o email vinculado a este AID
 
 0x2716:
 	Type: HA
@@ -92,8 +92,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2716)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2716)
+		- aid: identificação da conta
 	desc:
 		- Request the account information of aid (see 0x2717)
 
@@ -103,21 +103,21 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,46,50,51,52,63,68,72,76,77,78
 	len: 79
 	parameter:
-		- cmd: packet identification (0x2717)
-		- aid: account identification
-		- email: email of aid
+		- cmd: packet identificação do packet (pacote) (0x2717)
+		- aid: identificação da conta
+		- email: email do aid
 		- expiration_time: unknow @FIXME
-		- group_id: the group the aid belong too
-		- char_slots: number of slot available the account have (will be displayed on client)
-		- birthdate: birthdate of aid
-		- pincode: current pincode of aid
-		- pincode_change: new pincode of aid
-		- bank_vault: value in bank for this aid
-		- isvip: if this aid is currently vip or not
-		- char_vip: number of charslot that are vip (could only do creation on if you are vip)
-		- MAX_CHAR_BILLING: number of charslort that are for billing
+		- group_id: o grupo que o aid pertence
+		- char_slots: número de slots disponíveis que a conta possui (será exibida no cliente)
+		- birthdate: data de nascimento do aid
+		- pincode: código pin do aid
+		- pincode_change: novo código pin do aid
+		- bank_vault: valor em banco para este aid
+		- isvip: se esta aid é atualmente vip ou não
+		- char_vip: número de charslot que são vip (só poderá fazer criação se você for vip)
+		- MAX_CHAR_BILLING: número de slots de personagem que estão disponíveis para o jogador após assinatura VIP
 	desc:
-		- Request account data
+		- Solicita dados da conta
 
 0x2718
 	Type: AH
@@ -125,9 +125,9 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2718)
+		- cmd : identificação do packet (pacote) (0x2718)
 	desc:
-		- Keep alive packet, (confirm we are still connected)
+		- Mantém o pacote ativo, (confirma que ainda estamos conectados)
 
 0x2719:
 	Type: HA
@@ -135,9 +135,9 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2719)
+		- cmd : identificação do packet (pacote) (0x2719)
 	desc:
-		- Ping request from char-server
+		- Solicitação de Ping do char-server
 
 0x2720:
 0x2721:
@@ -149,12 +149,12 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,46
 	len: 86
 	parameter:
-		- cmd : packet identification (0x2722)
-		- aid: account identification
-		- actual_email: current email address
-		- new_email: new email address
+		- cmd : identificação do packet (pacote) (0x2722)
+		- aid: identificação da conta
+		- actual_email: atual endereço de email
+		- new_email: novo endereço de email
 	desc:
-		- Map server sends information to change an email of an account via char-server
+		- O map-server envia informações para alterar um email de uma conta via char-server
 
 0x2723:
 	Type: AH
@@ -162,14 +162,14 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x2723)
-		- aid: account identification
-		- sex: sex of account
-			0 = SEX_FEMALE
-			1= SEX_MALE
-			2=SEX_SERVER
+		- cmd : identificação do packet (pacote) (0x2723)
+		- aid: identificação da conta
+		- sex: sexo da conta
+			0 = SEX_FEMALE (Feminino)
+			1= SEX_MALE (Masculino)
+			2= SEX_SERVER (Servidor, ou seja, como o S da conta S1 e P1)
 	desc:
-		- Acknowledge sex update
+		- Confirma a atualização de sexo
 
 0x2724:
 	Type: HA
@@ -177,13 +177,13 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2724)
-		- t_aid: account identification of target
-		- state: state of account
-			- 0 : unblock
-			- 5 : block (Connection refused)
+		- cmd : identificação do packet (pacote) (0x2724)
+		- t_aid: identificação da conta of target
+		- state: estado da conta
+			- 0 : unblock (Desbloqueado)
+			- 5 : block (Connection refused) (Bloqueado) (Conexão recusada)
 	desc:
-		- Receiving an account state update request from a map-server (relayed via char-server)
+		- Recebe uma solicitação de atualização do estado da conta do map-server (retransmitido via char-server)
 
 0x2725:
 	Type: HA
@@ -191,11 +191,11 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2725)
-		- t_aid: account identification of target
-		- timediff: tick to add or remove to a timestamp
+		- cmd : identificação do packet (pacote) (0x2725)
+		- t_aid: identificação da conta of target
+		- timediff: marque para adicionar ou remover um timestamp
 	desc:
-		- Receiving of map-server via char-server a ban request (alter the ban time)
+		- Recebe do map-server via char-server uma requisição de banimento (altera o tempo de banimento)
 
 0x2726:
     free
@@ -206,10 +206,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2727)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2727)
+		- aid: identificação da conta
 	desc:
-		- Receive a request to change sex (sex is reversed)
+		- Recebe um pedido para mudar de sexo (o sexo é invertido)
 
 0x2728:
 	Type: HA
@@ -217,14 +217,14 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,13
 	len: variable (reg size+4)
 	parameter:
-		- cmd : packet identification (0x2728)
-		- len:  pakcet size
-		- aid: account identification
-		- cid : char identification
-		- str : name of variable in registry
-		- value : value of varaible in registry
+		- cmd : identificação do packet (pacote) (0x2728)
+		- len:  tamanho do packet (pacote)
+		- aid: identificação da conta
+		- cid : identificação do personagem (char)
+		- str : nome de variável no registro (string)
+		- value : valor de variável no registro
 	desc:
-		- Receive an request to fetch account_reg2 from a char-server, see packet 0x3004 (mapif_parse_Registry)
+		- Recebe uma solicitação para buscar account_reg2 no char-server, consulte 0x3004 (mapif_parse_Registry)
 
 
 0x2729:
@@ -233,19 +233,19 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,13
 	len: variable (reg2 size+13)
 	parameter:
-		- cmd : packet identification (0x2729)
+		- cmd : identificação do packet (pacote) (0x2729)
 		- len:  pakcet size
-		- aid: account identification
+		- aid: identificação da conta
 		- cid : char identification
 		-type:
 		-type:
-			1: account2 registry (only one used atm)
-			2: account registry
+			1: Registro account2 (apenas um usado até o momento)
+			2: Registro account
 			3: char registry
-		- str : name of variable in registry
-		- value : value of varaible in registry
+		- str : nome de variável no registro (string)
+		- value : valor de variável no registro
 	desc:
-		- Receive account_reg2 registry, forward to map servers.
+		- Recebe o registro de account_reg2, e encaminha para o map-server.
 
 0x272a:
 	Type: HA
@@ -253,8 +253,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x272a)
-		- t_aid: account identification
+		- cmd : identificação do packet (pacote) (0x272a)
+		- t_aid: identificação da conta
 	desc:
 		- request unban account
 
@@ -265,10 +265,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x272b)
-		- t_aid: account identification
+		- cmd : identificação do packet (pacote) (0x272b)
+		- t_aid: identificação da conta
 	desc:
-		- Add aid to list of online user on loginserv (setacconline).
+		- Adiciona o aid à lista de usuários on-line no login-server (setacconline).
 
 0x272c:
 	Type: HA
@@ -276,10 +276,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x272c)
-		- t_aid: account identification
+		- cmd : identificação do packet (pacote) (0x272c)
+		- t_aid: identificação da conta
 	desc:
-		- Remove aid to the list of online user (setaccoffline).
+		- Remove o aid da lista de usuários on-line (setaccoffline).
 
 0x272d:
 	Type: HA
@@ -287,12 +287,12 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: 8+users*4
 	parameter:
-		- cmd : packet identification (0x272d)
+		- cmd : identificação do packet (pacote) (0x272d)
 		- len : size of packet
-		- users: number of users connected to char-serv
-		- aid: account identification
+		- users: número de usuários conectados ao char-server
+		- aid: identificação da conta
 	desc:
-		- receive account list from char-server
+		- recebe uma lista de contas do char-server
 
 0x272e:
 	Type: HA
@@ -300,11 +300,11 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x272e)
-		- aid: account identification
-		- cid: char identification
+		- cmd : identificação do packet (pacote) (0x272e)
+		- aid: identificação da conta
+		- cid: identificação do personagem (char)
 	desc:
-		- request accreg2 to login
+		- solicita accreg2 ao login
 
 0x272f:
 0x2730:
@@ -316,12 +316,12 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2731)
-		- aid: account identification
-		- state: 0=change of status, 1=ban
-		- status|date: status or final date of a banishment
+		- cmd : identificação do packet (pacote) (0x2731)
+		- aid: identificação da conta
+		- state: 0=mudança de status, 1=banimento
+		- status|date: status ou data limite de um banimento
 	desc:
-		- Notify char-serv of a state change or ban (accbannotification).
+		- Notifica o char-server sobre uma mudança de status or banimento (accbannotification).
 
 0x2732:
 0x2733:
@@ -333,10 +333,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2734)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2734)
+		- aid: identificação da conta
 	desc:
-		- Account is already marked as online. (Login server request to kick a character out).
+		- A conta já está marcada como online. (Solicita ao login-server para expulsar o personagem atualmente logado).
 
 0x2735:
 	Type: AH
@@ -344,9 +344,9 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2735
+		- cmd : identificação do packet (pacote) (0x2735
 	desc:
-		- ip address update signal from login server
+		- sinal de atualização do endereço ip do login server
 
 0x2736:
 	Type: HA
@@ -354,10 +354,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2736)
-		-  ip: ip of char server
+		- cmd : identificação do packet (pacote) (0x2736)
+		-  ip: ip do char-server
 	desc:
-		- IP update for char-server
+		- Atualização de IP para o char-server
 
 0x2737:
 	Type: HA
@@ -365,9 +365,9 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2737)
+		- cmd : identificação do packet (pacote) (0x2737)
 	desc:
-		- Request to set all account as offline from char-server
+		- Solicita que seja definido o status de todas as contas como offline no char-server
 
 0x2738:
 	Type: HA
@@ -375,11 +375,11 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: variable: 11+PINCODE_LENGTH+1
 	parameter:
-		- cmd : packet identification (0x2738)
+		- cmd : identificação do packet (pacote) (0x2738)
 		- aid : account identification
-		- pincode : new pincode code
+		- pincode : novo código pin
 	desc:
-		- Change PIN Code of an account
+		- Altera o código PIN de uma conta
 
 0x2739:
 	Type: HA
@@ -387,10 +387,10 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2739)
-		- aid : account identification
+		- cmd : identificação do packet (pacote) (0x2739)
+		- aid : identificação da conta
 	desc:
-		- Login notify char that too many wrong PIN code entered. (fail auth)
+		- O login-server notifica que foram efetuadas muitas tentativas incorretas PIN. (falha na autenticação)
 
 0x273a
 0x273b
@@ -406,8 +406,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2740)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2740)
+		- aid: identificação da conta
 		- type:
 		- data:
 	desc:
@@ -419,7 +419,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2741)
+		- cmd : identificação do packet (pacote) (0x2741)
 		- aid : account identification
 		- type : 1=select, 2=upd and save
 		- data : new bank vault
@@ -432,8 +432,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7,11
 	len: 15
 	parameter:
-		- cmd : packet identification (0x2742)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2742)
+		- aid: identificação da conta
 		- type: &1 ack vip data to char-serv, &2 add duration
 		- timediff: tick to add to viptime
 		- mapfd: map-serv link to ack if type&1
@@ -446,8 +446,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11,15,16
 	len: 20
 	parameter:
-		- cmd : packet identification (0x2743)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x2743)
+		- aid: identificação da conta
 		- vip_time: timestamp of vip_time if he is vip
 		- isvip: is this account in vip mode atm
 		- groupid: group id of account
@@ -466,7 +466,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10,12,14,16
 	len: 16+msglen
 	parameter:
-		- cmd : packet identification (0x3000)
+		- cmd : identificação do packet (pacote) (0x3000)
 		- len : packet size
 		- fontColor: (standard broadcast color=0xFF000000)
 		- fontType:
@@ -485,7 +485,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,4+NAME_LENGTH,4+2*NAME_LENGTH
 	len: 52+mes_len
 	parameter:
-		- cmd : packet identification (0x3001)
+		- cmd : identificação do packet (pacote) (0x3001)
 		- len: packet size
 		- name : sender name of msg
 		- nick : receiver name of msg
@@ -499,7 +499,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x3002)
+		- cmd : identificação do packet (pacote) (0x3002)
 		- id: whisper id, identifier to match current whisper session that store in inter.c::wis_db
 		- flag: 0=success, 1=target not found, 2=ignored by target
 	desc:
@@ -511,7 +511,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,4+NAME_LENGTH,8+NAME_LENGTH
 	len: variable: mes_len + 8 + NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3003)
+		- cmd : identificação do packet (pacote) (0x3003)
 		- packet_len: mes_len + 8 + NAME_LENGTH
 		- wisp_name
 		- permission
@@ -525,8 +525,8 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,4,8,12,13
 	len:  variable : 13+regnum*(len variable name+len value) (max=288 * MAX_REG_NUM+13)
 	parameter:
-		- cmd : packet identification (0x3004)
-		- aid: account identification
+		- cmd : identificação do packet (pacote) (0x3004)
+		- aid: identificação da conta
 		- cid: char identification
 		-type:
 			1: account2 registry
@@ -543,7 +543,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11,12
 	len: 13
 	parameter:
-		- cmd : packet identification (0x3005)
+		- cmd : identificação do packet (pacote) (0x3005)
 		- aid:
 		- cid:
 		-acc_reg2 : request  account registry (permanent variable of account, save on login-serv)
@@ -558,7 +558,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11
 	len: 12+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3006)
+		- cmd : identificação do packet (pacote) (0x3006)
 		- aid
 		- cid
 		- type
@@ -571,7 +571,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 14+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3007)
+		- cmd : identificação do packet (pacote) (0x3007)
 		- u_fd
 		- aid
 		- group_lv
@@ -585,7 +585,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3018)
+		- cmd : identificação do packet (pacote) (0x3018)
 		- aid
 		- gid
 	desc:
@@ -597,7 +597,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: 12+guild_storage
 	parameter:
-		- cmd : packet identification (0x3019)
+		- cmd : identificação do packet (pacote) (0x3019)
 		- guild_storage
 		- aid
 		- gid
@@ -610,7 +610,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,28,29,30
 	len: variable: 28+party_member (max=64)
 	parameter:
-		- cmd : packet identification (0x3020)
+		- cmd : identificação do packet (pacote) (0x3020)
 		- party_member
 		- name
 		- item
@@ -625,7 +625,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3021)
+		- cmd : identificação do packet (pacote) (0x3021)
 		- party_id
 		- cid
 	desc:
@@ -637,7 +637,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+party_member (Max=42)
 	parameter:
-		- cmd : packet identification (0x3022)
+		- cmd : identificação do packet (pacote) (0x3022)
 		- party_member
 		- party_id
 		- member
@@ -650,7 +650,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,12,14
 	len: 14
 	parameter:
-		- cmd : packet identification (0x3023)
+		- cmd : identificação do packet (pacote) (0x3023)
 		- party_id
 		- aid
 		- exp
@@ -664,7 +664,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x3024)
+		- cmd : identificação do packet (pacote) (0x3024)
 		- party_id
 		- aid
 		- cid
@@ -677,7 +677,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,16,17
 	len: 19
 	parameter:
-		- cmd : packet identification (0x3025)
+		- cmd : identificação do packet (pacote) (0x3025)
 		- party_id
 		- aid
 		- cid
@@ -693,7 +693,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3026)
+		- cmd : identificação do packet (pacote) (0x3026)
 		- party_id
 	desc:
 		- Request breaking party
@@ -704,7 +704,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len
 	parameter:
-		- cmd : packet identification (0x3027)
+		- cmd : identificação do packet (pacote) (0x3027)
 		- len
 		- party_id
 		- aid
@@ -718,7 +718,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x3029)
+		- cmd : identificação do packet (pacote) (0x3029)
 		- party_id
 		- aid
 		- cid
@@ -731,7 +731,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x302a)
+		- cmd : identificação do packet (pacote) (0x302a)
 		- share_lvl
 	desc:
 		- Request to update party share level
@@ -742,7 +742,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,8+NAME_LENGTH
 	len:
 	parameter:
-		- cmd : packet identification (0x3030)
+		- cmd : identificação do packet (pacote) (0x3030)
 		- guild_member
 		- aid
 		- name
@@ -756,7 +756,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3031)
+		- cmd : identificação do packet (pacote) (0x3031)
 		- guild_id
 	desc:
 		- Request Guild information
@@ -767,7 +767,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+guild_member
 	parameter:
-		- cmd : packet identification (0x3032)
+		- cmd : identificação do packet (pacote) (0x3032)
 	desc:
 		- Request to add member to the guild
 
@@ -777,7 +777,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+len
 	parameter:
-		- cmd : packet identification (0x3033)
+		- cmd : identificação do packet (pacote) (0x3033)
 		- len
 		- guild_id
 		- name
@@ -790,7 +790,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15
 	len: 55
 	parameter:
-		- cmd : packet identification (0x3034)
+		- cmd : identificação do packet (pacote) (0x3034)
 		- guild_id
 		- aid
 		- cid
@@ -805,7 +805,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,17
 	len: 19
 	parameter:
-		- cmd : packet identification (0x3035)
+		- cmd : identificação do packet (pacote) (0x3035)
 		- guild_id
 		- aid
 		- cid
@@ -821,7 +821,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3036)
+		- cmd : identificação do packet (pacote) (0x3036)
 		- guild_id
 	desc:
 		- Guild disbanded notification
@@ -832,7 +832,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len
 	parameter:
-		- cmd : packet identification (0x3037)
+		- cmd : identificação do packet (pacote) (0x3037)
 		- len
 		- guild_id
 		- aid
@@ -846,7 +846,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10
 	len: variable: 10+len
 	parameter:
-		- cmd : packet identification (0x3039)
+		- cmd : identificação do packet (pacote) (0x3039)
 		- len
 		- guild_id
 		- type
@@ -860,7 +860,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,16,18
 	len: variable: 18+len
 	parameter:
-		- cmd : packet identification (0x303a)
+		- cmd : identificação do packet (pacote) (0x303a)
 		- len
 		- guild_id
 		- aid
@@ -876,7 +876,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+guild_position
 	parameter:
-		- cmd : packet identification (0x303b)
+		- cmd : identificação do packet (pacote) (0x303b)
 		- guild_position
 		- guild_id
 		- idx
@@ -890,7 +890,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 18
 	parameter:
-		- cmd : packet identification (0x303c)
+		- cmd : identificação do packet (pacote) (0x303c)
 		- guild_id
 		- skill_id
 		- aid
@@ -904,7 +904,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,18
 	len: 19
 	parameter:
-		- cmd : packet identification (0x303d)
+		- cmd : identificação do packet (pacote) (0x303d)
 		- guild_id1
 		- guild_id2
 		- account_id1
@@ -919,7 +919,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,66
 	len: 186
 	parameter:
-		- cmd : packet identification (0x303e)
+		- cmd : identificação do packet (pacote) (0x303e)
 		- guild_id
 		- mes1
 		- mes2
@@ -932,7 +932,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len (Max=2012)
 	parameter:
-		- cmd : packet identification (0x303f)
+		- cmd : identificação do packet (pacote) (0x303f)
 	desc:
 		- Request to change guild emblem
 
@@ -942,7 +942,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4 + num * 2,147,483,647
 	parameter:
-		- cmd : packet identification (0x3040)
+		- cmd : identificação do packet (pacote) (0x3040)
 		- num
 		- castle_ids
 	desc:
@@ -954,7 +954,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,5
 	len: 9
 	parameter:
-		- cmd : packet identification (0x3041)
+		- cmd : identificação do packet (pacote) (0x3041)
 		- castle_ids
 		- index
 		- value
@@ -967,7 +967,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x3048)
+		- cmd : identificação do packet (pacote) (0x3048)
 		- cid
 		- flag
 	desc:
@@ -979,7 +979,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3049)
+		- cmd : identificação do packet (pacote) (0x3049)
 		- mail_id
 	desc:
 		- Mail read
@@ -990,7 +990,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- mail_id
 	desc:
@@ -1002,7 +1002,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- mail_id
 	desc:
@@ -1014,7 +1014,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- mail_id
 	desc:
@@ -1026,7 +1026,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+mail_message
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- len
 		- aid
 		- msg
@@ -1039,7 +1039,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10,14,16
 	len: variable: 16+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- len
 		- cid
 		- type
@@ -1055,7 +1055,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+auction_data
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- len
 		- auction_data
 	desc:
@@ -1067,7 +1067,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- auction_id
 	desc:
@@ -1079,7 +1079,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- auction_id
 	desc:
@@ -1091,7 +1091,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,16
 	len: variable: 16+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- len
 		- cid
 		- auction_id
@@ -1105,7 +1105,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 12
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 		- aid
 		- guild_id
@@ -1118,7 +1118,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- cid
 	desc:
 		- Requests a character's quest log entries to the inter server.
@@ -1129,7 +1129,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+num_quests
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 	desc:
 		- Requests to the inter server to save a character's quest log entries.
 
@@ -1139,7 +1139,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+s_mercenary
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- size
 		- merc
 	desc:
@@ -1151,7 +1151,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3071)
+		- cmd : identificação do packet (pacote) (0x3071)
 		- merc_id
 		- cid
 	desc:
@@ -1163,7 +1163,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3072)
+		- cmd : identificação do packet (pacote) (0x3072)
 		- merc_id
 	desc:
 		- Mercenary delete
@@ -1174,7 +1174,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+s_mercenary
 	parameter:
-		- cmd : packet identification (0x3073)
+		- cmd : identificação do packet (pacote) (0x3073)
 		- size
 		- merc
 	desc:
@@ -1186,7 +1186,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+s_elemental
 	parameter:
-		- cmd : packet identification (0x307c)
+		- cmd : identificação do packet (pacote) (0x307c)
 		- size
 		- ele
 	desc:
@@ -1198,7 +1198,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x307d)
+		- cmd : identificação do packet (pacote) (0x307d)
 		- ele_id
 		- cid
 	desc:
@@ -1210,7 +1210,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x307e)
+		- cmd : identificação do packet (pacote) (0x307e)
 		- ele_id
 	desc:
 		- Elemental delete
@@ -1221,7 +1221,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+s_elemental
 	parameter:
-		- cmd : packet identification (0x307f)
+		- cmd : identificação do packet (pacote) (0x307f)
 		- size
 		- ele
 	desc:
@@ -1233,7 +1233,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,12,14,16,18,20,22,23,24
 	len: variable: 24+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3080)
+		- cmd : identificação do packet (pacote) (0x3080)
 		- aid
 		- cid
 		- pet_class
@@ -1253,7 +1253,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x3081)
+		- cmd : identificação do packet (pacote) (0x3081)
 		- aid
 		- cid
 		- pet_id
@@ -1266,7 +1266,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+s_pet
 	parameter:
-		- cmd : packet identification (0x3082)
+		- cmd : identificação do packet (pacote) (0x3082)
 		- size
 		- aid
 		- s_pet: Pet data
@@ -1279,7 +1279,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len 6:
 	parameter:
-		- cmd : packet identification (0x3083)
+		- cmd : identificação do packet (pacote) (0x3083)
 		- pet_id
 	desc:
 		- Delete pet data
@@ -1290,7 +1290,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+s_homunculus
 	parameter:
-		- cmd : packet identification (0x3090)
+		- cmd : identificação do packet (pacote) (0x3090)
 		- s_homunculus
 		- aid
 		- sh
@@ -1303,7 +1303,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3091)
+		- cmd : identificação do packet (pacote) (0x3091)
 		- aid
 		- homun_id
 	desc:
@@ -1315,7 +1315,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+s_homunculus
 	parameter:
-		- cmd : packet identification (0x3092)
+		- cmd : identificação do packet (pacote) (0x3092)
 		- s_homunculus
 		- aid
 		- sh
@@ -1328,7 +1328,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x3093)
+		- cmd : identificação do packet (pacote) (0x3093)
 		- homun_id
 	desc:
 		- Homunculus request delete
@@ -1339,7 +1339,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: variable: 10+name
 	parameter:
-		- cmd : packet identification (0x3094)
+		- cmd : identificação do packet (pacote) (0x3094)
 		- aid
 		- cid
 		- name
@@ -1354,7 +1354,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10,12,14,16
 	len: variable: 16+len
 	parameter:
-		- cmd : packet identification (0x3800)
+		- cmd : identificação do packet (pacote) (0x3800)
 		- len
 		- fontColor
 		- fontType
@@ -1371,7 +1371,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,32,56
 	len: variable: 56+len (Max=1991)
 	parameter:
-		- cmd : packet identification (0x3801)
+		- cmd : identificação do packet (pacote) (0x3801)
 		- len
 		- id
 		- src
@@ -1386,7 +1386,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,26
 	len: 27
 	parameter:
-		- cmd : packet identification (0x3802)
+		- cmd : identificação do packet (pacote) (0x3802)
 		- src
 		- flag
 	desc:
@@ -1398,7 +1398,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,4+NAME_LENGTH,8+NAME_LENGTH
 	len: variable: mes_len + 8 + NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3003)
+		- cmd : identificação do packet (pacote) (0x3003)
 		- packet_len: mes_len + 8 + NAME_LENGTH
 		- wisp_name
 		- permission
@@ -1412,7 +1412,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 13 or p (Max=5013)
 	parameter:
-		- cmd : packet identification (0x3804)
+		- cmd : identificação do packet (pacote) (0x3804)
 		- ?
 		- aid
 		- cid
@@ -1426,7 +1426,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11,12
 	len: 13
 	parameter:
-		- cmd : packet identification (0x3806)
+		- cmd : identificação do packet (pacote) (0x3806)
 		- aid
 		- cid
 		- type
@@ -1441,7 +1441,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len
 	parameter:
-		- cmd : packet identification (0x3807)
+		- cmd : identificação do packet (pacote) (0x3807)
 		- len
 		- u_fd
 		- aid
@@ -1455,7 +1455,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,13
 	len: variable: 13+guild_storage
 	parameter:
-		- cmd : packet identification (0x3818)
+		- cmd : identificação do packet (pacote) (0x3818)
 		- len
 		- aid
 		- guild_id
@@ -1470,7 +1470,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 11
 	parameter:
-		- cmd : packet identification (0x3819)
+		- cmd : identificação do packet (pacote) (0x3819)
 		- aid
 		- guild_id
 		- fail
@@ -1483,7 +1483,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11,15
 	len: 39
 	parameter:
-		- cmd : packet identification (0x3820)
+		- cmd : identificação do packet (pacote) (0x3820)
 		- aid
 		- char_id
 		- ?
@@ -1498,7 +1498,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: 12
 	parameter:
-		- cmd : packet identification (0x3821)
+		- cmd : identificação do packet (pacote) (0x3821)
 		- ?
 		- char_id
 		- party_id
@@ -1511,7 +1511,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 15
 	parameter:
-		- cmd : packet identification (0x3822)
+		- cmd : identificação do packet (pacote) (0x3822)
 		- party_id
 		- account_id
 		- char_id
@@ -1525,7 +1525,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,12,14,15?
 	len: 16?
 	parameter:
-		- cmd : packet identification (0x3823)
+		- cmd : identificação do packet (pacote) (0x3823)
 		- party_id
 		- account_id
 		- exp
@@ -1541,7 +1541,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 16?
 	parameter:
-		- cmd : packet identification (0x3824)
+		- cmd : identificação do packet (pacote) (0x3824)
 		- party_ud
 		- account_id
 		- char_id
@@ -1555,7 +1555,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,16,17,19
 	len: 20?
 	parameter:
-		- cmd : packet identification (0x3825)
+		- cmd : identificação do packet (pacote) (0x3825)
 		- party_id
 		- account_id
 		- char_id
@@ -1572,7 +1572,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7
 	len: 16
 	parameter:
-		- cmd : packet identification (0x3826)
+		- cmd : identificação do packet (pacote) (0x3826)
 		- party_id
 		- flag
 		- ?
@@ -1585,7 +1585,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len (max=512)
 	parameter:
-		- cmd : packet identification (0x3827)
+		- cmd : identificação do packet (pacote) (0x3827)
 		- len
 		- party_id
 		- account_id
@@ -1599,7 +1599,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x3830)
+		- cmd : identificação do packet (pacote) (0x3830)
 		- account_id
 		- guild_id
 	desc:
@@ -1611,7 +1611,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: 12
 	parameter:
-		- cmd : packet identification (0x3831)
+		- cmd : identificação do packet (pacote) (0x3831)
 		- ?
 		- guild_id
 		- ?
@@ -1624,7 +1624,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 15
 	parameter:
-		- cmd : packet identification (0x3832)
+		- cmd : identificação do packet (pacote) (0x3832)
 		- guild_id
 		- account_id
 		- char_id
@@ -1638,7 +1638,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,55
 	len: variable: 55+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x3834)
+		- cmd : identificação do packet (pacote) (0x3834)
 		- guild_id
 		- account_id
 		- char_id
@@ -1654,7 +1654,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,17
 	len: 19
 	parameter:
-		- cmd : packet identification (0x3835)
+		- cmd : identificação do packet (pacote) (0x3835)
 		- guild_id
 		- account_id
 		- char_id
@@ -1670,7 +1670,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x3836)
+		- cmd : identificação do packet (pacote) (0x3836)
 		- guild_id
 		- flag
 	desc:
@@ -1682,7 +1682,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+len (max=512)
 	parameter:
-		- cmd : packet identification (0x3837)
+		- cmd : identificação do packet (pacote) (0x3837)
 		- len
 		- guild_id
 		- account_id
@@ -1696,7 +1696,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10
 	len: variable: 10+len (Max=2048)
 	parameter:
-		- cmd : packet identification (0x3839)
+		- cmd : identificação do packet (pacote) (0x3839)
 		- len
 		- guild_id
 		- type
@@ -1710,7 +1710,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,16,18
 	len: variable: 18+len (Max=2048)
 	parameter:
-		- cmd : packet identification (0x383a)
+		- cmd : identificação do packet (pacote) (0x383a)
 		- len
 		- guild_id
 		- account_id
@@ -1726,7 +1726,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+guild_position
 	parameter:
-		- cmd : packet identification (0x383b)
+		- cmd : identificação do packet (pacote) (0x383b)
 		- len
 		- guild_id
 		- idx
@@ -1740,7 +1740,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x383c)
+		- cmd : identificação do packet (pacote) (0x383c)
 		- guild_id
 		- skill_id
 		- account_id
@@ -1753,7 +1753,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,18,19
 	len: variable: 19+2*NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x383d)
+		- cmd : identificação do packet (pacote) (0x383d)
 		- guild_id1
 		- guild_id2
 		- account_id1
@@ -1767,7 +1767,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,66,186
 	len: 256
 	parameter:
-		- cmd : packet identification (0x383e)
+		- cmd : identificação do packet (pacote) (0x383e)
 		- guild_id
 		- mes1
 		- mes2
@@ -1781,7 +1781,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+emblem_data
 	parameter:
-		- cmd : packet identification (0x383f)
+		- cmd : identificação do packet (pacote) (0x383f)
 		- len
 		- guild_id
 		- emblem_id
@@ -1795,7 +1795,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+num*gc
 	parameter:
-		- cmd : packet identification (0x3840)
+		- cmd : identificação do packet (pacote) (0x3840)
 		- len
 		- gc
 	desc:
@@ -1807,7 +1807,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x3843)
+		- cmd : identificação do packet (pacote) (0x3843)
 		- guild_id
 		- aid
 		- cid
@@ -1820,7 +1820,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,9
 	len: variable: 9+md
 	parameter:
-		- cmd : packet identification (0x3848)
+		- cmd : identificação do packet (pacote) (0x3848)
 		- size
 		- char_id
 		- flag
@@ -1834,7 +1834,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,34
 	len: 74
 	parameter:
-		- cmd : packet identification (0x3849)
+		- cmd : identificação do packet (pacote) (0x3849)
 		- dest_id
 		- sender_id
 		- sender_name
@@ -1848,7 +1848,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 12+item
 	parameter:
-		- cmd : packet identification (0x384a)
+		- cmd : identificação do packet (pacote) (0x384a)
 		- size
 		- char_id
 		- zeny
@@ -1862,7 +1862,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11
 	len: 11
 	parameter:
-		- cmd : packet identification (0x384b)
+		- cmd : identificação do packet (pacote) (0x384b)
 		- char_id
 		- mail_id
 		- failed: Fail status when delete a mail
@@ -1875,7 +1875,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11
 	len: 11
 	parameter:
-		- cmd : packet identification (0x384c)
+		- cmd : identificação do packet (pacote) (0x384c)
 		- char_id
 		- mail_id
 		- new_mail
@@ -1888,7 +1888,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+mail_message
 	parameter:
-		- cmd : packet identification (0x384d)
+		- cmd : identificação do packet (pacote) (0x384d)
 		- size
 		- mail_message
 	desc:
@@ -1900,7 +1900,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,10,12
 	len: variable: 12+auction_data
 	parameter:
-		- cmd : packet identification (0x3850)
+		- cmd : identificação do packet (pacote) (0x3850)
 		- size
 		- char_id
 		- count
@@ -1915,7 +1915,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+auction_data
 	parameter:
-		- cmd : packet identification (0x3851)
+		- cmd : identificação do packet (pacote) (0x3851)
 		- size
 		- auction_data
 	desc:
@@ -1927,7 +1927,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x3852)
+		- cmd : identificação do packet (pacote) (0x3852)
 		- char_id
 		- result
 	desc:
@@ -1939,7 +1939,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x3853)
+		- cmd : identificação do packet (pacote) (0x3853)
 		- char_id
 		- result
 	desc:
@@ -1951,7 +1951,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 11
 	parameter:
-		- cmd : packet identification (0x3855)
+		- cmd : identificação do packet (pacote) (0x3855)
 		- char_id
 		- bid
 		- result
@@ -1964,7 +1964,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 8
 	parameter:
-		- cmd : packet identification (0x3856)
+		- cmd : identificação do packet (pacote) (0x3856)
 		- aid : account_id
 		- guild_id
 	desc:
@@ -1976,7 +1976,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 8+quest
 	parameter:
-		- cmd : packet identification (0x3860)
+		- cmd : identificação do packet (pacote) (0x3860)
 		- size
 		- char_id
 		- quest
@@ -1989,7 +1989,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: 5
 	parameter:
-		- cmd : packet identification (0x3861)
+		- cmd : identificação do packet (pacote) (0x3861)
 		- char_id
 		- success
 	desc:
@@ -2001,7 +2001,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,8
 	len: 12
 	parameter:
-		- cmd : packet identification (0x3880)
+		- cmd : identificação do packet (pacote) (0x3880)
 		- account_id
 		- class
 		- pet_id
@@ -2014,7 +2014,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,6,8,9
 	len: variable: 9+s_pet
 	parameter:
-		- cmd : packet identification (0x3881)
+		- cmd : identificação do packet (pacote) (0x3881)
 		- size
 		- account_id
 		- status: 1 means no info available
@@ -2028,7 +2028,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: 5
 	parameter:
-		- cmd : packet identification (0x3882)
+		- cmd : identificação do packet (pacote) (0x3882)
 		- account_id
 		- flag: 1 failed to save
 	desc:
@@ -2040,7 +2040,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 3
 	parameter:
-		- cmd : packet identification (0x3883)
+		- cmd : identificação do packet (pacote) (0x3883)
 		- flag
 	desc:
 		- Send pet deletion status
@@ -2051,7 +2051,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,9
 	len: variable: 9+s_homunculus
 	parameter:
-		- cmd : packet identification (0x3890)
+		- cmd : identificação do packet (pacote) (0x3890)
 		- size
 		- account_id
 		- flag: 0 means homunculus creation is failed
@@ -2065,7 +2065,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,9
 	len: variable: 9+s_homunculus
 	parameter:
-		- cmd : packet identification (0x3890)
+		- cmd : identificação do packet (pacote) (0x3890)
 		- size
 		- account_id
 		- flag: 0 means failed to retrieve homunculus data
@@ -2079,7 +2079,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: 5
 	parameter:
-		- cmd : packet identification (0x3892)
+		- cmd : identificação do packet (pacote) (0x3892)
 		- account_id
 		- flag: 1 if success
 	desc:
@@ -2091,7 +2091,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 3
 	parameter:
-		- cmd : packet identification (0x3893)
+		- cmd : identificação do packet (pacote) (0x3893)
 		- flag: 1 Homunculus deleted
 	desc:
 		- Send homunculus deletion status
@@ -2105,7 +2105,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 3
 	parameter:
-		- cmd : packet identification (0x2af9)
+		- cmd : identificação do packet (pacote) (0x2af9)
 		- ?
 	desc:
 		- chrif_connectack
@@ -2116,7 +2116,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: variable: 3+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x2afb)
+		- cmd : identificação do packet (pacote) (0x2afb)
 		- ?
 	desc:
 		- send name for wisp to player
@@ -2127,7 +2127,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,16,20,24,25
 	len: variable: mmo_charstatus_len
 	parameter:
-		- cmd : packet identification (0x2afd)
+		- cmd : identificação do packet (pacote) (0x2afd)
 		- mmo_charstatus_len
 		- account_id
 		- ?
@@ -2145,7 +2145,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2b00)
+		- cmd : identificação do packet (pacote) (0x2b00)
 	desc:
 		- Send to map-servers the users count on this char-serv, (meaning the total of all mapserv)
 
@@ -2155,7 +2155,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x2b03)
+		- cmd : identificação do packet (pacote) (0x2b03)
 		- account_id
 		- ?
 	desc:
@@ -2167,7 +2167,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: ?
 	parameter:
-		- cmd : packet identification (0x2b04)
+		- cmd : identificação do packet (pacote) (0x2b04)
 		- ?
 		- ip
 		- port
@@ -2180,7 +2180,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,16,18,20,24,28
 	len: 30
 	parameter:
-		- cmd : packet identification (0x2b06)
+		- cmd : identificação do packet (pacote) (0x2b06)
 		- account_id
 		- login_id1
 		- login_id2
@@ -2199,7 +2199,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 30
 	parameter:
-		- cmd : packet identification (0x2b09)
+		- cmd : identificação do packet (pacote) (0x2b09)
 		- ?
 		- ?
 	desc:
@@ -2211,7 +2211,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12,14
 	len: variable: 14+MAX_SKILLCOOLDOWN*skill_cooldown_data
 	parameter:
-		- cmd : packet identification (0x2b0b)
+		- cmd : identificação do packet (pacote) (0x2b0b)
 		- len
 		- aid
 		- cid
@@ -2226,7 +2226,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index:0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b0d)
+		- cmd : identificação do packet (pacote) (0x2b0d)
 		- acc
 		- sex
 	desc:
@@ -2238,7 +2238,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,30,32
 	len: 34
 	parameter:
-		- cmd : packet identification (0x2b0f)
+		- cmd : identificação do packet (pacote) (0x2b0f)
 		- aid
 		- name
 		- operation
@@ -2252,7 +2252,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2b12)
+		- cmd : identificação do packet (pacote) (0x2b12)
 		- partner_id1
 		- partner_id2
 		- ?
@@ -2265,7 +2265,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,7
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2b14)
+		- cmd : identificação do packet (pacote) (0x2b14)
 		- id
 		- res
 		- ret_status
@@ -2278,7 +2278,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,6,?,?,?
 	len: ? (Max=32000)
 	parameter:
-		- cmd : packet identification (0x2b1b)
+		- cmd : identificação do packet (pacote) (0x2b1b)
 		- size: total packet length
 		- size: Alchemist block size
 		- size: Blacksmith block size
@@ -2294,7 +2294,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 14+50*status_change_data
 	parameter:
-		- cmd : packet identification (0x2b1d)
+		- cmd : identificação do packet (pacote) (0x2b1d)
 		- len
 		- aid
 		- cid
@@ -2307,7 +2307,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2b1e)
+		- cmd : identificação do packet (pacote) (0x2b1e)
 		- new_ip
 	desc:
 		- Request forwarded from char-server for interserver IP sync
@@ -2318,7 +2318,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 7
 	parameter:
-		- cmd : packet identification (0x2b1f)
+		- cmd : identificação do packet (pacote) (0x2b1f)
 		- account_id
 		- reason
 	desc:
@@ -2330,7 +2330,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b20)
+		- cmd : identificação do packet (pacote) (0x2b20)
 		- len
 		- ip
 		- port
@@ -2343,7 +2343,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b21)
+		- cmd : identificação do packet (pacote) (0x2b21)
 	desc:
 		- chrif_save_ack (Received after a character has been "final saved" on the char-server)
 
@@ -2353,7 +2353,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,3,4
 	len: 8
 	parameter:
-		- cmd : packet identification (0x2b22)
+		- cmd : identificação do packet (pacote) (0x2b22)
 		- type
 		- index
 		- fame
@@ -2366,7 +2366,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2b24)
+		- cmd : identificação do packet (pacote) (0x2b24)
 	desc:
 		- Map-server keep alive packet, awnser back map that we alive as well
 
@@ -2376,7 +2376,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: ? (Max=64)
 	parameter:
-		- cmd : packet identification (0x2b25)
+		- cmd : identificação do packet (pacote) (0x2b25)
 		- father_id
 		- mother_id
 		- char_id
@@ -2389,7 +2389,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14
 	len: 15
 	parameter:
-		- cmd : packet identification (0x2b27)
+		- cmd : identificação do packet (pacote) (0x2b27)
 		- account_id
 		- char_id
 		- login_id1
@@ -2403,7 +2403,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b29)
+		- cmd : identificação do packet (pacote) (0x2b29)
 		- aid
 		- bank_vault
 	desc:
@@ -2415,7 +2415,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,11,12
 	len: 16
 	parameter:
-		- cmd : packet identification (0x2b2b)
+		- cmd : identificação do packet (pacote) (0x2b2b)
 		- aid
 		- vip_time
 		- isvip
@@ -2430,7 +2430,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 10+50*bonus_script_data
 	parameter:
-		- cmd : packet identification (0x2b2f)
+		- cmd : identificação do packet (pacote) (0x2b2f)
 	desc:
 		- Get bonus_script data(s) from table to load
 
@@ -2440,7 +2440,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2736)
+		- cmd : identificação do packet (pacote) (0x2736)
 	desc:
 		- ip address update
 
@@ -2450,7 +2450,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4
 	len: variable: 4+instance_start*4
 	parameter:
-		- cmd : packet identification (0x2afa)
+		- cmd : identificação do packet (pacote) (0x2afa)
 		- size
 		- map_index*instance_start
 	desc:
@@ -2462,7 +2462,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2afc)
+		- cmd : identificação do packet (pacote) (0x2afc)
 		- account_id
 		- char_id
 	desc:
@@ -2474,7 +2474,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 4
 	parameter:
-		- cmd : packet identification (0x2afe)
+		- cmd : identificação do packet (pacote) (0x2afe)
 	desc:
 		- send_usercount_tochar (unused)
 
@@ -2484,7 +2484,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,6+8*i,6+8+i+4
 	len: variable: 6+8*users
 	parameter:
-		- cmd : packet identification (0x2aff)
+		- cmd : identificação do packet (pacote) (0x2aff)
 		- len
 		- users
 		- account_id
@@ -2498,7 +2498,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: mmo_charstatus_len
 	parameter:
-		- cmd : packet identification (0x2b01)
+		- cmd : identificação do packet (pacote) (0x2b01)
 	desc:
 		- charsave of char XY account XY
 
@@ -2508,7 +2508,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,18
 	len: 19
 	parameter:
-		- cmd : packet identification (0x2b02)
+		- cmd : identificação do packet (pacote) (0x2b02)
 		- id
 		- login_id1
 		- login_id2
@@ -2523,7 +2523,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,18,20,22,24,28,30,31,35
 	len: 39
 	parameter:
-		- cmd : packet identification (0x2b05)
+		- cmd : identificação do packet (pacote) (0x2b05)
 		- id
 		- login_id1
 		- login_id2
@@ -2545,7 +2545,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b07)
+		- cmd : identificação do packet (pacote) (0x2b07)
 		- char_id
 		- friend_id
 	desc:
@@ -2557,7 +2557,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2b08)
+		- cmd : identificação do packet (pacote) (0x2b08)
 	desc:
 		- Search char through id on char serv
 
@@ -2567,7 +2567,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b0a)
+		- cmd : identificação do packet (pacote) (0x2b0a)
 		- account_id
 		- char_id
 	desc:
@@ -2579,7 +2579,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,46
 	len: 86
 	parameter:
-		- cmd : packet identification (0x2b0c)
+		- cmd : identificação do packet (pacote) (0x2b0c)
 		- id
 		- actual_email
 		- new_email
@@ -2592,7 +2592,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,30,36,40
 	len: 44
 	parameter:
-		- cmd : packet identification (0x2b0e)
+		- cmd : identificação do packet (pacote) (0x2b0e)
 		- aid
 		- name
 		- operation_type
@@ -2608,7 +2608,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 11
 	parameter:
-		- cmd : packet identification (0x2b10)
+		- cmd : identificação do packet (pacote) (0x2b10)
 		- char_id
 		- fame
 		- type
@@ -2621,7 +2621,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b11)
+		- cmd : identificação do packet (pacote) (0x2b11)
 		- partner_id1
 		- partner_id2
 	desc:
@@ -2633,7 +2633,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 14+MAX_SKILLCOOLDOWN*skill_cooldown_data
 	parameter:
-		- cmd : packet identification (0x2b15)
+		- cmd : identificação do packet (pacote) (0x2b15)
 		- len
 		- account_id
 		- char_id
@@ -2647,7 +2647,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: 14
 	parameter:
-		- cmd : packet identification (0x2b16)
+		- cmd : identificação do packet (pacote) (0x2b16)
 		- base_rate
 		- job_rate
 		- drop_rate
@@ -2660,7 +2660,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b17)
+		- cmd : identificação do packet (pacote) (0x2b17)
 		- char_id
 		- account_id
 	desc:
@@ -2672,7 +2672,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2b18)
+		- cmd : identificação do packet (pacote) (0x2b18)
 	desc:
 		- Tell char-server to reset all chars offline
 
@@ -2682,7 +2682,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6
 	len: 10
 	parameter:
-		- cmd : packet identification (0x2b19)
+		- cmd : identificação do packet (pacote) (0x2b19)
 		- char_id
 		- account_id
 	desc:
@@ -2694,7 +2694,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2b1a)
+		- cmd : identificação do packet (pacote) (0x2b1a)
 	desc:
 		- Build the fame ranking lists and send them
 
@@ -2704,7 +2704,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8,12
 	len: variable: 14+SC_MAX*status_change_data
 	parameter:
-		- cmd : packet identification (0x2b1c)
+		- cmd : identificação do packet (pacote) (0x2b1c)
 		- len
 		- account_id
 		- char_id
@@ -2718,7 +2718,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0
 	len: 2
 	parameter:
-		- cmd : packet identification (0x2b23)
+		- cmd : identificação do packet (pacote) (0x2b23)
 	desc:
 		- pings the charserver (chrif_keepalive)
 
@@ -2728,7 +2728,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10,14,15,19
 	len: 20
 	parameter:
-		- cmd : packet identification (0x2b26)
+		- cmd : identificação do packet (pacote) (0x2b26)
 		- account_id
 		- char_id
 		- login_id1
@@ -2744,7 +2744,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,6,10
 	len: variable: 10+NAME_LENGTH
 	parameter:
-		- cmd : packet identification (0x2b28)
+		- cmd : identificação do packet (pacote) (0x2b28)
 		- aid
 		- timediff
 		- character_name
@@ -2757,7 +2757,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2b2a)
+		- cmd : identificação do packet (pacote) (0x2b2a)
 	desc:
 		- chrif_req_charunban
 
@@ -2767,7 +2767,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: 6
 	parameter:
-		- cmd : packet identification (0x2b2d)
+		- cmd : identificação do packet (pacote) (0x2b2d)
 	desc:
 		- Requests bonus_script data
 
@@ -2777,7 +2777,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2,4,8
 	len: variable: 10+MAX_PC_BONUS_SCRIPT*bonus_script_data
 	parameter:
-		- cmd : packet identification (0x2b2e)
+		- cmd : identificação do packet (pacote) (0x2b2e)
 		- len
 		- char_id
 		- count
@@ -2790,7 +2790,7 @@ Currently the max packet size is 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.
 	index: 0,2
 	len: variable: 2+len
 	parameter:
-		- cmd : packet identification (0x3008)
+		- cmd : identificação do packet (pacote) (0x3008)
 		- buf
 	desc:
 		- chrif_send_report
