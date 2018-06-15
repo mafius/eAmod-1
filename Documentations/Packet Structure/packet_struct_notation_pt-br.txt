@@ -113,10 +113,10 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- birthdate: data de nascimento do auxílio
 		- pincode: atual código do AID
 		- pincode_change: novo código do AID
-		- bank_vault: value in bank for this aid
+		- bank_vault: valor em banco para este AID
 		- isvip: se este AID é atualmente vip ou não
 		- char_vip: número de charslot que são vip (só pode fazer a criação se você é vip)
-		- MAX_CHAR_BILLING: number of charslort that are for billing
+		- MAX_CHAR_BILLING: número de slots de personagem que estão para o jogador após assinatura VIP
 	desc:
 		- Solicita dados da conta
 
@@ -423,9 +423,9 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x2741)
 		- aid : Identificação da Conta
 		- Tipo : 1=select, 2=upd and save
-		- data : Novo bank vault
+		- data : Novo cofre de banco
 	desc:
-		- Request the bank info of login
+		- Solicite as informações bancárias do login
 
 0x2742:
 	Tipo: HA
@@ -436,8 +436,8 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x2742)
 		- aid: Identificação da Conta
 		- Tipo: &1 confirmação de dados vip para char-serv, &2 add duração
-		- timediff: Instante para adicionar ao viptime
-		- mapfd: map-serv conecta para confirmar se Tipo&1
+		- timediff: Tempo para ser adicionado ao viptime
+		- mapfd: map-server se conecta para confirmar se Tipo&1
 	desc:
 		- Recebe uma solicitação de dados VIP do char
 
@@ -533,7 +533,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 			1: Registro da account2 
 			2: Registro da account
 			3: Registro da char
-		-str: registre variable identifiant, (nome da variável)
+		-str: registre variable identifiant, identificador de registro variável (nome da variável)
 		-value: valor da variável
 	desc:
 		- O Map-serv está solicitando o Char-serv para salvar os valores do registro. (Type=1 encaminhará dados para login-serv.)
@@ -1144,7 +1144,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- merc
 	desc:
-		- Cria Mercenary
+		- Cria um mercenário de aluguel
 
 0x3071
 	Tipo: ZI
