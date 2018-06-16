@@ -1969,7 +1969,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid : account_id
 		- guild_id
 	desc:
-		- Acknowledge the good deletion of the bound item
+		- Reconhece a boa exclusão do item associado
 
 0x3860
 	Tipo: IZ
@@ -1982,7 +1982,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- quest
 	desc:
-		- Send quest log to a player
+		- Envia log de missões para um jogador
 
 0x3861
 	Tipo: IZ
@@ -1994,7 +1994,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- success
 	desc:
-		- Send quest log saving status
+		- Envia status salvo do registro de missões
 
 0x3880
 	Tipo: IZ
@@ -2007,7 +2007,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- class
 		- pet_id
 	desc:
-		- Send pet egg creation status
+		- Envia status de criação de ovo do pet
 
 0x3881
 	Tipo: IZ
@@ -2018,10 +2018,10 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3881)
 		- size
 		- account_id
-		- status: 1 means no info available
-		- s_pet: Pet data
+		- status: 1 significa que a informação está disponível
+		- s_pet: Dados do Pet 
 	desc:
-		- Send packet data to a player
+		- Envia dados de pacote para um jogador
 
 0x3882
 	Tipo: IZ
@@ -2031,9 +2031,9 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x3882)
 		- account_id
-		- flag: 1 failed to save
+		- flag: 1 salvamento falhou
 	desc:
-		- Send pet save status
+		- Envia status salvos do animal de estimação
 
 0x3883
 	Tipo: IZ
@@ -2044,7 +2044,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3883)
 		- flag
 	desc:
-		- Send pet deletion status
+		- Envia status de exclusão de pet
 
 0x3890
 	Tipo: IZ
@@ -2055,10 +2055,10 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3890)
 		- size
 		- account_id
-		- flag: 0 means homunculus creation is failed
-		- s_homunculus: Homunculus data
+		- flag: 0 significa que a criação do homúnculo falhou
+		- s_homunculus: Dados do homúnculo
 	desc:
-		- Send homunculus creation status
+		- Envia status de criação do homúnculo
 
 0x3891
 	Tipo: IZ
@@ -2069,10 +2069,10 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3890)
 		- size
 		- account_id
-		- flag: 0 means failed to retrieve homunculus data
-		- s_homunculus: Homunculus data
+		- flag: 0 significa não conseguiu recuperar dados do homúnculo
+		- s_homunculus: Dados do homúnculo
 	desc:
-		- Send homunculus data to a player
+		- Envia dados do homúnculo para um jogadorr
 
 0x3892
 	Tipo: IZ
@@ -2082,9 +2082,9 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x3892)
 		- account_id
-		- flag: 1 if success
+		- flag: 1 significa sucesso
 	desc:
-		- Send homunculus saving status to a player
+		- Envia status salvo do homúnculo para um jogador
 
 0x3893
 	Tipo: IZ
@@ -2095,7 +2095,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x3893)
 		- flag: 1 Homunculus deleted
 	desc:
-		- Send homunculus deletion status
+		- Envia status de exclusão do homúnculo
 
 ========================
 | 3.2 Char-Map Packets |
@@ -2138,7 +2138,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ?
 		- cd
 	desc:
-		- auth request from map-server
+		- pedido de autenticação do map-server
 
 0x2b00
 	Tipo: AZ
@@ -2148,7 +2148,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b00)
 	desc:
-		- Send to map-servers the users count on this char-serv, (meaning the total of all mapserv)
+		- Envia para map-servers o número de usuários neste char-serv, (significando o total de todos os mapserv)
 
 0x2b03
 	Tipo: AZ
@@ -2160,7 +2160,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- ?
 	desc:
-		- Player Requesting char-select from map_serv
+		- Jogador Solicitando char-select de map_serv
 
 0x2b04
 	Tipo: AZ
@@ -2173,7 +2173,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ip
 		- port
 	desc:
-		- Receive maps from some other map-server (relayed via char-server)
+		- Recebe mapas de algum outro map-server (retransmitido via char-server)
 
 0x2b06
 	Tipo: AZ
@@ -2192,7 +2192,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ip
 		- port
 	desc:
-		- Map-server change request acknowledgement (positive or negative)
+		- Reconhecimento de solicitação de mudança do map-server (positivo ou negativo)
 
 0x2b09
 	Tipo: AZ
@@ -2204,7 +2204,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ?
 		- ?
 	desc:
-		- Lookup to search if that char_id correspond to a name.
+		- Pesquisa para pesquisar se esse char_id corresponde a um nome.
 
 0x2b0b
 	Tipo: AZ
@@ -2219,7 +2219,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- count
 		- skill_cooldown_data
 	desc:
-		- Retrieve and load skillcooldown for a player
+		- Recupera e carrega o tempo de espera das habilidades de um jogador
 
 0x2b0d
 	Tipo: AZ
@@ -2231,7 +2231,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- acc
 		- sex
 	desc:
-		- Request char server to change sex of char
+		- Solicitação para o char-server alterar sexo de char
 
 0x2b0f
 	Tipo: AZ
@@ -2245,7 +2245,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- operation
 		- result
 	desc:
-		- Processing a reply to chrif_req_login_operation() (request to modify an account).
+		- Processando uma resposta para chrif_req_login_operation() (solicitação para modificar uma conta).
 
 0x2b12
 	Tipo: AZ
@@ -2258,7 +2258,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- partner_id2
 		- ?
 	desc:
-		- Divorce players (only used if 'partner_id' is offline)
+		- Divórcio de jogadores (usado somente se 'partner_id' estiver offline)
 
 0x2b14
 	Tipo: AZ
@@ -2271,7 +2271,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- res
 		- ret_status
 	desc:
-		- Disconnection of a player (account has been banned of has a status, from login/char-server)
+		- Desconexão de um jogador (a conta foi banida de ter um status, de login/char-server)
 
 0x2b1b
 	Tipo: AZ
@@ -2280,14 +2280,14 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	len: ? (Max=32000)
 	parametro:
 		- cmd : Pacote de Identificação (0x2b1b)
-		- size: total packet length
-		- size: Alchemist block size
-		- size: Blacksmith block size
+		- size: comprimento total do pacote
+		- size: Tamanho do bloco de alquimista
+		- size: Tamanho do bloco de ferreiro
 		-
 		-
 		-
 	desc:
-		- Send map-servers fames ranking lists
+		- Envia para o map-servers a lista do ranking da fama
 
 0x2b1d
 	Tipo: AZ
@@ -2300,7 +2300,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- cid
 	desc:
-		- Map-serv requesting to send the list of sc_data the player has saved
+		- Map-serv solicitando para enviar a lista de sc_data que o jogador salvou
 
 0x2b1e
 	Tipo: AZ
@@ -2311,7 +2311,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- cmd : Pacote de Identificação (0x2b1e)
 		- new_ip
 	desc:
-		- Request forwarded from char-server for interserver IP sync
+		- Solicitação encaminhada do char-server para a sincronização do interserver IP
 
 0x2b1f
 	Tipo: AZ
@@ -2323,7 +2323,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- reason
 	desc:
-		- Request to kick char from a certain map server
+		- Pedido para expulsar um personagem de um determinado map-server
 
 0x2b20
 	Tipo: AZ
@@ -2336,7 +2336,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- ip
 		- port
 	desc:
-		- Remove specified maps (used when some other map-server disconnects)
+		- Remove mapas específicos (usados quando algum outro map-server é desconectado)
 
 0x2b21
 	Tipo: AZ
@@ -2346,7 +2346,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b21)
 	desc:
-		- chrif_save_ack (Received after a character has been "final saved" on the char-server)
+		- chrif_save_ack (Recebido após um personagem ter sido "final saved" no char-server)
 
 0x2b22
 	Tipo: AZ
@@ -2359,7 +2359,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- index
 		- fame
 	desc:
-		- Send to map-servers the updated fame ranking lists
+		- Envia para o map-server as listas atualizadas do ranking da fama
 
 0x2b24
 	Tipo: AZ
@@ -2369,7 +2369,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b24)
 	desc:
-		- Map-server keep alive packet, awnser back map that we alive as well
+		- Map-server mantém o pacote vivo, responde de volta o map que estamos vivos também
 
 0x2b25
 	Tipo: AZ
@@ -2382,7 +2382,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- mother_id
 		- char_id
 	desc:
-		- Removes baby from Father ID and Mother ID
+		- Remove o bebê da identificação do pai e da identificação da mãe
 
 0x2b27
 	Tipo: AZ
@@ -2396,7 +2396,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- login_id1
 		- sex
 	desc:
-		- Client authentication failed
+		- Autenticação do cliente falhou
 
 0x2b29
 	Tipo: AZ
@@ -2408,7 +2408,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- aid
 		- bank_vault
 	desc:
-		- Received bank data for player to be loaded
+		- Dados do banco recebidos para o jogador ser carregado
 
 0x2b2b
 	Tipo: AZ
@@ -2433,7 +2433,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b2f)
 	desc:
-		- Get bonus_script data(s) from table to load
+		- Obtém dados de bonus_script da tabela para carregar
 
 0x2736
 	Tipo: ZA
@@ -2443,7 +2443,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2736)
 	desc:
-		- ip address update
+		- atualização de endereço ip
 
 0x2afa
 	Tipo: ZA
@@ -2455,7 +2455,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- size
 		- map_index*instance_start
 	desc:
-		- Send available normal maps. chrif_sendmap
+		- Envia maps normais disponíveis. chrif_sendmap
 
 0x2afc
 	Tipo: ZA
@@ -2467,7 +2467,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- char_id
 	desc:
-		- Request sc_data from charserver
+		- Solicitar sc_data do char-server
 
 0x2afe
 	Tipo: ZA
@@ -2477,7 +2477,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2afe)
 	desc:
-		- send_usercount_tochar (unused)
+		- send_usercount_tochar (sem uso)
 
 0x2aff
 	Tipo: ZA
@@ -2491,8 +2491,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- char_id
 	desc:
-		- Map-serv sent us all his users info, (aid and cid) so we can update online_char_db
-
+		- O Map-serv nos enviou todas as informações de seus usuários, (aid e cid) para que possamos atualizar o online_char_db
 0x2b01
 	Tipo: ZA
 	Estrutura: <cmd>.W <mmo_charstatus_len>.W <account_id>.L <char_id>.L <flag>.B
@@ -2501,7 +2500,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b01)
 	desc:
-		- charsave of char XY account XY
+		- charsave o personagem XY conta XY
 
 0x2b02
 	Tipo: ZA
@@ -2538,7 +2537,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- client_addr
 		- group_id
 	desc:
-		- Tell the charserver the mapchange / quest for ok
+		- Diz ao charserver a mudança de map / pesquise para ter certeza
 
 0x2b07
 	Tipo: ZA
@@ -2550,7 +2549,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- friend_id
 	desc:
-		- Asks char server to remove friend_id from the friend list of char_id
+		- Pergunta ao char-server para remover friend_id da lista de amigos de char_id
 
 0x2b08
 	Tipo: ZA
@@ -2560,7 +2559,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b08)
 	desc:
-		- Search char through id on char serv
+		- Pesquisa o personagem através de id em char-serv
 
 0x2b0a
 	Tipo: ZA
@@ -2572,7 +2571,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- account_id
 		- char_id
 	desc:
-		- Request skillcooldown from charserver
+		- Solicita cooldown da habilidade do charserver
 
 0x2b0c
 	Tipo: ZA
@@ -2585,7 +2584,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- actual_email
 		- new_email
 	desc:
-		- Change Email
+		- Muda Email
 
 0x2b0e
 	Tipo: ZA
@@ -2601,7 +2600,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- val1
 		- val2
 	desc:
-		- Send an account modification request to the login server (via char server).
+		- Envia uma solicitação de modificação de conta para o login-server(via char-server).
 
 0x2b10
 	Tipo: ZA
@@ -2614,7 +2613,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- fame
 		- Tipo
 	desc:
-		- Request/Receive top 10 Fame character list
+		- Solicita/recebe a lista dos 10 melhores personagens da fama
 
 0x2b11
 	Tipo: ZA
@@ -2626,7 +2625,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- partner_id1
 		- partner_id2
 	desc:
-		- Request Char Server to Divorce Players
+		- Solicita ao Char Server para divorgiar os jogadores
 
 0x2b15
 	Tipo: ZA
@@ -2640,7 +2639,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- count
 	desc:
-		- Request to save skill cooldown data
+		- Solicitação para salvar dados do cooldown da habilidade
 
 0x2b16
 	Tipo: ZA
@@ -2653,7 +2652,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- job_rate
 		- drop_rate
 	desc:
-		- Send rates and motd to char server
+		- Envia rates e motd para o char-server
 
 0x2b17
 	Tipo: ZA
@@ -2665,7 +2664,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- account_id
 	desc:
-		- Tell char-server character disconnected
+		- Informa que o char-server está desconectado
 
 0x2b18
 	Tipo: ZA
@@ -2675,7 +2674,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b18)
 	desc:
-		- Tell char-server to reset all chars offline
+		- Diz ao char-server para redefinir todos os personagens off-line
 
 0x2b19
 	Tipo: ZA
@@ -2687,7 +2686,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- account_id
 	desc:
-		- Tell char-server character is online
+		- Indica que char-server está on-line
 
 0x2b1a
 	Tipo: ZA
@@ -2697,7 +2696,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b1a)
 	desc:
-		- Build the fame ranking lists and send them
+		- Constrói as listas do ranking da fama e envia.
 
 0x2b1c
 	Tipo: ZA
@@ -2711,7 +2710,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- count
 	desc:
-		- parses the sc_data of the player and sends it to the char-server for saving
+		- analisa o sc_data do jogador e envia para o char-server para salvar
 
 0x2b23
 	Tipo: ZA
@@ -2721,7 +2720,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b23)
 	desc:
-		- pings the charserver (chrif_keepalive)
+		- pinga o charserver (chrif_keepalive)
 
 0x2b26
 	Tipo: ZA
@@ -2737,7 +2736,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- client_addr
 		- autotrade
 	desc:
-		- client authentication request
+		- solicitação de autenticação de cliente
 
 0x2b28
 	Tipo: ZA
@@ -2770,7 +2769,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 	parametro:
 		- cmd : Pacote de Identificação (0x2b2d)
 	desc:
-		- Requests bonus_script data
+		- Solicita dados bonus_script
 
 0x2b2e
 	Tipo: ZA
@@ -2783,7 +2782,7 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / 
 		- char_id
 		- count
 	desc:
-		- Stores bonus_script data(s) to the table
+		- Armazena dados de bonus_script na tabela
 
 0x3008
 	Tipo: ZA
