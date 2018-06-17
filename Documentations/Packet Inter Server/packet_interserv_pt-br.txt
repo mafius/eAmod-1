@@ -3,394 +3,395 @@
 //===== De: =================================================
 //= rAthena Dev Team
 //===== Última atualização: =================================
-//= 20180615
+//= 20180616
 //===== Descrição: ==========================================
-//= Lista de todos os packets usados pelo Login-server (A),
-//= char-server (H), e map-server (Z) para se comunicarem entre si.
-//= Veja packet_client.txt para entender a comunicação do client (C).
+//= Lista de todos os pacotes usados em login-serv (A), char-serv (H),
+//= e map-serv (Z) para se comunicar entre eles.
+//= Consulte packet_client.txt para a comunicação com o client (C).
 //============================================================
+
 
 Este arquivo fornece informações sobre os pacotes de rAthena, ordenados por número.
 Isso pressupõe o conhecimento da notação de pacotes, que é detalhada em
-'eAmod/Documentation/Packet Structure/packet_struct_notation_pt-br.txt'.
+'doc/packet_struct_notation.txt'.
 
-O formato deste arquivo é o seguinte:
+O formato deste arquivo está ordernado da seguinte forma:
 	1. Notas
-	2. Login-Char Packets
-	3. Char/Inter Packets
-	- 3.1 Inter-Map Packets
-	- 3.2 Char-Map Packets
+	2. Pacotes do Login-Char 
+	3. Pacotes do Char/Inter 
+	- 3.1 Pacotes do Inter-Map 
+	- 3.2 Pacotes do Char-Map 
 
 ============
 | 1. Notas |
 ============
-Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/common/socket.c').
+Atualmente, o tamanho máximo do pacote é 0xFFFF (veja 'WFIFOSET ()' em 'src / common / socket.c').
 
-=========================
-| 2. Login-Char Packets |
-=========================
+===========================
+| 2. Pacotes do Login-Char |
+===========================
 0x2712:
-	Type: HA
-	Structure: <cmd>.W <aid>.L <login_id1>.L <login_id2>.L <sex>.B <ip>.L <request_id>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L <login_id1>.L <login_id2>.L <sex>.B <ip>.L <request_id>.L
 	index: 0,2,6,10,14,15,19
 	len: 23
-	parameter:
-		- cmd : identificação de packet (pacote) (0x2712)
-		- aid : identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2712)
+		- aid : Identificação da Conta
 		- login_id1: unknown @FIXME
 		- login_id2: unknown @FIXME
-		- sex: o sexto da conta
-		- ip: o ip da conexão (obsoleto)
+		- sex: Sexo da Conta
+		- ip: IP da conexão (obsoleto)
 		- request_id: unknown @FIXME
 	desc:
-		- Solicita ao servidor de personagens (char-server) para autenticar uma conta.
+		- Solicita do char-server para autenticar uma conta.
 
 0x2713:
-	Type: AH
-	Structure: <cmd>.W <aid>.L <login_id1>.L <login_id2>.L <sex>.B <auth>.B <request_id>.L <version>.L <clienttype>.B
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <login_id1>.L <login_id2>.L <sex>.B <auth>.B <request_id>.L <version>.L <clientTipo>.B
 	index: 0,2,6,10,14,15,16,20,24
 	len: 25
-	parameter:
-		- cmd : identificação de packet (pacote) (0x2713)
-		- aid : identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2713)
+		- aid : Identificação da Conta
 		- login_id1: unknown @FIXME
 		- login_id2: unknown @FIXME
-		- sex: sexo da conta
-		- ok : 1=falha de autenticação, 1=sucesso na autenticação
+		- sex: Sexo da Conta
+		- ok : 1=Autenticação Falhou, 1=OK
 		- request_id: unknown @FIXME
-		- version: versão do client, (versão do clientinfo)
-		- clienttype: unknown @FIXME
+		- version: Versão do cliente , (versão do clientinfo)
+		- clientTipo: unknown @FIXME
 	desc:
-		- Confirma a solicitação da autenticação do char-server
+		- Confirmar o pedido de autenticação do char-serv
 
 0x2714:
-	Type: HA
-	Structure: <cmd>.W <user_count>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <user_count>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2714)
-		- user_count: número de usuários presentes no char-server
+	parametro:
+		- cmd : Pacote de Identificação (0x2714)
+		- user_count: número de usuários presentes no char-serv
 	desc:
-		- Restabelecer o número de usuários presentes em um char-server
+		- Recupera o número de usuários presentes em um char-serv
 
 0x2715:
-	Type: HA
-	Structure: <cmd>.W <aid>.L <email>40B
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L <email>40B
 	index: 0,2,6
 	len: 46
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2715)
-		- aid: identificação da conta
-		- email: um novo email para a identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2715)
+		- aid: Identificação da Conta
+		- email: novo email para o ID da conta
 	desc:
 		- Solicitação para atualizar o email vinculado a este AID
 
 0x2716:
-	Type: HA
-	Structure: <cmd>.W <aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2716)
-		- aid: identificação da conta
+	parametro:
+		- cmd :  Pacote de Identificação (0x2716)
+		- aid: Identificação da Conta
 	desc:
-		- Request the account information of aid (see 0x2717)
+		- Solicita as informações da conta do contribuidor(veja 0x2717)
 
 0x2717
-	Type: AH
-	Structure: <cmd>.W <aid>.L <email>.40B <expiration_time>.L <group_id>.B <char_slots>.B <birthdate>.11B <pincode>.5B <pincode_change>.L <bank_vault>.L <isvip>.B <char_vip>.B <MAX_CHAR_BILLING>.B
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <email>.40B <expiration_time>.L <group_id>.B <char_slots>.B <birthdate>.11B <pincode>.5B <pincode_change>.L <bank_vault>.L <isvip>.B <char_vip>.B <MAX_CHAR_BILLING>.B
 	index: 0,2,6,46,50,51,52,63,68,72,76,77,78
 	len: 79
-	parameter:
-		- cmd: packet identificação do packet (pacote) (0x2717)
-		- aid: identificação da conta
-		- email: email do aid
+	parametro:
+		- cmd: Pacote de Identificação (0x2717)
+		- aid: Identificação da Conta
+		- email: email do AID
 		- expiration_time: unknow @FIXME
-		- group_id: o grupo que o aid pertence
-		- char_slots: número de slots disponíveis que a conta possui (será exibida no cliente)
-		- birthdate: data de nascimento do aid
-		- pincode: código pin do aid
-		- pincode_change: novo código pin do aid
-		- bank_vault: valor em banco para este aid
-		- isvip: se esta aid é atualmente vip ou não
-		- char_vip: número de charslot que são vip (só poderá fazer criação se você for vip)
+		- group_id: o grupo a que o AID pertence
+		- char_slots: número de slots disponíveis que a conta tem (será exibido no cliente)
+		- birthdate: data de nascimento do auxílio
+		- pincode: atual código do AID
+		- pincode_change: novo código do AID
+		- bank_vault: valor em banco para este AID
+		- isvip: se este AID é atualmente vip ou não
+		- char_vip: número de charslot que são vip (só pode fazer a criação se você é vip)
 		- MAX_CHAR_BILLING: número de slots de personagem que estão disponíveis para o jogador após assinatura VIP
 	desc:
 		- Solicita dados da conta
 
 0x2718
-	Type: AH
-	Structure: <cmd>.W
+	Tipo: AH
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2718)
+	parametro:
+		- cmd : Pacote de Identificação (0x2718)
 	desc:
-		- Mantém o pacote ativo, (confirma que ainda estamos conectados)
+		- Mantenha o pacote vivo, (confirme se ainda estamos conectados)
 
 0x2719:
-	Type: HA
-	Structure: <cmd>.W
+	Tipo: HA
+	Estrutura: <cmd>.W
 	index: 0,2
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2719)
+	parametro:
+		- cmd : Pacote de Identificação (0x2719)
 	desc:
-		- Solicitação de Ping do char-server
+		- Solicitação de ping do char-server
 
 0x2720:
 0x2721:
-    free
+    livre
 
 0x2722:
-	Type: HA
-	Structure: <cmd>.W <account_id>.L <actual_e-mail>.40B <new_e-mail>.40B
+	Tipo: HA
+	Estrutura: <cmd>.W <account_id>.L <actual_e-mail>.40B <new_e-mail>.40B
 	index: 0,2,6,46
 	len: 86
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2722)
-		- aid: identificação da conta
-		- actual_email: atual endereço de email
-		- new_email: novo endereço de email
+	parametro:
+		- cmd : Pacote de Identificação (0x2722)
+		- aid: Identificação da Conta
+		- actual_email: endereço de email atual
+		- new_email: novo endereço de email 
 	desc:
-		- O map-server envia informações para alterar um email de uma conta via char-server
+		- Map server envia informações para alterar um email de uma conta via char-server
 
 0x2723:
-	Type: AH
-	Structure: <cmd>.W <aid>.L <sex>.B
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <sex>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2723)
-		- aid: identificação da conta
-		- sex: sexo da conta
-			0 = SEX_FEMALE (Feminino)
-			1= SEX_MALE (Masculino)
-			2= SEX_SERVER (Servidor, ou seja, como o S da conta S1 e P1)
+	parametro:
+		- cmd : Pacote de Identificação (0x2723)
+		- aid: Identificação da Conta
+		- sex: sex of account
+			0 = SEX_FEMALE
+			1= SEX_MALE
+			2=SEX_SERVER
 	desc:
-		- Confirma a atualização de sexo
+		- Confirma atualização de sexo
 
 0x2724:
-	Type: HA
-	Structure: <cmd>.W <t_aid>.L <state>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <t_aid>.L <state>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2724)
-		- t_aid: identificação da conta of target
-		- state: estado da conta
-			- 0 : unblock (Desbloqueado)
-			- 5 : block (Connection refused) (Bloqueado) (Conexão recusada)
+	parametro:
+		- cmd : Pacote de Identificação (0x2724)
+		- t_aid: Identificação da Conta of target
+		- state: Estado da Conta
+			- 0 : desbloqueado
+			- 5 : bloqueado (Conexão recusada)
 	desc:
-		- Recebe uma solicitação de atualização do estado da conta do map-server (retransmitido via char-server)
+		- Recebe uma solicitação de atualização do estado da conta do map-server (transmitido via char-server)
 
 0x2725:
-	Type: HA
-	Structure: <cmd>.W <t_aid>.L <timediff>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <t_aid>.L <timediff>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2725)
-		- t_aid: identificação da conta of target
+	parametro:
+		- cmd : Pacote de Identificação (0x2725)
+		- t_aid: Identificação da Conta do alvo
 		- timediff: marque para adicionar ou remover um timestamp
 	desc:
-		- Recebe do map-server via char-server uma requisição de banimento (altera o tempo de banimento)
+		- Recebimento do map-server via char-server um pedido de banimento (altera o tempo de banimento)
 
 0x2726:
-    free
+    livre
 
 0x2727:
-	Type: HA
-	Structure: <cmd>.W <aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2727)
-		- aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2727)
+		- aid: Identificação da Conta
 	desc:
-		- Recebe um pedido para mudar de sexo (o sexo é invertido)
+		- Recebe um pedido para mudar de sexo (sexo é invertido)
 
 0x2728:
-	Type: HA
-	Structure: <cmd>.W <len>.W <aid>.L <cid>.L { <str>.?B <value>.?B }
+	Tipo: HA
+	Estrutura: <cmd>.W <len>.W <aid>.L <cid>.L { <str>.?B <value>.?B }
 	index: 0,2,4,8,13
 	len: variable (reg size+4)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2728)
-		- len:  tamanho do packet (pacote)
-		- aid: identificação da conta
-		- cid : identificação do personagem (char)
-		- str : nome de variável no registro (string)
-		- value : valor de variável no registro
+	parametro:
+		- cmd : Pacote de Identificação (0x2728)
+		- len:  Tamanho do Pacote
+		- aid: Identificação da Conta
+		- cid : Identificação do char
+		- str : nome da variável no registro
+		- value : valor da variável no registro
 	desc:
-		- Recebe uma solicitação para buscar account_reg2 no char-server, consulte 0x3004 (mapif_parse_Registry)
+		- Recebe uma solicitação para buscar account_reg2 do char-server, consulte pacote0x3004 (mapif_parse_Registry)
 
 
 0x2729:
-	Type: AH
-	Structure: <cmd>.W <len>.L <aid>.L <cid>.L <type>.B { <str>.?B <value>.?B }
+	Tipo: AH
+	Estrutura: <cmd>.W <len>.L <aid>.L <cid>.L <Tipo>.B { <str>.?B <value>.?B }
 	index: 0,2,4,8,12,13
 	len: variable (reg2 size+13)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2729)
-		- len:  pakcet size
-		- aid: identificação da conta
-		- cid : char identification
-		-type:
-		-type:
-			1: Registro account2 (apenas um usado até o momento)
-			2: Registro account
-			3: char registry
-		- str : nome de variável no registro (string)
-		- value : valor de variável no registro
+	parametro:
+		- cmd : Pacote de Identificação (0x2729)
+		- len:  Tamanho do Pacote
+		- aid: Identificação da Conta
+		- cid :  Identificação do char
+		-Tipo:
+		-Tipo:
+			1: Registro da account2 (apenas um atm usado)
+			2: Registro da  account
+			3: Registro do Char
+		- str : nome da variável no registro
+		- value : valor da variável no registro
 	desc:
-		- Recebe o registro de account_reg2, e encaminha para o map-server.
+		- Recebe o registro account_reg2, encaminha para map servers.
 
 0x272a:
-	Type: HA
-	Structure: <cmd>.W <t_aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <t_aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x272a)
-		- t_aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x272a)
+		- t_aid: Identificação da Conta
 	desc:
-		- request unban account
+		- Solicitação de desbanimento de uma conta
 
 
 0x272b:
-	Type: HA
-	Structure: <cmd>.W <t_aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <t_aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x272b)
-		- t_aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x272b)
+		- t_aid: Identificação da Conta
 	desc:
-		- Adiciona o aid à lista de usuários on-line no login-server (setacconline).
+		- Adiciona AID à lista de usuários on-line no loginserv (setacconline).
 
 0x272c:
-	Type: HA
-	Structure: <cmd>.W <t_aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <t_aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x272c)
-		- t_aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x272c)
+		- t_aid: Identificação da Conta
 	desc:
-		- Remove o aid da lista de usuários on-line (setaccoffline).
+		- Remove AID da lista de usuários on-line (setaccoffline).
 
 0x272d:
-	Type: HA
-	Structure: <cmd>.W <len>.W <nb_online>.L {<aid>.L}*
+	Tipo: HA
+	Estrutura: <cmd>.W <len>.W <nb_online>.L {<aid>.L}*
 	index: 0,2,4,8
 	len: 8+users*4
-	parameter:
-		- cmd : identificação do packet (pacote) (0x272d)
-		- len : size of packet
-		- users: número de usuários conectados ao char-server
-		- aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x272d)
+		- len : Tamanho do Pacote
+		- users: números de usuários conectados ao char-serv
+		- aid: Identificação da Conta
 	desc:
-		- recebe uma lista de contas do char-server
+		- Recebe uma lista de contas do char-server
 
 0x272e:
-	Type: HA
-	Structure: <cmd>.W  <aid>.L  <cid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W  <aid>.L  <cid>.L
 	index: 0,2,4,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x272e)
-		- aid: identificação da conta
-		- cid: identificação do personagem (char)
+	parametro:
+		- cmd : Pacote de Identificação (0x272e)
+		- aid: Identificação da Conta
+		- cid: Identificação do char
 	desc:
-		- solicita accreg2 ao login
+		- Solicita credeg2 para efetuar login
 
 0x272f:
 0x2730:
-	free
+	livre
 
 0x2731:
-	Type: AH
-	Structure: <cmd>.W <aid>.L <state>.B <status/date>.L
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <state>.B <status/date>.L
 	index: 0,2,6,7
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2731)
-		- aid: identificação da conta
-		- state: 0=mudança de status, 1=banimento
-		- status|date: status ou data limite de um banimento
+	parametro:
+		- cmd : Pacote de Identificação (0x2731)
+		- aid: Identificação da Conta
+		- state: 0=Muda de Status, 1=ban
+		- status|date: status ou data final de um banimento
 	desc:
-		- Notifica o char-server sobre uma mudança de status or banimento (accbannotification).
+		- Notifica o char-serv da mudança de estado ou banimento (accbannotification).
 
 0x2732:
 0x2733:
-    free
+    livre
 
 0x2734:
-	Type: AH
-	Structure: <cmd>.W <aid>.L
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L
 	index: 0,2,
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2734)
-		- aid: identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2734)
+		- aid: Identificação da Conta
 	desc:
-		- A conta já está marcada como online. (Solicita ao login-server para expulsar o personagem atualmente logado).
+		- Conta já está marcada como online. (Solicitação do Loginserv para expulsar um personagem).
 
 0x2735:
-	Type: AH
-	Structure: <cmd>.W
+	Tipo: AH
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2735
+	parametro:
+		- cmd : Pacote de Identificação (0x2735)
 	desc:
-		- sinal de atualização do endereço ip do login server
+		- sinal de atualização de endereço ip do login server
 
 0x2736:
-	Type: HA
-	Structure: <cmd>.W <ip>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <ip>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2736)
-		-  ip: ip do char-server
+	parametro:
+		- cmd : Pacote de Identificação (0x2736)
+		-  ip: IP do charserver
 	desc:
-		- Atualização de IP para o char-server
+		- IP atualizado para o char-server
 
 0x2737:
-	Type: HA
-	Structure: <cmd>.W
+	Tipo: HA
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2737)
+	parametro:
+		- cmd : Pacote de Identificação (0x2737)
 	desc:
-		- Solicita que seja definido o status de todas as contas como offline no char-server
+		-Solicitação para definir todas as contas como offline no char-server
 
 0x2738:
-	Type: HA
-	Structure: <cmd>.W <aid>.L <pincode>.?B
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L <pincode>.?B
 	index: 0,2,6
 	len: variable: 11+PINCODE_LENGTH+1
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2738)
-		- aid : account identification
-		- pincode : novo código pin
+	parametro:
+		- cmd : Pacote de Identificação (0x2738)
+		- aid : Identificação da Conta
+		- pincode : Novo código Pincode
 	desc:
-		- Altera o código PIN de uma conta
+		- Alterar o código PIN de uma conta
 
 0x2739:
-	Type: HA
-	Structure: <cmd>.W <aid>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2739)
-		- aid : identificação da conta
+	parametro:
+		- cmd : Pacote de Identificação (0x2739)
+		- aid : Identificação da Conta
 	desc:
-		- O login-server notifica que foram efetuadas muitas tentativas incorretas PIN. (falha na autenticação)
+		- Login notifica o char que um código PIN incorreto entrou. (falha de autenticação)
 
 0x273a
 0x273b
@@ -398,286 +399,286 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 0x273d
 0x273e
 0x273f
-	free
+	livre
 
 0x2740:
-	Type: HA
-	Structure: <cmd>.W <aid>.L <type>.B <data>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L <Tipo>.B <data>.L
 	index: 0,2,6,7
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2740)
-		- aid: identificação da conta
-		- type:
+	parametro:
+		- cmd : Pacote de Identificação (0x2740)
+		- aid: Identificação da Conta
+		- Tipo:
 		- data:
 	desc:
-		- Request to update bank_vault
+		- Pedido para atualizar bank_vault
 
 0x2741:
-	Type: AH
-	Structure: <cmd>.W <aid>.L <type>.B <data>.L
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <Tipo>.B <data>.L
 	index: 0,2,6,7
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2741)
-		- aid : account identification
-		- type : 1=select, 2=upd and save
-		- data : new bank vault
+	parametro:
+		- cmd : Pacote de Identificação (0x2741)
+		- aid : Identificação da Conta
+		- Tipo : 1=select, 2=upd and save
+		- data : Novo cofre de banco
 	desc:
-		- Request the bank info of login
+		- Solicite as informações bancárias do login
 
 0x2742:
-	Type: HA
-	Structure: <cmd>.W <aid>.L <type>.B <timediff>.L <mapfd>.L
+	Tipo: HA
+	Estrutura: <cmd>.W <aid>.L <Tipo>.B <timediff>.L <mapfd>.L
 	index: 0,2,6,7,11
 	len: 15
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2742)
-		- aid: identificação da conta
-		- type: &1 ack vip data to char-serv, &2 add duration
-		- timediff: tick to add to viptime
-		- mapfd: map-serv link to ack if type&1
+	parametro:
+		- cmd : Pacote de Identificação (0x2742)
+		- aid: Identificação da Conta
+		- Tipo: &1 confirmação de dados vip para char-serv, &2 add duração
+		- timediff: Tempo para ser adicionado ao viptime
+		- mapfd: map-server se conecta para confirmar se Tipo&1
 	desc:
-		- Received a VIP data request from char
+		- Recebe uma solicitação de dados VIP do char
 
 0x2743:
-	Type: AH
-	Structure: <cmd>.W <aid>.L <vip_time>.L <isvip>.B <groupid>.L <isgm>.L <mapfd>.B
+	Tipo: AH
+	Estrutura: <cmd>.W <aid>.L <vip_time>.L <isvip>.B <groupid>.L <isgm>.L <mapfd>.B
 	index: 0,2,6,10,11,15,16
 	len: 20
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2743)
-		- aid: identificação da conta
-		- vip_time: timestamp of vip_time if he is vip
-		- isvip: is this account in vip mode atm
-		- groupid: group id of account
-		- isgm: is he a gm
-		- mapfd: map-serv link to ack
+	parametro:
+		- cmd : Pacote de Identificação (0x2743)
+		- aid: Identificação da Conta
+		- vip_time: timestamp de vip_time se ele é vip
+		- isvip: é esta conta no modo vip atm
+		- groupid: ID do grupo da conta
+		- isgm: ele é um gm
+		- mapfd: map-serv conecta para confirmar
 	desc:
-		- Transmit vip specific data to char-serv (will be transfered to mapserv)
+		- Transmite dados específicos do vip para o char-server(será transferido para o mapserv)
 
-=========================
-| 3.1 Inter-Map Packets |
-=========================
+===========================
+| 3.1 Pacotes do Inter-Map |
+===========================
 
 0x3000
-	Type: ZI
-	Structure: <cmd>.W <len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <mes>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <fontColor>.L <fontTipo>.W <fontSize>.W <fontAlign>.W <fontY>.W <mes>.?B
 	index: 0,2,4,8,10,12,14,16
 	len: 16+msglen
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3000)
-		- len : packet size
-		- fontColor: (standard broadcast color=0xFF000000)
+	parametro:
+		- cmd : Pacote de Identificação (0x3000)
+		- len : Tamanho do Pacote
+		- fontColor: (transmissão padrão color=0xFF000000)
 		- fontType:
 		- fontSize:
 		- fontAlign:
 		- fontY:
-		- mes: message to send
+		- mes: mensagem para enviar
 	desc:
-		- Broadcasts a message to all map-servs connected to this char-serv
-		- NB carefull (also using cmd=3000 rAthena_report but encapsulate it into cmd 3008 for map-char)
+		- Transmita uma mensagem para todos os map-servers conectados a este char-server
+		- NB carefull (também usando cmd = 3000 rAthena_report mas encapsulando em cmd 3008 para map-char)
 
 
 0x3001
-	Type: ZI
-	Structure: <cmd>.W <len>.W <name>(NAME_LENGTH)B <nick>(NAME_LENGTH)B <mes>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <name>(NAME_LENGTH)B <nick>(NAME_LENGTH)B <mes>.?B
 	index: 0,2,4,4+NAME_LENGTH,4+2*NAME_LENGTH
 	len: 52+mes_len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3001)
-		- len: packet size
-		- name : sender name of msg
-		- nick : receiver name of msg
-		- mes : message to send
+	parametro:
+		- cmd : Pacote de Identificação (0x3001)
+		- len:  Tamanho do Pacote
+		- name : nome do remetente da msg
+		- nick : nome do destinatário da msg
+		- mes : mensagem para enviar
 	desc:
-		- Send a whisper to another player
+		- Envie um whisper para outro jogador
 
 0x3002
-	Type: ZI
-	Structure: <cmd>.W <
+	Tipo: ZI
+	Estrutura: <cmd>.W <
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3002)
-		- id: whisper id, identifier to match current whisper session that store in inter.c::wis_db
-		- flag: 0=success, 1=target not found, 2=ignored by target
+	parametro:
+		- cmd : Pacote de Identificação (0x3002)
+		- id: whisper id, identificador para coincidir com a sessão de whisper atual que armazena em inter.c::wis_db
+		- flag: 0=sucesso, 1=alvo não encontrado, 2=ignorado pelo alvo
 	desc:
-		- Inform the char-serv of the result of the whisper
+		- Informa o char-serv do resultado do whisper
 
 0x3003
-	Type: ZI
-	Structure: <cmd>.W <packet_len>.W <wispname>.?B <permission>.L <message>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <packet_len>.W <wispname>.?B <permission>.L <message>.?B
 	index: 0,2,4,4+NAME_LENGTH,8+NAME_LENGTH
 	len: variable: mes_len + 8 + NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3003)
+	parametro:
+		- cmd : Pacote de Identificação (0x3003)
 		- packet_len: mes_len + 8 + NAME_LENGTH
 		- wisp_name
 		- permission
 		- message
 	desc:
-		- Transmission of GM only Wisp/Page from server to inter-server
+		- Transmissão apenas do GM Wisp / Page do server para o inter-server
 
 0x3004
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <type>.B { <str>.?B <value>.?B }?
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <Tipo>.B { <str>.?B <value>.?B }?
 	index: 0,4,8,12,13
 	len:  variable : 13+regnum*(len variable name+len value) (max=288 * MAX_REG_NUM+13)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3004)
-		- aid: identificação da conta
-		- cid: char identification
-		-type:
-			1: account2 registry
-			2: account registry
-			3: char registry
-		-str: registre variable identifiant, (variable name)
-		-value: variable value
+	parametro:
+		- cmd : Pacote de Identificação (0x3004)
+		- aid: Identificação da Conta
+		- cid: Identificação do char
+		-Tipo:
+			1: Registro da account2 
+			2: Registro da account
+			3: Registro da char
+		-str: registre variable identifiant, identificador de registro variável (nome da variável)
+		-value: valor da variável
 	desc:
-		- Map-serv is requesting Char-serv to save registry values. (type=1 will forward data to login-serv)
+		- O Map-serv está solicitando o Char-serv para salvar os valores do registro. (Type=1 encaminhará dados para login-serv.)
 
 0x3005
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <acc_reg2>.B <acc_reg>.B <ch_reg>.B
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <acc_reg2>.B <acc_reg>.B <ch_reg>.B
 	index: 0,2,6,10,11,12
 	len: 13
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3005)
+	parametro:
+		- cmd : Pacote de Identificação (0x3005)
 		- aid:
 		- cid:
-		-acc_reg2 : request  account registry (permanent variable of account, save on login-serv)
-		-acc_reg : request account registry (permanent variable of account , save on char-serv)
-		-ch_reg :  request char registry (permanent variable of char)
+		-acc_reg2 : solicita registro de conta (variável permanente da conta, salvo no login-serv)
+		-acc_reg : solicita o registro de conta (variável permanente de conta, salvo em char-serv)
+		-ch_reg :  solicitar registro do char (variável permanente de char)
 	desc:
-		- Request the registries for this player.
+		- Solicita os registros para este jogador.
 
 0x3006
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <type>.B <NAME_LENGTH>.?
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <Tipo>.B <NAME_LENGTH>.?
 	index: 0,2,6,10,11
 	len: 12+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3006)
+	parametro:
+		- cmd : Pacote de Identificação (0x3006)
 		- aid
 		- cid
-		- type
+		- Tipo
 		- NAME_LENGTH
 	desc
 
 0x3007
-	Type: ZI
-	Structure: <cmd>.W <u_fd>.L <aid>.L <group_lv>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <u_fd>.L <aid>.L <group_lv>.L
 	index: 0,2,6,10,14
 	len: 14+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3007)
+	parametro:
+		- cmd : Pacote de Identificação (0x3007)
 		- u_fd
 		- aid
 		- group_lv
 		- query
 	desc:
-		- Request acc info
+		- Solicitar informações da conta
 
 0x3018
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <gid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <gid>.L
 	index 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3018)
+	parametro:
+		- cmd : Pacote de Identificação (0x3018)
 		- aid
 		- gid
 	desc:
-		- Request guild storage
+		- Solicita armazém de guilda
 
 0x3019
-	Type: ZI
-	Structure: <cmd>.W <guild_storage>.W <aid>.L <gid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_storage>.W <aid>.L <gid>.L
 	index: 0,2,4,8,12
 	len: 12+guild_storage
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3019)
+	parametro:
+		- cmd : Pacote de Identificação (0x3019)
 		- guild_storage
 		- aid
 		- gid
 	desc:
-		- Send guild storage
+		- Envie o armazém da guilda
 
 0x3020
-	Type: ZI
-	Structure: <cmd>.W <party_member>.W <name>.24B <item>.B <item2>.B <member>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_member>.W <name>.24B <item>.B <item2>.B <member>.?B
 	index: 0,2,4,28,29,30
 	len: variable: 28+party_member (max=64)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3020)
+	parametro:
+		- cmd : Pacote de Identificação (0x3020)
 		- party_member
 		- name
 		- item
 		- item2
 		- member
 	desc:
-		- Party creation request
+		- Pedido de criação de Party
 
 0x3021
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L <cid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L <cid>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3021)
+	parametro:
+		- cmd : Pacote de Identificação (0x3021)
 		- party_id
 		- cid
 	desc:
-		- Party information request
+		- Pedido de informação de Party
 
 0x3022
-	Type: ZI
-	Structure: <cmd>.W <party_member>.W <party_id>.L <member>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_member>.W <party_id>.L <member>.?B
 	index: 0,2,4,8
 	len: variable: 8+party_member (Max=42)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3022)
+	parametro:
+		- cmd : Pacote de Identificação (0x3022)
 		- party_member
 		- party_id
 		- member
 	desc:
-		- Request to add a member to party
+		- Pedido para adicionar um membro à Party
 
 0x3023
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L <aid>.L <exp>.W <item>.W
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L <aid>.L <exp>.W <item>.W
 	index: 0,2,6,10,12,14
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3023)
+	parametro:
+		- cmd : Pacote de Identificação (0x3023)
 		- party_id
 		- aid
 		- exp
 		- item
 	desc:
-		- Request to change party configuration (exp,item share)
+		- Solicitação para alterar a configuração da party (exp,compartilhamento de item)
 
 0x3024
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L <aid>.L <cid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L <aid>.L <cid>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3024)
+	parametro:
+		- cmd : Pacote de Identificação (0x3024)
 		- party_id
 		- aid
 		- cid
 	desc:
-		- Request to leave party
+		- Pedido para deixar a party
 
 0x3025
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L <aid>.L <cid>.L <mapindex>.W <online>.B <base_level>.W
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L <aid>.L <cid>.L <mapindex>.W <online>.B <base_level>.W
 	index: 0,2,6,10,14,16,17
 	len: 19
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3025)
+	parametro:
+		- cmd : Pacote de Identificação (0x3025)
 		- party_id
 		- aid
 		- cid
@@ -685,127 +686,127 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- online
 		- base_level
 	desc:
-		- Party change map
+		- Mapa de mudança da party
 
 0x3026
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3026)
+	parametro:
+		- cmd : Pacote de Identificação (0x3026)
 		- party_id
 	desc:
-		- Request breaking party
+		- Pedido de quebra da party
 
 0x3027
-	Type: ZI
-	Structure: <cmd>.W <len>.W <party_id>.L <aid>.L <mes>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <party_id>.L <aid>.L <mes>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3027)
+	parametro:
+		- cmd : Pacote de Identificação (0x3027)
 		- len
 		- party_id
 		- aid
 		- mes
 	desc:
-		- Sending party chat
+		- Envia chat da party
 
 0x3029
-	Type: ZI
-	Structure: <cmd>.W <party_id>.L <aid>.L <cid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <party_id>.L <aid>.L <cid>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3029)
+	parametro:
+		- cmd : Pacote de Identificação (0x3029)
 		- party_id
 		- aid
 		- cid
 	desc:
-		- Request a new leader for party
+		- Solicita um novo líder para a party
 
 0x302A
-	Type: ZI
-	Structure: <cmd>.W <share_lvl>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <share_lvl>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x302a)
+	parametro:
+		- cmd : Pacote de Identificação (0x302a)
 		- share_lvl
 	desc:
-		- Request to update party share level
+		- Solicitação para atualizar o nível de compartilhamento da party
 
 0x3030
-	Type: ZI
-	Structure: <cmd>.W <guild_member>.W <aid>.L <name>.?B <master>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_member>.W <aid>.L <name>.?B <master>.?B
 	index: 0,2,4,8,8+NAME_LENGTH
 	len:
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3030)
+	parametro:
+		- cmd : Pacote de Identificação (0x3030)
 		- guild_member
 		- aid
 		- name
 		- master
 	desc:
-		- Request a Guild creation
+		- Solicita uma criação de guilda
 
 0x3031
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3031)
+	parametro:
+		- cmd : Pacote de Identificação (0x3031)
 		- guild_id
 	desc:
-		- Request Guild information
+		- Solicita informações da guilda
 
 0x3032
-	Type: ZI
-	Structure: <cmd>.W <guild_member>.W <guild_id>.L <m>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_member>.W <guild_id>.L <m>.?B
 	index: 0,2,4,8
 	len: variable: 8+guild_member
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3032)
+	parametro:
+		- cmd : Pacote de Identificação (0x3032)
 	desc:
-		- Request to add member to the guild
+		- Solicita para adicionar um membro à guilda
 
 0x3033
-	Type: ZI
-	Structure: <cmd>.W <len>.W <guild_id>.L <name>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <name>.?B
 	index: 0,2,4,8
 	len: variable: 8+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3033)
+	parametro:
+		- cmd : Pacote de Identificação (0x3033)
 		- len
 		- guild_id
 		- name
 	desc:
-		- Request a new leader for guild
+		- Solicita um novo líder para a guilda
 
 0x3034
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L <aid>.L <cid>.L <flag>.B <mes> .40B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L <aid>.L <cid>.L <flag>.B <mes> .40B
 	index: 0,2,6,10,14,15
 	len: 55
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3034)
+	parametro:
+		- cmd : Pacote de Identificação (0x3034)
 		- guild_id
 		- aid
 		- cid
 		- flag
 		- mes
 	desc:
-		- Request to leave guild
+		- Pedido para sair da guilda
 
 0x3035
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L <aid>.L <cid>.L <online>.B <lv>.W <class_>.W
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L <aid>.L <cid>.L <online>.B <lv>.W <class_>.W
 	index: 0,2,6,10,14,15,17
 	len: 19
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3035)
+	parametro:
+		- cmd : Pacote de Identificação (0x3035)
 		- guild_id
 		- aid
 		- cid
@@ -813,427 +814,427 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- lv
 		- class_
 	desc:
-		- Update request / Lv online status of the guild members
+		- Atualizar pedido / status on-line do Lv dos membros da guilda
 
 0x3036
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3036)
+	parametro:
+		- cmd : Pacote de Identificação (0x3036)
 		- guild_id
 	desc:
-		- Guild disbanded notification
+		- Notificação de guilda desbanida
 
 0x3037
-	Type: ZI
-	Structure: <cmd>.W <len>.W <guild_id>.L <aid>.L <mes>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <aid>.L <mes>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3037)
+	parametro:
+		- cmd : Pacote de Identificação (0x3037)
 		- len
 		- guild_id
 		- aid
 		- mes
 	desc:
-		- Send a guild message
+		- Envia uma mensagem da guilda
 
 0x3039
-	Type: ZI
-	Structure: <cmd>.W <len>.W <guild_id>.L <type>.W <data>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <Tipo>.W <data>.?B
 	index: 0,2,4,8,10
 	len: variable: 10+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3039)
+	parametro:
+		- cmd : Pacote de Identificação (0x3039)
 		- len
 		- guild_id
-		- type
+		- Tipo
 		- data
 	desc:
-		- Request a change of Guild basic information
+		- Solicita uma alteração da informação básica da guilda
 
 0x303a
-	Type: ZI
-	Structure: <cmd>.W <len>.W <guild_id>.L <aid>.L <cid>.L <type>.W <data>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <aid>.L <cid>.L <Tipo>.W <data>.?B
 	index: 0,2,4,8,12,16,18
 	len: variable: 18+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303a)
+	parametro:
+		- cmd : Pacote de Identificação (0x303a)
 		- len
 		- guild_id
 		- aid
 		- cid
-		- type
+		- Tipo
 		- data
 	desc:
-		- Request a change of Guild member information
+		- Solicita uma alteração das informações do membro da guilda
 
 0x303b
-	Type: ZI
-	Structure: <cmd>.W <guild_position>.W <guild_id>.L <idx>.L <p>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_position>.W <guild_id>.L <idx>.L <p>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+guild_position
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303b)
+	parametro:
+		- cmd : Pacote de Identificação (0x303b)
 		- guild_position
 		- guild_id
 		- idx
 		- p
 	desc:
-		- Request a change of Guild title
+		- Solicita uma alteração do título da guilda
 
 0x303c
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L <skill_id>.L <aid>.L <max>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L <skill_id>.L <aid>.L <max>.L
 	index: 0,2,6,10,14
 	len: 18
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303c)
+	parametro:
+		- cmd : Pacote de Identificação (0x303c)
 		- guild_id
 		- skill_id
 		- aid
 		- max
 	desc:
-		- Request an update of Guildskill skill_id
+		- Solicita uma atualização de Guildskill skill_id
 
 0x303d
-	Type: ZI
-	Structure: <cmd>.W <guild_id1>.L <guild_id2>.L <account_id1>.L <account_id2>.L <flag>.B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id1>.L <guild_id2>.L <account_id1>.L <account_id2>.L <flag>.B
 	index: 0,2,6,10,14,18
 	len: 19
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303d)
+	parametro:
+		- cmd : Pacote de Identificação (0x303d)
 		- guild_id1
 		- guild_id2
 		- account_id1
 		- account_id2
 		- flag
 	desc:
-		- Request a new guild alliance
+		- Solicitar uma nova aliança de guilda
 
 0x303e
-	Type: ZI
-	Structure: <cmd>.W <guild_id>.L <mes1>.60B <mes2>.120B
+	Tipo: ZI
+	Estrutura: <cmd>.W <guild_id>.L <mes1>.60B <mes2>.120B
 	index: 0,2,6,66
 	len: 186
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303e)
+	parametro:
+		- cmd : Pacote de Identificação (0x303e)
 		- guild_id
 		- mes1
 		- mes2
 	desc:
-		- Request to change guild notice
+		- Solicitação para alterar o aviso da guilda
 
 0x303f
-	Type: ZI
-	Structure: <cmd>.W <len>.W <guild_id>.L <0>.L <data>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <0>.L <data>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len (Max=2012)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x303f)
+	parametro:
+		- cmd : Pacote de Identificação (0x303f)
 	desc:
-		- Request to change guild emblem
+		- Solicitação para alterar o emblema da guilda
 
 0x3040
-	Type: ZI
-	Structure: <cmd>.W <num>.W <castle_ids>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <num>.W <castle_ids>.?B
 	index: 0,2,4
 	len: variable: 4 + num * 2,147,483,647
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3040)
+	parametro:
+		- cmd : Pacote de Identificação (0x3040)
 		- num
 		- castle_ids
 	desc:
-		- Requests guild castles data from char-server
+		- Solicita dados de castelos da guilda a partir do char-server
 
 0x3041
-	Type: ZI
-	Structure: <cmd>.W <castle_ids>.W <index>.B <value>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <castle_ids>.W <index>.B <value>.L
 	index: 0,2,4,5
 	len: 9
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3041)
+	parametro:
+		- cmd : Pacote de Identificação (0x3041)
 		- castle_ids
 		- index
 		- value
 	desc:
-		- Request change castle guild owner and save data
+		- Solicita mudança do proprietário da guilda do castelo e salva os dados
 
 0x3048
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <flag>.B
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <flag>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3048)
+	parametro:
+		- cmd : Pacote de Identificação (0x3048)
 		- cid
 		- flag
 	desc:
-		- Inbox request
+		- Pedido de caixa de entrada
 
 0x3049
-	Type: ZI
-	Structure: <cmd>.W <mail_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <mail_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3049)
+	parametro:
+		- cmd : Pacote de Identificação (0x3049)
 		- mail_id
 	desc:
-		- Mail read
+		- e-mail lido
 
 0x304a
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <mail_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <mail_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- mail_id
 	desc:
-		- Mail get attachment
+		- e-mail obteve o anexo
 
 0x304b
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <mail_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <mail_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- mail_id
 	desc:
-		- Mail delete
+		- e-mail deletado
 
 0x304c
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <mail_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <mail_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- mail_id
 	desc:
-		- Mail return
+		- e-mail retornou
 
 0x304d
-	Type: ZI
-	Structure: <cmd>.W <len>.W <aid>.L <msg>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <aid>.L <msg>.?B
 	index: 0,2,4,8
 	len: variable: 8+mail_message
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- len
 		- aid
 		- msg
 	desc:
-		- Mail send
+		- e-mail enviado
 
 0x3050
-	Type: ZI
-	Structure: <cmd>.W <len>.W <cid>.L <type>.W <price>.L <page>.W <searchtext>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <cid>.L <Tipo>.W <price>.L <page>.W <searchtext>.?B
 	index: 0,2,4,8,10,14,16
 	len: variable: 16+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- len
 		- cid
-		- type
+		- Tipo
 		- price
 		- page
 		- searchtext
 	desc:
-		- Auction request list
+		- Lista de pedidos de leilão
 
 0x3051
-	Type: ZI
-	Structure: <cmd>.W <len>.W <auction_data>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <auction_data>.?B
 	index: 0,2,4
 	len: variable: 4+auction_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- len
 		- auction_data
 	desc:
-		- Auction register
+		- Registro do leilão
 
 0x3052
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <auction_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <auction_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- auction_id
 	desc:
-		- Auction cancel
+		- Cancelamento do leilão
 
 0x3053
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <auction_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <auction_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- auction_id
 	desc:
-		- Auction close
+		- Leilão fechado
 
 0x3055
-	Type: ZI
-	Structure: <cmd>.W <len>.W <cid>.L <auction_id>.L <bid>.L <name>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <cid>.L <auction_id>.L <bid>.L <name>.?B
 	index: 0,2,4,8,12,16
 	len: variable: 16+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- len
 		- cid
 		- auction_id
 		- bid
 	desc:
-		- Auction bid
+		- Lance do leilão
 
 0x3056
-	Type: ZI
-	Structure: <cmd>.W <cid>.L <aid>.L <guild_id>.W
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L <aid>.L <guild_id>.W
 	index: 0,2,6,10
 	len: 12
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 		- aid
 		- guild_id
 	desc:
-		- Itembound request
+		- Pedido Itembound
 
 0x3060
-	Type: ZI
-	Structure: <cmd>.W <cid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <cid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- cid
 	desc:
-		- Requests a character's quest log entries to the inter server.
+		- Solicita as entradas do log de missões de um personagem ao inter server.
 
 0x3061
-	Type: ZI
-	Structure: <cmd>.W <len>.W <cid>.L <quest_log>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <len>.W <cid>.L <quest_log>.?B
 	index: 0,2,4,8
 	len: variable: 8+num_quests
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 	desc:
-		- Requests to the inter server to save a character's quest log entries.
+		- Solicitações ao inter server para salvar as entradas do log de missões de um personagem.
 
 0x3070
-	Type: ZI
-	Structure: <cmd>.W <size>.W <merc>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <size>.W <merc>.?B
 	index: 0,2,4
 	len: variable: 4+s_mercenary
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- size
 		- merc
 	desc:
-		- Mercenary create
+		- Cria um mercenário de aluguel
 
 0x3071
-	Type: ZI
-	Structure: <cmd>.W <merc_id>.L <char_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <merc_id>.L <char_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3071)
+	parametro:
+		- cmd : Pacote de Identificação (0x3071)
 		- merc_id
 		- cid
 	desc:
-		- Mercenary request
+		- Solicita Mercenary
 
 0x3072
-	Type: ZI
-	Structure: <cmd>.W <merc_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <merc_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3072)
+	parametro:
+		- cmd : Pacote de Identificação (0x3072)
 		- merc_id
 	desc:
-		- Mercenary delete
+		- Deleta Mercenary
 
 0x3073
-	Type: ZI
-	Structure: <cmd>.W <size>.W <merc>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <size>.W <merc>.?B
 	index: 0,2,4
 	len: variable: 4+s_mercenary
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3073)
+	parametro:
+		- cmd : Pacote de Identificação (0x3073)
 		- size
 		- merc
 	desc:
-		- Mercenary save
+		- Salva Mercenary
 
 0x307c
-	Type: ZI
-	Structure: <cmd>.W <size>.W <ele>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <size>.W <ele>.?B
 	index: 0,2,4
 	len: variable: 4+s_elemental
-	parameter:
-		- cmd : identificação do packet (pacote) (0x307c)
+	parametro:
+		- cmd : Pacote de Identificação (0x307c)
 		- size
 		- ele
 	desc:
-		- Elemental create
+		- Cria Elemental
 
 0x307d
-	Type: ZI
-	Structure: <cmd>.W <ele_id>.L <cid>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <ele_id>.L <cid>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x307d)
+	parametro:
+		- cmd : Pacote de Identificação (0x307d)
 		- ele_id
 		- cid
 	desc:
-		- Elemental request
+		- Solicita Elemental 
 
 0x307e
-	Type: ZI
-	Structure: <cmd>.W <ele_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <ele_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x307e)
+	parametro:
+		- cmd : Pacote de Identificação (0x307e)
 		- ele_id
 	desc:
-		- Elemental delete
+		- Deleta Elemental
 
 0x307f
-	Type: ZI
-	Structure: <cmd>.W <size>.W <ele>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <size>.W <ele>.?B
 	index: 0,2,4
 	len: variable: 4+s_elemental
-	parameter:
-		- cmd : identificação do packet (pacote) (0x307f)
+	parametro:
+		- cmd : Pacote de Identificação (0x307f)
 		- size
 		- ele
 	desc:
-		- Elemental save
+		- Salva Elemental
 
 0x3080
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <pet_class>.W <pet_lv>.W <pet_egg_id>.W <pet_equip>.W <intimate>.W <hungry>.W <rename_flag>.B <incubate>.B
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <pet_class>.W <pet_lv>.W <pet_egg_id>.W <pet_equip>.W <intimate>.W <hungry>.W <rename_flag>.B <incubate>.B
 	index: 0,2,6,10,12,14,16,18,20,22,23,24
 	len: variable: 24+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3080)
+	parametro:
+		- cmd : Pacote de Identificação (0x3080)
 		- aid
 		- cid
 		- pet_class
@@ -1245,217 +1246,217 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- rename_flag
 		- incubate
 	desc:
-		- Pet create
+		- Cria Pet 
 
 0x3081
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <pet_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <pet_id>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3081)
+	parametro:
+		- cmd : Pacote de Identificação (0x3081)
 		- aid
 		- cid
 		- pet_id
 	desc:
-		- Request pet data
+		- Solicita dados do pet
 
 0x3082
-	Type: ZI
-	Structure: <cmd>.W <size>.W <aid>.L <s_pet>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <size>.W <aid>.L <s_pet>.?B
 	index: 0,2,4,8
 	len: variable: 8+s_pet
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3082)
+	parametro:
+		- cmd : Pacote de Identificação (0x3082)
 		- size
 		- aid
-		- s_pet: Pet data
+		- s_pet: Dados do Pet
 	desc:
-		- Save pet data
+		- Salva dados do pet
 
 0x3083
-	Type: ZI
-	Structure: <cmd>.W <pet_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <pet_id>.L
 	index: 0,2
 	len 6:
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3083)
+	parametro:
+		- cmd : Pacote de Identificação (0x3083)
 		- pet_id
 	desc:
-		- Delete pet data
+		- Deleta os dados do pet
 
 0x3090:
-	Type: ZI
-	Structure: <cmd>.W <s_homunculus>.W <aid>.L <sh>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <s_homunculus>.W <aid>.L <sh>.?B
 	index: 0,2,4,8
 	len: variable: 8+s_homunculus
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3090)
+	parametro:
+		- cmd : Pacote de Identificação (0x3090)
 		- s_homunculus
 		- aid
 		- sh
 	desc:
-		- Homunculus create
+		- Cria homúnculo 
 
 0x3091:
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <homun_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <homun_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3091)
+	parametro:
+		- cmd : Pacote de Identificação (0x3091)
 		- aid
 		- homun_id
 	desc:
-		- Homunculus request load
+		- Solicita o carregamento de homúnculo 
 
 0x3092:
-	Type: ZI
-	Structure: <cmd>.W <s_homunculus>.W <aid>.L <sh>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <s_homunculus>.W <aid>.L <sh>.?B
 	index: 0,2,4,8
 	len: variable: 8+s_homunculus
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3092)
+	parametro:
+		- cmd : Pacote de Identificação (0x3092)
 		- s_homunculus
 		- aid
 		- sh
 	desc:
-		- Homunculus request save
+		- Solicita o salvamento do homúnculo 
 
 0x3093:
-	Type: ZI
-	Structure: <cmd>.W <homun_id>.L
+	Tipo: ZI
+	Estrutura: <cmd>.W <homun_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3093)
+	parametro:
+		- cmd : Pacote de Identificação (0x3093)
 		- homun_id
 	desc:
-		- Homunculus request delete
+		- Solicita o deletamento do homúnculo 
 
 0x3094:
-	Type: ZI
-	Structure: <cmd>.W <aid>.L <cid>.L <name>.?B
+	Tipo: ZI
+	Estrutura: <cmd>.W <aid>.L <cid>.L <name>.?B
 	index: 0,2,6,10
 	len: variable: 10+name
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3094)
+	parametro:
+		- cmd : Pacote de Identificação (0x3094)
 		- aid
 		- cid
 		- name
 	desc:
-		- Homunculus rename
+		- Renomeia o homúnculo 
 
 
 
 0x3800:
-	Type: IZ
-	Structure: <cmd>.W <len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <mes>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <fontColor>.L <fontTipo>.W <fontSize>.W <fontAlign>.W <fontY>.W <mes>.?B
 	index: 0,2,4,8,10,12,14,16
 	len: variable: 16+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3800)
+	parametro:
+		- cmd : Pacote de Identificação (0x3800)
 		- len
 		- fontColor
-		- fontType
+		- fontTipo
 		- fontSize
 		- fontAlign
 		- fontY
 		- mes
 	desc:
-		- Send broadcast message
+		- Enviar mensagem broadcast
 
 0x3801
-	Type: IZ
-	Structure: <cmd>.W <len>.W <id>.L <src>.24B <dst>.24B <msg>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <id>.L <src>.24B <dst>.24B <msg>.?B
 	index: 0,2,4,8,32,56
 	len: variable: 56+len (Max=1991)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3801)
+	parametro:
+		- cmd : Pacote de Identificação (0x3801)
 		- len
 		- id
 		- src
 		- dst
 		- msg
 	desc:
-		- Send whisper message
+		- Enviar mensagem whisper
 
 0x3802
-	Type: IZ
-	Structure: <cmd>.W <src>.24B <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <src>.24B <flag>.B
 	index: 0,2,26
 	len: 27
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3802)
+	parametro:
+		- cmd : Pacote de Identificação (0x3802)
 		- src
 		- flag
 	desc:
-		- Whisper sending result
+		- Whisper enviando o resultado
 
 0x3803
-	Type: IZ
-	Structure: <cmd>.W <packet_len>.W <wispname>.?B <permission>.L <message>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <packet_len>.W <wispname>.?B <permission>.L <message>.?B
 	index: 0,2,4,4+NAME_LENGTH,8+NAME_LENGTH
 	len: variable: mes_len + 8 + NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3003)
+	parametro:
+		- cmd : Pacote de Identificação (0x3003)
 		- packet_len: mes_len + 8 + NAME_LENGTH
 		- wisp_name
 		- permission
 		- message
 	desc:
-		- Parse whisper to GM
+		- Analisa whisper para GM
 
 0x3804
-	Type: IZ
-	Structure: <cmd>.W <?>.W <aid>.L <cid>.L <type>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <?>.W <aid>.L <cid>.L <Tipo>.B
 	index: 0,2,4,8,12
 	len: variable: 13 or p (Max=5013)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3804)
+	parametro:
+		- cmd : Pacote de Identificação (0x3804)
 		- ?
 		- aid
 		- cid
-		- type
+		- Tipo
 	desc:
-		- Account registry transfer to map-server
+		- Transferência de registro de conta para o map-server
 
 0x3806
-	Type: IZ
-	Structure: <cmd>.W <aid>.L <cid>.L <type>.B <flag>.B <name>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <aid>.L <cid>.L <Tipo>.B <flag>.B <name>.B
 	index: 0,2,6,10,11,12
 	len: 13
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3806)
+	parametro:
+		- cmd : Pacote de Identificação (0x3806)
 		- aid
 		- cid
-		- type
+		- Tipo
 		- flag
 		- name
 	desc:
 		- mapif_namechange_ack
 
 0x3807
-	Type: IZ
-	Structure: <cmd>.W <len>.W <u_fd>.L <aid>.L <msg_out>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <u_fd>.L <aid>.L <msg_out>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3807)
+	parametro:
+		- cmd : Pacote de Identificação (0x3807)
 		- len
 		- u_fd
 		- aid
 		- msg_out
 	desc:
-		- sends a mesasge to map server (fd) to a user (u_fd) although we use fd we keep aid for safe-check
+		- envia uma mensagem para map-server(fd) para um usuário (umfd) embora usemos fd, nós mantemos aid para verificação segura.
 
 0x3818
-	Type: IZ
-	Structure: <cmd>.W <len>.W <aid>.L <guild_id>.L <flag>.B <guild_storage>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <aid>.L <guild_id>.L <flag>.B <guild_storage>.?B
 	index: 0,2,4,8,12,13
 	len: variable: 13+guild_storage
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3818)
+	parametro:
+		- cmd : Pacote de Identificação (0x3818)
 		- len
 		- aid
 		- guild_id
@@ -1465,12 +1466,12 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_load_guild_storage
 
 0x3819
-	Type: IZ
-	Structure: <cmd>.W <aid>.L <guild_id>.L <fail>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <aid>.L <guild_id>.L <fail>.B
 	index: 0,2,6,10
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3819)
+	parametro:
+		- cmd : Pacote de Identificação (0x3819)
 		- aid
 		- guild_id
 		- fail
@@ -1478,40 +1479,40 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_save_guild_storage_ack
 
 0x3820
-	Type: IZ
-	Structure: <cmd>.W <aid>.L <char_id>.L <?>.B <party_id>.L <name>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <aid>.L <char_id>.L <?>.B <party_id>.L <name>.?B
 	index: 0,2,6,10,11,15
 	len: 39
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3820)
+	parametro:
+		- cmd : Pacote de Identificação (0x3820)
 		- aid
 		- char_id
 		- ?
 		- party_id
 		- name
 	desc:
-		- ACK party creation
+		- Confirmação da criação da party
 
 0x3821
-	Type: IZ
-	Structure: <cmd>.W <?>.W <char_id>.L <party_id>.L
+	Tipo: IZ
+	Estrutura: <cmd>.W <?>.W <char_id>.L <party_id>.L
 	index: 0,2,4,8
 	len: 12
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3821)
+	parametro:
+		- cmd : Pacote de Identificação (0x3821)
 		- ?
 		- char_id
 		- party_id
 	desc:
-		- Party information not found
+		- Informação de Party não encontrada
 
 0x3822
-	Type: IZ
-	Structure: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <flag>.B
 	index: 0,2,6,10,14
 	len: 15
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3822)
+	parametro:
+		- cmd : Pacote de Identificação (0x3822)
 		- party_id
 		- account_id
 		- char_id
@@ -1520,12 +1521,12 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_party_memberadded
 
 0x3823
-	Type: IZ
-	Structure: <cmd>.W <party_id>.L <account_id>.L <exp>.W <item>.W <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <party_id>.L <account_id>.L <exp>.W <item>.W <flag>.B
 	index: 0,2,6,10,12,14,15?
 	len: 16?
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3823)
+	parametro:
+		- cmd : Pacote de Identificação (0x3823)
 		- party_id
 		- account_id
 		- exp
@@ -1533,29 +1534,29 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- flag
 		- ?
 	desc:
-		- Party setting change notification
+		- Notificação de alteração de configuração da party
 
 0x3824
-	Type: IZ
-	Structure: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <?>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <?>.?B
 	index: 0,2,6,10,14
 	len: 16?
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3824)
+	parametro:
+		- cmd : Pacote de Identificação (0x3824)
 		- party_ud
 		- account_id
 		- char_id
 		- ?
 	desc:
-		- Withdrawal notification party
+		- Notificação de retirada da party
 
 0x3825
-	Type: IZ
-	Structure: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <map>.W <online>.B <lv>.W <?>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <party_id>.L <account_id>.L <char_id>.L <map>.W <online>.B <lv>.W <?>.?B
 	index: 0,2,6,10,14,16,17,19
 	len: 20?
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3825)
+	parametro:
+		- cmd : Pacote de Identificação (0x3825)
 		- party_id
 		- account_id
 		- char_id
@@ -1564,28 +1565,28 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- lv
 		- ?
 	desc:
-		- Party map update notification
+		- Notificação de atualização do mapa da party
 
 0x3826
-	Type: IZ
-	Structure: <cmd>.W <party_id>.L <flag>.B <?>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <party_id>.L <flag>.B <?>.?B
 	index: 0,2,6,7
 	len: 16
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3826)
+	parametro:
+		- cmd : Pacote de Identificação (0x3826)
 		- party_id
 		- flag
 		- ?
 	desc:
-		- Dissolution party notification
+		- Notificação da dissolução da party
 
 0x3827
-	Type: IZ
-	Structure: <cmd>.W <len>.W <party_id>.L <account_id>.L <mes>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <party_id>.L <account_id>.L <mes>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len (max=512)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3827)
+	parametro:
+		- cmd : Pacote de Identificação (0x3827)
 		- len
 		- party_id
 		- account_id
@@ -1594,24 +1595,24 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_party_message
 
 0x3830
-	Type: IZ
-	Structure: <cmd>.W <account_id>.L <guild_id>.L
+	Tipo: IZ
+	Estrutura: <cmd>.W <account_id>.L <guild_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3830)
+	parametro:
+		- cmd : Pacote de Identificação (0x3830)
 		- account_id
 		- guild_id
 	desc:
 		- mapif_guild_created
 
 0x3831
-	Type: IZ
-	Structure: <cmd>.W <?>.W <guild_id>.L <?>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <?>.W <guild_id>.L <?>.?B
 	index: 0,2,4,8
 	len: 12
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3831)
+	parametro:
+		- cmd : Pacote de Identificação (0x3831)
 		- ?
 		- guild_id
 		- ?
@@ -1619,26 +1620,26 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_guild_noinfo
 
 0x3832
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <flag>.B
 	index: 0,2,6,10,14
 	len: 15
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3832)
+	parametro:
+		- cmd : Pacote de Identificação (0x3832)
 		- guild_id
 		- account_id
 		- char_id
 		- flag
 	desc:
-		- ACK member add
+		- Confirmação da Adição de um membro
 
 0x3834
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <flag>.B <mes>.40B <name>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <flag>.B <mes>.40B <name>.?B
 	index: 0,2,6,10,14,15,55
 	len: variable: 55+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3834)
+	parametro:
+		- cmd : Pacote de Identificação (0x3834)
 		- guild_id
 		- account_id
 		- char_id
@@ -1649,12 +1650,12 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_guild_withdraw
 
 0x3835
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <online>.B <lv>.W <class_>.W
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <account_id>.L <char_id>.L <online>.B <lv>.W <class_>.W
 	index: 0,2,6,10,14,15,17
 	len: 19
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3835)
+	parametro:
+		- cmd : Pacote de Identificação (0x3835)
 		- guild_id
 		- account_id
 		- char_id
@@ -1662,71 +1663,71 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- lv
 		- class_
 	desc:
-		- Send short guild member's info
+		- Envia pequenas informações do membro da guilda 
 
 0x3836
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <flag>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3836)
+	parametro:
+		- cmd : Pacote de Identificação (0x3836)
 		- guild_id
 		- flag
 	desc:
 		- mapif_guild_broken
 
 0x3837
-	Type: IZ
-	Structure: <cmd>.W <len>.W <guild_id>.L <account_id>.L <mes>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <account_id>.L <mes>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+len (max=512)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3837)
+	parametro:
+		- cmd : Pacote de Identificação (0x3837)
 		- len
 		- guild_id
 		- account_id
 		- mes
 	desc:
-		- Send guild message
+		- Envia mensagem da guilda
 
 0x3839
-	Type: IZ
-	Structure: <cmd>.W <len>.W <guild_id>.L <type>.W <data>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <Tipo>.W <data>.?B
 	index: 0,2,4,8,10
 	len: variable: 10+len (Max=2048)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3839)
+	parametro:
+		- cmd : Pacote de Identificação (0x3839)
 		- len
 		- guild_id
-		- type
+		- Tipo
 		- data
 	desc:
 		- mapif_guild_basicinfochanged
 
 0x383a
-	Type: IZ
-	Structure: <cmd>.W <len>.W <guild_id>.L <account_id>.L <char_id>.L <type>.W <data>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <account_id>.L <char_id>.L <Tipo>.W <data>.?B
 	index: 0,2,4,8,12,16,18
 	len: variable: 18+len (Max=2048)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383a)
+	parametro:
+		- cmd : Pacote de Identificação (0x383a)
 		- len
 		- guild_id
 		- account_id
 		- char_id
-		- type
+		- Tipo
 		- data
 	desc:
 		- mapif_guild_memberinfochanged
 
 0x383b
-	Type: IZ
-	Structure: <cmd>.W <len>.W <guild_id>.L <idx>.L <position>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <idx>.L <position>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+guild_position
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383b)
+	parametro:
+		- cmd : Pacote de Identificação (0x383b)
 		- len
 		- guild_id
 		- idx
@@ -1735,79 +1736,79 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_guild_position
 
 0x383c
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <skill_id>.L <account_id>.L
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <skill_id>.L <account_id>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383c)
+	parametro:
+		- cmd : Pacote de Identificação (0x383c)
 		- guild_id
 		- skill_id
 		- account_id
 	desc:
-		- ACK guild skill up
+		- Confirmação do aumento das habilidades da guilda 
 
 0x383d
-	Type: IZ
-	Structure: <cmd>.W <guild_id1>.L <guild_id2>.L <account_id1>.L <account_id2>.L <flag>.B <name1>.?B <name2>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id1>.L <guild_id2>.L <account_id1>.L <account_id2>.L <flag>.B <name1>.?B <name2>.?B
 	index: 0,2,6,10,14,18,19
 	len: variable: 19+2*NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383d)
+	parametro:
+		- cmd : Pacote de Identificação (0x383d)
 		- guild_id1
 		- guild_id2
 		- account_id1
 		- account_id2
 	desc:
-		- ACK guild alliance
+		- Confirmação da aliança da guilda
 
 0x383e
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <mes1>.60B <mes2>.120B <?>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <mes1>.60B <mes2>.120B <?>.?B
 	index: 0,2,6,66,186
 	len: 256
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383e)
+	parametro:
+		- cmd : Pacote de Identificação (0x383e)
 		- guild_id
 		- mes1
 		- mes2
 		- ?
 	desc:
-		- Send the guild notice
+		- Envia um aviso da guilda
 
 0x383f
-	Type: IZ
-	Structure: <cmd>.W <len>.W <guild_id>.L <emblem_id>.L <emblem_data>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <guild_id>.L <emblem_id>.L <emblem_data>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+emblem_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x383f)
+	parametro:
+		- cmd : Pacote de Identificação (0x383f)
 		- len
 		- guild_id
 		- emblem_id
 		- emblem_data
 	desc:
-		- Send emblem data
+		- Envia dados do emblema
 
 0x3840
-	Type: IZ
-	Structure: <cmd>.W <len>.W <gc>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <len>.W <gc>.?B
 	index: 0,2,4
 	len: variable: 4+num*gc
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3840)
+	parametro:
+		- cmd : Pacote de Identificação (0x3840)
 		- len
 		- gc
 	desc:
 		- mapif_guild_castle_dataload
 
 0x3843
-	Type: IZ
-	Structure: <cmd>.W <guild_id>.L <aid>.L <cid>.L
+	Tipo: IZ
+	Estrutura: <cmd>.W <guild_id>.L <aid>.L <cid>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3843)
+	parametro:
+		- cmd : Pacote de Identificação (0x3843)
 		- guild_id
 		- aid
 		- cid
@@ -1815,143 +1816,143 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- mapif_guild_master_changed
 
 0x3848
-	Type: IZ
-	Structure: <cmd>.W <size>.W <char_id>.L <flag>.B <md>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <char_id>.L <flag>.B <md>.?B
 	index: 0,2,4,8,9
 	len: variable: 9+md
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3848)
+	parametro:
+		- cmd : Pacote de Identificação (0x3848)
 		- size
 		- char_id
 		- flag
 		- md : Mail
 	desc:
-		- A player request for mail inbox
+		- Um pedido de jogador para a caixa de entrada de email
 
 0x3849
-	Type: IZ
-	Structure: <cmd>.W <dest_id>.L <sender_id>.L <sender_name>.24B <mail_title>.40B
+	Tipo: IZ
+	Estrutura: <cmd>.W <dest_id>.L <sender_id>.L <sender_name>.24B <mail_title>.40B
 	index: 0,2,6,10,34
 	len: 74
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3849)
+	parametro:
+		- cmd : Pacote de Identificação (0x3849)
 		- dest_id
 		- sender_id
 		- sender_name
 		- mail_title
 	desc:
-		- Report New Mail to Map Server
+		- Informar novo email no map-server
 
 0x384a
-	Type: IZ
-	Structure: <cmd>.W <size>.W <char_id>.L <zeny>.L <item>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <char_id>.L <zeny>.L <item>.?B
 	index: 0,2,4,8,12
 	len: variable: 12+item
-	parameter:
-		- cmd : identificação do packet (pacote) (0x384a)
+	parametro:
+		- cmd : Pacote de Identificação (0x384a)
 		- size
 		- char_id
 		- zeny
 		- item
 	desc:
-		- Get mail attachment
+		- Obter anexo de email
 
 0x384b
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <mail_id>.L <failed>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <mail_id>.L <failed>.B
 	index: 0,2,6,10,11
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x384b)
+	parametro:
+		- cmd : Pacote de Identificação (0x384b)
 		- char_id
 		- mail_id
-		- failed: Fail status when delete a mail
+		- failed: Status de falha ao excluir um email
 	desc:
-		- Status about mail deletion to player
+		- Status sobre a exclusão de email para o player
 
 0x384c
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <mail_id>.L <new_mail>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <mail_id>.L <new_mail>.B
 	index: 0,2,6,10,11
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x384c)
+	parametro:
+		- cmd : Pacote de Identificação (0x384c)
 		- char_id
 		- mail_id
 		- new_mail
 	desc:
-		- Received a returned mail
+		- Recebeu um email retornado
 
 0x384d
-	Type: IZ
-	Structure: <cmd>.W <size>.W <mail_message>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <mail_message>.?B
 	index: 0,2,4
 	len: variable: 4+mail_message
-	parameter:
-		- cmd : identificação do packet (pacote) (0x384d)
+	parametro:
+		- cmd : Pacote de Identificação (0x384d)
 		- size
 		- mail_message
 	desc:
-		- Mail sent status (to player if the sender is player and online)
+		- Email envia o status (para o jogador, se o remetente for um jogador e estiver on-line)
 
 0x3850
-	Type: IZ
-	Structure: <cmd>.W <size>.W <char_id>.L <count>.W <pages>.W <auction_data>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <char_id>.L <count>.W <pages>.W <auction_data>.?B
 	index: 0,2,4,8,10,12
 	len: variable: 12+auction_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3850)
+	parametro:
+		- cmd : Pacote de Identificação (0x3850)
 		- size
 		- char_id
 		- count
 		- pages
 		- auction_data
 	desc:
-		- Auction list
+		- Lista de leilões
 
 0x3851
-	Type: IZ
-	Structure: <cmd>.W <size>.W <auction_data>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <auction_data>.?B
 	index: 0,2,4
 	len: variable: 4+auction_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3851)
+	parametro:
+		- cmd : Pacote de Identificação (0x3851)
 		- size
 		- auction_data
 	desc:
-		- Status auction registration
+		- Registro do status do leilão
 
 0x3852
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <result>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <result>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3852)
+	parametro:
+		- cmd : Pacote de Identificação (0x3852)
 		- char_id
 		- result
 	desc:
-		- Cancel an auction that requested by player
+		- Cancela um leilão solicitado pelo jogador
 
 0x3853
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <result>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <result>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3853)
+	parametro:
+		- cmd : Pacote de Identificação (0x3853)
 		- char_id
 		- result
 	desc:
-		- Receive a notification that the auction has ended
+		- Recebe uma notificação de que o leilão terminou
 
 0x3855
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <bid>.L <result>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <bid>.L <result>.B
 	index: 0,2,6,10
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3855)
+	parametro:
+		- cmd : Pacote de Identificação (0x3855)
 		- char_id
 		- bid
 		- result
@@ -1959,175 +1960,175 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- Get back the money from biding auction (someone else have bid it over)
 
 0x3856
-	Type: IZ
-	Structure: <cmd>.W <aid>.L <guild_id>.W
+	Tipo: IZ
+	Estrutura: <cmd>.W <aid>.L <guild_id>.W
 	index: 0,2,6
 	len: 8
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3856)
+	parametro:
+		- cmd : Pacote de Identificação (0x3856)
 		- aid : account_id
 		- guild_id
 	desc:
-		- Acknowledge the good deletion of the bound item
+		- Reconhece a boa exclusão do item associado
 
 0x3860
-	Type: IZ
-	Structure: <cmd>.W <size>.W <char_id>.L <quest>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <char_id>.L <quest>.?B
 	index: 0,2,4,8
 	len: variable: 8+quest
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3860)
+	parametro:
+		- cmd : Pacote de Identificação (0x3860)
 		- size
 		- char_id
 		- quest
 	desc:
-		- Send quest log to a player
+		- Envia log de missões para um jogador
 
 0x3861
-	Type: IZ
-	Structure: <cmd>.W <char_id>.L <success>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <char_id>.L <success>.B
 	index: 0,2,4
 	len: 5
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3861)
+	parametro:
+		- cmd : Pacote de Identificação (0x3861)
 		- char_id
 		- success
 	desc:
-		- Send quest log saving status
+		- Envia status salvo do registro de missões
 
 0x3880
-	Type: IZ
-	Structure: <cmd>.W <account_id>.L <class>.W <pet_id>.L
+	Tipo: IZ
+	Estrutura: <cmd>.W <account_id>.L <class>.W <pet_id>.L
 	index: 0,2,6,8
 	len: 12
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3880)
+	parametro:
+		- cmd : Pacote de Identificação (0x3880)
 		- account_id
 		- class
 		- pet_id
 	desc:
-		- Send pet egg creation status
+		- Envia status de criação de ovo do pet
 
 0x3881
-	Type: IZ
-	Structure: <cmd>.W <size>.W <account_id>.L <status>.B <s_pet>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <account_id>.L <status>.B <s_pet>.?B
 	index: 0,2,4,6,8,9
 	len: variable: 9+s_pet
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3881)
+	parametro:
+		- cmd : Pacote de Identificação (0x3881)
 		- size
 		- account_id
-		- status: 1 means no info available
-		- s_pet: Pet data
+		- status: 1 significa que a informação está disponível
+		- s_pet: Dados do Pet 
 	desc:
-		- Send packet data to a player
+		- Envia dados de pacote para um jogador
 
 0x3882
-	Type: IZ
-	Structure: <cmd>.W <account_id>.L <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <account_id>.L <flag>.B
 	index: 0,2,4
 	len: 5
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3882)
+	parametro:
+		- cmd : Pacote de Identificação (0x3882)
 		- account_id
-		- flag: 1 failed to save
+		- flag: 1 salvamento falhou
 	desc:
-		- Send pet save status
+		- Envia status salvos do animal de estimação
 
 0x3883
-	Type: IZ
-	Structure: <cmd>.W <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <flag>.B
 	index: 0,2
 	len: 3
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3883)
+	parametro:
+		- cmd : Pacote de Identificação (0x3883)
 		- flag
 	desc:
-		- Send pet deletion status
+		- Envia status de exclusão de pet
 
 0x3890
-	Type: IZ
-	Structure: <cmd>.W <size>.W <account_id>.L <flag>.B <s_homunculus>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <account_id>.L <flag>.B <s_homunculus>.?B
 	index: 0,2,4,8,9
 	len: variable: 9+s_homunculus
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3890)
+	parametro:
+		- cmd : Pacote de Identificação (0x3890)
 		- size
 		- account_id
-		- flag: 0 means homunculus creation is failed
-		- s_homunculus: Homunculus data
+		- flag: 0 significa que a criação do homúnculo falhou
+		- s_homunculus: Dados do homúnculo
 	desc:
-		- Send homunculus creation status
+		- Envia status de criação do homúnculo
 
 0x3891
-	Type: IZ
-	Structure: <cmd>.W <size>.W <account_id>.L <flag>.B <s_homunculus>.?B
+	Tipo: IZ
+	Estrutura: <cmd>.W <size>.W <account_id>.L <flag>.B <s_homunculus>.?B
 	index: 0,2,4,8,9
 	len: variable: 9+s_homunculus
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3890)
+	parametro:
+		- cmd : Pacote de Identificação (0x3890)
 		- size
 		- account_id
-		- flag: 0 means failed to retrieve homunculus data
-		- s_homunculus: Homunculus data
+		- flag: 0 significa não conseguiu recuperar dados do homúnculo
+		- s_homunculus: Dados do homúnculo
 	desc:
-		- Send homunculus data to a player
+		- Envia dados do homúnculo para um jogadorr
 
 0x3892
-	Type: IZ
-	Structure: <cmd>.W <account_id>.L <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <account_id>.L <flag>.B
 	index: 0,2,4
 	len: 5
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3892)
+	parametro:
+		- cmd : Pacote de Identificação (0x3892)
 		- account_id
-		- flag: 1 if success
+		- flag: 1 significa sucesso
 	desc:
-		- Send homunculus saving status to a player
+		- Envia status salvo do homúnculo para um jogador
 
 0x3893
-	Type: IZ
-	Structure: <cmd>.W <flag>.B
+	Tipo: IZ
+	Estrutura: <cmd>.W <flag>.B
 	index: 0,2
 	len: 3
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3893)
+	parametro:
+		- cmd : Pacote de Identificação (0x3893)
 		- flag: 1 Homunculus deleted
 	desc:
-		- Send homunculus deletion status
+		- Envia status de exclusão do homúnculo
 
 ========================
 | 3.2 Char-Map Packets |
 ========================
 0x2af9
-	Type: AZ
-	Structure: <cmd>.W <?>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <?>.B
 	index: 0,2
 	len: 3
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2af9)
+	parametro:
+		- cmd : Pacote de Identificação (0x2af9)
 		- ?
 	desc:
 		- chrif_connectack
 
 0x2afb
-	Type: AZ
-	Structure: <cmd>.W <?>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <?>.B
 	index: 0,2
 	len: variable: 3+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2afb)
+	parametro:
+		- cmd : Pacote de Identificação (0x2afb)
 		- ?
 	desc:
 		- send name for wisp to player
 
 0x2afd
-	Type: AZ
-	Structure: <cmd>.W <mmo_charstatus_len>.W <account_id>.L <?>.L <?>.L <?>.L <?>.L <?>.B <cd>.?B
+	Tipo: AZ
+	Estrutura: <cmd>.W <mmo_charstatus_len>.W <account_id>.L <?>.L <?>.L <?>.L <?>.L <?>.B <cd>.?B
 	index: 0,2,4,8,12,16,20,24,25
 	len: variable: mmo_charstatus_len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2afd)
+	parametro:
+		- cmd : Pacote de Identificação (0x2afd)
 		- mmo_charstatus_len
 		- account_id
 		- ?
@@ -2137,50 +2138,50 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- ?
 		- cd
 	desc:
-		- auth request from map-server
+		- pedido de autenticação do map-server
 
 0x2b00
-	Type: AZ
-	Structure: <cmd>.W <users>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <users>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b00)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b00)
 	desc:
-		- Send to map-servers the users count on this char-serv, (meaning the total of all mapserv)
+		- Envia para map-servers o número de usuários neste char-serv, (significando o total de todos os mapserv)
 
 0x2b03
-	Type: AZ
-	Structure: <cmd>.W <account_id>.L <?>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <account_id>.L <?>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b03)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b03)
 		- account_id
 		- ?
 	desc:
-		- Player Requesting char-select from map_serv
+		- Jogador Solicitando char-select de map_serv
 
 0x2b04
-	Type: AZ
-	Structure: <cmd>.W <?>.W <ip>.L <port>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W <?>.W <ip>.L <port>.W
 	index: 0,2,4,8
 	len: ?
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b04)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b04)
 		- ?
 		- ip
 		- port
 	desc:
-		- Receive maps from some other map-server (relayed via char-server)
+		- Recebe mapas de algum outro map-server (retransmitido via char-server)
 
 0x2b06
-	Type: AZ
-	Structure: <cmd>.W <account_id>.L <login_id1>.L <login_id2>.L <char_id>.L <map_index>.W <x>.W <y>.W <ip>.L <port>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W <account_id>.L <login_id1>.L <login_id2>.L <char_id>.L <map_index>.W <x>.W <y>.W <ip>.L <port>.W
 	index: 0,2,6,10,14,16,18,20,24,28
 	len: 30
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b06)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b06)
 		- account_id
 		- login_id1
 		- login_id2
@@ -2191,231 +2192,231 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- ip
 		- port
 	desc:
-		- Map-server change request acknowledgement (positive or negative)
+		- Reconhecimento de solicitação de mudança do map-server (positivo ou negativo)
 
 0x2b09
-	Type: AZ
-	Structure: <cmd>.W <?>.L <?>?
+	Tipo: AZ
+	Estrutura: <cmd>.W <?>.L <?>?
 	index: 0,2,6
 	len: 30
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b09)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b09)
 		- ?
 		- ?
 	desc:
-		- Lookup to search if that char_id correspond to a name.
+		- Pesquisa para pesquisar se esse char_id corresponde a um nome.
 
 0x2b0b
-	Type: AZ
-	Structure: <cmd>.W <len>.W <aid>.L <cid>.L <count>.W <skill_cooldown_data>.?B
+	Tipo: AZ
+	Estrutura: <cmd>.W <len>.W <aid>.L <cid>.L <count>.W <skill_cooldown_data>.?B
 	index: 0,2,4,8,12,14
 	len: variable: 14+MAX_SKILLCOOLDOWN*skill_cooldown_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0b)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0b)
 		- len
 		- aid
 		- cid
 		- count
 		- skill_cooldown_data
 	desc:
-		- Retrieve and load skillcooldown for a player
+		- Recupera e carrega o tempo de espera das habilidades de um jogador
 
 0x2b0d
-	Type: AZ
-	Structure: <cmd>.W <acc>.L <sex>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <acc>.L <sex>.L
 	index:0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0d)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0d)
 		- acc
 		- sex
 	desc:
-		- Request char server to change sex of char
+		- Solicitação para o char-server alterar sexo de char
 
 0x2b0f
-	Type: AZ
-	Structure: <cmd>.W <aid>.L <name>.24B <operation>.W <result>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W <aid>.L <name>.24B <operation>.W <result>.W
 	index: 0,2,6,30,32
 	len: 34
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0f)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0f)
 		- aid
 		- name
 		- operation
 		- result
 	desc:
-		- Processing a reply to chrif_req_login_operation() (request to modify an account).
+		- Processando uma resposta para chrif_req_login_operation() (solicitação para modificar uma conta).
 
 0x2b12
-	Type: AZ
-	Structure: <cmd>.W <partner_id1>.L <partner_id2>.L <?>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <partner_id1>.L <partner_id2>.L <?>.B
 	index: 0,2,6,10
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b12)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b12)
 		- partner_id1
 		- partner_id2
 		- ?
 	desc:
-		- Divorce players (only used if 'partner_id' is offline)
+		- Divórcio de jogadores (usado somente se 'partner_id' estiver offline)
 
 0x2b14
-	Type: AZ
-	Structure: <cmd>.W <id>.L <res>.B <ret_status>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <id>.L <res>.B <ret_status>.L
 	index: 0,2,6,7
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b14)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b14)
 		- id
 		- res
 		- ret_status
 	desc:
-		- Disconnection of a player (account has been banned of has a status, from login/char-server)
+		- Desconexão de um jogador (a conta foi banida de ter um status, de login/char-server)
 
 0x2b1b
-	Type: AZ
-	Structure: <cmd>.W <size>.W <size>.W <size>.W <smith_rank>.?B <alchi_rank>.?B <taek_rank>.?B
+	Tipo: AZ
+	Estrutura: <cmd>.W <size>.W <size>.W <size>.W <smith_rank>.?B <alchi_rank>.?B <taek_rank>.?B
 	index: 0,2,4,6,?,?,?
 	len: ? (Max=32000)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1b)
-		- size: total packet length
-		- size: Alchemist block size
-		- size: Blacksmith block size
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1b)
+		- size: comprimento total do pacote
+		- size: Tamanho do bloco de alquimista
+		- size: Tamanho do bloco de ferreiro
 		-
 		-
 		-
 	desc:
-		- Send map-servers fames ranking lists
+		- Envia para o map-servers a lista do ranking da fama
 
 0x2b1d
-	Type: AZ
-	Structure: <cmd>.W <len>.W <aid>.L <cid>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <len>.W <aid>.L <cid>.L
 	index: 0,2,4,8
 	len: variable: 14+50*status_change_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1d)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1d)
 		- len
 		- aid
 		- cid
 	desc:
-		- Map-serv requesting to send the list of sc_data the player has saved
+		- Map-serv solicitando para enviar a lista de sc_data que o jogador salvou
 
 0x2b1e
-	Type: AZ
-	Structure: <cmd>.W <new_ip>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <new_ip>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1e)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1e)
 		- new_ip
 	desc:
-		- Request forwarded from char-server for interserver IP sync
+		- Solicitação encaminhada do char-server para a sincronização do interserver IP
 
 0x2b1f
-	Type: AZ
-	Structure: <cmd>.W <account_id>.L <reason>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <account_id>.L <reason>.B
 	index: 0,2,6
 	len: 7
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1f)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1f)
 		- account_id
 		- reason
 	desc:
-		- Request to kick char from a certain map server
+		- Pedido para expulsar um personagem de um determinado map-server
 
 0x2b20
-	Type: AZ
-	Structure: <cmd>.W <len>.W <ip>.L <port>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W <len>.W <ip>.L <port>.W
 	index: 0,2,4,8
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b20)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b20)
 		- len
 		- ip
 		- port
 	desc:
-		- Remove specified maps (used when some other map-server disconnects)
+		- Remove mapas específicos (usados quando algum outro map-server é desconectado)
 
 0x2b21
-	Type: AZ
-	Structure: <cmd>.W <aid>.L <cid>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <aid>.L <cid>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b21)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b21)
 	desc:
-		- chrif_save_ack (Received after a character has been "final saved" on the char-server)
+		- chrif_save_ack (Recebido após um personagem ter sido "final saved" no char-server)
 
 0x2b22
-	Type: AZ
-	Structure: <cmd>.W <type>.B <index>.B <fame>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <Tipo>.B <index>.B <fame>.L
 	index: 0,2,3,4
 	len: 8
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b22)
-		- type
+	parametro:
+		- cmd : Pacote de Identificação (0x2b22)
+		- Tipo
 		- index
 		- fame
 	desc:
-		- Send to map-servers the updated fame ranking lists
+		- Envia para o map-server as listas atualizadas do ranking da fama
 
 0x2b24
-	Type: AZ
-	Structure: <cmd>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b24)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b24)
 	desc:
-		- Map-server keep alive packet, awnser back map that we alive as well
+		- Map-server mantém o pacote vivo, responde de volta o map que estamos vivos também
 
 0x2b25
-	Type: AZ
-	Structure: <cmd>.W <father_id>.L <mother_id>.L <char_id>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <father_id>.L <mother_id>.L <char_id>.L
 	index: 0,2,6
 	len: ? (Max=64)
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b25)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b25)
 		- father_id
 		- mother_id
 		- char_id
 	desc:
-		- Removes baby from Father ID and Mother ID
+		- Remove o bebê da identificação do pai e da identificação da mãe
 
 0x2b27
-	Type: AZ
-	Structure: <cmd>.W <account_id>.L <char_id>.L <login_id1>.L <sex>.B
+	Tipo: AZ
+	Estrutura: <cmd>.W <account_id>.L <char_id>.L <login_id1>.L <sex>.B
 	index: 0,2,6,10,14
 	len: 15
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b27)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b27)
 		- account_id
 		- char_id
 		- login_id1
 		- sex
 	desc:
-		- Client authentication failed
+		- Autenticação do cliente falhou
 
 0x2b29
-	Type: AZ
-	Structure: <cmd>.W <aid>.L <bank_vault>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <aid>.L <bank_vault>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b29)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b29)
 		- aid
 		- bank_vault
 	desc:
-		- Received bank data for player to be loaded
+		- Dados do banco recebidos para o jogador ser carregado
 
 0x2b2b
-	Type: AZ
-	Structure: <cmd>.W <aid>.L <vip_time>.L <isvip>.B <isgm>.B <groupid>.L
+	Tipo: AZ
+	Estrutura: <cmd>.W <aid>.L <vip_time>.L <isvip>.B <isgm>.B <groupid>.L
 	index: 0,2,6,10,11,12
 	len: 16
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b2b)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b2b)
 		- aid
 		- vip_time
 		- isvip
@@ -2425,90 +2426,89 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- Received vip-data from char-serv, fill map-serv data
 
 0x2b2f
-	Type: AZ
-	Structure: <cmd>.W <len>.W <cid>.L <count>.W
+	Tipo: AZ
+	Estrutura: <cmd>.W <len>.W <cid>.L <count>.W
 	index: 0,2,4,8
 	len: variable: 10+50*bonus_script_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b2f)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b2f)
 	desc:
-		- Get bonus_script data(s) from table to load
+		- Obtém dados de bonus_script da tabela para carregar
 
 0x2736
-	Type: ZA
-	Structure: <cmd>.W <ip>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <ip>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2736)
+	parametro:
+		- cmd : Pacote de Identificação (0x2736)
 	desc:
-		- ip address update
+		- atualização de endereço ip
 
 0x2afa
-	Type: ZA
-	Structure: <cmd>.W <size>.W {<map_index>.W}*instance_start
+	Tipo: ZA
+	Estrutura: <cmd>.W <size>.W {<map_index>.W}*instance_start
 	index: 0,2,4
 	len: variable: 4+instance_start*4
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2afa)
+	parametro:
+		- cmd : Pacote de Identificação (0x2afa)
 		- size
 		- map_index*instance_start
 	desc:
-		- Send available normal maps. chrif_sendmap
+		- Envia maps normais disponíveis. chrif_sendmap
 
 0x2afc
-	Type: ZA
-	Structure: <cmd>.W <account_id>.L <char_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <account_id>.L <char_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2afc)
+	parametro:
+		- cmd : Pacote de Identificação (0x2afc)
 		- account_id
 		- char_id
 	desc:
-		- Request sc_data from charserver
+		- Solicitar sc_data do char-server
 
 0x2afe
-	Type: ZA
-	Structure: <cmd>.W <map_usercount>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W <map_usercount>.W
 	index: 0,2
 	len: 4
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2afe)
+	parametro:
+		- cmd : Pacote de Identificação (0x2afe)
 	desc:
-		- send_usercount_tochar (unused)
+		- send_usercount_tochar (sem uso)
 
 0x2aff
-	Type: ZA
-	Structure: <cmd>.W <len>.W <users>.W <account_id>.L <char_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <len>.W <users>.W <account_id>.L <char_id>.L
 	index: 0,2,4,6+8*i,6+8+i+4
 	len: variable: 6+8*users
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2aff)
+	parametro:
+		- cmd : Pacote de Identificação (0x2aff)
 		- len
 		- users
 		- account_id
 		- char_id
 	desc:
-		- Map-serv sent us all his users info, (aid and cid) so we can update online_char_db
-
+		- O Map-serv nos enviou todas as informações de seus usuários, (aid e cid) para que possamos atualizar o online_char_db
 0x2b01
-	Type: ZA
-	Structure: <cmd>.W <mmo_charstatus_len>.W <account_id>.L <char_id>.L <flag>.B
+	Tipo: ZA
+	Estrutura: <cmd>.W <mmo_charstatus_len>.W <account_id>.L <char_id>.L <flag>.B
 	index: 0,2,4,8,12
 	len: variable: mmo_charstatus_len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b01)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b01)
 	desc:
-		- charsave of char XY account XY
+		- charsave o personagem XY conta XY
 
 0x2b02
-	Type: ZA
-	Structure: <cmd>.W <id>.L <login_id1>.L <login_id2>.L <s_ip>.L <packet_ver>.B
+	Tipo: ZA
+	Estrutura: <cmd>.W <id>.L <login_id1>.L <login_id2>.L <s_ip>.L <packet_ver>.B
 	index: 0,2,6,10,14,18
 	len: 19
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b02)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b02)
 		- id
 		- login_id1
 		- login_id2
@@ -2518,12 +2518,12 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- chrif_charselectreq
 
 0x2b05
-	Type: ZA
-	Structure: <cmd>.W <id>.L <login_id1>.L <login_id2>.L <char_id>.L <mapindex>.W <x>.W <y>.W <ip>.L <port>.W <sex>.B <client_addr>.L <group_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <id>.L <login_id1>.L <login_id2>.L <char_id>.L <mapindex>.W <x>.W <y>.W <ip>.L <port>.W <sex>.B <client_addr>.L <group_id>.L
 	index: 0,2,6,10,14,18,20,22,24,28,30,31,35
 	len: 39
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b05)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b05)
 		- id
 		- login_id1
 		- login_id2
@@ -2537,198 +2537,198 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- client_addr
 		- group_id
 	desc:
-		- Tell the charserver the mapchange / quest for ok
+		- Diz ao charserver a mudança de map / pesquise para ter certeza
 
 0x2b07
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L <friend_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L <friend_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b07)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b07)
 		- char_id
 		- friend_id
 	desc:
-		- Asks char server to remove friend_id from the friend list of char_id
+		- Pergunta ao char-server para remover friend_id da lista de amigos de char_id
 
 0x2b08
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b08)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b08)
 	desc:
-		- Search char through id on char serv
+		- Pesquisa o personagem através de id em char-serv
 
 0x2b0a
-	Type: ZA
-	Structure: <cmd>.W <account_id>.L <char_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <account_id>.L <char_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0a)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0a)
 		- account_id
 		- char_id
 	desc:
-		- Request skillcooldown from charserver
+		- Solicita cooldown da habilidade do charserver
 
 0x2b0c
-	Type: ZA
-	Structure: <cmd>.W <id>.W <actual_email>.40B <new_email>.40B
+	Tipo: ZA
+	Estrutura: <cmd>.W <id>.W <actual_email>.40B <new_email>.40B
 	index: 0,2,6,46
 	len: 86
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0c)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0c)
 		- id
 		- actual_email
 		- new_email
 	desc:
-		- Change Email
+		- Muda Email
 
 0x2b0e
-	Type: ZA
-	Structure: <cmd>.W <aid>.L <name>.24B <operation_type>.W <timediff>.L <val1>.L <val2>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <aid>.L <name>.24B <operation_Tipo>.W <timediff>.L <val1>.L <val2>.L
 	index: 0,2,30,36,40
 	len: 44
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b0e)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b0e)
 		- aid
 		- name
-		- operation_type
+		- operation_Tipo
 		- timediff
 		- val1
 		- val2
 	desc:
-		- Send an account modification request to the login server (via char server).
+		- Envia uma solicitação de modificação de conta para o login-server(via char-server).
 
 0x2b10
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L <fame>.L <type>.B
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L <fame>.L <Tipo>.B
 	index: 0,2,6,10
 	len: 11
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b10)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b10)
 		- char_id
 		- fame
-		- type
+		- Tipo
 	desc:
-		- Request/Receive top 10 Fame character list
+		- Solicita/recebe a lista dos 10 melhores personagens da fama
 
 0x2b11
-	Type: ZA
-	Structure: <cmd>.W <partner_id1>.L <partner_id2>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <partner_id1>.L <partner_id2>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b11)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b11)
 		- partner_id1
 		- partner_id2
 	desc:
-		- Request Char Server to Divorce Players
+		- Solicita ao Char Server para divorgiar os jogadores
 
 0x2b15
-	Type: ZA
-	Structure: <cmd>.W <len>.W <account_id>.L <char_id>.L <count>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W <len>.W <account_id>.L <char_id>.L <count>.W
 	index: 0,2,4,8,12
 	len: variable: 14+MAX_SKILLCOOLDOWN*skill_cooldown_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b15)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b15)
 		- len
 		- account_id
 		- char_id
 		- count
 	desc:
-		- Request to save skill cooldown data
+		- Solicitação para salvar dados do cooldown da habilidade
 
 0x2b16
-	Type: ZA
-	Structure: <cmd>.W <base_rate>.L <job_rate>.L <drop_rate>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <base_rate>.L <job_rate>.L <drop_rate>.L
 	index: 0,2,6,10
 	len: 14
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b16)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b16)
 		- base_rate
 		- job_rate
 		- drop_rate
 	desc:
-		- Send rates and motd to char server
+		- Envia rates e motd para o char-server
 
 0x2b17
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L <account_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L <account_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b17)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b17)
 		- char_id
 		- account_id
 	desc:
-		- Tell char-server character disconnected
+		- Informa que o char-server está desconectado
 
 0x2b18
-	Type: ZA
-	Structure: <cmd>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b18)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b18)
 	desc:
-		- Tell char-server to reset all chars offline
+		- Diz ao char-server para redefinir todos os personagens off-line
 
 0x2b19
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L <account_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L <account_id>.L
 	index: 0,2,6
 	len: 10
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b19)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b19)
 		- char_id
 		- account_id
 	desc:
-		- Tell char-server character is online
+		- Indica que char-server está on-line
 
 0x2b1a
-	Type: ZA
-	Structure: <cmd>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1a)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1a)
 	desc:
-		- Build the fame ranking lists and send them
+		- Constrói as listas do ranking da fama e envia.
 
 0x2b1c
-	Type: ZA
-	Structure: <cmd>.W <len>.W <account_id>.L <char_id>.L <count>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W <len>.W <account_id>.L <char_id>.L <count>.W
 	index: 0,2,4,8,12
 	len: variable: 14+SC_MAX*status_change_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b1c)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b1c)
 		- len
 		- account_id
 		- char_id
 		- count
 	desc:
-		- parses the sc_data of the player and sends it to the char-server for saving
+		- analisa o sc_data do jogador e envia para o char-server para salvar
 
 0x2b23
-	Type: ZA
-	Structure: <cmd>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W
 	index: 0
 	len: 2
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b23)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b23)
 	desc:
-		- pings the charserver (chrif_keepalive)
+		- pinga o charserver (chrif_keepalive)
 
 0x2b26
-	Type: ZA
-	Structure: <cmd>.W <account_id>.L <char_id>.L <login_id1>.L <sex>.B <client_addr>.L <autotrade>.B
+	Tipo: ZA
+	Estrutura: <cmd>.W <account_id>.L <char_id>.L <login_id1>.L <sex>.B <client_addr>.L <autotrade>.B
 	index: 0,2,6,10,14,15,19
 	len: 20
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b26)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b26)
 		- account_id
 		- char_id
 		- login_id1
@@ -2736,15 +2736,15 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- client_addr
 		- autotrade
 	desc:
-		- client authentication request
+		- solicitação de autenticação de cliente
 
 0x2b28
-	Type: ZA
-	Structure: <cmd>.W <aid>.L <timediff>.L <character_name>.?B
+	Tipo: ZA
+	Estrutura: <cmd>.W <aid>.L <timediff>.L <character_name>.?B
 	index: 0,2,6,10
 	len: variable: 10+NAME_LENGTH
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b28)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b28)
 		- aid
 		- timediff
 		- character_name
@@ -2752,45 +2752,45 @@ Atualmente, o tamanho máximo do pacote é 0xFFFF (see 'WFIFOSET()' in 'src/comm
 		- chrif_req_charban
 
 0x2b2a
-	Type: ZA
-	Structure: <cmd>.W <cid>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <cid>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b2a)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b2a)
 	desc:
 		- chrif_req_charunban
 
 0x2b2d
-	Type: ZA
-	Structure: <cmd>.W <char_id>.L
+	Tipo: ZA
+	Estrutura: <cmd>.W <char_id>.L
 	index: 0,2
 	len: 6
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b2d)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b2d)
 	desc:
-		- Requests bonus_script data
+		- Solicita dados bonus_script
 
 0x2b2e
-	Type: ZA
-	Structure: <cmd>.W <len>.W <char_id>.L <count>.W
+	Tipo: ZA
+	Estrutura: <cmd>.W <len>.W <char_id>.L <count>.W
 	index: 0,2,4,8
 	len: variable: 10+MAX_PC_BONUS_SCRIPT*bonus_script_data
-	parameter:
-		- cmd : identificação do packet (pacote) (0x2b2e)
+	parametro:
+		- cmd : Pacote de Identificação (0x2b2e)
 		- len
 		- char_id
 		- count
 	desc:
-		- Stores bonus_script data(s) to the table
+		- Armazena dados de bonus_script na tabela
 
 0x3008
-	Type: ZA
-	Structure: <cmd>.W <buf>.?B
+	Tipo: ZA
+	Estrutura: <cmd>.W <buf>.?B
 	index: 0,2
 	len: variable: 2+len
-	parameter:
-		- cmd : identificação do packet (pacote) (0x3008)
+	parametro:
+		- cmd : Pacote de Identificação (0x3008)
 		- buf
 	desc:
 		- chrif_send_report
