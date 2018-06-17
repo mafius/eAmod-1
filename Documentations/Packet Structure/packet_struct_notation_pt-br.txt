@@ -1,60 +1,61 @@
-//===== rAthena Documentation ================================
-//= Packet Structure Notation
+//===== Documentação do rAthena ================================
+//= Notação de estrutura de pacotes
 //===== By: ==================================================
 //= Ai4rei
 //===== Last Updated: ========================================
-//= 20120810
+//= 20180616
 //===== Description: =========================================
-//= Explanation how packets are and should be documented.
+//= Explicação de como os pacotes(packets) são e devem ser 
+//= documentados.
 //============================================================
 
-This document specifies how packets are and should be documented, to
-keep packet structure comments consistent in the entire codebase. It
-also serves as a guide to those, who are unfamiliar with the general
-packet layout.
+Este documento especifica como os pacotes (packets) são e devem ser
+documentados, para manter os comentários da estrutura de pacotes 
+consistentes em toda a base de código. Ele também serve como um
+guia para aqueles que não estão familiarizados com o layout geral 
+do pacote(packet).
 
-All mentioned data types are assumed to be little-endian (least-
-significant byte first, least significant bit last) and of same size
-regardless of architecture.
+Todos os tipos de dados mencionados são considerados little-endian
+(byte menos significativo primeiro, último bit menos significativo)
+e do mesmo tamanho, independentemente da arquitetura.
 
-= Typical description of a packet =
+= Descrição típica de um pacote (packet) =
 
- /// Notifies the client about entering a chatroom (ZC_ENTER_ROOM).
+ /// Notifica o cliente sobre como entrar em uma sala de bate-papo (ZC_ENTER_ROOM).
  /// 00db <packet len>.W <chat id>.L { <role>.L <name>.24B }*
  /// role:
  ///     0 = owner (menu)
  ///     1 = normal
 
-The first line contains a brief description of what the packet does,
-or what it is good for, followed by it's AEGIS name in parentheses;
-first two letters of the AEGIS name specify origin (first letter)
-and destination (second letter) of the packet. If the packet's name
-is not known or is not applicable (rAthena server-server packets),
-specify at least these two letters to indicate the direction of the
-packet. Do not use S(end)/R(ecv) for this, as it is inaccurate and
-location dependent (if the description is copied to different server
-or other RO-related projects, it might change it's meaning).
+A primeira linha contém uma breve descrição do que o pacote faz ou 
+do que é bom, seguido do nome AEGIS entre parênteses; as duas primeiras 
+letras do nome AEGIS especificam origem (primeira letra) e destino 
+(segunda letra) do pacote. Se o nome do pacote não for conhecido ou não
+for aplicável (rAthena server-server packets), especifique pelo menos
+essas duas letras para indicar a direção do pacote. Não use S(end)/R(ecv)
+para isso, pois é impreciso e depende da localização (se a descrição for 
+copiada para outro servidor ou outros projetos relacionados a RO, pode
+mudar seu significado).
 
-If there are multiple versions of the packet, the AEGIS name is
-appended to the end of the packet's structure instead. If the name
-did not change between versions, a PACKETVER expression is appended,
-such as (PACKETVER >= 20111111).
+Se houver várias versões do pacote, o nome AEGIS será anexado ao final da 
+estrutura do pacote. Se o nome não foi alterado entre as versões, uma 
+expressão PACKETVER será anexada, como (PACKETVER> = 20111111).
 
-Second line describes the packet's field structure, beginning with a
-%04x formatted packet type, followed by the individual fields and
-their types. Each field begins with it's name enclosed in angle
-brackets ( <field name> ) followed by a dot and the data size type.
-Field names should be lower-case and without underscores. If other
-packets already have a field in common, use that name, rather than
-inventing your own (ex. "packet len" and "account id"). Repeated and
-optional fields are designated with curly and square brackets
-respectively, padded with a single space at each side.
+A segunda linha descreve a estrutura do campo do pacote, começando 
+com um tipo de pacote formatado por %04x, seguido pelos campos individuais 
+e seus tipos. Cada campo começa com o nome entre colchetes angulares 
+(<nome do campo>) seguido por um ponto e o tipo de tamanho de dados.
+Nomes de campos devem ser minúsculos e sem sublinhados. Se outros 
+pacotes(packets) já tiverem um campo em comum, use esse nome, em vez de inventar 
+o seu próprio (ex. "packet len" e "account id"). Campos repetidos e opcionais 
+são designados com chaves e colchetes, respectivamente, preenchidos com 
+um único espaço em cada lado.
 
-Further lines are optional and either include details about the
-the packet's mechanics or further explanation on the packet fields'
-values.
+Outras linhas são opcionais e incluem detalhes sobre a mecânica do
+pacote(packet) ou explicações adicionais sobre os valores dos campos
+do pacote (packet).
 
-= Packet field data size type =
+= Tipo de tamanho de dados de campo de pacote(packet) =
 
  B = 1 byte (byte)
  W = 2 bytes (word)
@@ -62,57 +63,57 @@ values.
  Q = 8 bytes (quad)
 
  nB = n bytes
- ?B = variable/unknown amount of bytes
+ ?B = quantidade variável/desconhecida de bytes
  nS = n bytes, zero-terminated
- ?S = variable/unknown amount of bytes, zero-terminated
+ ?S = quantidade variável/desconhecida de bytes, zero-terminated
 
-= Repetition of packet fields =
+= Repetição de campos de pacote(packet) =
 
- {} = repeated block
- {}* = variable/unknown amount of consecutive blocks
- {}*n = n times repeated block
- [] = optional fields
+ {} = bloco repetido
+ {}* = quantidade variável/desconhecida de blocos consecutivos
+ {}*n = n vezes bloco repetido
+ [] = campos opcionais
 
-= Packet origin and destination letters =
+= Letras de origem e destino dos pacotes(packets) =
 
  A = Account (Login)
  C = Client
  H = Character
  I = Inter
- S = Server (any type of server)
+ S = Server (qualquer tipo de server)
  Z = Zone (Map)
 
-= Examples =
+= Exemplos =
 
-Packet with nested repetition blocks:
+Pacote(packet) com blocos de repetição aninhados:
 
- /// Presents a textual list of producable items (ZC_MAKABLEITEMLIST).
+ /// Apresenta uma lista textual de itens produzidos (ZC_MAKABLEITEMLIST).
  /// 018d <packet len>.W { <name id>.W { <material id>.W }*3 }*
  /// material id:
- ///     unused by the client
+ ///    	não utilizado pelo cliente
 
-Packet with multiple versions identified with different AEGIS names:
+Pacote(packet) com várias versões identificadas com diferentes nomes AEGIS:
 
  /// Request for server's tick.
  /// 007e <client tick>.L (CZ_REQUEST_TIME)
  /// 0360 <client tick>.L (CZ_REQUEST_TIME2)
 
-Packet with multiple versions identified with same AEGIS name:
+Pacote(packet) com várias versões identificadas com o mesmo nome AEGIS:
 
- /// Cashshop Buy Ack (ZC_PC_CASH_POINT_UPDATE).
+ /// Confirmação de Compra no Cashshop (ZC_PC_CASH_POINT_UPDATE).
  /// 0289 <cash point>.L <error>.W
  /// 0289 <cash point>.L <kafra point>.L <error>.W (PACKETVER >= 20070711)
 
-Packet with combination of both different AEGIS names and different
-versions with same name:
+Pacote(packet) com combinação de nomes diferentes de AEGIS e diferentes
+versões com o mesmo nome:
 
- /// Sends hotkey bar.
+ /// Envia a barra de atalhos.
  /// 02b9 { <is skill>.B <id>.L <count>.W }*27 (ZC_SHORTCUT_KEY_LIST)
  /// 07d9 { <is skill>.B <id>.L <count>.W }*36 (ZC_SHORTCUT_KEY_LIST_V2, PACKETVER >= 20090603)
  /// 07d9 { <is skill>.B <id>.L <count>.W }*38 (ZC_SHORTCUT_KEY_LIST_V2, PACKETVER >= 20090617)
 
-Packet for a client command:
+Pacote(packet) para um comando do cliente:
 
  /// /item /monster (CZ_ITEM_CREATE).
- /// Request to make items or spawn monsters.
+ /// Pedido para criar itens ou gerar monstros.
  /// 013f <item/mob name>.24B
