@@ -46,6 +46,8 @@
 // | 1.2 - Second release, improved the header. [shellTeMP]                   |
 // \_________________________________________________________________________/
 
+/*
+
 skill i,n;				Gives skill #i at level n (supports skill names)
 
 bonus bStr,n;				STR + n
@@ -453,3 +455,5 @@ bonus bMagicSPGainValue,n;	Heals +n SP when killing an enemy with magic attack.
 bonus bMagicHPGainValue,n;	Heals +n HP when killing an enemy with magic attack.
 
 bonus3 bAddClassDropItem,s,x,n;		Adds an n/100% chance of dropping item s when killing monster class x.
+
+*/
