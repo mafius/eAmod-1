@@ -10,18 +10,21 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |              Map Flags for Jails ( ATCommand @jail <player> )            |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |                         pvp: Turns on PvP mode                           |
-// |              Mvp_noparty: Can't attack player in same party              |
-// |                     nobranch: No Dead Branching allowed.                 |
-// |                nomemo: No Warp Portal Memory Point allowed.              |
-// |                nopenalty: No Exp. penalty when player dies.              |
-// |    nosave: No saving respawn point allowed. Use SavePoint to use the     |
-// |          players previous savepoint, or choose one manually.             |
-// |       noteleport: No Teleporting allowed.  No f-wings or b-wings.        |
+// | Script Name: Jail                                                        |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description:                                                             |
+// | pvp: Turns on PvP mode                                                   |
+// | Mvp_noparty: Can't attack player in same party                           |
+// | nobranch: No Dead Branching allowed.                                     |
+// | nomemo: No Warp Portal Memory Point allowed.                             |
+// | nopenalty: No Exp. penalty when player dies.                             |
+// | nosave: No saving respawn point allowed. Use SavePoint to use the        |
+// | players previous savepoint, or choose one manually.                      |
+// | noteleport: No Teleporting allowed.  No f-wings or b-wings.              |
 // \_________________________________________________________________________/
 
 
