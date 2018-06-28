@@ -1,13 +1,26 @@
-//===== eAthena Script =======================================
-//= Map flags that disable dead branching
-//===== By: ==================================================
-//= eAthena Dev Team
-//= 1.2 [Lupus]
-//= 1.3 [massdriller]
-//= 1.6a [Lupus]
-//= 1.7 Added all novice maps. [L0ne_W0lf]
-//= 1.8 Removed restriction on PVP maps. [L0ne_W0lf]
-//===== Current Version: =====================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                   Map flags that disable dead branching                  |
+// |                        Made by eAthena Dev Team                          |
+// |                             --- Version: ---                             |
+// |                               1.2 [Lupus]                                |
+// |                            1.3 [massdriller]                             |
+// |                               1.6a [Lupus]                               |
+// |                    1.7 Added all novice maps. [L0ne_W0lf]                |
+// |              1.8 Removed restriction on PVP maps. [L0ne_W0lf]            |
+// \_________________________________________________________________________/
+
 
 // Cities ======================
 ayo_in01	mapflag	nobranch
