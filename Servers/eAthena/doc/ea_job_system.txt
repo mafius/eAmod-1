@@ -16,7 +16,7 @@
 // |--------------------------------------------------------------------------|
 // | Versions eASU/eA/brA/Herc/rA: all/all                                    |
 // |--------------------------------------------------------------------------|
-// | Description:  A reference description of eA's inner job system (for      |
+// | Description: A reference description of eA's inner job system (for      |
 // | use on scripts through the eaclass and roclass script commands).         |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
