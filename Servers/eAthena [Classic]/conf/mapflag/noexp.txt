@@ -10,16 +10,21 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                     Map flags that disable gaining EXP                   |
-// |                        Made by eAthena Dev Team                          |
-// |                             --- Version: ---                             |
-// |                              v1.2 [Lupus]                                |
-// |                           v1.3 [massdriller]                             |
-// |                              v1.4 [Lupus]                                |
-// |                              v1.5 [Lorky]                                |
-// |                v1.6 Added Lighthalzen (due to quests) [Lupus]            |
-// |        v1.7 Commented out entries. (Quests are official) [L0ne_W0lf]     |
+// | Script Name: No Experience                                               |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that disable gaining EXP.                         |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.2 [Lupus]                                                              |
+// | 1.3 [massdriller]                                                        |
+// | 1.4 [Lupus]                                                              |
+// | 1.5 [Lorky]                                                              |
+// | 1.6 Added Lighthalzen (due to quests) [Lupus]                            |
+// | 1.7 Commented out entries. (Quests are official) [L0ne_W0lf]             |
 // \_________________________________________________________________________/
 
 
