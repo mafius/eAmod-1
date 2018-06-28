@@ -1,8 +1,21 @@
-//===== Description: =========================================
-//= pvp	off: Disables Player versus Player mode.
-//= To disable PvP mode on a specific map add the mapname here.
-//= v 1.1a
-//============================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                      Map flags that disable pvp mode                     |
+// |                        Made by eAthena Dev Team                          |
+// |                          --- Description: ---                            |
+// |        To disable PvP mode on a specific map add the mapname here.       |
+// \_________________________________________________________________________/
 
 1@cata	mapflag	pvp	off
 2@cata	mapflag	pvp	off
