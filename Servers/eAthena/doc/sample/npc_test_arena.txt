@@ -1,13 +1,29 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                               eAthena samples                            |
+// \_________________________________________________________________________/
+
 // ------------------------------------------------------------------
-// 			ƒAƒŠ|ƒi‚Ìİ’è
+// 			ã‚¢ãƒªï¼ãƒŠã®è¨­å®š
 // ------------------------------------------------------------------
 
-// Ÿ‚Ìƒ}ƒbƒv‚ğg‚¢‚Ü‚·
+// æ¬¡ã®ãƒãƒƒãƒ—ã‚’ä½¿ã„ã¾ã™
 //map: prontera
 //map: prt_are_in
 //map: force_1-1
 
-// ƒeƒŒƒ|‚È‚Ç‚Ì‹Ö~ˆ—
+// ãƒ†ãƒ¬ãƒãªã©ã®ç¦æ­¢å‡¦ç†
 prt_are_in	mapflag	nomemo	dummy
 prt_are_in	mapflag	noteleport	dummy
 prt_are_in	mapflag	nosave	prontera,156,191
@@ -15,11 +31,11 @@ force_1-1	mapflag	nomemo	dummy
 force_1-1	mapflag	noteleport	dummy
 force_1-1	mapflag	nosave	prontera,156,191
 
-// ƒvƒƒ“ƒeƒ‰‚É“ü‚èŒû‚ğ’u‚­
-prontera,160,185,0	script	ƒAƒŠ[ƒi“ü‚èŒû	116,{
-	mes "ƒAƒŠ[ƒi“ü‚èŒû‚É”ò‚Ñ‚Ü‚·‚©H";
+// ãƒ—ãƒ­ãƒ³ãƒ†ãƒ©ã«å…¥ã‚Šå£ã‚’ç½®ã
+prontera,160,185,0	script	ã‚¢ãƒªãƒ¼ãƒŠå…¥ã‚Šå£	116,{
+	mes "ã‚¢ãƒªãƒ¼ãƒŠå…¥ã‚Šå£ã«é£›ã³ã¾ã™ã‹ï¼Ÿ";
 	next;
-	menu "”ò‚Ô",L_GOARENA,"‚â‚ß‚é",L_YAME;
+	menu "é£›ã¶",L_GOARENA,"ã‚„ã‚ã‚‹",L_YAME;
 L_GOARENA:
 	warp "prt_are_in",31,82;
 	close;
@@ -27,12 +43,12 @@ L_YAME:
 	close;
 }
 
-// ‘Ò‹@º‚©‚ç€”õº‚Ö‚Ì“]‘—
-prt_are_in,29,79,0	script	ƒ^ƒCƒ€ƒAƒ^ƒbƒN‚P	116,{
+// å¾…æ©Ÿå®¤ã‹ã‚‰æº–å‚™å®¤ã¸ã®è»¢é€
+prt_are_in,29,79,0	script	ã‚¿ã‚¤ãƒ ã‚¢ã‚¿ãƒƒã‚¯ï¼‘	116,{
 	if( getmapusers("force_1-1")>0 ) goto L_WAIT;
-	mes "‚±‚±‚Íƒ^ƒCƒ€ƒAƒ^ƒbƒNLv1‚Å‚·";
-	mes "’§í‚µ‚Ü‚·‚©H";
-	menu "‚Í‚¢",L_GOLV1,"‚â‚ß‚é",L_YAME;
+	mes "ã“ã“ã¯ã‚¿ã‚¤ãƒ ã‚¢ã‚¿ãƒƒã‚¯Lv1ã§ã™";
+	mes "æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿ";
+	menu "ã¯ã„",L_GOLV1,"ã‚„ã‚ã‚‹",L_YAME;
 L_GOLV1:
 	if( getmapusers("force_1-1")>0 ) goto L_WAIT;
 	disablenpc "fc103-1";
@@ -42,19 +58,19 @@ L_GOLV1:
 	warp "force_1-1",99,12;
 	end;
 L_WAIT:
-	mes "Œ»İ’§í’†‚Ì•û‚ª‚¢‚Ü‚·‚Ì‚ÅA";
-	mes "‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢B";
+	mes "ç¾åœ¨æŒ‘æˆ¦ä¸­ã®æ–¹ãŒã„ã¾ã™ã®ã§ã€";
+	mes "ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚";
 L_YAME:
 	close;
 }
 
-// €”õºi‚P‚O•b€”õŠúŠÔj
+// æº–å‚™å®¤ï¼ˆï¼‘ï¼ç§’æº–å‚™æœŸé–“ï¼‰
 force_1-1,99,12,0	script	arenatestev0000	-1,{
-	announce "‚P‚O•bŒã‚ÉŠJn‚µ‚Ü‚·",3;
+	announce "ï¼‘ï¼ç§’å¾Œã«é–‹å§‹ã—ã¾ã™",3;
 	addtimer 10000,"arenatestev0001";
 }
 
-// ÀÛ‚Ì•”‰®‚Ö‚Ì“]‘—‚ÆMOB‚Ìİ’è
+// å®Ÿéš›ã®éƒ¨å±‹ã¸ã®è»¢é€ã¨MOBã®è¨­å®š
 force_1-1,99,12,0	script	arenatestev0001	-1,{
 	killmonster "force_1-1","arenatestev1000";
 	monster "force_1-1",25,25,"--ja--",1002,1,"arenatestev1000";
@@ -69,36 +85,36 @@ force_1-1,99,12,0	script	arenatestev0001	-1,{
 	enablenpc "fc103-1";
 	enablenpc "fc105";
 	enablenpc "fc107";
-	announce "30•bˆÈ“à‚ÉŸr–Å‚¹‚æ",19;
+	announce "30ç§’ä»¥å†…ã«æ®²æ»…ã›ã‚ˆ",19;
 	addtimer 30000,"arenatestev8000";
 }
 
-// “|‚µ‚½ˆ—
+// å€’ã—ãŸå‡¦ç†
 force_1-1,25,26,0	script	arenatestev1000	-1,{
 	set $arenatest00, $arenatest00 - 1;
 	if( $arenatest00 > 0 ) goto L_CONT;
 	deltimer "arenatestev8000";
-	announce "ƒNƒ‰ƒbƒVƒ…!!",3;
+	announce "ã‚¯ãƒ©ãƒƒã‚·ãƒ¥!!",3;
 	enablenpc "fc101";
 	enablenpc "fc103";
 	areaannounce "prt_are_in",25,75,40,90,
-		strcharinfo(0) + " ‚ªƒ^ƒCƒ€ƒAƒ^ƒbƒNLv1‚ğƒNƒŠƒA‚µ‚Ü‚µ‚½",0;
+		strcharinfo(0) + " ãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¿ãƒƒã‚¯Lv1ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã—ãŸ",0;
 	addtimer 5000,"arenatestev9000";
 L_CONT:
 	end;
 }
 
-// ƒ^ƒCƒ€ƒAƒEƒg
+// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 force_1-1,25,26,0	script	arenatestev8000	-1,{
 	set $arenatest00,99;
 	killmonster "force_1-1","arenatestev1000";
-	announce "ƒ^ƒCƒ€ƒI[ƒo[!!",3;
+	announce "ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼!!",3;
 	areaannounce "prt_are_in",25,75,40,90,
-		strcharinfo(0) + " ‚ªƒ^ƒCƒ€ƒAƒ^ƒbƒNLv1‚É¸”s‚µ‚Ü‚µ‚½",0;
+		strcharinfo(0) + " ãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¿ãƒƒã‚¯Lv1ã«å¤±æ•—ã—ã¾ã—ãŸ",0;
 	addtimer 5000,"arenatestev9000";
 }
 
-// ƒvƒƒ“ƒeƒ‰‚É‹A‚é
+// ãƒ—ãƒ­ãƒ³ãƒ†ãƒ©ã«å¸°ã‚‹
 force_1-1,25,26,0	script	arenatestev9000	-1,{
 	warp "prontera",156,191;
 }

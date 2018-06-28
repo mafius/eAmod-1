@@ -1,3 +1,19 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            eAthena database file                         |
+// \_________________________________________________________________________/
+
 // Items Database
 //
 // Structure of Database:
@@ -4312,7 +4328,7 @@
 7801,Girl_Fan_Letter,Girl's Letter,3,0,,0,,,,,,,,,,,,,{},{},{}
 7802,Autograph_Book,Signature Notebook,3,0,,0,,,,,,,,,,,,,{},{},{}
 7803,Battle_Manual_TW,Beginner's Field Manual,3,0,,10,,,,,,,,,,,,,{},{},{}
-//7804,ºˆ«‡_¡ı∏Ìº≠,ºˆ«‡_¡ı∏Ìº≠,3,,,10,,,,,,,,,,,,,{},{},{}
+//7804,ÏàòÌñâ_Ï¶ùÎ™ÖÏÑú,ÏàòÌñâ_Ï¶ùÎ™ÖÏÑú,3,,,10,,,,,,,,,,,,,{},{},{}
 7805,Brown_Ring,Brown Jenoss's Family Ring,3,0,,10,,,,,,,,,,,,,{},{},{}
 7806,Black_Anvil,God Anvil,3,0,,10,,,,,,,,,,,,,{},{},{}
 7807,Ore,God Mineral,3,0,,10,,,,,,,,,,,,,{},{},{}
@@ -6083,13 +6099,13 @@
 13915,Love_Angel_Box,Love Angel Magic Powder Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12287,604800; },{},{}
 13916,Squirrel_Box,Squirrel Magic Powder Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12288,604800; },{},{}
 13917,Gogo_Box,Gogo Magic Powder Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12289,604800; },{},{}
-//13918,†Drooping_W_Kitty_Box†,Koneko Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5372,1; },{},{}
-//13919,†L_Magestic_Goat_Box†,Baphomet Horns Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5374,1; },{},{}
-//13920,†Satanic_Chain_P_Box†,Flying Evil Wing Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5376,1; },{},{}
-//13921,†Antique_Pipe_Box†,Gentleman's Pipe Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5377,1; },{},{}
-//13922,†Rabbit_Ear_Hat_Box†,Bunny Top Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5378,1; },{},{}
-//13923,†Darkness_Helm_Box†,Dark Randgris Helm Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5373,1; },{},{}
-//13924,†L_Orc_Hero_Helm_Box†,Orc Hero Headdress Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5375,1; },{},{}
+//13918,Drooping_W_Kitty_Box,Koneko Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5372,1; },{},{}
+//13919,L_Magestic_Goat_Box,Baphomet Horns Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5374,1; },{},{}
+//13920,Satanic_Chain_P_Box,Flying Evil Wing Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5376,1; },{},{}
+//13921,Antique_Pipe_Box,Gentleman's Pipe Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5377,1; },{},{}
+//13922,Rabbit_Ear_Hat_Box,Bunny Top Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5378,1; },{},{}
+//13923,Darkness_Helm_Box,Dark Randgris Helm Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5373,1; },{},{}
+//13924,L_Orc_Hero_Helm_Box,Orc Hero Headdress Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5375,1; },{},{}
 //13925,Year_Of_Mouse_Scroll,... GoodLuck Scroll,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 13926,Crusader_Card_Box,Crusader Card Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 4371,1; getitem 4311,1; getitem 4319,1; getitem 4331,1; },{},{}
 13927,Alchemist_Card_Box,Alchemist Card Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 4281,1; getitem 4233,1; getitem 4343,1; getitem 4186,1; getitem 4036,1; },{},{}

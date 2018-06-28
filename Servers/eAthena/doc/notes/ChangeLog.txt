@@ -1,3 +1,21 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                                 ChangeLog                                |
+// \_________________________________________________________________________/
+
+/*
+
 Date	Added
 
 -------- Read Changelog-SVN.txt for the newer SVN entries--------
@@ -11812,3 +11830,5 @@ Date	Added
 	* Added Skill SonicBlow only works with Katars Now [AppleGirl]
 12/22
 	* Added Skills Shield Boomerang, Shield Charge, and Defender [AppleGirl]
+
+*/

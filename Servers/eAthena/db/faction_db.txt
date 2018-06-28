@@ -1,10 +1,22 @@
-// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            eAthena database file                         |
+// \_________________________________________________________________________/
+
+// (c) 2008 - 2018 eAmod Project;
+//  - eamodifications@gmail.com
+
 // This file is NOT public - you are not allowed to distribute it.
 // Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
 // eAmod is a non Free, extended version of eAthena Ragnarok Private Server.

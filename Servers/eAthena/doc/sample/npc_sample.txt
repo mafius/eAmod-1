@@ -1,325 +1,340 @@
-//
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                               eAthena samples                            |
+// \_________________________________________________________________________/
+
 // Athena Sample Script
 //  (c) 2003 Athena Project.
 //
 // $Id: npc_sample.txt,v 1.1.1.1 2004/09/10 17:26:47 MagicalTux Exp $
 
-// ���̃t�@�C���́AAthena�Ŏg�p�����X�N���v�g�̉���Ǝg�p��̃T���v����
-// �Ȃ��Ă��܂��B
+// このファイルは、Athenaで使用されるスクリプトの解説と使用例のサンプルと
+// なっています。
 
 // =============
-// *��{�I�ȏ���
+// *基本的な書式
 // =============
 // <parameters_1>\t<command>\t<displayname>\t<parameters_2>
-// \t��TAB������킵�܂��B
-// command �� "warp" / "monster" / "shop" / "script" �̂����ꂩ�ɂȂ�܂��B
-// �e�s�ɂ�����"//"�ȍ~�̓R�����g�Ƃ��Ė�������܂��B
-// �ȉ��A�X�ɂ��ĉ�������Ă����܂��B
+// \tはTABをあらわします。
+// command は "warp" / "monster" / "shop" / "script" のいずれかになります。
+// 各行において"//"以降はコメントとして無視されます。
+// 以下、個々について解説をしていきます。
 //
-// ������<n>�Ƃ�����Ă��镔����n�Ƃ��������ł͂Ȃ��A�C�ӂ̕�����/�l�������܂��B
-// �܂��A[n]�͕K�v�ɉ����Ďw�肷��C�ӂ̕�����/�l�ƂȂ��Ă��܂��B
+// 書式中<n>とかかれている部分はnという文字ではなく、任意の文字列/値を示します。
+// また、[n]は必要に応じて指定する任意の文字列/値となっています。
 
 // ========
 // *command
 // ========
 //
 // ---------------
-// *�ʏ�warp(warp)
+// *通常warp(warp)
 // ---------------
-// ���� : <gatname>,<x>,<y>	warp	<displayname(hidden)>	<dx>,<dy>,<destination_gatname>[],<destination_x>,<destination_y>
+// 書式 : <gatname>,<x>,<y>	warp	<displayname(hidden)>	<dx>,<dy>,<destination_gatname>[],<destination_x>,<destination_y>
 //
-// <gatname>	- �}�b�v�f�[�^�t�@�C�����B�g���q�͕K�{�ł��B
-// <x>,<y>		- ���[�v�|�C���g�̒��S���W(x,y)
-// <displayname(hidden)>	- npc���B�ꕶ���ȏ�̔C�ӂ̕����Ŏw�肵�܂��B���j�[�N�Ȗ��O�ł���K�v�͂���܂���B
-// 				  ���ۂɂ͕\������܂���B
-// <dx>,<dy>	- ����͈�(x,y) <x,y>�𒆐S��(dx+1,dy+1)�͈̔͂�PC������Ɣ������܂�
+// <gatname>	- マップデータファイル名。拡張子は必須です。
+// <x>,<y>		- ワープポイントの中心座標(x,y)
+// <displayname(hidden)>	- npc名。一文字以上の任意の文字で指定します。ユニークな名前である必要はありません。
+// 				  実際には表示されません。
+// <dx>,<dy>	- 動作範囲(x,y) <x,y>を中心に(dx+1,dy+1)の範囲にPCが来ると発動します
 // <destination_gatname>,<destination_x>,<destination_y> -
-// �ړ���̃}�b�v�f�[�^�t�@�C����,���W(x,y)
-// destination_gatname�ɂ��Ă͊g���q""�͂����Ă������Ă��\���܂���B
-// �ړ����map�f�[�^�t�@�C�������݂��Ȃ�(���邢��map_config�Ŏw�肳��Ă��Ȃ�)�ꍇ�͔������܂���B
-// �ړ���̍��W���i���֎~���ł������ꍇ�́A�����_���ȍ��W�Ƀ��[�v���܂��B
-// �܂��A������W�ɕ�����warp���u����Ă����ꍇ�A��ɋL�q����Ă�����̂��L���ɂȂ�܂�
-// ����́Aconf�t�@�C�����Ŏw�肳���Anpc*.txt�t�@�C�����܂�����warp���L�q����Ƃ����������Ƃ������܂��B
-// ��:
+// 移動先のマップデータファイル名,座標(x,y)
+// destination_gatnameについては拡張子""はあっても無くても構いません。
+// 移動先のmapデータファイルが存在しない(あるいはmap_configで指定されていない)場合は発動しません。
+// 移動先の座標が進入禁止区域であった場合は、ランダムな座標にワープします。
+// また、同一座標に複数のwarpが置かれていた場合、先に記述されているものが有効になります
+// これは、confファイル内で指定される、npc*.txtファイルをまたいでwarpを記述するときも同じことがいえます。
+// 例:
 prontera,156,185,4	warp	sample1	0,0,prontera,156,225
 prontera,156,185,4	warp	sample1a	0,0,prontera,156,230
-// sample1�̕�����ɋL�q����Ă���̂ŁA156,225�Ɉړ����܂�
+// sample1の方が先に記述されているので、156,225に移動します
 prontera,156,220,4	warp	sample1-1	0,0,prontera,156,180
 
 // --------------------
-// *�����X�^�[(monster)
+// *モンスター(monster)
 // --------------------
-// ����:<gatname>,<x>,<y>[,<xs>,<ys>]	monster	<displayname>	<npcid>,<number>[,<spawn_delay1>,<spawn_delay2>]
-// <gatname>	- �}�b�v�f�[�^�t�@�C�����B�g���q�͕K�{�ł��B
-// <x>,<y>		- �����z�u���W(x,y) 0,0�ł���΃����_���Ȉʒu�ɔz�u����܂��B
-// [,<xs>,<ys>]	- ����͈͓��ɔz�u���鎞�Ɏw�肵�܂��B
-// <displayname> - �}�E�X�J�[�\�������킹���Ƃ��ɕ\������閼�O�B���O�͈ꕶ���ȏ�w�肵�Ă�������
-// <npcid>		- �L�����N�^�[��B�ڍׂɂ��Ă͂��@����������(db/mob_db.txt���Q�l�ɂȂ�Ǝv���܂���...)
-// <number>		- �z�u��
-// [,<spawn_delay1>,<spawn_delay2>] - ����pc_id���������X�^�[�̐������Ԃɂ��Ă̒�`
-// �O��o������+�o���x��1,�|���ꂽ����+�o���x��2,�|���ꂽ����+5�b �ŎZ�o�����l�̂����A�ł��傫������
-// �o�����ԂƂ��܂�
-// ��:
-prontera,0,0	monster	�|����	1002,5
+// 書式:<gatname>,<x>,<y>[,<xs>,<ys>]	monster	<displayname>	<npcid>,<number>[,<spawn_delay1>,<spawn_delay2>]
+// <gatname>	- マップデータファイル名。拡張子は必須です。
+// <x>,<y>		- 初期配置座標(x,y) 0,0であればランダムな位置に配置されます。
+// [,<xs>,<ys>]	- 特定範囲内に配置する時に指定します。
+// <displayname> - マウスカーソルを合わせたときに表示される名前。名前は一文字以上指定してください
+// <npcid>		- キャラクター種。詳細についてはお察しください(db/mob_db.txtが参考になると思いますが...)
+// <number>		- 配置数
+// [,<spawn_delay1>,<spawn_delay2>] - 同一pc_idをもつモンスターの生成時間についての定義
+// 前回出現時間+出現遅延1,倒された時間+出現遅延2,倒された時間+5秒 で算出される値のうち、最も大きい物を
+// 出現時間とします
+// 例:
+prontera,0,0	monster	ポリン	1002,5
 
 // ---------
-// *�X(shop)
+// *店(shop)
 // ---------
-// ����:<gatname>,<x>,<y>,<direction>	shop	<displayname>	<npcid>,<item_id1>:<price1>[,<item_id2>:<price2>[,.....<item_id_N>:<priceN>]]
-// <gatname>	- �}�b�v�f�[�^�t�@�C�����B�g���q�͕K�{�ł��B
-// <x>,<y>		- NPC�̔z�u���W(x,y)
-// <direction>	- npc�̌����Ă�������B0��k(y���W����+)�Ƃ��āA�����v���45�x�����݂ɂȂ��Ă��܂�
-// <displayname> - �}�E�X�J�[�\�������킹���Ƃ��ɕ\������閼�O�B���O�͈ꕶ���ȏ�w�肵�Ă�������
-// <npcid>		- �L�����N�^�[��B�ڍׂɂ��Ă͂��@����������
-// <item_id_N>:<price_N>	- item_id_N�̏��i�����iprice_N�Ƃ��Ĕ̔����E�C���h�E�ɕ\�����܂��B
-// 						  item_id�ɂ��Ă�db/item_db.txt���Q�Ƃ��Ă��������B
-// ��:
-prontera,136,203,6	shop	����l	73,501:5,502:20,503:55,504:120,506:20,645:80,656:150,601:30,602:30,611:20,610:400
+// 書式:<gatname>,<x>,<y>,<direction>	shop	<displayname>	<npcid>,<item_id1>:<price1>[,<item_id2>:<price2>[,.....<item_id_N>:<priceN>]]
+// <gatname>	- マップデータファイル名。拡張子は必須です。
+// <x>,<y>		- NPCの配置座標(x,y)
+// <direction>	- npcの向いている方向。0を北(y座標方向+)として、反時計回り45度きざみになっています
+// <displayname> - マウスカーソルを合わせたときに表示される名前。名前は一文字以上指定してください
+// <npcid>		- キャラクター種。詳細についてはお察しください
+// <item_id_N>:<price_N>	- item_id_Nの商品を価格price_Nとして販売物ウインドウに表示します。
+// 						  item_idについてはdb/item_db.txtを参照してください。
+// 例:
+prontera,136,203,6	shop	道具商人	73,501:5,502:20,503:55,504:120,506:20,645:80,656:150,601:30,602:30,611:20,610:400
 
 // -====================-
-// *NPC�X�N���v�g(script)
+// *NPCスクリプト(script)
 // -====================-
-// ����:
+// 書式:
 // <gatname>,<x>,<y>,<direction>	script	<displayname>	<npcid>[,<xs>,<ys>],{ <script> ... }
-// <gatname>	- �}�b�v�f�[�^�t�@�C�����B�g���q�͕K�{�ł��B
-// <x>,<y>		- NPC�̔z�u���W(x,y)
-// <direction>	- npc�̌����Ă�������B0��k(y���W����+)�Ƃ��āA�����v���45�x�����݂ɂȂ��Ă��܂�
-// <displayname> - �}�E�X�J�[�\�������킹���Ƃ��ɕ\������閼�O�B���O�͈ꕶ���ȏ�w�肵�Ă�������
-// <npcid>		- �L�����N�^�[��B�ڍׂɂ��Ă͂��@����������
-// [,<xs>,<ys>]	- (x,y)�𒆐S�Ƃ���(xs,ys)�ȓ���PC���ߊ��ƃX�N���v�g���������܂�
-// 				  (warp�Ɠ����悤�Ȕ����̂������ɂȂ�܂�)
+// <gatname>	- マップデータファイル名。拡張子は必須です。
+// <x>,<y>		- NPCの配置座標(x,y)
+// <direction>	- npcの向いている方向。0を北(y座標方向+)として、反時計回り45度きざみになっています
+// <displayname> - マウスカーソルを合わせたときに表示される名前。名前は一文字以上指定してください
+// <npcid>		- キャラクター種。詳細についてはお察しください
+// [,<xs>,<ys>]	- (x,y)を中心として(xs,ys)以内にPCが近寄るとスクリプトが発動します
+// 				  (warpと同じような発動のしかたになります)
 //
-// ���̌�ɑ���{}�����X�N���v�g�Ƃ��ĔF������܂���
-// }(�s��) �ŃX�N���v�g�̏I���Ɣ��f���Ă��܂��B
-// ���̂��߁A}�̌�ɂ̓R�����g(//�`)�͕t���Ȃ��ł��������B
-// (������̎d�l�͕ύX�\��ł�)
+// この後に続く{}内がスクリプトとして認識されますが
+// }(行末) でスクリプトの終了と判断しています。
+// そのため、}の後にはコメント(//～)は付けないでください。
+// (後日この仕様は変更予定です)
 //
 // ------------------------
-// *{}���̃X�N���v�g�ɂ���
+// *{}内のスクリプトについて
 // ------------------------
-// �X�̖��ߌ�␔��,������,���x��,���Z�q���̊Ԃ�
-// �X�y�[�X��^�u�A���s�A/* */�ɂ��͂܂ꂽ�R�����g�A//������s�܂ł̃R�����g��
-// ���R�ɓ���鎖���o���܂� (C����)
-// �e���߂͍Ō��";"�����܂� (C����)
+// 個々の命令語や数字,文字列,ラベル,演算子等の間は
+// スペースやタブ、改行、/* */により囲まれたコメント、//から改行までのコメントを
+// 自由に入れる事が出来ます (C風味)
+// 各命令は最後に";"をつけます (C風味)
 //
 // ---
-// *�l
+// *値
 // ---
-// script���Ŏg�p�����l�� ���� / ������ / �ϐ��� / ���x�� ��4��ނɕ�����܂��B
+// script内で使用される値は 数字 / 文字列 / 変数名 / ラベル の4種類に分かれます。
 // 
-// *���� [0-9]�̗�ŕ\�킳���10�i�����A0x�Ŏn�܂�16�i��
-//      ���l�Ƃ��Ĉ�����͕̂����t32bit�����݂̂ŁA�����͈����܂���
-// *������ ""�ň͂܂ꂽ��ʂ�̕����񂪎g���܂��B
-//      �����񒆂�"����ꂽ���ꍇ��\"�A\����ꂽ���ꍇ��\\�Ƃ��܂�
-// *�ϐ���/���x���� [A-Za-z0-9_]��@(�ꕶ���ڂ̂�)���g���܂��B
-//      ����ȃ��x���Ƃ���-�����݂��܂��B����͎��̖��߂��Ӗ����܂�
-//      �ȉ��Ő�������萔�▄�ߍ��ݕϐ�������ɂ�����܂�
+// *数字 [0-9]の列で表わされる10進数か、0xで始まる16進数
+//      数値として扱えるのは符号付32bit整数のみで、小数は扱えません
+// *文字列 ""で囲まれた一通りの文字列が使えます。
+//      文字列中に"を入れたい場合は\"、\を入れたい場合は\\とします
+// *変数名/ラベル名 [A-Za-z0-9_]と@(一文字目のみ)が使えます。
+//      特殊なラベルとして-が存在します。これは次の命令を意味します
+//      以下で説明する定数や埋め込み変数もこれにあたります
 // 
 // -----------------------
-// *�萔�܂��͖��ߍ��ݕϐ�
+// *定数または埋め込み変数
 // -----------------------
-// db/const.txt��<�萔��> <���l>�ƋL�q���鎖��
-// �X�N���v�g���ŗ��p�\�Ȓ萔��錾�o���܂��B
-// (NPC�X�̏��i���X�g,�����ڂ̐ݒ蕔�����ɂ͗��p�o���܂���)
+// db/const.txtに<定数名> <数値>と記述する事で
+// スクリプト内で利用可能な定数を宣言出来ます。
+// (NPC店の商品リスト,見た目の設定部分等には利用出来ません)
 //
-// �܂��A���̒��ŃL�����N�^�[�̃X�e�[�^�X���Q�Ƃ���
-// ���ߍ��ݕϐ��̒�`�����Ă��܂��B���ݗL���ȕ��͈ȉ���7�ł�
+// また、この中でキャラクターのステータスを参照する
+// 埋め込み変数の定義もしています。現在有効な物は以下の7つです
 //
-//  BaseLevel : �x�[�X���x��
-//  JobLevel  : �W���u���x��
-//  StatusPoint : �U�蕪���\�ȃX�e�[�^�X�|�C���g��
-//  SkillPoint  : �U�蕪���\�ȃX�L���|�C���g��
-//  Class : �L�����N�^�[�̐E�Ƃ̎��
-//     Class�l�ɂ��Ă�Job_Novice��db/const.txt�Œ萔��`����Ă܂��̂ł�������g���Ɨǂ��ł��傤
-//  Zeny  : ����
-//  Sex   : ����[0=��, 1=��]
+//  BaseLevel : ベースレベル
+//  JobLevel  : ジョブレベル
+//  StatusPoint : 振り分け可能なステータスポイント数
+//  SkillPoint  : 振り分け可能なスキルポイント数
+//  Class : キャラクターの職業の種類
+//     Class値についてはJob_Novice等db/const.txtで定数定義されてますのでこちらを使うと良いでしょう
+//  Zeny  : お金
+//  Sex   : 性別[0=♂, 1=♀]
 //
-// �����̕ϐ��́Aif���߂�set���߂Ŏ��R�ɎQ�Ƃ��o���܂����A
-// �ύX��StatusPoint��SkillPoint��Zeny�݂̂ő��̖��ߍ��ݕϐ��͕ύX���Ă��Ӗ��������܂���B
-// �܂��A���̂R�̖��ߍ��ݕϐ���ύX�����ꍇ�A�ύX�̓N���C�A���g�ɑ����ɔ��f����܂��B
+// これらの変数は、if命令やset命令で自由に参照が出来ますが、
+// 変更はStatusPointとSkillPointとZenyのみで他の埋め込み変数は変更しても意味を持ちません。
+// また、この３つの埋め込み変数を変更した場合、変更はクライアントに即座に反映されます。
 //
 // -------
-// *���x��
+// *ラベル
 // -------
-// ���x���́A���x�����̌��:��t��
+// ラベルは、ラベル名の後に:を付け
 // label:
-// �̂悤�ɋL�q���܂��B
-// goto����menu���Aif�����̔�ѐ�Ƃ��Ďg���܂��B
+// のように記述します。
+// goto文やmenu文、if文等の飛び先として使われます。
 //
 // ---
-// *��
+// *式
 // ---
-// ���߂̈����Ƃ��Đ��l���v������Ă��鏊�́A�S�Ă̏��Ŏ������p�\�ł��B
-// �������Z�݂̂ł����AC�̎��̃T�u�Z�b�g�ɂȂ��Ă��܂�
-// ���p�\�ȉ��Z�q��()�A�P�����Z�q - ! ~�A2�����Z�q + - * / % & | ^ && || == != > >= < <= �ł�
+// 命令の引数として数値が要求されている所は、全ての所で式が利用可能です。
+// 整数演算のみですが、Cの式のサブセットになっています
+// 利用可能な演算子は()、単項演算子 - ! ~、2項演算子 + - * / % & | ^ && || == != > >= < <= です
 //
-// ������̏ꍇ�� + �ŘA�����\�ł��B
-// ������ + ���l �� ���l + ������ �Ƃ����ꍇ�͐��l�𕶎���ւƕϊ����A�����܂��B
+// 文字列の場合は + で連結が可能です。
+// 文字列 + 数値 や 数値 + 文字列 とした場合は数値を文字列へと変換し連結します。
 //
 // -----------------
-// *{}���Ŏg���閽��
+// *{}内で使える命令
 // -----------------
 //
 //  mes "<message>";
-// ���b�Z�[�W�E�C���h�E��message��\�����܂�
-// �����̐F��^000000��^�ɑ�����16�i��6���Ŏw�肵�܂�(�����F�͍�(^000000)�ł�)
+// メッセージウインドウにmessageを表示します
+// 文字の色は^000000等^に続けて16進数6桁で指定します(初期色は黒(^000000)です)
 //
 //  next;
-// ���b�Z�[�W�E�C���h�E��"next"�̃{�^����\�����܂�
+// メッセージウインドウに"next"のボタンを表示します
 //
 //  close;
-// ���b�Z�[�W�E�C���h�E��"close"�̃{�^����\�����A�X�N���v�g�̎��s���I�����܂�
+// メッセージウインドウに"close"のボタンを表示し、スクリプトの実行を終了します
 //
 //  menu "<choice1>",<Label1>[,"<choice2>",<Label2>....];
-// �I�����E�C���h�E��\�����܂��B"choice1","choice2"�����I�����ɕ\������
-// ���j���[�őI�񂾏ꍇ�́A���̌�ɋL�q����郉�x���ɃW�����v���܂��B
-// �܂��A�I���������ڂ̓��[�J���ϐ�l15�ɂĎQ�Ƃł��܂��B
-// ��̗�ł��ƑI������"choice1"������A�����I�Ԃ�Label1:�Ŏn�܂�s�ɃW�����v���܂��B
-// �����āA�ϐ�l15�ɂ�1�Ƃ����l���Z�b�g����܂�
-// cancel��I�񂾏ꍇ�A�X�N���v�g�̎��s���I�����܂�
+// 選択肢ウインドウを表示します。"choice1","choice2"等か選択肢に表示され
+// メニューで選んだ場合は、その後に記述されるラベルにジャンプします。
+// また、選択した項目はローカル変数l15にて参照できます。
+// 上の例ですと選択肢に"choice1"が現れ、これを選ぶとLabel1:で始まる行にジャンプします。
+// そして、変数l15には1という値がセットされます
+// cancelを選んだ場合、スクリプトの実行を終了します
 //
 //  goto <Label>;
-// Label:�Ŏn�܂�s���瑱�������s���܂�
+// Label:で始まる行から続きを実行します
 //
 //  cutin "<filename>[.bmp]",<pos>;
-// ��ʏ��filename�Ŏw�肷��摜��\�����܂�
-// filename	- �\������bmp�t�@�C�����B�g���q�͖����Ă��\���܂���
-// pos		- �\���ʒu 0-���� 1-������ 2-�E�� 3-? 4-? 255-��\��
-// ���݂̃N���C�A���g�ł́Acutin�����s����Ƃ��ɈȑOcutin�����s����Ă���摜���\������Ă���ꍇ�́A
-// ��ɕ\�����Ă���摜���������Ă����Ŏw�肳���摜��\�����܂�
+// 画面上にfilenameで指定する画像を表示します
+// filename	- 表示するbmpファイル名。拡張子は無くても構いません
+// pos		- 表示位置 0-左下 1-中央下 2-右下 3-? 4-? 255-非表示
+// 現在のクライアントでは、cutinを実行するときに以前cutinが実行されており画像が表示されている場合は、
+// 先に表示してある画像を消去してから後で指定される画像を表示します
 // 
 //  jobchange <Jobid>;
-// PC�̐E��Jobname�Ŏw�肵���E�ɕύX���܂��B�w��ł���Jobid�ɂ��Ă�db/const.txt��Job_�ł͂��܂�s��
-// �Q�Ƃ��Ă��������Bconst�Ŏw�肵�Ă��閄�߂��ݕϐ������g�p�ł��܂��B
-// jobchange���s���ƁAJobLv��1�ɁA�X�e�[�^�X�{�[�i�X�͂��̐E��
-// ���킹�����ɕω����܂��BAthena-d2.1�ł̓X�L���͎g���Ȃ��̂ŁA�����ڕύX�����Ǝv���Ă��������B
-// [����]
-// 1.�ǉ�2���E(�N���Z�C�_�[��)��jobchange������ꍇ�A���F�p���b�g��ύX���Ă���ꍇ�̓��\�[�X�G���[��
-// �N���܂��̂ŁA���s���Ȃ��悤�ɂ��Ă��������B
-// 2.�o�[�h�ƃ_���T�[��Jobname�͕ʂɂȂ��Ă��܂��B
-// ���̂��߁A�j��PC�ɑ΂���Job_Dancer�����s������A����PC�ɑ΂���job_Bird�����s���Ȃ��悤�ɂ��Ă��������B
-// �N���C�A���g�ɂ���Ă̓��\�[�X�G���[�ŗ����܂��B
-// map���ł͐����`�F�b�N���s���Ă��Ȃ����߁A�X�N���v�g���Ń`�F�b�N����K�v������܂��B
-// npc_testJ.txt�̗���Q�Ƃ��Ă��������B
-// 3.db/const.txt�ɂ�knight2/crusader2�̋L�q������܂����A����job�ւ�jobchange�͍s��Ȃ��ق�������ł��B
-// ���ۂ̃Q�[���ł�����job�͎g�p����Ă��Ȃ��悤�ł��B
+// PCの職をJobnameで指定した職に変更します。指定できるJobidについてはdb/const.txtのJob_ではじまる行を
+// 参照してください。constで指定している埋めこみ変数名も使用できます。
+// jobchangeを行うと、JobLvは1に、ステータスボーナスはその職に
+// 合わせた物に変化します。Athena-d2.1ではスキルは使えないので、見た目変更だけと思ってください。
+// [注意]
+// 1.追加2次職(クルセイダー等)にjobchangeをする場合、服色パレットを変更している場合はリソースエラーが
+// 起きますので、実行しないようにしてください。
+// 2.バードとダンサーのJobnameは別になっています。
+// このため、男性PCに対してJob_Dancerを実行したり、女性PCに対してjob_Birdを実行しないようにしてください。
+// クライアントによってはリソースエラーで落ちます。
+// map側では整合チェックを行っていないため、スクリプト側でチェックする必要があります。
+// npc_testJ.txtの例を参照してください。
+// 3.db/const.txtにはknight2/crusader2の記述がありますが、このjobへのjobchangeは行わないほうが無難です。
+// 実際のゲームでもこのjobは使用されていないようです。
 //
 //  input [<variable>];
-// �������̓E�C���h�E���J���܂��B
-// ���͂��ꂽ������variable���������ꍇ���̕ϐ��ɁA
-// ���������ꍇ�̓��[�J���ϐ�l14�ɃZ�b�g����܂��B
+// 数字入力ウインドウを開きます。
+// 入力された数字はvariableがあった場合その変数に、
+// 無かった場合はローカル変数l14にセットされます。
 //
 //  warp "<destination_gatname>",<destination_x>,<destination_y>;
-// �w�肵���}�b�v��x,y���W�Ƀ��[�v���܂��B�ڍׂ͏�Lwarp(NPC)�̍����Q�Ƃ��Ă��������B
+// 指定したマップのx,y座標にワープします。詳細は上記warp(NPC)の項を参照してください。
 //
 //  setlook <n1>,<n2>;
-// PC�̊O����ݒ肵�܂��B
+// PCの外見を設定します。
 // <n1>	- (1 .. 8)
-// 		1-���^
-// 		2-����
-// 		3-����
-// 		4-����
-// 		5-����
-// 		6-���F
-// 		7-���F
-// 		8-��
-// <n2> - �C��
-// 		�O���ݒ�͊Y���A�C�e���𑕔����Ă��Ȃ��Ă��t������܂��B
-// 		�z��O�̔ԍ���ݒ肷��ƁA�N���C�A���g�����\�[�X�G���[�ŗ����܂��B
-// 		�A�T�V���j,�ǉ�2���E�Ɋւ��Ă͕��F�̕ύX�͍s��Ȃ��ł�������(��͂胊�\�[�X�G���[�������܂�)
-// ����⓪����,���̐ݒ�̓X�e�[�^�X�Čv�Z���ɏ㏑������Ă��܂����߁A
-// �����I�ȗp�r�ɂ̂ݗ��p�\�ł��B
+// 		1-髪型
+// 		2-武器
+// 		3-頭下
+// 		4-頭上
+// 		5-頭中
+// 		6-髪色
+// 		7-服色
+// 		8-盾
+// <n2> - 任意
+// 		外見設定は該当アイテムを装備していなくても付加されます。
+// 		想定外の番号を設定すると、クライアントがリソースエラーで落ちます。
+// 		アサシン男,追加2次職に関しては服色の変更は行わないでください(やはりリソースエラー落ちします)
+// 武器や頭装備,盾の設定はステータス再計算時に上書きされてしまうため、
+// 実験的な用途にのみ利用可能です。
 //
 //  set <variable>,<n>;
-// �ϐ�<variable>�̒l��<n>�ɃZ�b�g���܂��B
-// ����<n>�͐��l�݂̂ŕ����񂪈����܂��񂪁A����Ή��\��ł��B
+// 変数<variable>の値を<n>にセットします。
+// 現在<n>は数値のみで文字列が扱えませんが、後日対応予定です。
 //
 //  if (<cond>) goto <Label>;
-// ��������ł��B<cond>�̌v�Z���ʂ�0�ȊO�̏ꍇ�ALabel�ɃW�����v���܂��B
+// 条件分岐です。<cond>の計算結果が0以外の場合、Labelにジャンプします。
 //
 //  getitem <item_id>,<num>;
-// PC�̏����i���X�g��item_id�Ŏw�肳���A�C�e����num�����ǉ����܂��B
+// PCの所持品リストにitem_idで指定されるアイテムをnumだけ追加します。
 //
 //  delitem <item_id>,<num>;
-// PC�̏����i���X�g����item_id�Ŏw�肳���A�C�e����num�����폜���܂��B
+// PCの所持品リストからitem_idで指定されるアイテムをnumだけ削除します。
 //
 //  viewpoint <type>,<x>,<y>,<id>,<color>;
-// �~�j�}�b�v��x,y�̍��W�Ƀ}�[�N(color�F���w��)��t���܂��B
-// <type> 1-�\��
-//        2-�폜
+// ミニマップのx,yの座標にマーク(color色を指定)を付けます。
+// <type> 1-表示
+//        2-削除
 //
 //  heal <hp>,<sp>;
-// PC��HP/SP��hp,sp�Ŏw�肵���l�����񕜂����܂��B
+// PCのHP/SPをhp,spで指定した値だけ回復させます。
 //
 //  end;
-// �����ŃX�N���v�g�̎��s���I�����܂��B
+// ここでスクリプトの実行を終了します。
 //
 //  setoption <str>;
-// PC�Ɉȉ��Ŏ����t���i(?)��t���܂��B
-// 0x0000	- �t���i�폜
+// PCに以下で示す付属品(?)を付けます。
+// 0x0000	- 付属品削除
 // 0x0001	- ?
-// 0x0002	- �n�C�h(�e�t��)
+// 0x0002	- ハイド(影付き)
 // 0x0004	- ??
-// 0x0008	- �J�[�g
-// 0x0010	- ��
-// 0x0020	- �y�R�y�R(�i�C�g,�N���Z�C�_�[�̎��̂ݗL��)
-// 0x0040	- �n�C�h(�e����)
-// 0x0080	- �J�[�g2
-// 0x0100	- �J�[�g3
-// 0x0200	- �J�[�g4
-// 0x0400	- �J�[�g5
-// 0x0800	- �����I�[�N(Sage�̃X�L���A���o�[�X�I�[�L�b�V��������������ԂɂȂ�)
-// setoption�����s����Ƃ��A���X�Z�b�g����Ă����l�̓N���A����܂��B
-// ���ꂼ��̒l�͉��Z�����l��ݒ肷�邱�Ƃɂ��A�����ɕt���i���t�����܂��B
-// �Ⴆ�΁A0x38�ŃJ�[�g�������āA���A�ꂽ�y�R���i�C�g�Ƃ��������̂��ł��܂��B
-// setoption�ŃZ�b�g���ꂽ�l�̓N���C�A���g�I������L������܂��B
-// [memo]�b��I�Ȃ̂Ŏd�l�ύX�̉\��������܂��B
+// 0x0008	- カート
+// 0x0010	- 鷹
+// 0x0020	- ペコペコ(ナイト,クルセイダーの時のみ有効)
+// 0x0040	- ハイド(影無し)
+// 0x0080	- カート2
+// 0x0100	- カート3
+// 0x0200	- カート4
+// 0x0400	- カート5
+// 0x0800	- 頭がオーク(Sageのスキル、リバースオーキッシュがかかった状態になる)
+// setoptionを実行するとき、元々セットされていた値はクリアされます。
+// それぞれの値は加算した値を設定することにより、同時に付属品が付けられます。
+// 例えば、0x38でカートを引いて、鷹を連れたペコ乗りナイトといったものもできます。
+// setoptionでセットされた値はクライアント終了後も記憶されます。
+// [memo]暫定的なので仕様変更の可能性があります。
 //
 //  savepoint "<gatname>",<x>,<y>;
-// �Z�[�u�|�C���g��gatname,x,y�ɐݒ肵�܂�
+// セーブポイントをgatname,x,yに設定します
 //
 // -----
-// *�֐�
+// *関数
 // -----
-// �������߂Ȃǂňȉ��̊֐����g�p�ł��܂��B
+// 条件命令などで以下の関数が使用できます。
 //
 //  rand(<n>[,n2])
-// n�݂̂̏ꍇ�A0����(n-1)�܂ł̐��������_���ɕԂ��܂��B
-// n2���^�����Ă����ꍇ�� n ���� n2 �܂ł̐��������_���ɕԂ��܂�
+// nのみの場合、0から(n-1)までの数をランダムに返します。
+// n2が与えられていた場合は n から n2 までの数をランダムに返します
 //
 //  countitem(<item_id>)
-// �v���C���[�̏�������Aitem_id�Ŏw�肷��A�C�e���̐���Ԃ��܂�
+// プレイヤーの所持する、item_idで指定するアイテムの数を返します
 //
 // [memo]
-// �����_�����[�v�������������ꍇ�A�͈͎��s��script�𗘗p���܂�(npc_warp.txt���Q��)
+// ランダムワープを実装したい場合、範囲実行なscriptを利用します(npc_warp.txtを参照)
 //
 
-// script�̗�:
-prontera,146,203,2	script	�f�o�b�K�[�v��	116,{
+// scriptの例:
+prontera,146,203,2	script	デバッガー要員	116,{
 	cutin "kafra_02",2;
 	if(countitem(515)<10) goto Llesscarrot;
-	mes "[�f�o�b�K�[�v��]";
-	mes "���炠��A�ɂ񂶂���R�����Ă܂��ˁB";
-	mes "�Ƃ������ŁA���������D���Ə���ɂ킽�����F�肵�܂����B";
-	mes "�ɂ񂶂�10�{�ƌ����ł����݂݃w�A�o���h�����������܂��ˁB";
+	mes "[デバッガー要員]";
+	mes "あらあら、にんじんを沢山持ってますね。";
+	mes "という事で、うさうさ好きと勝手にわたしが認定しました。";
+	mes "にんじん10本と交換でうさみみヘアバンドをさしあげますね。";
 	next;
 	if(countitem(515)<10) goto Llesscarrot_err;
 	delitem 515,10;
 	getitem 2214,1;
 	goto Llesscarrot;
 Llesscarrot_err:
-	mes "[�f�o�b�K�[�v��]";
-	mes "����H�ɂ񂶂񂪑���Ȃ��Ȃ��Ă܂��ˁB";
-	mes "�Ƃ������ō���̎��͖����������ɂ��܂��B";
+	mes "[デバッガー要員]";
+	mes "あら？にんじんが足りなくなってますね。";
+	mes "という事で今回の事は無かった事にします。";
 	next;
-// �ʏ�͂�������
+// 通常はここから
 Llesscarrot:
-	mes "[�f�o�b�K�[�v��]";
-	mes "��������Ⴂ�܂��B";
-	mes "�������܂���?";
+	mes "[デバッガー要員]";
+	mes "いらっしゃいませ。";
+	mes "何をしますか?";
 	next;
-	menu "�X�e�[�^�X�|�C���g��200���₷",Lstp,"�X�L���|�C���g��20���₷",Lskill,
-	     "�������~�����ł�",Lzeny,"�ē��̃e�X�g",Lviewpoint,"�]�E����",Ljobchange,"�J�[�g������",Lcart,"��߂�",Lend;
+	menu "ステータスポイントを200増やす",Lstp,"スキルポイントを20増やす",Lskill,
+	     "お金が欲しいです",Lzeny,"案内のテスト",Lviewpoint,"転職する",Ljobchange,"カートをつける",Lcart,"やめる",Lend;
 Lstp:	set StatusPoint,StatusPoint+200;
 	goto Lend;
 Lskill:	set SkillPoint,SkillPoint+20;
@@ -328,15 +343,15 @@ Lzeny:	set Zeny,Zeny+1000;
 	goto Lend;
 Lviewpoint:
 	viewpoint 1,156,360,1,0x0000ff;
-	mes "[�f�o�b�K�[�v��]";
-	mes "�v�����e����";
+	mes "[デバッガー要員]";
+	mes "プロンテラ城";
 	next;
 	viewpoint 2,156,360,1,0x0000ff;
 	viewpoint 1,156,22,2,0x00ff00;
 	viewpoint 1,22,203,3,0x00ff00;
 	viewpoint 1,289,203,4,0x00ff00;
-	mes "[�f�o�b�K�[�v��]";
-	mes "����3�ӏ�����O�ɏo���܂��B";
+	mes "[デバッガー要員]";
+	mes "この3箇所から外に出られます。";
 	next;
 	viewpoint 2,156,22,2,0x00ff00;
 	viewpoint 2,22,203,3,0x00ff00;
@@ -344,28 +359,28 @@ Lviewpoint:
 	goto Lend;
 Ljobchange:
 	cutin "kafra_02",255;
-	mes "[�f�o�b�K�[�v��]";
-	mes "�����ڂ݂̂ł���";
-	mes "�]�E�\�ł��B";
-	mes "�]�E���Ă��A�X�L������";
-	mes "�������̂��ߎg���܂���B";
-	mes "�ǂ̐E�Ƃɓ]�E�����܂���?";
+	mes "[デバッガー要員]";
+	mes "見た目のみですが";
+	mes "転職可能です。";
+	mes "転職しても、スキル等は";
+	mes "未実装のため使えません。";
+	mes "どの職業に転職させますか?";
 	next;
-	menu	"���S��",Lnv,
-		"���m",Lsm,
-		"�}�W�V����",Lmg,
-		"�A�[�`���[",Lac,
-		"�A�R���C�g",Lal,
-		"���l",Lmc,
-		"�V�[�t",Ltf,
-		"�i�C�g",Lkn,
-		"�v���[�X�g",Lpr,
-		"�E�B�U�[�h",Lwz,
-		"�b�艮",Lbs,
-		"�n���^�[",Lht,
-		"�A�T�V��",Las,
-		"���܂���",Lrandom,
-		"��߂�",Ljchcancel;
+	menu	"初心者",Lnv,
+		"剣士",Lsm,
+		"マジシャン",Lmg,
+		"アーチャー",Lac,
+		"アコライト",Lal,
+		"商人",Lmc,
+		"シーフ",Ltf,
+		"ナイト",Lkn,
+		"プリースト",Lpr,
+		"ウィザード",Lwz,
+		"鍛冶屋",Lbs,
+		"ハンター",Lht,
+		"アサシン",Las,
+		"おまかせ",Lrandom,
+		"やめる",Ljchcancel;
 Lnv:	jobchange Job_Novice;	goto Lend;
 Lsm:	jobchange Job_Swordman;	goto Lend;
 Lmg:	jobchange Job_Mage;	goto Lend;
@@ -380,77 +395,77 @@ Lbs:	jobchange Job_Blacksmith;	goto Lend;
 Lht:	jobchange Job_Hunter;	goto Lend;
 Las:	jobchange Job_Assassin;	goto Lend;
 Lrandom:
-	mes "[�f�o�b�K�[�v��]";
-	mes "�ł́c";
+	mes "[デバッガー要員]";
+	mes "では…";
 	set l0,rand(13);
 	jobchange l0;
-	mes "���̐E�ƂŊ撣���Ă��������ˁB";
+	mes "この職業で頑張ってくださいね。";
 	goto Lend;
-Ljchcancel:	mes "����A��߂�̂ł����c";
-	mes "�]�E�����Ƃ���";
-	mes "�C�y�ɐ��������Ă���������";	close;
+Ljchcancel:	mes "あら、やめるのですか…";
+	mes "転職されるときは";
+	mes "気軽に声をかけてくださいね";	close;
 	goto Lend;
 Lcart:
-	mes "[�f�o�b�K�[�v��]";
-	mes "�J�[�g�ł��ˁB";
-	mes "�t���܂����H����Ƃ��O���܂����H";
-	menu "����",LattachC,"�O��",LremoveC;
+	mes "[デバッガー要員]";
+	mes "カートですね。";
+	mes "付けますか？それとも外しますか？";
+	menu "つける",LattachC,"外す",LremoveC;
 LattachC:
-	mes "�͂��A�ǂ����B";
+	mes "はい、どうぞ。";
 	setoption 0x08;
 	goto Lend;
 LremoveC:
-	mes "�ł́A�O���܂��ˁB";
+	mes "では、外しますね。";
 	setoption 0x00;
 	goto Lend;
 Lend:	cutin "kafra_02",255;
 	close;
 	end;	}
 
-prontera,156,195,4	script	�J�v���E��	112,{
-	mes "[�J�v���E��]";
-	mes "��������Ⴂ�܂�";
-	mes "������ł́A���݂�Athena�̏󋵂�����������܂��B";
+prontera,156,195,4	script	カプラ職員	112,{
+	mes "[カプラ職員]";
+	mes "いらっしゃいませ";
+	mes "こちらでは、現在のAthenaの状況を説明いたします。";
 	next;
-	menu "����",Lcont,"�����Ȃ�",Lend;
-Lcont:	mes "[�J�v���E��]";
-	mes "Athena�ł�RO�G�~���I�J���X��35����̃v���O�������x�[�X�Ƃ��ĊJ�����͂��܂�܂���"
-	mes "�r���A�\�[�X�̕��������}���A���݂̏�ԂɂȂ��Ă��܂��B";
+	menu "聞く",Lcont,"聞かない",Lend;
+Lcont:	mes "[カプラ職員]";
+	mes "AthenaではROエミュ鯖開発スレ35さんのプログラムをベースとして開発がはじまりました"
+	mes "途中、ソースの分割化が図られ、現在の状態になっています。";
 	next;
-	mes "���ݎ�������Ă�����̂͂��̒ʂ�ł�";
-	mes "�E�}�b�v�Ԉړ��|�C���g";
-	mes "�E���lNPC";
-	mes "�E��bNPC�@(��������,���x���W�����v�A�����_���ϐ��A�A�C�e���󂯓n���A�ϐ��Q�ƁAcutin��";
-	mes "�E�ϐ��ۑ�";
-	mes "�E���A�C�e��";
-	mes "�E�`���b�g";
-	mes "�E�퓬(����)";
-	mes "�EEpisode 4�ȍ~�^�C�v�̃p�P�b�g�d�l";
-	mes "�E�o���l,lv�㏸";
-	mes "�E�A�C�e���̗��p�̈ꕔ";
+	mes "現在実装されているものはつぎの通りです";
+	mes "・マップ間移動ポイント";
+	mes "・商人NPC";
+	mes "・会話NPC　(条件分岐,ラベルジャンプ、ランダム変数、アイテム受け渡し、変数参照、cutin等";
+	mes "・変数保存";
+	mes "・床アイテム";
+	mes "・チャット";
+	mes "・戦闘(殴り)";
+	mes "・Episode 4以降タイプのパケット仕様";
+	mes "・経験値,lv上昇";
+	mes "・アイテムの利用の一部";
 	next;
-	mes "[�J�v���E��]";
-	mes "�t�Ɍ����������Ă��Ȃ����̂͑�̈ȉ��̒ʂ�ł��B";
-	mes "�E�X�L��";
-	mes "�E�����ɂ��p�����[�^�ω�";
-	mes "�E�p�[�e�B/�M���h";
-	mes "�E�y�b�g";
-	mes "�E���B/����쐬";
+	mes "[カプラ職員]";
+	mes "逆に現状実装されていないものは大体以下の通りです。";
+	mes "・スキル";
+	mes "・装備によるパラメータ変化";
+	mes "・パーティ/ギルド";
+	mes "・ペット";
+	mes "・精錬/武器作成";
 	next;
-	mes "[�J�v���E��]";
-	mes "����ƒ��ӓ_�ł����AAthena�ł�ID�̍Ō��_F�܂���_M��t����ƐV�KID�����s�����d�g�ɂȂ��Ă��܂����A";
-Lcont2:	mes "2��ڈȍ~��_F,_M��t���Ă���ƃp�X���[�h�G���[�����ɂȂ�܂��B";
+	mes "[カプラ職員]";
+	mes "それと注意点ですが、AthenaではIDの最後に_Fまたは_Mを付けると新規IDが発行される仕組になっていますが、";
+Lcont2:	mes "2回目以降は_F,_Mを付けているとパスワードエラー扱いになります。";
 	next;
-	mes "[�J�v���E��]";
-	mes "�Ⴆ�΁A�����ID:^ff0000hoge^0000ff_F^000000�@pass:0123��login�����ꍇ�Ahoge��ID�Ƃ��ēo�^����܂��B";
-	mes "����āA2��ڈȍ~��ID:^ff0000hoge^000000�@pass:0123�Ƃ���login���ĉ������B";
+	mes "[カプラ職員]";
+	mes "例えば、初回にID:^ff0000hoge^0000ff_F^000000　pass:0123とloginした場合、hogeがIDとして登録されます。";
+	mes "よって、2回目以降はID:^ff0000hoge^000000　pass:0123としてloginして下さい。";
 	next;
-	mes "[�J�v���E��]";
-	mes "keep�Ƀ`�F�b�N�����Ă���ꍇ�A�኱�s�ւȎd�l�ł����A�ȏ�̓_����낵�����肢���܂��B";
+	mes "[カプラ職員]";
+	mes "keepにチェックを入れている場合、若干不便な仕様ですが、以上の点をよろしくお願いします。";
 	close;
-Lend:	mes "[�J�v���E��]";
-	mes "�ł͒��ӓ_�̂݁A���������Ē����܂��B";
+Lend:	mes "[カプラ職員]";
+	mes "では注意点のみ、説明させて頂きます。";
 	next;
-	mes "[�J�v���E��]";
-	mes "Athena�ł�ID�̍Ō��_F�܂���_M��t����ƐV�KID�����s�����d�g�ɂȂ��Ă��܂����A";
+	mes "[カプラ職員]";
+	mes "AthenaではIDの最後に_Fまたは_Mを付けると新規IDが発行される仕組になっていますが、";
 	goto Lcont2;	}

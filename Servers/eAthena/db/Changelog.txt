@@ -1,4 +1,24 @@
-========================= Items that need fixing/implementing
+
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                                 ChangeLog                                |
+// \_________________________________________________________________________/
+
+/*
+
+=========================
+Items that need fixing/implementing
 	2653 Sacrifice Ring:		NO INFO. Item not implemented....
 				[Vicious] On your death it breaks (BS can fix it), you drop all Equipment (equipped, even the ring).
 					  And revive with 1 HP / 1 SP at the place of your death.
@@ -4454,3 +4474,4 @@
 2004/11/14
 	- Fixed Golden Thief Bug Mode!(+detects hidden) [Lupus]
 	
+*/
