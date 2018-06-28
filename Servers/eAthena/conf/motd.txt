@@ -1,2 +1,18 @@
+ //  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                      eAthena message of the day file                     |
+// \_________________________________________________________________________/
+
 // Internal default is limited to 128 lines.  If you need more, you will need to modify the MOTD_LINE_SIZE definition in pc.c
 Welcome to eAthena SVN Version! Enjoy! Please report any bugs you find.
