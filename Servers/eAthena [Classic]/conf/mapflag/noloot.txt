@@ -12,7 +12,7 @@
 // |--------------------------------------------------------------------------|
 // |                       eAmod - eAthena Modifications                      |
 // |                   Mapflag from a script in the NPC folder                |
-// |                             Made by Epoque                               |
+// |                             Created by Epoque                            |
 // \_________________________________________________________________________/
 
 
