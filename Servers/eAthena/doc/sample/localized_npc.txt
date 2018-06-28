@@ -1,39 +1,51 @@
-//===== eAthena Script ======================================= 
-//= Sample localized NPC
-//===== By: ================================================== 
-//= eAthena Dev Team
-//===== Current Version: ===================================== 
-//= v1.0
-//===== Compatible With: ===================================== 
-//= eAthena with setd, getd
-//===== Description: ========================================= 
-//= Example of a localized NPC.
-//= 
-//= There are many ways to do it, this is just one option.
-//= The player has a global account variable ##_langid_ that 
-//= identifies the it's language.
-//= 
-//= The default language should always have langid 0.
-//= When a message isn't found for the player's langid 
-//= (strlen = 0), the message from langid 0 is used instead.
-//= 
-//= Each message is identified by a string that must only 
-//= contain valid variable name characters.
-//= 
-//= void setlang(int langid)
-//= - sets the player's language
-//= int getlang(void)
-//= - returns the player's language
-//= void setmes2(string name,int langid,string text)
-//= - sets the localized text for name
-//= string getmes2(string name,int langid)
-//= - returns the localized text of name
-//= void mes2(string name)
-//= - displays the localized text of name
-//= 
-//===== Additional Comments: ================================= 
-//= To use this globally, just put the functions in Global_Functions.txt
-//============================================================ 
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: Sample localized NPC                                        |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Example of a localized NPC.                                 |
+// |                                                                          |
+// | There are many ways to do it, this is just one option.                   |
+// | The player has a global account variable ##_langid_ that                 |
+// | identifies the it's language.                                            |
+// |                                                                          |
+// | The default language should always have langid 0.                        |
+// | When a message isn't found for the player's langid                       |
+// | (strlen = 0), the message from langid 0 is used instead.                 |
+// |                                                                          |
+// | Each message is identified by a string that must only                    |
+// | contain valid variable name characters.                                  |
+// |                                                                          |
+// | void setlang(int langid)                                                 |
+// | - sets the player's language                                             |
+// | int getlang(void)                                                        |
+// | - returns the player's language                                          |
+// | void setmes2(string name,int langid,string text)                         |
+// | - sets the localized text for name                                       |
+// | string getmes2(string name,int langid)                                   |
+// | - returns the localized text of name                                     |
+// | void mes2(string name)                                                   |
+// | - displays the localized text of name                                    |
+// |--------------------------------------------------------------------------|
+// | Additional Comments:                                                     |
+// | To use this globally, just put the functions in Global_Functions.txt     |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Initial Script Developed                                           |
+// \_________________________________________________________________________/
 
 //////////////////////////////////////////////////////////////
 /// Sets the language of the player account.
@@ -146,6 +158,6 @@ OnInterIfInitOnce:
 	callfunc "setmes2", "LNPC_lang", 0, "EN";
 	callfunc "setmes2", "LNPC_lang", 1, "PT";
 	callfunc "setmes2", "LNPC_text", 0, "Something in english";
-	callfunc "setmes2", "LNPC_text", 1, "Algo em português";
+	callfunc "setmes2", "LNPC_text", 1, "Algo em portuguÃªs";
 	end;
 }
