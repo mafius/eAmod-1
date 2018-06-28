@@ -1,11 +1,27 @@
-//===== eAthena Script =======================================
-//= Map flags that disable gaining EXP
-//===== By: ==================================================
-//= eAthena Dev Team
-//= 1.2 [Lupus] 1.3 [massdriller] 1.4 Lupus 1.5 Lorky
-//= 1.6 Added Lighthalzen (due to quests) [Lupus]
-//= 1.7 Commented out entries. (Quests are official) [L0ne_W0lf]
-//============================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                     Map flags that disable gaining EXP                   |
+// |                        Made by eAthena Dev Team                          |
+// |                             --- Version: ---                             |
+// |                              v1.2 [Lupus]                                |
+// |                           v1.3 [massdriller]                             |
+// |                              v1.4 [Lupus]                                |
+// |                              v1.5 [Lorky]                                |
+// |                v1.6 Added Lighthalzen (due to quests) [Lupus]            |
+// |        v1.7 Commented out entries. (Quests are official) [L0ne_W0lf]     |
+// \_________________________________________________________________________/
+
 
 // Location for Job's Quests
 //job_thief1	mapflag	noexp

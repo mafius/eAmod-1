@@ -1,14 +1,21 @@
-//===== eAthena Script =======================================
-//= Map Flags for maps where the night is visible.
-//===== By: ==================================================
-//= eAthena Dev Team
-//===== Current Version: =====================================
-//= 1.0 [Skotlex]
-//===== Compatible With: =====================================
-//=
-//===== Description: =========================================
-//= 'nightenabled' specifies which maps can display "night".
-//============================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |              Map Flags for Jails ( ATCommand @jail <player> )            |
+// |                        Made by eAthena Dev Team                          |
+// |                          --- Description: ---                            |
+// |           'nightenabled' specifies which maps can display "night".       |
+// \_________________________________________________________________________/
 
 alb2trea	mapflag	nightenabled
 alberta	mapflag	nightenabled
