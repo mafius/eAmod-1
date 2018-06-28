@@ -1,3 +1,21 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                                 ChangeLog                                |
+// \_________________________________________________________________________/
+
+/*
+
 Date	Added
 
 2011/08/21
@@ -555,3 +573,5 @@ Date	Added
 	* Added config setting party_update_interval so you can specify how often
 	  the party-mate minidots should be updated (defaults to 1 sec). [Skotlex]
 	* Removed a bunch of broken comments in skill.c [Skotlex]
+
+*/
