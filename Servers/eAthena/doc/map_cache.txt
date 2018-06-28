@@ -22,7 +22,7 @@
 // | Changelog:                                                               |
 // | 0.1 - Short howto for the initial builder version [DracoRPG]             |
 // | 1.0 - Complete manual covering the improved version [DracoRPG]           |
-// | 1.0 - Improved the header. [shellTeMP]                   |
+// | 1.0 - Improved the header. [shellTeMP]                                   |
 // \_________________________________________________________________________/
 
 /*
