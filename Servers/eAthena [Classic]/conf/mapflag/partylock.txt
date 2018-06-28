@@ -10,12 +10,17 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                  Map flag that disable party modification.               |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |                           Currently not used.                            |
+// | Script Name: Party Lock                                                  |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description:  Map flag that disable party modification.                  |
+// | *Currently not used.                                                     |
 // \_________________________________________________________________________/
+
+
 
 
 //Sealed Shrine ==================
