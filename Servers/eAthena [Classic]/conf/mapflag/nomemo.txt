@@ -1,14 +1,27 @@
-//===== eAthena Script =======================================
-//= Map flags that disable warp portal memory
-//===== By: ==================================================
-//= eAthena Dev Team
-//= 1.6a added up to Hugel maps. [Lupus]
-//= 1.6b Added job_knt map. [Samuray22]
-//= 1.7 Added all novice maps. [L0ne_W0lf]
-//= 1.8 Added nameless_i location [Lupus]
-//= 1.8a Removed duplicate gef_cas nomemo mapflags [Yommy]
-//= 1.8b Removed duplicate arug_dun01 & schg_dun01 entries [Gepard]
-//===== Current Version: =====================================
+
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                  Map flags that disable warp portal memory               |
+// |                        Made by eAthena Dev Team                          |
+// |                             --- Version: ---                             |
+// |                     v1.6a added up to Hugel maps. [Lupus]                |
+// |                     v1.6b Added job_knt map. [Samuray22]                 |
+// |                   v1.7 Added all novice maps. [L0ne_W0lf]                |
+// |                   v1.8 Added nameless_i location [Lupus]                 |
+// |           v1.8a Removed duplicate gef_cas nomemo mapflags [Yommy]        |  
+// |      v1.8b Removed duplicate arug_dun01 & schg_dun01 entries [Gepard]    |
+// \_________________________________________________________________________/
 
 
 // Towns  ====================
