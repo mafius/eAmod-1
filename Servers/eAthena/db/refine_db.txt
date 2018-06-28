@@ -1,3 +1,19 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            eAthena database file                         |
+// \_________________________________________________________________________/
+
 // Database for upgrading items.
 // Stats per level for safe upgrade, Stats per level after safe limit, Safe level limit, Lv.1 %, Lv 2 %, Lv.3%, ect...
 // Armor defense is done in percentage (ie 70 = .7 def)
