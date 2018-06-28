@@ -10,12 +10,16 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                        Map flags that enable pvp                         |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |                         pvp: Turns on PvP mode                           |
+// | Script Name: PVP                                                         |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that enable pvp.                                  |
+// | pvp: Turns on PvP mode                                                   |
 // \_________________________________________________________________________/
+
 
 
 // PvP ========================
