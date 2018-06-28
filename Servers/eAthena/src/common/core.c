@@ -222,21 +222,20 @@ static void display_title(void)
 {
 	//ClearScreen(); // clear screen and go up/left (0, 0 position in text)
 	ShowMessage("\n");
-	ShowMessage(""CL_WTBL"          (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BT_YELLOW"            eAthena Development Team presents            "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"       ______  __    __                                  "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"      /\\  _  \\/\\ \\__/\\ \\                                 "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"    __\\ \\ \\_\\ \\ \\ ,_\\ \\ \\___      __    ___      __      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"  /'__`\\ \\  __ \\ \\ \\/\\ \\  _ `\\  /'__`\\/' _ `\\  /'__`\\    "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD" /\\  __/\\ \\ \\/\\ \\ \\ \\_\\ \\ \\ \\ \\/\\  __//\\ \\/\\ \\/\\ \\_\\.\\_  "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD" \\ \\____\\\\ \\_\\ \\_\\ \\__\\\\ \\_\\ \\_\\ \\____\\ \\_\\ \\_\\ \\__/.\\_\\ "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"  \\/____/ \\/_/\\/_/\\/__/ \\/_/\\/_/\\/____/\\/_/\\/_/\\/__/\\/_/ "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"   _   _   _   _   _   _   _     _   _   _   _   _   _   "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"  / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\  "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD" ( e | n | g | l | i | s | h ) ( A | t | h | e | n | a ) "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/  "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"          ("CL_BOLD"                                                         "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_WTBL"          (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                         "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                               eAthena Modifications                      "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                          "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                           _                                              "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                          / \\                         _                   "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                  ___    / _ \\   _ __ ___   ____  ___| |                  "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                 / _ \\  / /_\\ \\ | '_ ` _ \\./  _ \\/  _  |                  "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                |  __/ /  ___  \\| | | | | |  (_) ) (_) |                  "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                 \\___|/__/   \\__\\_| |_| |_|\\____/\\_____/                  "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                          "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                          eAmod - eAthena Modifications                   "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                   by Zephyrus, Karens, shellTeMP, J3MK1 and Lance        "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                          "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                          "CL_CLL""CL_NORMAL"\n");
 
 	ShowInfo("SVN Revision: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
 }
