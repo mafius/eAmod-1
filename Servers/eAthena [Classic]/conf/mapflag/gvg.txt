@@ -1,17 +1,31 @@
-//===== eAthena Script =======================================
-//= GvG On Map Flags
-//===== By: ==================================================
-//= eAthena Dev Team
-//===== Current Version: =====================================
-//= 1.2
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                           GvG On Map Flags                               |
+// |                        Made by eAthena Dev Team                          |
+// |                          --- Description: ---                            |
+// |             gvg: Turns on GvG mode (same as PvP except Guilds are        |
+// |                          automatically allied)                           |
+// |                  gvg_castle: Describes castle maps for WoE.              |
+// |                             --- Version: ---                             |
+// |                      v1.1 Added Novice Guild Castles                     |
+// |              v1.2 Updated with new meanings of gvg and gvg_castle        |
+// \_________________________________________________________________________/
+
 //===== Description: =========================================
 //= gvg: Turns on GvG mode (same as PvP except Guilds are
 //=      automatically allied)
 //= gvg_castle: Describes castle maps for WoE.
-//===== Additional Comments: =================================
-//= 1.2 Updated with new meanings of gvg and gvg_castle
-//= 1.1 Added Novice Guild Castles
-//============================================================
 
 // GvG Arenas =============
 guild_vs1	mapflag	gvg
