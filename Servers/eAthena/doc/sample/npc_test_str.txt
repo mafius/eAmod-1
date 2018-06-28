@@ -1,15 +1,31 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                               eAthena samples                            |
+// \_________________________________________________________________________/
+
 // Some Test Example
 prontera,164,188,1	script	sTrInG2compare	112,{
 	set @str$, "StRiNg1";
 	mes "sTrInG2 isn't equal to " + @str$ ;
 	mes "Our Var is equal to " + @str$ + " ...OK?";
 	next;
-	mes "Comparision eqOK：" + (@str$=="StRiNg1");
-	mes "Comparision eqNG：" + (@str$=="sTrInG2");
-	mes "Comparision neOK：" + (@str$!="00000");
-	mes "Comparision neNG：" + (@str$!="StRiNg1");
-	mes "Comparision gtOK：" + ("aab">"aaa");
-	mes "Comparision ltNG：" + ("aab"<"aaa");
+	mes "Comparision eqOKﾂ：" + (@str$=="StRiNg1");
+	mes "Comparision eqNGﾂ：" + (@str$=="sTrInG2");
+	mes "Comparision neOKﾂ：" + (@str$!="00000");
+	mes "Comparision neNGﾂ：" + (@str$!="StRiNg1");
+	mes "Comparision gtOKﾂ：" + ("aab">"aaa");
+	mes "Comparision ltNGﾂ：" + ("aab"<"aaa");
 	next;
 	input @str2$;
 	mes "You've entered '" + @str2$ + "' string.";
