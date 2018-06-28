@@ -16,7 +16,7 @@
 
 // (c) 2008 - 2018 eAmod Project;
 //  - eamodifications@gmail.com
-//
+
 // This file is NOT public - you are not allowed to distribute it.
 // Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
 // eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
