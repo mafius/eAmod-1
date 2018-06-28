@@ -1,27 +1,40 @@
-//===== Athena Doc ========================================
-//= Client Effects List
-//===== By ================================================
-//= Valaris, Spira, Au{R}oN, Tharis, HiddenDragon
-//===== Version ===========================================
-//= 2.3
-//=========================================================
-//= 1.0 - Formatted to the standard
-//= 1.1 - New Effects, up to 2007/05/07 Sakexe. [Au{R}oN]
-//= 1.2 - New Effects, up to 2007/07/12 Sakexe. [Au{R}oN]
-//= 1.3 - New Effects, up to 2007/08/01 Sakexe. [Au{R}oN]
-//= 1.4 - New Effects, up to 2007/09/11 Sakexe. [Au{R}oN]
-//= 1.5 - New Effects, up to 2007/10/02 Sakexe. [Au{R}oN]
-//= 1.6 - New Effects, up to 2008/01/02 Sakexe. [Au{R}oN]
-//= 1.7 - New Effects, up to 2008/03/26 Sakexe. [Au{R}oN]
-//= 1.8 - Corrected several effect descriptions. [L0ne_W0lf]
-//= 1.9 - New Effects, up to 2008/05/28 Sakexe. [Au{R}oN]
-//= 2.0 - New Effects, up to 2008/07/15 Sakexe. [Au{R}oN]
-//= 2.1 - New Effects, up to 2008/08/06a Sakexe. [Au{R}oN]
-//= 2.2 - New Effects, up to 2009/01/21a Sakexe. [Au{R}oN]
-//= 2.3 - New Effects, up to 2010/08/04b RagexeRE. [Ai4rei]
-//===== Description =======================================
-//= A list of client-side effects sorted by their ID
-//=========================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: Client Effects List                                         |
+// |--------------------------------------------------------------------------|
+// | Created by: Valaris, Spira, Au{R}oN, Tharis, HiddenDragon                |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: A list of client-side effects sorted by their ID            |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Formatted to the standard                                          |
+// | 1.1 - New Effects, up to 2007/05/07 Sakexe. [Au{R}oN]                    |
+// | 1.2 - New Effects, up to 2007/07/12 Sakexe. [Au{R}oN]                    |
+// | 1.3 - New Effects, up to 2007/08/01 Sakexe. [Au{R}oN]                    |
+// | 1.4 - New Effects, up to 2007/09/11 Sakexe. [Au{R}oN]                    |
+// | 1.5 - New Effects, up to 2007/10/02 Sakexe. [Au{R}oN]                    |
+// | 1.6 - New Effects, up to 2008/01/02 Sakexe. [Au{R}oN]                    |
+// | 1.7 - New Effects, up to 2008/03/26 Sakexe. [Au{R}oN]                    |
+// | 1.8 - Corrected several effect descriptions. [L0ne_W0lf]                 |
+// | 1.9 - New Effects, up to 2008/05/28 Sakexe. [Au{R}oN]                    |
+// | 2.0 - New Effects, up to 2008/07/15 Sakexe. [Au{R}oN]                    |
+// | 2.1 - New Effects, up to 2008/08/06a Sakexe. [Au{R}oN]                   |
+// | 2.2 - New Effects, up to 2009/01/21a Sakexe. [Au{R}oN]                   |
+// | 2.3 - New Effects, up to 2010/08/04b RagexeRE. [Ai4rei]                  |
+// | 2.4 - Improved the header. [shellTeMP]                                   |
+// \_________________________________________________________________________/
 
 The following is a compiled list of visual and sound effects which the client
 can produce when receiving a packet with id 0x1f3 (01f3 <ID>.l <type>.l).
@@ -852,7 +865,7 @@ number	description
 930.	Random enlarged spear weapon falling onto the character.
 931.	(Nothing)
 932.	Fireflies vanishing from character feet.
-933.	Client Crash (sprite\ÀÌÆÑÆ®\chareffect.spr)
+933.	Client Crash (sprite\Ã€ÃŒÃ†Ã‘Ã†Â®\chareffect.spr)
 934.	Land protector aura.
 935.	White comet flying out of the character.
 936.	Four copies of the character flying away with a red aura.
