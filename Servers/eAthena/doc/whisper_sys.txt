@@ -1,6 +1,30 @@
-Adapted from: http://eathena.deltaanime.net/board/index.php?showtopic=42659
-Copied by: Massdriller
-Post made by: lordalfa
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: eAthena Whisper System                                      |
+// |--------------------------------------------------------------------------|
+// | Created by: Massdriller & lordalfa                                       |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: allow you to whisper your NPCS and let them execute some    | 
+// | commands.                                                                |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Standardized doc file [Massdriller & lordalfa]                     |
+// | 1.1 - Improved the header. [shellTeMP]                                   |
+// \_________________________________________________________________________/
+ 
+/*
 
 As requested by MassDriller, I made this piece of code to allow you to whisper your NPCS and let them execute some commands for you.
 
@@ -27,3 +51,5 @@ In the example above:
 so you might prepare the NPC Label to process these Variables and give Executing Character a Feedback ( via dispbottom "message" for example )
 
 Now , it's allowed to use up to 10 commands in a Row, separed by "#" character, they will be splitted and passed to the NPC Label in their respective variables, for you to process them.
+
+*/
