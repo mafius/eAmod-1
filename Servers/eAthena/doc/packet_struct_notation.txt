@@ -25,7 +25,6 @@
 // \_________________________________________________________________________/
  
  /*
- 
 
 This document specifies how packets are and should be documented, to
 keep packet structure comments consistent in the entire codebase. It
