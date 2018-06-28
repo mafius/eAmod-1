@@ -22,10 +22,6 @@
 // |              v1.2 Updated with new meanings of gvg and gvg_castle        |
 // \_________________________________________________________________________/
 
-//===== Description: =========================================
-//= gvg: Turns on GvG mode (same as PvP except Guilds are
-//=      automatically allied)
-//= gvg_castle: Describes castle maps for WoE.
 
 // GvG Arenas =============
 guild_vs1	mapflag	gvg
