@@ -10,12 +10,17 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |              Map Flags for Jails ( ATCommand @jail <player> )            |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |           'nightenabled' specifies which maps can display "night".       |
+// | Script Name: Night                                                       |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description:                                                             |
+// | Map Flags for Jails ( ATCommand @jail <player> )                         |
+// |'nightenabled' specifies which maps can display "night".                  |
 // \_________________________________________________________________________/
+
 
 alb2trea	mapflag	nightenabled
 alberta	mapflag	nightenabled

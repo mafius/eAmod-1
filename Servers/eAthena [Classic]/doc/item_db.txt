@@ -1,7 +1,31 @@
-(FIXME: Someone give this file better formatting)
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: eAthena Item Bonuses List                                   |
+// |--------------------------------------------------------------------------|
+// | Created by: Developers                                                   |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Explanation of the item_db.txt file and structure.          |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Standardized doc file, someone give this file a                    |
+// | better formatting [eAthena Developers Staff]                             |
+// | 1.1 - Improved the header. [shellTeMP]                                   |
+// | 1.2 - Fixed the file structure. [shellTeMP]                              |
+// \_________________________________________________________________________/
 
-- Explanation of the item_db.txt file and structure.
-
+/*
 ID: Item id
 
 AegisName: Server name to reference the item in scripts and lookups,
@@ -145,3 +169,4 @@ OnEquip_Script: Script to execute when the item is equipped.
 
 OnUnequip_Script: Script to execute when the item is unequipped.
                   Warning, not all item bonuses will work here as expected.
+*/

@@ -12,7 +12,7 @@
 // |--------------------------------------------------------------------------|
 // |                       eAmod - eAthena Modifications                      |
 // |          Map flags that allow players to drop items/equips on death      |
-// |                        Made by eAthena Dev Team                          |
+// |                       Created by eAthena Dev Team                        |
 // \_________________________________________________________________________/
 
 

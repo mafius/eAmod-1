@@ -10,13 +10,17 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                  Map flags that disable use of fly wings                 |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |                   For disabling Butterfly wings use noreturn             |
-// |                             --- Version: ---                             |
-// |                              v1.6a [Lupus]                               |
+// | Script Name: No Teleport                                                 |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that disable use of fly wings.                    |
+// | *For disabling Butterfly wings use noreturn                              |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.6a [Lupus]                                                             |
 // \_________________________________________________________________________/
 
 

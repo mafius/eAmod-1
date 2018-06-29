@@ -1,4 +1,3 @@
-
 //  __________________________________________________________________________
 // /                                                                          \
 // |                           _                                              |
@@ -11,14 +10,20 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |               Map flags that disable exp. penalty on death.              |
-// |                        Made by eAthena Dev Team                          |
-// |                             --- Version: ---                             |
-// |                               v1.2 [Lupus]                               |
-// |                     1.3 Added all novice maps. [L0ne_W0lf]               |
-// |                   1.4 Removed Nightmare PVP maps. [L0ne_W0lf]            |
+// | Script Name: No Penalty                                                  |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that disable exp. penalty on death.               |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.2 [Lupus]                                                              |
+// | 1.3 Added all novice maps. [L0ne_W0lf]                                   |
+// | 1.4 Removed Nightmare PVP maps. [L0ne_W0lf]                              |
 // \_________________________________________________________________________/
+
 
 
 // Towns ====================>\\

@@ -10,17 +10,22 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                           GvG On Map Flags                               |
-// |                        Made by eAthena Dev Team                          |
-// |                          --- Description: ---                            |
-// |             gvg: Turns on GvG mode (same as PvP except Guilds are        |
-// |                          automatically allied)                           |
-// |                  gvg_castle: Describes castle maps for WoE.              |
-// |                             --- Version: ---                             |
-// |                      v1.1 Added Novice Guild Castles                     |
-// |              v1.2 Updated with new meanings of gvg and gvg_castle        |
+// | Script Name: GVG                                                         |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description:                                                             |
+// | gvg: Turns on GvG mode (same as PvP except Guilds are automatically      |
+// | allied)                                                                  |
+// | gvg_castle: Describes castle maps for WoE.                               |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.1 Added Novice Guild Castles                                           |
+// | 1.2 Updated with new meanings of gvg and gvg_castle                      |
 // \_________________________________________________________________________/
+
 
 
 // GvG Arenas =============

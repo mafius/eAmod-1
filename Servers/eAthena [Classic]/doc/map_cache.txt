@@ -1,16 +1,29 @@
-//===== Athena Doc ========================================
-//= eAthena Map Cache Builder and Format Documentation
-//===== By ================================================
-//= DracoRPG
-//===== Version ===========================================
-//= 1.0
-//=========================================================
-//= 0.1 - Short howto for the initial builder version
-//= 1.0 - Complete manual covering the improved version
-//===== Description =======================================
-//= A complete manual for eAthena's map cache generator
-//= as well as a reference on the map cache format used
-//=========================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: eAthena Map Cache Builder and Format Documentation          |
+// |--------------------------------------------------------------------------|
+// | Created by: DracoRPG                                                     |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: A complete manual for eAthena's map cache generator as well |
+// | as a reference on the map cache format used.                             |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 0.1 - Short howto for the initial builder version [DracoRPG]             |
+// | 1.0 - Complete manual covering the improved version [DracoRPG]           |
+// | 1.0 - Improved the header. [shellTeMP]                                   |
+// \_________________________________________________________________________/
 
 Preface:
 -------------------------------------------------------------------------------
