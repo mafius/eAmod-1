@@ -1,6 +1,6 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
-
+ 
 #include "../common/mmo.h"
 #include "../common/version.h"
 #include "../common/showmsg.h"
