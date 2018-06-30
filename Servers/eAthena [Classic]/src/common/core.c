@@ -1,6 +1,6 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
- 
+
 #include "../common/mmo.h"
 #include "../common/version.h"
 #include "../common/showmsg.h"
@@ -185,7 +185,7 @@ static void display_title(void)
 {
 	//ClearScreen(); // clear screen and go up/left (0, 0 position in text)
 	ShowMessage("\n");
-		ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                         "CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                         "CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                               eAthena Modifications                      "CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                          "CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                           _                                              "CL_CLL""CL_NORMAL"\n");
@@ -202,6 +202,7 @@ static void display_title(void)
 
 	ShowInfo("SVN Revision: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
 }
+
 
 // Warning if logged in as superuser (root)
 void usercheck(void)
