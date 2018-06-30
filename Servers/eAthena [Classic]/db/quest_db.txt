@@ -1,3 +1,19 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            eAthena database file                         |
+// \_________________________________________________________________________/
+
 // Quest Database
 //
 // Structure of Database :
@@ -1797,7 +1813,7 @@
 60354,0,0,0,0,0,0,0,"Bathroom Ghost"
 60355,0,0,0,0,0,0,0,"Bathroom Ghost"
 
-// -- Ep13_3_invite , Ep13_3_secret ?!ÇÇ1Oµa 13.3 »ÇAÄAÇ AEA», on1?AÓ1«
+// -- Ep13_3_invite , Ep13_3_secret ?!Ã‡Ã‡1OÂµa 13.3 Â»Ã‡AÃ„AÃ‡ AEAÂ», on1?AÃ“1Â«
 7182,0,0,0,0,0,0,0,"Sapha's Visit"
 7183,0,0,0,0,0,0,0,"Invitation from Sapha"
 7184,0,0,0,0,0,0,0,"To El Dicastes!"
@@ -1820,7 +1836,7 @@
 7201,0,0,0,0,0,0,0,"Removing traces"
 7202,0,0,0,0,0,0,0,"Secret order from Doha - Collect proof"
 7203,0,0,0,0,0,0,0,"Secret order from Doha - Final Report"
-// -- Ep13.3 ?!ÇÇ1Oµa 13.3
+// -- Ep13.3 ?!Ã‡Ã‡1OÂµa 13.3
 11159,0,0,0,0,0,0,0,"Story of Brian"
 11160,0,0,0,0,0,0,0,"Story of John"
 11161,0,0,0,0,0,0,0,"Story of Tyler"
@@ -1839,7 +1855,7 @@
 11174,0,0,0,0,0,0,0,"Supply Shortage"
 11175,7200,0,0,0,0,0,0,"Supply Shortage"
 11176,0,0,0,0,0,0,0,"For my friends"
-// -- Ep. 13.3 --- AIAIÄu1oA® Daily Quest
+// -- Ep. 13.3 --- AIAIÃ„u1oAÂ® Daily Quest
 12099,0,2014,10,0,0,0,0,"Remove Root Cause"
 12100,0,1994,12,0,0,0,0,"Violent Winged Insect"
 12101,0,2013,5,0,0,0,0,"Work Interference"
