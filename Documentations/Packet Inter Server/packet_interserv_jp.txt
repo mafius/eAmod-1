@@ -2765,9 +2765,9 @@ drop_rate
 	指数：0.2
 	len：6
 	パラメータ：
-						- cmd：識別パケット（0x2b2d）
+			- cmd：識別パケット（0x2b2d）
 	desc：
-						- bonus_scriptデータをリクエストする
+			- bonus_scriptデータをリクエストする
 
 0x2b2e
 	タイプ：ZA
@@ -2775,9 +2775,9 @@ drop_rate
 	インデックス：0,2,4,8
 	len：変数：10 + MAX_PC_BONUS_SCRIPT * bonus_script_data
 	パラメータ：
-						- cmd：識別パッケージ（0x2b2e）
+			- cmd：識別パッケージ（0x2b2e）
 	len
-						- char_id
+			- char_id
 	カウント
 	desc：
 						- bonus_scriptデータをテーブルに保存します
@@ -2788,7 +2788,7 @@ drop_rate
 	指数：0.2
 	len：変数：2 + len
 	パラメータ：
-						- cmd：識別パック（0x3008）
-						- buf
+			- cmd：識別パック（0x3008）
+			- buf
 	desc：
-						- chrif_send_report
+			- chrif_send_report
