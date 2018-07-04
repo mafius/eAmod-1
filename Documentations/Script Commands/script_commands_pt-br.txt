@@ -1,274 +1,274 @@
-﻿//===== rAthena Documentation ================================
+﻿//===== Documentação rAthena ================================
 //= rAthena Script Commands
-//===== By: ==================================================
+//===== Por: ==================================================
 //= rAthena Dev Team
-//===== Last Updated: ========================================
-//= 20140313
-//===== Description: =========================================
-//= A reference manual for the rAthena scripting language.
-//= Commands are sorted depending on their functionality.
+//===== Última Atualização: ========================================
+//= 20180703
+//===== Descrição: =========================================
+//= Um manual de referência para a linguagem de script rAthena.
+//= Os comandos são classificados dependendo de sua funcionalidade.
 //============================================================
 
-This document is a reference manual for all the scripting commands and functions 
-available in rAthena. It is not a simple tutorial. When people tell you to
-"Read The F***ing Manual", they mean this.
+Este documento é um manual de referência para todos os comandos e funções de script
+disponível no rAthena. Não é um tutorial simples. Quando as pessoas dizem para você
+"Leia a P**** Manual", eles querem dizer isso.
 
-The information was mostly acquired through looking up how things actually work 
-in the source code of the server, which was written by many people over time, 
-and lots of them don't speak English and never left any notes - or are otherwise 
-not available for comments. As such, anything written in here might not be 
-correct, it is only correct to the best of our knowledge, which is limited.
+A informação foi principalmente adquirida através da pesquisa de como as coisas 
+realmente funcionam no código-fonte do servidor, este foi escrito por muitas pessoas
+ao longo do tempo, e muitos deles não falam inglês e nunca deixaram anotações - 
+ou não estão disponíveis para comentários. Como tal, qualquer coisa escrita aqui pode 
+não ser correto, é correto apenas para o melhor do nosso conhecimento, que é limitado.
 
-This is not a place to teach you basic programming. This document will not teach 
-you basic programming by itself. It's more of a reference for those who have at 
-least a vague idea of what they want to do and want to know what tools they have 
-available to do it. We've tried to keep it as simple as feasible, but if you 
-don't understand it, getting a clear book on programming in general will help 
-better than yelling around the forum for help.
+Este não é um lugar para ensinar programação básica. Este documento não ensinará
+você básica de programação por si só. É mais uma referência para quem tem
+menos uma vaga idéia do que eles querem fazer e querem saber quais ferramentas eles têm
+disponível para fazê-lo. Nós tentamos mantê-lo o mais simples possível, mas se você
+não entender,  ter um livro claro sobre programação em geral ajudará melhor do que 
+gritar pelo fórum por ajuda.
 
-A little learning never caused anyone's head to explode.
+Um pouco de aprendizado nunca fez a cabeça de ninguém explodir.
 
-Structure
+Estrutura
 ---------
+Os comandos e funções estão listados em nenhuma ordem específica:
 
-The commands and functions are listed in no particular order:
+* Nome do comando e como chamá-lo.
 
-*Name of the command and how to call it.
+Texto descritivo
 
-Descriptive text
+     Exemplo pequeno, se possível. Geralmente será incompleto, existe apenas para
+     dar uma ideia de como funciona na prática.
 
-    Small example if possible. Will usually be incomplete, it's there just to 
-    give you an idea of how it works in practice.
+Para encontrar um comando específico, use Ctrl + F, (ou qualquer tecla que chame uma pesquisa
+função em tudo o que você está lendo isso com) colocar um * seguido pelo comando
+nome, e deve encontrar a descrição do comando para você.
 
-To find a specific command, use Ctrl+F, (or whatever keys call up a search 
-function in whatever you're reading this with) put an * followed by the command 
-name, and it should find the command description for you.
+Se você encontrar alguma coisa omitida, responda. :)
 
-If you find anything omitted, please respond. :)
-
-Syntax
+Sintaxe
 ------
 
-Throughout this document, wherever a command wants an argument, it is given in 
-<angle brackets>. This doesn't mean you should type the angle brackets. :) If an 
-argument of a command is optional, it is given in {curly brackets}. You've 
-doubtlessly seen this convention somewhere, if you didn't, get used to it, 
-that's how big boys do it. If a command can optionally take an unspecified 
-number of arguments, you'll see a list like this:
+Ao longo deste documento, sempre que um comando deseja um argumento, ele é fornecido
+<colchetes angulares>. Isso não significa que você deve digitar os "colchetes angulares". :) Se um
+argumento de um comando é opcional, é dado em {chaves}. Você tem
+sem dúvida vimos essa convenção em algum lugar, se você não se acostumar com isso,
+saiba que os garotos grandes fazem isso. Se um comando pode, opcionalmente, tomar um não especificado
+número de argumentos, você verá uma lista como esta:
 
 command <argument>{,<argument>...<argument>}
 
-This still means they will want to be separated by commas.
+Isso ainda significa que eles vão querer ser separados por vírgulas.
 
-Where a command wants a string, it will be given in "quotes", if it's a number, 
-it will be given without them. Normally, you can put an expression, like a bunch 
-of functions or operators returning a value, in (round brackets) instead of most 
-numbers. Round brackets will not always be required, but they're often a good 
-idea.
+Onde um comando quer uma string, ele será dado em "aspas", se for um número,
+será dado sem eles. Normalmente, você pode colocar uma expressão, como um monte
+de funções ou operadores retornando um valor, em (parênteses) em vez da maioria
+números. Os parênteses redondos nem sempre serão necessários, mas geralmente são bons
+idéia.
 
-Wherever you refer to a map name, it's always 'map name' or 'map name.gat'
-(although the .gat suffix is deprecated). 
+Onde quer que você se refira a um nome de mapa, é sempre 'map name' ou 'map name.gat'
+(embora o sufixo .gat esteja obsoleto).
 
 
-Script loading structure
+Estrutura de carregamento de script
 ------------------------
 
-Scripts are loaded by the map server as referenced in the 'conf/map_athena.conf' 
-configuration file, but in the default configuration, it doesn't load any script 
-files itself. Instead, it loads the file 'npc/scripts_main.conf' which itself 
-contains references to other files. The actual scripts are loaded from txt 
-files, which are linked up like this:
+Scripts são carregados pelo servidor de mapas como referenciado no 'conf / map_athena.conf'
+arquivo de configuração, mas na configuração padrão, ele não carrega nenhum script
+arquivos em si. Em vez disso, ele carrega o arquivo 'npc / scripts_main.conf' que
+contém referências a outros arquivos. Os scripts reais são carregados do txt
+arquivos, que estão ligados como este:
 
 npc: <path to a filename>
 
-Any line like this, invoked, ultimately, by 'map_athena.conf' will load up the 
-script contained in this file, which will make the script available. No file 
-will get loaded twice, to prevent possible errors.
+Qualquer linha como essa, chamada, finalmente, por 'map_athena.conf' carregará o arquivo
+script contido neste arquivo, o que tornará o script disponível. Nenhum arquivo
+será carregado duas vezes, para evitar possíveis erros.
 
-Another configuration file option of relevance is:
+Outra opção de arquivo de configuração de relevância é:
 
 delnpc: <path to a filename>
 
-This will unload a specified script filename from memory, which, while 
-seemingly useless, may sometimes be required.
+Isso descarregará um nome de arquivo de script especificado da memória, que, enquanto
+aparentemente inútil, às vezes pode ser necessário.
 
-Whenever '//' is encountered in a line upon reading, everything beyond this on 
-that line is considered to be a comment and is ignored. This works wherever you 
-place it.
+Sempre que '//' é encontrado em uma linha ao ler, tudo além disso nessa
+linha é considerada um comentário e é ignorada. Isso funciona onde quer que você
+coloque-o.
 
-// This line will be ignored when processing the script.
+// Esta linha será ignorada ao processar o script.
 
-Block comments can also be used, where you can place /* and */ between any text you 
-wish rAthena to ignore.
+Bloquear comentários também pode ser usado, onde você pode colocar / * e * / entre qualquer
+texto que você deseja que o rAthena ignore.
 
-Example:
-/* This text,
- * no matter which new line you start
- * is ignored, until the following 
- * symbol is encountered: */
+Exemplo:
+/* Esse texto,
+  * não importa qual nova linha você comece
+  * é ignorado, até o seguinte
+  * símbolo encontrado: */
  
-The asterisks (*) in front of each line is a personal preference, and is not required.
+Os asteriscos (*) na frente de cada linha são uma preferência pessoal e não são necessários.
 
-Upon loading all the files, the server will execute all the top-level commands 
-in them. No variables exist yet at this point, no commands can be called other 
-than those given in this section. These commands set up the basic server script 
-structure - create NPC objects, spawn monster objects, set map flags, etc. No 
-code is actually executed at this point except them. The top-level commands the 
-scripting are pretty confusing, since they aren't structured like you would 
-expect commands, command name first, but rather, normally start with a map name.
+Ao carregar todos os arquivos, o servidor executará todos os comandos de nível superior
+neles. Nenhuma variável existe ainda neste momento, nenhum comando pode ser chamado além 
+daqueles dados nesta seção. Esses comandos configuram o script básico da estrutura do
+servidor - criar objetos NPC, criar objetos monstro, definir sinalizadores de mapa, etc. 
+Nenhum código é realmente executado neste ponto, exceto eles. Os comandos de nível superior
+do script são bastante confusos, uma vez que eles não são estruturados como você esperaria 
+comandos, nome do comando primeiro, mas, normalmente, começam com um nome de mapa.
 
-What's more confusing about the top-level commands is that most of them use a 
-tab symbol to divide their arguments.
+O que é mais confuso sobre os comandos de nível superior é que a maioria deles usa um
+símbolo de tabulação para dividir seus argumentos.
 
-To prevent problems and confusion, the tab symbols are written as '%TAB%' 
-throughout this document, even though this makes the text a bit less readable. 
-Using an invisible symbol to denote arguments is one of the bad things about 
-this language, but we're stuck with it for now. :)
+Para evitar problemas e confusão, os símbolos de tabulação são gravados como '% TAB%'
+ao longo deste documento, embora isso torne o texto um pouco menos legível.
+Usando um símbolo invisível para denotar argumentos é uma das coisas ruins sobre
+esta linguagem, mas estamos presos a isso por agora. :)
 
-Here is a list of valid top-level commands:
+Aqui está uma lista de comandos válidos de nível superior:
 
-** Set a map flag:
+** Definir um sinalizador de mapa:
 
 <map name>%TAB%mapflag%TAB%<flag>
 
-This will, upon loading, set a specified map flag on a map you like. These are 
-normally in files inside 'npc/mapflag' and are loaded first, so by the time the 
-server's up, all the maps have the flags they should have. Map flags determine 
-the behavior of the map in various situations. For more details, see 'setmapflag'
-and 'doc/mapflags.txt'.
+Isto irá, após o carregamento, definir um sinalizador de mapa especificado em um
+mapa que você gosta. Esses são normalmente em arquivos dentro de 'npc / mapflag' 
+e são carregados primeiro, então no momento em que o servidor está ativo, todos 
+os mapas têm as flags que eles deveriam ter. Os sinalizadores de mapa determinam o 
+comportamento do mapa em várias situações. Para mais detalhes, veja 'setmapflag'
+e 'doc / mapflags.txt'.
 
-** Create a permanent monster spawn:
+
+** Criar um spawn de monstro permanente:
 
 <map name>,<x>,<y>,<xs>,<ys>%TAB%monster%TAB%<monster name>%TAB%<mob id>,<amount>,<delay1>,<delay2>,<event>{,<mob size>,<mob ai>}
 
-Map name is the name of the map the monsters will spawn on. x,y are the
-coordinates where the mob should spawn. If xs and ys are non-zero, they
-specify the 'radius' of a spawn-rectangle area centered at x,y.
-Putting zeros instead of these coordinates will spawn the monsters randomly.
-Note this is only the initial spawn zone, as mobs random-walk, they are free
-to move away from their specified spawn region.
+Map name é o nome do mapa em que os monstros irão aparecer. x, y são as
+coordenadas onde a multidão deve aparecer. Se xs e ys forem diferentes de zero, eles
+especificam o raio de uma área retangular de spawn centralizada em x, y.
+Colocar zeros em vez dessas coordenadas gerará os monstros aleatoriamente.
+Note que esta é apenas a zona de spawn inicial, como mobs random-walk, eles 
+estão livres para se afastar de sua região de spawn especificada.
 
-Monster name is the name the monsters will have on screen, and has no relation 
-whatsoever to their names anywhere else. It's the mob id that counts, which 
-identifies monster record in 'mob_db.txt' database of monsters. If the mob name 
-is given as "--ja--", the 'japanese name' field from the monster database is 
-used, (which, in rAthena, actually contains an English name) if it's "--en--", 
-it's the 'english name' from the monster database (which contains an uppercase 
-name used to summon the monster with a GM command).
+Monster name é o nome que os monstros terão na tela e não tem relação
+qualquer que seja a seus nomes em qualquer outro lugar. É o id da multidão que conta, o que
+identifica o registro do monstro no banco de dados 'mob_db.txt' dos monstros. Se o nome do mob
+é dado como "--ja--", o campo 'japanese name' do banco de dados do monstro é
+usado (que, no rAthena, na verdade contém um nome em inglês) se for "--en--",
+é o 'english name'  do banco de dados do monstro (que contém nome maiúsculo
+usado para chamar o monstro com um comando GM).
 
-Amount is the amount of monsters that will be spawned when this command is 
-executed, it is affected by spawn rates in 'battle_athena.conf'.
+Amount  é a quantidade de monstros que serão gerados quando este comando é
+executado, é afetado pelas taxas de spawn em 'battle_athena.conf'.
 
-Delay1 and delay2 control monster respawn delays - the first one is the fixed
-base respawn time, and the second is random variance on top of the base time.
-Both values are given in milliseconds (1000 = 1 second).
-Note that the server also enforces a minimum respawn delay of 5 seconds.
+Delay1 e delay2 controlam os atrasos de renascimento dos monstros - o primeiro é o tempo
+fixo de reabastecimento de base, e o segundo é a variância aleatória no topo do tempo base.
+Ambos os valores são dados em milissegundos (1000 = 1 segundo).
+Observe que o servidor também aplica um atraso de respawn mínimo de 5 segundos.
 
-You can specify a custom level to use for the mob different from the one of
-the database by adjoining the level after the name with a comma. eg:
-"Poring,50" for a name will spawn a monster with name Poring and level 50.
+Você pode especificar um nível personalizado para usar para o mob diferente do de
+o banco de dados ao lado do nível após o nome com uma vírgula. por exemplo:
+"Poring, 50" para um nome irá gerar um monstro com o nome Poring e level 50.
 
-Event is a script event to be executed when the mob is killed. The event must
-be in the form "NPCName::OnEventName" to execute, and the event name label
-should start with "On". As with all events, if the NPC is an on-touch NPC, the
-player who triggers the script must be within 'trigger' range for the event to
-work.
+Event é um evento de script a ser executado quando a multidão é morta. O evento deve
+estar no formato "NPCName :: OnEventName" para executar e o rótulo do nome do evento
+deve começar com "On". Como em todos os eventos, se o NPC for um NPC on-touch, o
+O jogador que aciona o script deve estar dentro do intervalo de "disparo" para o evento
+trabalhos.
 
-There are two optional fields for monster size and AI.  Size can be 0 (medium),
-1 (small), or 2 (big).  AI can be 0 (default), 1 (attack/friendly), 2 (sphere),
-3 (flora), or 4 (zanzou).
+Existem dois campos opcionais para tamanho de monstro e IA. O tamanho pode ser 0 (médio)
+1 (pequeno) ou 2 (grande). AI pode ser 0 (padrão), 1 (ataque / amigável), 2 (esfera),
+3 (flora) ou 4 (zanzou).
 
-Alternately, a monster spawned using 'boss_monster' instead of 'monster' is able
-to be detected on the map with the SC_BOSSMAPINFO status (used by Convex Mirror).
+Como alternativa, um monstro gerado usando 'boss_monster' em vez de 'monster' é capaz 
+de ser detectado no mapa com o status SC_BOSSMAPINFO (usado pelo Convex Mirror).
 
-** NPC names
+** Nomes de NPCs
 
-/!\ WARNING: this applies to warps, NPCs, duplicates and shops /!\
+/! \ AVISO: isso se aplica a warps, NPCs, duplicatas e lojas /! \
 
-NPC names are kinda special and are formatted this way:
-
+NPCs são um pouco especiais e são formatados desta maneira:
 <Display name>{::<Unique name>}
 
-All NPCs need to have a unique name that is used for identification purposes.
-When you have to identify a NPC by its name, you should use <Unique name>.
-If <Unique name> is not provided, use <Display name> instead.
+Todos os NPCs precisam ter um nome exclusivo que seja usado para fins de identificação.
+Quando você precisar identificar um NPC pelo nome, deverá usar <Unique name>.
+Se <Unique name> não for fornecido, use <Display name>.
 
-The client has a special feature when displaying names:
-if the display name contains a '#' character, it hides that part of the name.
-ex: if your NPC is named 'Hunter#hunter1', it will be displayed as 'Hunter'
+O cliente tem um recurso especial ao exibir nomes:
+se o nome de exibição contiver um caractere '#', ele ocultará essa parte do nome.
+ex: se o seu NPC é chamado 'Hunter # hunter1', ele será exibido como 'Hunter'
 
-<Display name> must be at most 24 characters in length.
-<Unique name> must be at most 24 characters in length.
+<Display name> deve ter no máximo 24 caracteres.
+<Unique name>  deve ter, no máximo, 24 caracteres.
 
-** Define a warp point
+**  Defina um ponto de warp
 
 <from mapname>,<fromX>,<fromY>,<facing>%TAB%warp%TAB%<warp name>%TAB%<spanx>,<spany>,<to mapname>,<toX>,<toY>
 
-This will define a warp NPC that will warp a player between maps, and while most 
-arguments of that are obvious, some deserve special mention.
+Isto irá definir um NPC warp que irá teleportar um jogador entre os mapas, e enquanto a maioria
+argumentos de que são óbvios, alguns merecem menção especial.
 
-SpanX and SpanY will make the warp sensitive to a character who didn't step 
-directly on it, but walked into a zone which is centered on the warp from 
-coordinates and is SpanX in each direction across the X axis and SpanY in each 
-direction across the Y axis.
+SpanX e SpanY farão um warp sensível a um personagem que não deu um passo
+diretamente sobre ele, mas entrou em uma zona que é centrada do warp de
+coordena e é SpanX em cada direção através do eixo X e SpanY em cada
+direção ao longo do eixo Y.
 
-Warp NPC objects also have a name, because you can use it to refer to them later 
-with 'enablenpc'/'disablenpc' 
-
+Warp NPC objects também tem um nome, porque você pode usá-lo para se referir a eles mais tarde
+com 'enablenpc' / 'disablenpc'
 Facing of a warp object is irrelevant, it is not used in the code and all 
 current scripts have a zero in there.
 
-** Define an NPC object.
+** Defina um objeto NPC
 
 <map name>,<x>,<y>,<facing>%TAB%script%TAB%<NPC Name>%TAB%<sprite id>,{<code>}
 <map name>,<x>,<y>,<facing>%TAB%script%TAB%<NPC Name>%TAB%<sprite id>,<triggerX>,<triggerY>,{<code>}
 
-This will place an NPC object on a specified map at the specified location, and 
-is a top-level command you will use the most in your custom scripting. The NPCs 
-are triggered by clicking on them, and/or by walking in their trigger area, if 
-defined, see that below.
+Isso colocará um objeto NPC em um mapa especificado no local especificado e
+é um comando de nível superior que você usará mais em seu script personalizado. Os NPCs
+são acionados clicando sobre eles, e / ou andando na área de disparo, se
+definido, veja abaixo.
 
-Facing is a direction the NPC sprite will face in. Not all NPC sprites have 
-different images depending on the direction you look from, so for some facing 
-will be meaningless. Facings are counted counterclockwise in increments of 45 
-degrees, where 0 means facing towards the top of the map. (So to turn the sprite 
-towards the bottom of the map, you use facing 4, and to make it look southeast 
-it's facing 5.)
+Facingé uma direção que o sprite NPC enfrentará. Nem todos os sprites NPC têm
+imagens diferentes, dependendo da direção que você olha, por isso, para alguns frente
+será sem sentido. As faces são contadas no sentido anti-horário em incrementos de 45
+graus, onde 0 significa virado para o topo do mapa. (Então, para transformar o sprite
+na parte inferior do mapa, você usa 4 e para fazer parecer sudeste
+use 5.)
 
-Sprite id is the sprite number used to display this particular NPC. For a full 
-list of sprite id numbers see http://kalen.s79.xrea.com/npc/npce.shtml You may 
-also use a monster's ID number instead to display a monster sprite for this NPC. 
-It is possible to use a job sprite as well, but you must first define it as a 
-monster sprite in 'mob_avail.txt', a full description on how to do this is not 
-in the scope of this manual.
-A '-1' sprite id will make the NPC invisible (and unclickable). 
-A '111' sprite id will make an NPC which does not have a sprite, but is still 
-clickable, which is useful if you want to make a clickable object of the 3D 
-terrain.
+é o número do sprite usado para exibir este NPC em particular. Para um completo
+lista de números de identidade de sprite, consulte http://kalen.s79.xrea.com/npc/npce.shtml.
+também use o número de ID do monstro para exibir um sprite de monstro para este NPC.
+É possível usar um  job sprite também, mas você deve primeiro defini-lo como um
+monster sprite  em 'mob_avail.txt', uma descrição completa sobre como fazer isso não é
+no escopo deste manual.
+Um ID de sprite '-1' tornará o NPC invisível (e não clicável).
+Um ID de sprite '111' fará um NPC que não tem um sprite, mas ainda é
+clicável, o que é útil se você quiser fazer um objeto clicável do 3D
+terreno.
 
-TriggerX and triggerY, if given, will define an area, centered on NPC and 
-spanning triggerX cells in every direction across X and triggerY in every 
-direction across Y. Walking into that area will trigger the NPC. If no 
-'OnTouch:' special label is present in the NPC code, the execution will start 
-from the beginning of the script, otherwise, it will start from the 'OnTouch:' 
-label. Monsters can also trigger the NPC, though the label 'OnTouchNPC:' is 
-used in this case.
+TriggerX e triggerY, se dados, definirão uma área, centralizada em NPC e
+abrangendo células triggerX em todas as direções em X e dispara em cada
+direção em Y. Entrar nessa área irá disparar o NPC. Se não
+'OnTouch:' special label está presente no código NPC, a execução será iniciada
+desde o início do script, caso contrário, ele será iniciado a partir do 'OnTouch:'
+rótulo. Monstros também podem acionar o NPC, embora o rótulo 'OnTouchNPC:' seja
+usado neste caso.
 
-The code part is the script code that will execute whenever the NPC is 
-triggered. It may contain commands and function calls, descriptions of which 
-compose most of this document. It has to be in curly brackets, unlike elsewhere 
-where we use curly brackets, these do NOT signify an optional parameter.
+A parte do código é o código de script que será executado sempre que o NPC for
+desencadeada. Pode conter comandos e chamadas de função, cujas descrições
+compor a maior parte deste documento. Tem que estar entre chaves, ao 
+contrário de outros lugares onde usamos chaves, estes não significam um parâmetro opcional.
 
-** Define a 'floating' NPC object.
+** Definir um 'floating' NPC object.
 
 -%TAB%script%TAB%<NPC Name>%TAB%-1,{<code>}
 
-This will define an NPC object not triggerable by normal means. This would 
-normally mean it's pointless since it can't do anything, but there are 
-exceptions, mostly related to running scripts at specified time, which is what 
-these floating NPC objects are for. More on that below.
+Isso definirá um objeto NPC não acionável por meios normais. 
+Isso normalmente significa que é inútil, já que não pode fazer nada, mas 
+há exceções, principalmente relacionadas à execução de scripts em 
+um horário especificado, para o qual são destinados esses floating NPC objects. 
+Mais sobre isso abaixo.
 
-** Define a shop/cashshop/itemshop/pointshop NPC.
+** Definir a shop/cashshop/itemshop/pointshop NPC.
 
 -%TAB%shop%TAB%<NPC Name>%TAB%<sprite id>,<itemid>:<price>{,<itemid>:<price>...}
 <map name>,<x>,<y>,<facing>%TAB%shop%TAB%<NPC Name>%TAB%<sprite id>,<itemid>:<price>{,<itemid>:<price>...}
@@ -282,33 +282,34 @@ these floating NPC objects are for. More on that below.
 -%TAB%pointshop%TAB%<NPC Name>%TAB%<sprite id>,<costvariable>{:<discount>},<itemid>:<price>{,<itemid>:<price>...}
 <map name>,<x>,<y>,<facing>%TAB%pointshop%TAB%<NPC Name>%TAB%<sprite id>,<costvariable>{:<discount>},<itemid>:<price>{,<itemid>:<price>...}
 
-This will define a shop NPC, which, when triggered (which can only be done by 
-clicking) will cause a shop window to come up. No code whatsoever runs in shop 
-NPCs and you can't change the prices otherwise than by editing the script 
-itself. (No variables even exist at this point of scripting, so don't even 
-bother trying to use them.)
+Isto irá definir uma loja NPC, que, quando acionada (o que só pode ser feito clicando)
+fará com que uma vitrine apareça. Nenhum código é executado na loja
+NPCs e você não pode mudar os preços senão editando o script
+em si. (Não existem variáveis sequer neste momento de scripting, então nem mesmo
+incomodar tentando usá-los.)
 
-The item id is the number of item in the 'item_db.txt' database. If Price is set 
-to -1, the 'buy price' given in the item database will be used. Otherwise, the 
-price you gave will be used for this item, which is how you create differing 
-prices for items in different shops.
+O item id é o número do item no banco de dados 'item_db.txt'. Se o preço estiver definido
+para -1, o 'buy price' dado no banco de dados do item será usado. Caso contrário, o
+preço que você deu será usado para este item, que é como você cria diferentes
+preços para itens em diferentes lojas.
 
-Since trunk r12264 you can alternatively use "cashshop" in place of "shop"
-to use the Cash Shop interface, allowing you to buy items with special points
-(Currently stored as account vars in global_reg #CASHPOINTS and #KAFRAPOINTS.)
-This type of shop will not allow you to sell items at it, you may only
-purchase items here. The layout used to define sale items still count, and
-"<price>" refers to how many points will be spent purchasing the them.
+Desde que trunk r12264 você pode alternativamente usar "cashshop" no lugar de "shop"
+para usar a interface Cash Shop, permitindo que você compre itens com pontos especiais
+(Atualmente armazenado como conta vars em global_reg #CASHPOINTS e #KAFRAPOINTS.)
+Este tipo de loja não lhe permitirá vender itens, você só pode
+comprar itens aqui. O layout usado para definir itens de venda ainda conta e
+"<price>" refere-se a quantos pontos serão gastos na compra dos mesmos.
 
-Since trunk rX you can alternatively use "itemshop" or "pointshop" in place
-of "shop" to use the Shop interface, allowing you to buy items with a specific
-item or special points from a variable. 'pointshop' only supported variable types
-are permanent character variables, temporary character variables, permanent
-local account variables, or permanent global account variables. These variables
-must be of integer type, not string. 'discount' flag is an option, makes the price
-at that shop is affected by discount skill.
 
-** Define an warp/shop/cashshop/itemshop/pointshop/NPC duplicate.
+Desde que trunk rX você pode alternativamente usar "itemshop" ou "pointshop" no lugar
+de "shop" para usar a interface Shop, permitindo que você compre itens com um
+item ou pontos especiais de uma variável. 'pointshop' suportava apenas tipos de variáveis
+são variáveis de caracteres permanentes, variáveis temporárias de caracteres,
+variáveis de conta local ou variáveis de conta globais permanentes. Essas variáveis
+deve ser do tipo inteiro, não string. 'discount' flag é uma opção, faz o preço
+nessa loja é afetada pela habilidade de desconto.
+
+** Definir an warp/shop/cashshop/itemshop/pointshop/NPC duplicate.
 
 warp: <map name>,<x>,<y>,<facing>%TAB%duplicate(<label>)%TAB%<NPC Name>%TAB%<spanx>,<spany>
 shop/cashshop/itemshop/pointshop/npc: -%TAB%duplicate(<label>)%TAB%<NPC Name>%TAB%<sprite id>
@@ -316,28 +317,28 @@ shop/cashshop/itemshop/pointshop/npc: <map name>,<x>,<y>,<facing>%TAB%duplicate(
 npc: -%TAB%duplicate(<label>)%TAB%<NPC Name>%TAB%<sprite id>,<triggerX>,<triggerY>
 npc: <map name>,<x>,<y>,<facing>%TAB%duplicate(<label>)%TAB%<NPC Name>%TAB%<sprite id>,<triggerX>,<triggerY>
 
-This will duplicate an warp/shop/cashshop/itemshop/pointshop/NPC referred to by 'label'.
-Warp duplicates inherit the target location.
-Shop/cashshop/itemshop/pointshop duplicates inherit the item list.
-NPC duplicates inherit the script code.
+Isto irá duplicar uma warp/shop/cashshop/itemshop/pointshop/NPC referida por 'label'.
+Warp duplicates herdam o local de destino.
+Shop/cashshop/itemshop/pointshop duplicates  herdam a lista de itens.
+NPC duplicates herdam o código de script.
 The rest (name, location, facing, sprite ID, span/trigger area)
-is obtained from the definition of the duplicate (not inherited).
+é obtido a partir da definição duplicate (não herdada).
 
-** Define a function object
+**Definir um função do objeto
 
 function%TAB%script%TAB%<function name>%TAB%{<code>}
 
-This will define a function object, callable with the 'callfunc' command (see 
-below). This object will load on every map server separately, so you can get at 
-it from anywhere. It's not possible to call the code in this object by 
-anything other than the 'callfunc' script command.
+Isto irá definir um objeto de função, que pode ser chamado com o comando 'callfunc'
+abaixo). Este objeto será carregado em cada map server separadamente, 
+para que você possa acessá-lo de qualquer lugar. Não é possível chamar o
+código neste objeto por algo diferente do comando de script 'callfunc'.
 
-The code part is the script code that will execute whenever the function is 
-called with 'callfunc'. It has to be in curly brackets, unlike elsewhere where 
-we use curly brackets, these do NOT signify an optional parameter.
+A parte code é o código de script que será executado sempre que a função for
+chamado com 'callfunc'. Tem que estar entre chaves, ao contrário de outros lugares onde
+nós usamos chaves, estas não significam um parâmetro opcional.
 
-Once an object is defined which has a 'code' field to its definition, it 
-contains script commands which can actually be triggered and executed. 
+Uma vez definido um objeto que possui um campo 'code' para sua definição, 
+ele contém comandos de script que podem ser acionados e executados.
 
 ~ RID? GID? ~
 
