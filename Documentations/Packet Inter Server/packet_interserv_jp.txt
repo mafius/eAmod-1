@@ -19,8 +19,8 @@
 1.ノート
 2. Login-Charパッケージ
 3. Char / Interパッケージ
-- 3.1マップ間パッケージ
-- 3.2チャーマップパッケージ
+		- 3.1マップ間パッケージ
+		- 3.2チャーマップパッケージ
 
 ============
 | 1.ノート|
@@ -36,362 +36,362 @@
 インデックス：0,2,6,10,14,15,19
 len：23
 パラメータ：
-- cmd：識別パッケージ（0x2712）
-- 援助：勘定コード
-- login_id1：不明な@FIXME
-- login_id2：不明な@FIXME
-- 性別：アカウントセックス
-- ip：接続IP（非推奨）
-- request_id：不明な@FIXME
-desc：
-- アカウントを認証するようにchar-serverに依頼します。
+		- cmd：識別パッケージ（0x2712）
+		- 援助：勘定コード
+		- login_id1：不明な@FIXME
+		- login_id2：不明な@FIXME
+		- 性別：アカウントセックス
+		- ip：接続IP（非推奨）
+		- request_id：不明な@FIXME
+		desc：
+		- アカウントを認証するようにchar-serverに依頼します。
 
 0x2713：
-タイプ：AH
-構造体<cmd> .W <aid> .L <login_id1> .L <login_id2> .L <sex> .B <auth> .B <request_id> .L <version> .L <clientType> .B
-インデックス：0,2,6,10,14,15,16,20,24
-len：25
-パラメータ：
-- cmd：識別パック（0x2713）
-- 援助：勘定コード
-- login_id1：不明な@FIXME
-- login_id2：不明な@FIXME
-- 性別：アカウントセックス
-- ok：1 =認証に失敗しました、1 = OK
-- request_id：不明な@FIXME
-- バージョン：クライアントバージョン（clientinfoのバージョン）
-- clientType：不明な@FIXME
-desc：
-- char-serv認証要求を確認する
+	タイプ：AH
+	構造体<cmd> .W <aid> .L <login_id1> .L <login_id2> .L <sex> .B <auth> .B <request_id> .L <version> .L <clientType> .B
+	インデックス：0,2,6,10,14,15,16,20,24
+	len：25
+	パラメータ：
+		- cmd：識別パック（0x2713）
+		- 援助：勘定コード
+		- login_id1：不明な@FIXME
+		- login_id2：不明な@FIXME
+		- 性別：アカウントセックス
+		- ok：1 =認証に失敗しました、1 = OK
+		- request_id：不明な@FIXME
+		- バージョン：クライアントバージョン（clientinfoのバージョン）
+		- clientType：不明な@FIXME
+	desc：
+		- char-serv認証要求を確認する
 
 0x2714：
-タイプ：HA
-構造：<cmd> .W <user_count> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2714）
-- user_count：char-servに存在するユーザの数
-desc：
-- char-servに存在するユーザの数を取得する
+	タイプ：HA
+	構造：<cmd> .W <user_count> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2714）
+		- user_count：char-servに存在するユーザの数
+	desc：
+		- char-servに存在するユーザの数を取得する
 
 0x2715：
-タイプ：HA
-構造：<cmd> .W <aid> .L <email> 40B
-インデックス：0,2,6
-len：46
-パラメータ：
-- cmd：識別パッケージ（0x2715）
-- 援助：勘定コード
-- 電子メール：アカウントIDへの新しい電子メール
-desc：
-- このAIDにリンクされているEメールの更新要求
+	タイプ：HA
+	構造：<cmd> .W <aid> .L <email> 40B
+	インデックス：0,2,6
+	len：46
+	パラメータ：
+		- cmd：識別パッケージ（0x2715）
+		- 援助：勘定コード
+		- 電子メール：アカウントIDへの新しい電子メール
+	desc：
+		- このAIDにリンクされているEメールの更新要求
 
 0x2716：
-タイプ：HA
-構造：<cmd> .W <aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パック（0x2716）
-- 援助：勘定コード
-desc：
-- 寄稿者のアカウントから情報を要求する（0x2717を参照）
+	タイプ：HA
+	構造：<cmd> .W <aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パック（0x2716）
+		- 援助：勘定コード
+	desc：
+		- 寄稿者のアカウントから情報を要求する（0x2717を参照）
 
 0x2717
-タイプ：AH
-<body_id> .B <char_slots> .B <birthdate> .11B <pincode> .5B <pincode_change> .L <bank_vault> .B <.L <isvip> .B <char_vip> .B <MAX_CHAR_BILLING> .B
-インデックス：0.2,6,46,50,51,52,63,68,72,76,77,78
-len：79
-パラメータ：
-- cmd：識別パッケージ（0x2717）
-- 援助：勘定コード
-- 電子メール：AID電子メール
-- expiration_time：@FIXMEを知らない
-- group_id：AIDが属するグループ
-- char_slots：アカウントにある使用可能なスロットの数（クライアントに表示されます）
-- 誕生日：援助の誕生日
-- ピンコード：現在のAIDコード
-- pincode_change：新しいAIDコード
-- bank_vault：このAIDの銀行価値
-- isvip：このAIDが現在vipであるかどうか
-- char_vip：vipであるcharslot番号（あなたがvipの場合のみ作成できます）
-- MAX_CHAR_BILLING：VIP予約後にプレーヤーが利用できる文字スロットの数
-desc：
-- アカウントデータをリクエストする
+	タイプ：AH
+	<body_id> .B <char_slots> .B <birthdate> .11B <pincode> .5B <pincode_change> .L <bank_vault> .B <.L <isvip> .B <char_vip> .B <MAX_CHAR_BILLING> .B
+	インデックス：0.2,6,46,50,51,52,63,68,72,76,77,78
+	len：79
+	パラメータ：
+		- cmd：識別パッケージ（0x2717）
+		- 援助：勘定コード
+		- 電子メール：AID電子メール
+		- expiration_time：@FIXMEを知らない
+		- group_id：AIDが属するグループ
+		- char_slots：アカウントにある使用可能なスロットの数（クライアントに表示されます）
+		- 誕生日：援助の誕生日
+		- ピンコード：現在のAIDコード
+		- pincode_change：新しいAIDコード
+		- bank_vault：このAIDの銀行価値
+		- isvip：このAIDが現在vipであるかどうか
+		- char_vip：vipであるcharslot番号（あなたがvipの場合のみ作成できます）
+		- MAX_CHAR_BILLING：VIP予約後にプレーヤーが利用できる文字スロットの数
+	desc：
+		- アカウントデータをリクエストする
 
 0x2718
-タイプ：AH
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パック（0x2718）
-desc：
-- パッケージを存続させてください（まだ接続されていることを確認してください）
+	タイプ：AH
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パック（0x2718）
+	desc：
+		- パッケージを存続させてください（まだ接続されていることを確認してください）
 
 0x2719：
-タイプ：HA
-構造：<cmd> .W
-指数：0.2
-len：2
-パラメータ：
-- cmd：識別パッケージ（0x2719）
-desc：
-- Char-server pingリクエスト
+	タイプ：HA
+	構造：<cmd> .W
+	指数：0.2
+	len：2
+	パラメータ：
+		- cmd：識別パッケージ（0x2719）
+	desc：
+		- Char-server pingリクエスト
 
 0x2720：
 0x2721：
-無料
+	無料
 
 0x2722：
-タイプ：HA
-構造：<cmd> .W <account_id> .L <current_and-mail> .40B <new_e-mail> .40B
-インデックス：0,2,6,46
-len：86
-パラメータ：
-- cmd：識別パック（0x2722）
-- 援助：勘定コード
-- current_email：現在の電子メールアドレス
-- new_email：新しいメールアドレス
-desc：
-- マップサーバーは、char-server経由でアカウントからメールを変更するための情報を送信します。
+	タイプ：HA
+	構造：<cmd> .W <account_id> .L <current_and-mail> .40B <new_e-mail> .40B
+	インデックス：0,2,6,46
+	len：86
+	パラメータ：
+		- cmd：識別パック（0x2722）
+		- 援助：勘定コード
+		- current_email：現在の電子メールアドレス
+		- new_email：新しいメールアドレス
+	desc：
+		- マップサーバーは、char-server経由でアカウントからメールを変更するための情報を送信します。
 
 0x2723：
-タイプ：AH
-構造：<cmd> .W <aid> .L <sex> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x2723）
-- 援助：勘定コード
-- 性別：セックス勘定
-0 = SEX_FEMALE
-1 = SEX_MALE
-2 = SEX_SERVER
-desc：
-- 性別の更新を確認する
+	タイプ：AH
+	構造：<cmd> .W <aid> .L <sex> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x2723）
+		- 援助：勘定コード
+		- 性別：セックス勘定
+	0 = SEX_FEMALE
+	1 = SEX_MALE
+	2 = SEX_SERVER
+	desc：
+		- 性別の更新を確認する
 
 0x2724：
-タイプ：HA
-構造体：<cmd> .W <t_aid> .L <state> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パック（0x2724）
-- t_aid：ターゲットの勘定コード
-- 状態：アカウントステータス
-- 0：ロックされていない
-- 5：ブロック（Connection refused）
-desc：
-- マップサーバーアカウント（char-server経由で送信された）のステータスを更新する要求を受け取ります。
+	タイプ：HA
+	構造体：<cmd> .W <t_aid> .L <state> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パック（0x2724）
+		- t_aid：ターゲットの勘定コード
+		- 状態：アカウントステータス
+		- 0：ロックされていない
+		- 5：ブロック（Connection refused）
+	desc：
+		- マップサーバーアカウント（char-server経由で送信された）のステータスを更新する要求を受け取ります。
 
 0x2725：
-タイプ：HA
-構造：<cmd> .W <t_aid> .L <timediff> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パック（0x2725）
-- t_aid：ターゲットアカウントID
-- timediff：タイムスタンプを追加または削除するためのチェック
-desc：
-- 地図サーバーをcharサーバー経由で受信すると、禁止要求（禁止時間の変更）
+	タイプ：HA
+	構造：<cmd> .W <t_aid> .L <timediff> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パック（0x2725）
+		- t_aid：ターゲットアカウントID
+		- timediff：タイムスタンプを追加または削除するためのチェック
+	desc：
+		- 地図サーバーをcharサーバー経由で受信すると、禁止要求（禁止時間の変更）
 
 0x2726：
-無料
+	無料
 
 0x2727：
-タイプ：HA
-構造：<cmd> .W <aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2727）
-- 援助：勘定コード
-desc：
-- 性別を変更する要求を受け取りました（性別は逆です）
+	タイプ：HA
+	構造：<cmd> .W <aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2727）
+		- 援助：勘定コード
+	desc：
+		- 性別を変更する要求を受け取りました（性別は逆です）
 
 0x2728：
-タイプ：HA
-構造：<cmd> .W <len> .W <aid> .L <cid> .L {<str>。 B <値>。？ B}
-インデックス：0,2,4,8,13
-len：変数（reg size + 4）
-パラメータ：
-- cmd：識別パッケージ（0x2728）
-- len：パッケージサイズ
-- 援助：勘定コード
-- cid：文字の識別
-- str：レジストリ内の変数の名前
-- 値：レジストリの変数値
-desc：
-- char_serverからaccount_reg2を取得する要求を受け取りました。package0x3004（mapif_parse_Registry）を参照してください。
+	タイプ：HA
+	構造：<cmd> .W <len> .W <aid> .L <cid> .L {<str>。 B <値>。？ B}
+	インデックス：0,2,4,8,13
+	len：変数（reg size + 4）
+	パラメータ：
+		- cmd：識別パッケージ（0x2728）
+		- 	len：パッケージサイズ
+		- 援助：勘定コード
+		- cid：文字の識別
+		- str：レジストリ内の変数の名前
+		- 値：レジストリの変数値
+	desc：
+		- char_serverからaccount_reg2を取得する要求を受け取りました。package0x3004（mapif_parse_Registry）を参照してください。
 
 
 0x2729：
-タイプ：AH
-構造体：<cmd> .W <len> .L <aid> .L <cid> .L <Type> .B {<str>。 B <値>。？ B}
-インデックス：0,2,4,8,12,13
-len：変数（reg2サイズ+ 13）
-パラメータ：
-- cmd：識別パック（0x2729）
-- len：パッケージサイズ
-- 援助：勘定コード
-- cid：文字の識別
--タイプ：
--タイプ：
-1：Account2レジスタ（atmを1つだけ使用）
-2：アカウント登録
-3：文字登録
-- str：レジストリ内の変数の名前
-- 値：レジストリの変数値
-desc：
-- ログaccount_reg2を受信し、マップサーバーに転送します。
+	タイプ：AH
+	構造体：<cmd> .W <len> .L <aid> .L <cid> .L <Type> .B {<str>。 B <値>。？ B}
+	インデックス：0,2,4,8,12,13
+	len：変数（reg2サイズ+ 13）
+	パラメータ：
+		- cmd：識別パック（0x2729）
+		- 	len：パッケージサイズ
+		- 援助：勘定コード
+		- cid：文字の識別
+	-	タイプ：
+	-	タイプ：
+	1：Account2レジスタ（atmを1つだけ使用）
+	2：アカウント登録
+	3：文字登録
+		- str：レジストリ内の変数の名前
+		- 値：レジストリの変数値
+	desc：
+		- ログaccount_reg2を受信し、マップサーバーに転送します。
 
 0x272a：
-タイプ：HA
-構造：<cmd> .W <t_aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x272a）
-- t_aid：口座識別
-desc：
-- アカウントをクリアするリクエスト
+	タイプ：HA
+	構造：<cmd> .W <t_aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x272a）
+		- t_aid：口座識別
+	desc：
+		- アカウントをクリアするリクエスト
 
 
 0x272b：
-タイプ：HA
-構造：<cmd> .W <t_aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x272b）
-- t_aid：口座識別
-desc：
-- loginserv（setacconline）のオンラインユーザのリストにAIDを追加します。
+	タイプ：HA
+	構造：<cmd> .W <t_aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x272b）
+		- t_aid：口座識別
+	desc：
+		- loginserv（setacconline）のオンラインユーザのリストにAIDを追加します。
 
 0x272c：
-タイプ：HA
-構造：<cmd> .W <t_aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パケット（0x272c）
-- t_aid：口座識別
-desc：
-- オンラインユーザーリスト（setaccoffline）からAIDを削除する。
+	タイプ：HA
+	構造：<cmd> .W <t_aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パケット（0x272c）
+		- t_aid：口座識別
+	desc：
+		- オンラインユーザーリスト（setaccoffline）からAIDを削除する。
 
 0x272d：
-タイプ：HA
-構造：<cmd> .W <len> .W <nb_online> .L {<aid> .L} *
-インデックス：0,2,4,8
-len：8人以上のユーザー* 4
-パラメータ：
-- cmd：識別パケット（0x272d）
-- len：パッケージサイズ
-- ユーザー：char-servに接続しているユーザーの数
-- 援助：勘定コード
-desc：
-- char-serverアカウントのリストを受け取る
+	タイプ：HA
+	構造：<cmd> .W <len> .W <nb_online> .L {<aid> .L} *
+	インデックス：0,2,4,8
+	len：8人以上のユーザー* 4
+	パラメータ：
+		- cmd：識別パケット（0x272d）
+		- 	len：パッケージサイズ
+		- ユーザー：char-servに接続しているユーザーの数
+		- 援助：勘定コード
+	desc：
+		- char-serverアカウントのリストを受け取る
 
 0x272e：
-タイプ：HA
-構造：<cmd> .W <aid> .L <cid> .L
-インデックス：0,2,4,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x272e）
-- 援助：勘定コード
-- cid：文字の識別
-desc：
-- credeg2にログインを要求する
+	タイプ：HA
+	構造：<cmd> .W <aid> .L <cid> .L
+	インデックス：0,2,4,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x272e）
+		- 援助：勘定コード
+		- cid：文字の識別
+	desc：
+		- credeg2にログインを要求する
 
 0x272f：
 0x2730：
-無料
+	無料
 
 0x2731：
-タイプ：AH
-構造体：<cmd> .W <aid> .L <state> .B <status / date> .L
-インデックス：0,2,6,7
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x2731）
-- 援助：勘定コード
-- 状態：0 =状態の変更、1 =禁止
-- ステータス| date：禁止のステータスまたは終了日
-desc：
-- char-servに州または国の変更の変更（accbannotification）を通知します。
+	タイプ：AH
+	構造体：<cmd> .W <aid> .L <state> .B <status / date> .L
+	インデックス：0,2,6,7
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x2731）
+		- 援助：勘定コード
+		- 状態：0 =状態の変更、1 =禁止
+		- ステータス| date：禁止のステータスまたは終了日
+	desc：
+		- char-servに州または国の変更の変更（accbannotification）を通知します。
 
 0x2732：
 0x2733：
-無料
+	無料
 
 0x2734：
-タイプ：AH
-構造：<cmd> .W <aid> .L
-インデックス：0.2、
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2734）
-- 援助：勘定コード
-desc：
-- アカウントはすでにオンラインでマークされています。 （Loginservに文字を追放するよう要求する）。
+	タイプ：AH
+	構造：<cmd> .W <aid> .L
+	インデックス：0.2、
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2734）
+		- 援助：勘定コード
+	desc：
+		- アカウントはすでにオンラインでマークされています。 （Loginservに文字を追放するよう要求する）。
 
 0x2735：
-タイプ：AH
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パッケージ（0x2735）
-desc：
-- ログインサーバーのIPアドレス更新信号
+	タイプ：AH
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パッケージ（0x2735）
+	desc：
+		- ログインサーバーのIPアドレス更新信号
 
 0x2736：
-タイプ：HA
-構造：<cmd> .W <ip> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2736）
-- ip：charserver IP
-desc：
-- 文字サーバのIPを更新
+	タイプ：HA
+	構造：<cmd> .W <ip> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2736）
+		- ip：charserver IP
+	desc：
+		- 文字サーバのIPを更新
 
 0x2737：
-タイプ：HA
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パック（0x2737）
-desc：
-- すべてのアカウントをchar-serverとしてオフラインに設定するアプリケーション
+	タイプ：HA
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パック（0x2737）
+	desc：
+		- すべてのアカウントをchar-serverとしてオフラインに設定するアプリケーション
 
 0x2738：
-タイプ：HA
-構造：<cmd> .W <aid> .L <pincode>。？ B
-インデックス：0,2,6
-len：変数：11 + PINCODE_LENGTH + 1
-パラメータ：
-- cmd：識別パッケージ（0x2738）
-- 援助：勘定コード
-- ピンコード：新しいピンコードコード
-desc：
-- アカウントのPINコードを変更する
+	タイプ：HA
+	構造：<cmd> .W <aid> .L <pincode>。？ B
+	インデックス：0,2,6
+	len：変数：11 + PINCODE_LENGTH + 1
+	パラメータ：
+		- cmd：識別パッケージ（0x2738）
+		- 援助：勘定コード
+		- ピンコード：新しいピンコードコード
+	desc：
+		- アカウントのPINコードを変更する
 
 0x2739：
-タイプ：HA
-構造：<cmd> .W <aid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2739）
-- 援助：勘定コード
-desc：
-- ログインは、不正なPINコードが入力されたことをcharに通知します。 （認証失敗）
+	タイプ：HA
+	構造：<cmd> .W <aid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2739）
+		- 援助：勘定コード
+	desc：
+		- ログインは、不正なPINコードが入力されたことをcharに通知します。 （認証失敗）
 
 0x273a
 0x273b
@@ -399,2396 +399,2396 @@ desc：
 0x273d
 0x273e
 0x273f
-無料
+	無料
 
 0x2740：
-タイプ：HA
-構造体：<cmd> .W <aid> .L <Type> .B <data> .L
-インデックス：0,2,6,7
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x2740）
-- 援助：勘定コード
-- タイプ：
-- 日付：
-desc：
-- bank_vaultの更新リクエスト
+	タイプ：HA
+	構造体：<cmd> .W <aid> .L <Type> .B <data> .L
+	インデックス：0,2,6,7
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x2740）
+		- 援助：勘定コード
+		- 	タイプ：
+		- 日付：
+	desc：
+		- bank_vaultの更新リクエスト
 
 0x2741：
-タイプ：AH
-構造体：<cmd> .W <aid> .L <Type> .B <data> .L
-インデックス：0,2,6,7
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x2741）
-- 援助：勘定コード
-- タイプ：1 ​​=選択、2 =更新、保存
-- 日付：新しい銀行の金庫
-desc：
-- ログイン銀行情報を要求する
+	タイプ：AH
+	構造体：<cmd> .W <aid> .L <Type> .B <data> .L
+	インデックス：0,2,6,7
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x2741）
+		- 援助：勘定コード
+		- 	タイプ：1 ​​=選択、2 =更新、保存
+		- 日付：新しい銀行の金庫
+	desc：
+		- ログイン銀行情報を要求する
 
 0x2742：
-タイプ：HA
-構造：<cmd> .W <aid> .L <Type> .B <timediff> .L <mapfd> .L
-インデックス：0,2,6,7,11
-len：15
-パラメータ：
-- cmd：識別パッケージ（0x2742）
-- 援助：勘定コード
-- タイプ：char-servの＆1のVIPデータの確認、＆2の持続時間の追加
-- timediff：viptimeに追加される時間
-- mapfd：map-serverがタイプ＆1の場合に接続を確認する
-desc：
-- チャットからのVIPデータリクエストを受け取った
+	タイプ：HA
+	構造：<cmd> .W <aid> .L <Type> .B <timediff> .L <mapfd> .L
+	インデックス：0,2,6,7,11
+	len：15
+	パラメータ：
+		- cmd：識別パッケージ（0x2742）
+		- 援助：勘定コード
+		- 	タイプ：char-servの＆1のVIPデータの確認、＆2の持続時間の追加
+		- timediff：viptimeに追加される時間
+		- mapfd：map-serverがタイプ＆1の場合に接続を確認する
+	desc：
+		- チャットからのVIPデータリクエストを受け取った
 
 0x2743：
-タイプ：AH
-構造体：<cmd> .W <aid> .L <vip_time> .L <isvip> .B <groupid> .L <isgm> .L <mapfd> .B
-インデックス：0,2,6,10,11,15,16
-len：20
-パラメータ：
-- cmd：識別パッケージ（0x2743）
-- 援助：勘定コード
-- vip_time：vip_timeのタイムスタンプ（vipの場合）
-- isvip：このアカウントはvipモードのatmです
-- groupid：アカウントグループID
-- isgm：彼はGMです
-- mapfd：map-servが接続して確認します
-desc：
-- 特定のデータをvipからchar-serverに送信します（mapservに転送されます）
+	タイプ：AH
+	構造体：<cmd> .W <aid> .L <vip_time> .L <isvip> .B <groupid> .L <isgm> .L <mapfd> .B
+	インデックス：0,2,6,10,11,15,16
+	len：20
+	パラメータ：
+		- cmd：識別パッケージ（0x2743）
+		- 援助：勘定コード
+		- vip_time：vip_timeのタイムスタンプ（vipの場合）
+		- isvip：このアカウントはvipモードのatmです
+		- groupid：アカウントグループID
+		- isgm：彼はGMです
+		- mapfd：map-servが接続して確認します
+	desc：
+		- 特定のデータをvipからchar-serverに送信します（mapservに転送されます）
 
 ===============
 | 3.1インターマップパッケージ|
 ===============
 
 0x3000
-タイプ：ZI
-構造：<cmd> .W <len> .W <fontColor> .L <fonttype> .W <fontSize> .W <fontAlign> .W <fontY> .W <mes>。
-インデックス：0,2,4,8,10,12,14,16
-len：16 + msglen
-パラメータ：
-- cmd：識別パッケージ（0x3000）
-- len：パッケージサイズ
-- fontColor：（デフォルトのカラー送信= 0xFF000000）
-- fontType：
-- フォントサイズ：
-- fontAlign：
-- fontY：
-- mes：送信するメッセージ
-desc：
-- このchar-serverに接続されているすべてのマップサーバにメッセージを送信する
-- NB carefull（また、cmd = 3000 rAthena_reportを使用しますが、map-charの場合はcmd820にカプセル化します）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <fontColor> .L <fonttype> .W <fontSize> .W <fontAlign> .W <fontY> .W <mes>。
+	インデックス：0,2,4,8,10,12,14,16
+	len：16 + msglen
+	パラメータ：
+		- cmd：識別パッケージ（0x3000）
+		- 	len：パッケージサイズ
+		- fontColor：（デフォルトのカラー送信= 0xFF000000）
+		- fontType：
+		- フォントサイズ：
+		- fontAlign：
+		- fontY：
+		- mes：送信するメッセージ
+	desc：
+		- このchar-serverに接続されているすべてのマップサーバにメッセージを送信する
+		- NB carefull（また、cmd = 3000 rAthena_reportを使用しますが、map-charの場合はcmd820にカプセル化します）
 
 
 0x3001
-タイプ：ZI
-構造<cmd> .W <len> .W <名前>（NAME_LENGTH）B <ニックネーム>（NAME_LENGTH）B <月>。？ B
-インデックス：0,2,4,4 + NAME_LENGTH、4 + 2 * NAME_LENGTH
-len：52 + mes_len
-パラメータ：
-- cmd：識別パッケージ（0x3001）
-- len：パッケージサイズ
-- 名前：msg送信者名
-- ニックネーム：msg受信者名
-- mes：送信するメッセージ
-desc：
-- 他のプレイヤーにささやきを送る
+	タイプ：ZI
+	構造<cmd> .W <len> .W <名前>（NAME_LENGTH）B <ニックネーム>（NAME_LENGTH）B <月>。？ B
+	インデックス：0,2,4,4 + NAME_LENGTH、4 + 2 * NAME_LENGTH
+	len：52 + mes_len
+	パラメータ：
+		- cmd：識別パッケージ（0x3001）
+		- 	len：パッケージサイズ
+		- 名前：msg送信者名
+		- ニックネーム：msg受信者名
+		- mes：送信するメッセージ
+	desc：
+		- 他のプレイヤーにささやきを送る
 
 0x3002
-タイプ：ZI
-構造：<cmd> .W <
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x3002）
-- id：whisper id、interc :: wis_dbに格納されている現在のウィスパーセッションに一致する識別子
-- フラグ：0 =成功、1 =ターゲットが見つからない、2 =ターゲットによって無視される
-desc：
-- ささやきの結果を通知するchar-serv
+	タイプ：ZI
+	構造：<cmd> .W <
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x3002）
+		- id：whisper id、interc :: wis_dbに格納されている現在のウィスパーセッションに一致する識別子
+		- フラグ：0 =成功、1 =ターゲットが見つからない、2 =ターゲットによって無視される
+	desc：
+		- ささやきの結果を通知するchar-serv
 
 0x3003
-タイプ：ZI
-構造：<cmd> .W <packet_len> .W <wispname>。？ B <permission> .L <message>。？ B
-インデックス：0,2,4,4 + NAME_LENGTH、8 + NAME_LENGTH
-len：変数：mes_len + 8 + NAME_LENGTH
-パラメータ：
-- cmd：識別パケット（0x3003）
-- packet_len：mes_len + 8 + NAME_LENGTH
-- wisp_name
-許可
-- メッセージ
-desc：
-- GM Wisp /ページのみをサーバーからサーバーに送信する
+	タイプ：ZI
+	構造：<cmd> .W <packet_len> .W <wispname>。？ B <permission> .L <message>。？ B
+	インデックス：0,2,4,4 + NAME_LENGTH、8 + NAME_LENGTH
+	len：変数：mes_len + 8 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パケット（0x3003）
+		- packet_	len：mes_len + 8 + NAME_LENGTH
+		- wisp_name
+	許可
+		- メッセージ
+	desc：
+		- GM Wisp /ページのみをサーバーからサーバーに送信する
 
 0x3004
-タイプ：ZI
-構造体：<cmd> .W <aid> .L <cid> .L <Type> .B {<str>。？ B <値>。？ B}？
-インデックス：0,4,8,12,13
-len：変数：13 + regnum *（len変数名+ len値）（max = 288 * MAX_REG_NUM + 13）
-パラメータ：
-- cmd：識別パッケージ（0x3004）
-- 援助：勘定コード
-- cid：文字の識別
--タイプ：
-1：アカウント2の登録
-2：アカウント登録
-3：charの登録
--str：変数識別子、変数レコード識別子（変数名）
-値：可変値
-desc：
-- Map-servは、レジストリ値を保存するようにChar-servに要求しています。 （Type = 1の場合、login-servにデータが転送されます）。
+	タイプ：ZI
+	構造体：<cmd> .W <aid> .L <cid> .L <Type> .B {<str>。？ B <値>。？ B}？
+	インデックス：0,4,8,12,13
+	len：変数：13 + regnum *（len変数名+ len値）（max = 288 * MAX_REG_NUM + 13）
+	パラメータ：
+		- cmd：識別パッケージ（0x3004）
+		- 援助：勘定コード
+		- cid：文字の識別
+	-	タイプ：
+	1：アカウント2の登録
+	2：アカウント登録
+	3：charの登録
+		-str：変数識別子、変数レコード識別子（変数名）
+	値：可変値
+	desc：
+		- Map-servは、レジストリ値を保存するようにChar-servに要求しています。 （Type = 1の場合、login-servにデータが転送されます）。
 
 0x3005
-タイプ：ZI
-構造体：<cmd> .W <aid> .L <cid> .L <acc_reg2> .B <acc_reg> .B <ch_reg> .B
-インデックス：0,2,6,10,11,12
-len：13
-パラメータ：
-- cmd：識別パック（0x3005）
-- 援助：
-- cid：
--acc_reg2：アカウント登録を要求する（永久アカウント変数、login-servに保存する）
--acc_reg：アカウント登録を要求します（永続的なアカウント変数、char-servに保存されます）
--ch_reg：要求charレジスタ（永続char変数）
-desc：
-- このプレーヤーのための記録を要求しなさい。
+	タイプ：ZI
+	構造体：<cmd> .W <aid> .L <cid> .L <acc_reg2> .B <acc_reg> .B <ch_reg> .B
+	インデックス：0,2,6,10,11,12
+	len：13
+	パラメータ：
+		- cmd：識別パック（0x3005）
+		- 援助：
+		- cid：
+	-acc_reg2：アカウント登録を要求する（永久アカウント変数、login-servに保存する）
+	-acc_reg：アカウント登録を要求します（永続的なアカウント変数、char-servに保存されます）
+	-ch_reg：要求charレジスタ（永続char変数）
+	desc：
+		- このプレーヤーのための記録を要求しなさい。
 
 0x3006
-タイプ：ZI
-構造：<cmd> .w <aid> .L <cid> .L <Type> .B <NAME_LENGTH>。
-インデックス：0,2,6,10,11
-len：12 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3006）
-援助
-CID
-- タイプ
-- NAME_LENGTH
-desc
+	タイプ：ZI
+	構造：<cmd> .w <aid> .L <cid> .L <Type> .B <NAME_LENGTH>。
+	インデックス：0,2,6,10,11
+	len：12 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3006）
+	援助
+	CID
+		- タイプ
+		- NAME_LENGTH
+	desc：
 
 0x3007
-タイプ：ZI
-構造：<cmd> .W <u_fd> .L <aid> .L <group_lv> .L
-インデックス：0,2,6,10,14
-len：14 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3007）
-- u_fd
-援助
-- group_lv
-クエリ
-desc：
-- アカウント情報をリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <u_fd> .L <aid> .L <group_lv> .L
+	インデックス：0,2,6,10,14
+	len：14 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3007）
+		- u_fd
+	援助
+		- group_lv
+	クエリ
+	desc：
+		- アカウント情報をリクエストする
 
 0x3018
-タイプ：ZI
-構造：<cmd> .W <aid> .L <gid> .L
-インデックス0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3018）
-援助
+	タイプ：ZI
+	構造：<cmd> .W <aid> .L <gid> .L
+	インデックス0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3018）
+	援助
 gid
-desc：
-- ギルド倉庫をリクエストする
+	desc：
+		- ギルド倉庫をリクエストする
 
 0x3019
-タイプ：ZI
-構造：<cmd> .W <guild_storage> .W <aid> .L <gid> .L
-インデックス：0,2,4,8,12
-len：12 + guild_storage
-パラメータ：
-- cmd：識別パック（0x3019）
-- ギルドストア
-援助
+	タイプ：ZI
+	構造：<cmd> .W <guild_storage> .W <aid> .L <gid> .L
+	インデックス：0,2,4,8,12
+	len：12 + guild_storage
+	パラメータ：
+		- cmd：識別パック（0x3019）
+		- ギルドストア
+	援助
 gid
-desc：
-- ギルド倉庫を送る
+	desc：
+		- ギルド倉庫を送る
 
 0x3020
-タイプ：ZI
-構造：<cmd> .W <party_member> .W <name> .24B <item> .B <item2> .B <member>。？ B
-インデックス：0.2,4,28,29,30
-len：変数：28 + party_member（最大= 64）
-パラメータ：
-- cmd：識別パック（0x3020）
-- party_member
-名
-項目
-- item2
-- メンバー
-desc：
-- パーティー作成リクエスト
+	タイプ：ZI
+	構造：<cmd> .W <party_member> .W <name> .24B <item> .B <item2> .B <member>。？ B
+	インデックス：0.2,4,28,29,30
+	len：変数：28 + party_member（最大= 64）
+	パラメータ：
+		- cmd：識別パック（0x3020）
+		- party_member
+	名
+	項目
+		- item2
+		- メンバー
+	desc：
+		- パーティー作成リクエスト
 
 0x3021
-タイプ：ZI
-構造：<cmd> .W <party_id> .L <cid> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3021）
-- party_id
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L <cid> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3021）
+		- party_id
 CID
-desc：
-- パーティーからの情報要求
+	desc：
+		- パーティーからの情報要求
 
 0x3022
-タイプ：ZI
-構造：<cmd> .W <party_member> .W <party_id> .L <member>。？ B
-インデックス：0,2,4,8
-len：変数：8 + party_member（最大= 42）
-パラメータ：
-- cmd：識別パッケージ（0x3022）
-- party_member
-- party_id
-- メンバー
-desc：
-- パーティーにパーティーを追加するリクエスト
+	タイプ：ZI
+	構造：<cmd> .W <party_member> .W <party_id> .L <member>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + party_member（最大= 42）
+	パラメータ：
+		- cmd：識別パッケージ（0x3022）
+		- party_member
+		- party_id
+		- メンバー
+	desc：
+		- パーティーにパーティーを追加するリクエスト
 
 0x3023
-タイプ：ZI
-構造：<cmd> .W <party_id> .L <aid> .L <exp> .W <item> .W
-インデックス：0,2,6,10,12,14
-len：14
-パラメータ：
-- cmd：識別パッケージ（0x3023）
-- party_id
-援助
-経験
-項目
-desc：
-- パーティー設定の変更要求（アイテム、アイテムの共有）
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L <aid> .L <exp> .W <item> .W
+	インデックス：0,2,6,10,12,14
+	len：14
+	パラメータ：
+		- cmd：識別パッケージ（0x3023）
+		- party_id
+	援助
+	経験
+	項目
+	desc：
+		- パーティー設定の変更要求（アイテム、アイテムの共有）
 
 0x3024
-タイプ：ZI
-構造：<cmd> .W <party_id> .L <aid> .L <cid> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パック（0x3024）
-- party_id
-援助
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L <aid> .L <cid> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パック（0x3024）
+		- party_id
+	援助
 CID
-desc：
-- パーティーからの離脱依頼
+	desc：
+		- パーティーからの離脱依頼
 
 0x3025
-タイプ：ZI
-構造：<cmd> .W <party_id> .L <aid> .L <cid> .L <mapindex> .W <online> .B <base_level> .W
-インデックス：0,2,6,10,14,16,17
-len：19
-パラメータ：
-- cmd：識別パッケージ（0x3025）
-- party_id
-援助
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L <aid> .L <cid> .L <mapindex> .W <online> .B <base_level> .W
+	インデックス：0,2,6,10,14,16,17
+	len：19
+	パラメータ：
+		- cmd：識別パッケージ（0x3025）
+		- party_id
+	援助
 CID
-- mapindex
-- オンライン
-- base_level
-desc：
-- パーティーの地図を変更する
+		- mapindex
+		- オンライン
+		- base_level
+	desc：
+		- パーティーの地図を変更する
 
 0x3026
-タイプ：ZI
-構造：<cmd> .W <party_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パック（0x3026）
-- party_id
-desc：
-- パーティー休憩のリクエスト
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パック（0x3026）
+		- party_id
+	desc：
+		- パーティー休憩のリクエスト
 
 0x3027
-タイプ：ZI
-構造：<cmd> .W <len> .W <party_id> .L <aid> .L <mes>。
-インデックス：0,2,4,8,12
-len：変数：12 + len
-パラメータ：
-- cmd：識別パッケージ（0x3027）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <party_id> .L <aid> .L <mes>。
+	インデックス：0,2,4,8,12
+	len：変数：12 + len
+	パラメータ：
+		- cmd：識別パッケージ（0x3027）
 len
-- party_id
-援助
-- 月
-desc：
-- パーティチャットを送信する
+		- party_id
+	援助
+		- 月
+	desc：
+		- パーティチャットを送信する
 
 0x3029
-タイプ：ZI
-構造：<cmd> .W <party_id> .L <aid> .L <cid> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パック（0x3029）
-- party_id
-援助
+	タイプ：ZI
+	構造：<cmd> .W <party_id> .L <aid> .L <cid> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パック（0x3029）
+		- party_id
+	援助
 CID
-desc：
-- 新しいパーティーリーダーをリクエストする
+	desc：
+		- 新しいパーティーリーダーをリクエストする
 
 0x302A
-タイプ：ZI
-構造：<cmd> .W <share_lvl> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x302a）
-- share_lvl
-desc：
-- パーティシェアの更新要求
+	タイプ：ZI
+	構造：<cmd> .W <share_lvl> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x302a）
+		- share_lvl
+	desc：
+		- パーティシェアの更新要求
 
 0x3030
-タイプ：ZI
-構造：<cmd> .W <guild_member> .W <aid> .L <name>。？ B <マスター>。？ B
-インデックス：0,2,4,8,8 + NAME_LENGTH
+	タイプ：ZI
+	構造：<cmd> .W <guild_member> .W <aid> .L <name>。？ B <マスター>。？ B
+	インデックス：0,2,4,8,8 + NAME_LENGTH
 len
-パラメータ：
-- cmd：識別パッケージ（0x3030）
-- guild_member
-援助
-名
+	パラメータ：
+		- cmd：識別パッケージ（0x3030）
+		- guild_member
+	援助
+	名
 マスター
-desc：
-- ギルドの作成をリクエストする
+	desc：
+		- ギルドの作成をリクエストする
 
 0x3031
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x3031）
-- guild_id
-desc：
-- ギルド情報を求める
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x3031）
+		- guild_id
+	desc：
+		- ギルド情報を求める
 
 0x3032
-タイプ：ZI
-構造：<cmd> .W <guild_member> .W <guild_id> .L <m>。？ B
-インデックス：0,2,4,8
-len：変数：8 + guild_member
-パラメータ：
-- cmd：識別パッケージ（0x3032）
-desc：
-- ギルドメンバーの追加依頼
+	タイプ：ZI
+	構造：<cmd> .W <guild_member> .W <guild_id> .L <m>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + guild_member
+	パラメータ：
+		- cmd：識別パッケージ（0x3032）
+	desc：
+		- ギルドメンバーの追加依頼
 
 0x3033
-タイプ：ZI
-構造：<cmd> .W <len> .W <guild_id> .L <name>。？ B
-インデックス：0,2,4,8
-len：変数：8 + len
-パラメータ：
-- cmd：識別パック（0x3033）
-len
-- guild_id
-名
-desc：
-- ギルドのための新しいリーダーをリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <guild_id> .L <name>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + len
+	パラメータ：
+		- cmd：識別パック（0x3033）
+	len：
+		- guild_id
+	名
+	desc：
+		- ギルドのための新しいリーダーをリクエストする
 
 0x3034
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L <flag> .B <mes> .40B
-インデックス：0,2,6,10,14,15
-len：55
-パラメータ：
-- cmd：識別パッケージ（0x3034）
-- guild_id
-援助
-CID
-フラグ
-- 月
-desc：
-- ギルドを離れるように要求する
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L <flag> .B <mes> .40B
+	インデックス：0,2,6,10,14,15
+	len：55
+	パラメータ：
+		- cmd：識別パッケージ（0x3034）
+		- guild_id
+	援助
+	CID
+	フラグ
+		- 月
+	desc：
+		- ギルドを離れるように要求する
 
 0x3035
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L <online> .B <lv> .W <class _> .W
-インデックス：0,2,6,10,14,15,17
-len：19
-パラメータ：
-- cmd：識別パッケージ（0x3035）
-- guild_id
-援助
-CID
-- オンライン
-lv
-クラス
-desc：
-- ギルドメンバーLvの注文/オンラインステータスを更新する
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L <online> .B <lv> .W <class _> .W
+	インデックス：0,2,6,10,14,15,17
+	len：19
+	パラメータ：
+		- cmd：識別パッケージ（0x3035）
+		- guild_id
+	援助
+	CID：
+		- オンライン
+	lv：
+	クラス
+	desc：
+		- ギルドメンバーLvの注文/オンラインステータスを更新する
 
 0x3036
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パック（0x3036）
-- guild_id
-desc：
-- ギルド通知の中止
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パック（0x3036）
+		- guild_id
+	desc：
+		- ギルド通知の中止
 
 0x3037
-タイプ：ZI
-構造：<cmd> .W <len> .W <guild_id> .L <aid> .L <mes>。
-インデックス：0,2,4,8,12
-len：変数：12 + len
-パラメータ：
-- cmd：識別パケット（0x3037）
-len
-- guild_id
-援助
-- 月
-desc：
-- ギルドからメッセージを送る
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <guild_id> .L <aid> .L <mes>。
+	インデックス：0,2,4,8,12
+	len：変数：12 + len
+	パラメータ：
+		- cmd：識別パケット（0x3037）
+	len：
+		- guild_id
+	援助
+		- 月
+	desc：
+		- ギルドからメッセージを送る
 
 0x3039
-タイプ：ZI
-構造：<cmd> .W <len> .W <guild_id> .L <Type> .W <data>。？ B
-インデックス：0,2,4,8,10
-len：変数：10 + len
-パラメータ：
-- cmd：識別パッケージ（0x3039）
-len
-- guild_id
-- タイプ
-日付
-desc：
-- 基本的なギルド情報の変更をリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <guild_id> .L <Type> .W <data>。？ B
+	インデックス：0,2,4,8,10
+	len：変数：10 + len
+	パラメータ：
+		- cmd：識別パッケージ（0x3039）
+	len：
+		- guild_id
+		- タイプ
+	日付
+	desc：
+		- 基本的なギルド情報の変更をリクエストする
 
 0x303a
-タイプ：ZI
-構造：<cmd> .W <len> .W <guild_id> .L <aid> .L <cid> .L <Type> .W <data>。
-インデックス：0,2,4,8,12,16,18
-len：変数：18 + len
-パラメータ：
-- cmd：識別パケット（0x303a）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <guild_id> .L <aid> .L <cid> .L <Type> .W <data>。
+	インデックス：0,2,4,8,12,16,18
+	len：変数：18 + len
+	パラメータ：
+		- cmd：識別パケット（0x303a）
 len
-- guild_id
-援助
-CID
-- タイプ
-日付
-desc：
-- ギルド会員情報の変更をリクエストする
+		- guild_id
+	援助
+	CID
+		- タイプ
+	日付
+	desc：
+		- ギルド会員情報の変更をリクエストする
 
 0x303b
-タイプ：ZI
-構造：<cmd> .W <guild_position> .W <guild_id> .L <idx> .L <p>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + guild_position
-パラメータ：
-- cmd：識別パッケージ（0x303b）
-- ギルド_ポジション
-- guild_id
-- idx
-- P
-desc：
-- ギルドタイトルの変更を要求する
+	タイプ：ZI
+	構造：<cmd> .W <guild_position> .W <guild_id> .L <idx> .L <p>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + guild_position
+	パラメータ：
+		- cmd：識別パッケージ（0x303b）
+		- ギルド_ポジション
+		- guild_id
+		- idx
+		- P
+	desc：
+		- ギルドタイトルの変更を要求する
 
 0x303c
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L <skill_id> .L <aid> .L <max> .L
-インデックス：0,2,6,10,14
-len：18
-パラメータ：
-- cmd：識別パケット（0x303c）
-- guild_id
-- skill_id
-援助
-- 最大
-desc：
-- Guildskill skill_idから更新をリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L <skill_id> .L <aid> .L <max> .L
+	インデックス：0,2,6,10,14
+	len：18
+	パラメータ：
+		- cmd：識別パケット（0x303c）
+		- guild_id
+		- skill_id
+	援助
+		- 最大
+	desc：
+		- Guildskill skill_idから更新をリクエストする
 
 0x303d
-タイプ：ZI
-構造：<cmd> .W <guild_id1> .L <guild_id2> .L <account_id1> .L <account_id2> .L <flag> .B
-インデックス：0,2,6,10,14,18
-len：19
-パラメータ：
-- cmd：識別パッケージ（0x303d）
-- guild_id1
-- guild_id2
-- account_id1
-- account_id2
-フラグ
-desc：
-- 新しいギルド同盟をリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <guild_id1> .L <guild_id2> .L <account_id1> .L <account_id2> .L <flag> .B
+	インデックス：0,2,6,10,14,18
+	len：19
+	パラメータ：
+		- cmd：識別パッケージ（0x303d）
+		- guild_id1
+		- guild_id2
+		- account_id1
+		- account_id2
+	フラグ
+	desc：
+		- 新しいギルド同盟をリクエストする
 
 0x303e
-タイプ：ZI
-構造：<cmd> .W <guild_id> .L <mes1> .60B <mes2> .120B
-インデックス：0,2,6,66
-len：186
-パラメータ：
-- cmd：識別パッケージ（0x303e）
-- guild_id
-- mes1
-- mes2
-desc：
-- ギルドの警告を変更するように要求する
+	タイプ：ZI
+	構造：<cmd> .W <guild_id> .L <mes1> .60B <mes2> .120B
+	インデックス：0,2,6,66
+	len：186
+	パラメータ：
+		- cmd：識別パッケージ（0x303e）
+		- guild_id
+		- mes1
+		- mes2
+	desc：
+		- ギルドの警告を変更するように要求する
 
 0x303f
-タイプ：ZI
-構造：<cmd> .W <len> .W <guild_id> .L <0> .L <data>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + len（Max = 2012）
-パラメータ：
-- cmd：識別パッケージ（0x303f）
-desc：
-- ギルドのエンブレムの変更要求
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <guild_id> .L <0> .L <data>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + len（Max = 2012）
+	パラメータ：
+		- cmd：識別パッケージ（0x303f）
+	desc：
+		- ギルドのエンブレムの変更要求
 
 0x3040
-タイプ：ZI
-構造：<cmd> .W <num> .W <castle_ids>。？ B
-指数：0.2,4
-len：変数：4 + num * 2,147,483,647
-パラメータ：
-- cmd：識別パケット（0x3040）
-- 1つで
-- castle_ids
-desc：
-- ギルドの城からchar-serverのデータをリクエストする
+	タイプ：ZI
+	構造：<cmd> .W <num> .W <castle_ids>。？ B
+	指数：0.2,4
+	len：変数：4 + num * 2,147,483,647
+	パラメータ：
+		- cmd：識別パケット（0x3040）
+		- 1つで
+		- castle_ids
+	desc：
+		- ギルドの城からchar-serverのデータをリクエストする
 
 0x3041
-タイプ：ZI
-構造：<cmd> .W <castle_ids> .W <index> .B <value> .L
-インデックス：0,2,4,5
-len：9
-パラメータ：
-- cmd：識別パッケージ（0x3041）
-- castle_ids
-索引
-値
-desc：
-- 城の所有者の変更を要求し、データを保存する
+	タイプ：ZI
+	構造：<cmd> .W <castle_ids> .W <index> .B <value> .L
+	インデックス：0,2,4,5
+	len：9
+	パラメータ：
+		- cmd：識別パッケージ（0x3041）
+		- castle_ids
+	索引
+	値
+	desc：
+		- 城の所有者の変更を要求し、データを保存する
 
 0x3048
-タイプ：ZI
-構造：<cmd> .W <cid> .L <flag> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x3048）
-CID
-フラグ
-desc：
-- 受信トレイのリクエスト
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <flag> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x3048）
+	CID
+	フラグ
+	desc：
+		- 受信トレイのリクエスト
 
 0x3049
-タイプ：ZI
-構造：<cmd> .W <mail_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x3049）
-- mail_id
-desc：
-- 電子メールを読む
+	タイプ：ZI
+	構造：<cmd> .W <mail_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x3049）
+		- mail_id
+	desc：
+		- 電子メールを読む
 
 0x304a
-タイプ：ZI
-構造：<cmd> .W <cid> .L <mail_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-- mail_id
-desc：
-- 電子メールに添付ファイルがあります
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <mail_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+		- mail_id
+	desc：
+		- 電子メールに添付ファイルがあります
 
 0x304b
-タイプ：ZI
-構造：<cmd> .W <cid> .L <mail_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-- mail_id
-desc：
-- 削除されたメール
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <mail_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+		- mail_id
+	desc：
+		- 削除されたメール
 
 0x304c
-タイプ：ZI
-構造：<cmd> .W <cid> .L <mail_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-- mail_id
-desc：
-- 返されたメール
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <mail_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+		- mail_id
+	desc：
+		- 返されたメール
 
 0x304d
-タイプ：ZI
-構造：<cmd> .W <len> .W <aid> .L <msg>。？ B
-インデックス：0,2,4,8
-len：変数：8 + mail_message
-パラメータ：
-- cmd：識別パッケージ（0x3093）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <aid> .L <msg>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + mail_message
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
 len
-援助
-- msg
-desc：
-- メールが送信されました
+	援助
+		- msg
+	desc：
+		- メールが送信されました
 
 0x3050
-タイプ：ZI
-構造：<cmd> .W <len> .W <cid> .L <Type> .W <price> .L <page> .W <searchtext>。？ B
-インデックス：0,2,4,8,10,14,16
-len：変数：16 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3093）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <cid> .L <Type> .W <price> .L <page> .W <searchtext>。？ B
+	インデックス：0,2,4,8,10,14,16
+	len：変数：16 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
 len
-CID
-- タイプ
+	CID
+		- タイプ
 価格
-- ページ
-- 検索テキスト
-desc：
-- オークションオーダーのリスト
+		- ページ
+		- 検索テキスト
+	desc：
+		- オークションオーダーのリスト
 
 0x3051
-タイプ：ZI
-構造：<cmd> .W <len> .W <auction_data>。？ B
-指数：0.2,4
-len：変数：4 + auction_data
-パラメータ：
-- cmd：識別パッケージ（0x3093）
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <auction_data>。？ B
+	指数：0.2,4
+	len：変数：4 + auction_data
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
 len
-- auction_data
-desc：
-- オークション記録
+		- auction_data
+	desc：
+		- オークション記録
 
 0x3052
-タイプ：ZI
-構造：<cmd> .W <cid> .L <auction_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-- auction_id
-desc：
-- オークションのキャンセル
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <auction_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+		- auction_id
+	desc：
+		- オークションのキャンセル
 
 0x3053
-タイプ：ZI
-構造：<cmd> .W <cid> .L <auction_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-- auction_id
-desc：
-- クローズドオークション
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <auction_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+		- auction_id
+	desc：
+		- クローズドオークション
 
 0x3055
-タイプ：ZI
-構造：<cmd> .W <len> .W <cid> .L <auction_id> .L <bid> .L <name>。？ B
-インデックス：0,2,4,8,12,16
-len：変数：16 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-len
-CID
-- auction_id
-入札
-desc：
-- オークション入札
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <cid> .L <auction_id> .L <bid> .L <name>。？ B
+	インデックス：0,2,4,8,12,16
+	len：変数：16 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	len：
+	CID
+		- auction_id
+	入札
+	desc：
+		- オークション	入札
 
 0x3056
-タイプ：ZI
-構造：<cmd> .W <cid> .L <aid> .L <guild_id> .W
-インデックス：0,2,6,10
-len：12
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-援助
-- guild_id
-desc：
-- 整理された順序
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L <aid> .L <guild_id> .W
+	インデックス：0,2,6,10
+	len：12
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+	援助
+		- guild_id
+	desc：
+		- 整理された順序
 
 0x3060
-タイプ：ZI
-構造：<cmd> .W <cid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-CID
-desc：
-- キャラクターのミッションのログエントリをインターサーバに要求する。
+	タイプ：ZI
+	構造：<cmd> .W <cid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	CID
+	desc：
+		- キャラクターのミッションのログエントリをインターサーバに要求する。
 
 0x3061
-タイプ：ZI
-構造：<cmd> .W <len> .W <cid> .L <quest_log>。？ B
-インデックス：0,2,4,8
-len：変数：8 + num_quests
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-desc：
-- Interserverは、キャラクターのミッションのログエントリを保存するように要求します。
+	タイプ：ZI
+	構造：<cmd> .W <len> .W <cid> .L <quest_log>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + num_quests
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+	desc：
+		- Interserverは、キャラクターのミッションのログエントリを保存するように要求します。
 
 0x3070
-タイプ：ZI
-構造：<cmd> .W <size> .W <merc>。？ B
-指数：0.2,4
-len：変数：4 + s_mercenary
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-- サイズ
-メルク
-desc：
-- 傭兵傭兵を作る
+	タイプ：ZI
+	構造：<cmd> .W <size> .W <merc>。？ B
+	指数：0.2,4
+	len：変数：4 + s_mercenary
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+		- サイズ
+	メルク
+	desc：
+		- 傭兵傭兵を作る
 
 0x3071
-タイプ：ZI
-構造：<cmd> .W <merc_id> .L <char_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3071）
-- merc_id
-CID
-desc：
-- 傭兵を頼む
+	タイプ：ZI
+	構造：<cmd> .W <merc_id> .L <char_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3071）
+		- merc_id
+	CID
+	desc：
+		- 傭兵を頼む
 
 0x3072
-タイプ：ZI
-構造：<cmd> .W <merc_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パック（0x3072）
-- merc_id
-desc：
-- デレタ傭兵
+	タイプ：ZI
+	構造：<cmd> .W <merc_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パック（0x3072）
+		- merc_id
+	desc：
+		- デレタ傭兵
 
 0x3073
-タイプ：ZI
-構造：<cmd> .W <size> .W <merc>。？ B
-指数：0.2,4
-len：変数：4 + s_mercenary
-パラメータ：
-- cmd：識別パッケージ（0x3073）
-- サイズ
-メルク
-desc：
-- 保存傭兵
+	タイプ：ZI
+	構造：<cmd> .W <size> .W <merc>。？ B
+	指数：0.2,4
+	len：変数：4 + s_mercenary
+	パラメータ：
+		- cmd：識別パッケージ（0x3073）
+		- サイズ
+	メルク
+	desc：
+		- 保存傭兵
 
 0x307c
-タイプ：ZI
-構造：<cmd> .W <size> .W <en>？ B
-指数：0.2,4
-len：変数：4 + s_elemental
-パラメータ：
-- cmd：識別パケット（0x307c）
-- サイズ
-- 彼
-desc：
-- エレメンタルクリーチャー
+	タイプ：ZI
+	構造：<cmd> .W <size> .W <en>？ B
+	指数：0.2,4
+	len：変数：4 + s_elemental
+	パラメータ：
+		- cmd：識別パケット（0x307c）
+		- サイズ
+		- 彼
+	desc：
+		- エレメンタルクリーチャー
 
 0x307d
-タイプ：ZI
-構造：<cmd> .W <ele_id> .L <cid> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x307d）
-- ele_id
-CID
-desc：
-- 小学生が必要です
+	タイプ：ZI
+	構造：<cmd> .W <ele_id> .L <cid> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x307d）
+		- ele_id
+	CID
+	desc：
+		- 小学生が必要です
 
 0x307e
-タイプ：ZI
-構造：<cmd> .W <ele_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x307e）
-- ele_id
-desc：
-- エレメンタルデレタ
+	タイプ：ZI
+	構造：<cmd> .W <ele_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x307e）
+		- ele_id
+	desc：
+		- エレメンタルデレタ
 
 0x307f
-タイプ：ZI
-構造：<cmd> .W <size> .W <en>？ B
-指数：0.2,4
-len：変数：4 + s_elemental
-パラメータ：
-- cmd：識別パケット（0x307f）
-- サイズ
-- 彼
-desc：
-- セーブエレメンタル
+	タイプ：ZI
+	構造：<cmd> .W <size> .W <en>？ B
+	指数：0.2,4
+	len：変数：4 + s_elemental
+	パラメータ：
+		- cmd：識別パケット（0x307f）
+		- サイズ
+		- 彼
+	desc：
+		- セーブエレメンタル
 
 0x3080
-タイプ：ZI
-W <pet_class> .W <pet_egg_id> .W <pet_equip> .W <intimate> .W <hungry> .W <rename_flag> .B <incubate> .B
-インデックス：0,2,6,10,12,14,16,18,20,22,23,24
-len：変数：24 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3080）
-援助
-CID
-- ペットクラス
-- ペット_lv
-- pet_egg_id
--pet_equip
-親密な
-空腹
-- rename_flag
-- インキュベートする
-desc：
-- ペットを作る
+	タイプ：ZI
+	W <pet_class> .W <pet_egg_id> .W <pet_equip> .W <intimate> .W <hungry> .W <rename_flag> .B <incubate> .B
+	インデックス：0,2,6,10,12,14,16,18,20,22,23,24
+	len：変数：24 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3080）
+	援助
+	CID
+		- ペットクラス
+		- ペット_lv
+		- pet_egg_id
+		-pet_equip
+	親密な
+	空腹
+		- rename_flag
+		- インキュベートする
+	desc：
+		- ペットを作る
 
 0x3081
-タイプ：ZI
-構造：<cmd> .W <aid> .L <cid> .L <pet_id> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パケット（0x3081）
-援助
-CID
-- ペット_id
-desc：
-- ペットデータを求める
+	タイプ：ZI
+	構造：<cmd> .W <aid> .L <cid> .L <pet_id> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パケット（0x3081）
+	援助
+	CID
+		- ペット_id
+	desc：
+		- ペットデータを求める
 
 0x3082
-タイプ：ZI
-構造：<cmd> .W <size> .W <aid> .L <s_pet>。
-インデックス：0,2,4,8
-len：変数：8 + s_pet
-パラメータ：
-- cmd：識別パッケージ（0x3082）
-- サイズ
-援助
-- s_pet：ペットデータ
-desc：
-- ペットデータを保存する
+	タイプ：ZI
+	構造：<cmd> .W <size> .W <aid> .L <s_pet>。
+	インデックス：0,2,4,8
+	len：変数：8 + s_pet
+	パラメータ：
+		- cmd：識別パッケージ（0x3082）
+		- サイズ
+	援助
+		- s_pet：ペットデータ
+	desc：
+		- ペットデータを保存する
 
 0x3083
-タイプ：ZI
-構造：<cmd> .W <pet_id> .L
-指数：0.2
+	タイプ：ZI
+	構造：<cmd> .W <pet_id> .L
+	指数：0.2
 len 6：
-パラメータ：
-- cmd：識別パッケージ（0x3083）
-- ペット_id
-desc：
-- ペットのデータを削除する
+	パラメータ：
+		- cmd：識別パッケージ（0x3083）
+		- ペット_id
+	desc：
+		- ペットのデータを削除する
 
 0x3090：
-タイプ：ZI
-構造：<cmd> .W <s_homunculus> .W <aid> .L <sh>。？ B
-インデックス：0,2,4,8
-len：変数：8 + s_homunculus
-パラメータ：
-- cmd：識別パック（0x3090）
-- s_homunculus
-援助
+	タイプ：ZI
+	構造：<cmd> .W <s_homunculus> .W <aid> .L <sh>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + s_homunculus
+	パラメータ：
+		- cmd：識別パック（0x3090）
+		- s_homunculus
+	援助
 sh
-desc：
-- ホムンクルスを創る
+	desc：
+		- ホムンクルスを創る
 
 0x3091：
-タイプ：ZI
-構造：<cmd> .W <aid> .L <homun_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x3091）
-援助
-- homun_id
-desc：
-- ホムンクルスロードの呼び出し
+	タイプ：ZI
+	構造：<cmd> .W <aid> .L <homun_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x3091）
+	援助
+		- homun_id
+	desc：
+		- ホムンクルスロードの呼び出し
 
 0x3092：
-タイプ：ZI
-構造：<cmd> .W <s_homunculus> .W <aid> .L <sh>。？ B
-インデックス：0,2,4,8
-len：変数：8 + s_homunculus
-パラメータ：
-- cmd：識別パック（0x3092）
-- s_homunculus
-援助
-sh
-desc：
-- ホムンクルスの救助の呼びかけ
+	タイプ：ZI
+	構造：<cmd> .W <s_homunculus> .W <aid> .L <sh>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 + s_homunculus
+	パラメータ：
+		- cmd：識別パック（0x3092）
+		- s_homunculus
+	援助
+	sh
+	desc：
+		- ホムンクルスの救助の呼びかけ
 
 0x3093：
-タイプ：ZI
-構造：<cmd> .W <homun_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x3093）
-- homun_id
-desc：
-- ホムンクルスの削除のための呼び出し
+	タイプ：ZI
+	構造：<cmd> .W <homun_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x3093）
+		- homun_id
+	desc：
+		- ホムンクルスの削除のための呼び出し
 
 0x3094：
-タイプ：ZI
-構造：<cmd> .W <aid> .L <cid> .L <name>。？ B
-インデックス：0,2,6,10
-len：変数：10 +名前
-パラメータ：
-- cmd：識別パッケージ（0x3094）
-援助
-CID
-名
-desc：
-- ホムンクルスの名前を変更する
+	タイプ：ZI
+	構造：<cmd> .W <aid> .L <cid> .L <name>。？ B
+	インデックス：0,2,6,10
+	len：変数：10 +	名前
+	パラメータ：
+		- cmd：識別パッケージ（0x3094）
+	援助
+	CID
+	名
+	desc：
+		- ホムンクルスの	名前を変更する
 
 0x3800：
-タイプ：IZ
-構造：<cmd> .W <len> .W <fontColor> .L <fonttype> .W <fontSize> .W <fontAlign> .W <fontY> .W <mes>。
-インデックス：0,2,4,8,10,12,14,16
-len：変数：16 + len
-パラメータ：
-- cmd：識別パケット（0x3800）
-len
-- fontColor
-- fontType
-- フォントサイズ
-- fontAlign
-- fontY
-- 月
-desc：
-- ブロードキャストメッセージを送信する
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <fontColor> .L <fonttype> .W <fontSize> .W <fontAlign> .W <fontY> .W <mes>。
+	インデックス：0,2,4,8,10,12,14,16
+	len：変数：16 + len
+	パラメータ：
+		- cmd：識別パケット（0x3800）
+	len：
+		- fontColor
+		- fontType
+		- フォントサイズ
+		- fontAlign
+		- fontY
+		- 月
+	desc：
+		- ブロードキャストメッセージを送信する
 
 0x3801
-タイプ：IZ
-構造：<cmd> .W <len> .W <id> .L <src> .24B <dst> .24B <msg>。 B
-インデックス：0.2,4,8,32,56
-len：変数：56 + len（Max = 1991）
-パラメータ：
-- cmd：識別パケット（0x3801）
-len
-id
-- src
-DST
-- msg
-desc：
-- メッセージをささやく
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <id> .L <src> .24B <dst> .24B <msg>。 B
+	インデックス：0.2,4,8,32,56
+	len：変数：56 + len（Max = 1991）
+	パラメータ：
+		- cmd：識別パケット（0x3801）
+	len
+	id
+		- src
+	DST
+		- msg
+	desc：
+		- メッセージをささやく
 
 0x3802
-タイプ：IZ
-構造：<cmd> .W <src> .24B <flag> .B
-インデックス：0.2,26
-len：27
-パラメータ：
-- cmd：識別パッケージ（0x3802）
-- src
-フラグ
-desc：
-- 結果を送信するWhisper
+	タイプ：IZ
+	構造：<cmd> .W <src> .24B <flag> .B
+	インデックス：0.2,26
+	len：27
+	パラメータ：
+		- cmd：識別パッケージ（0x3802）
+		- src
+	フラグ
+	desc：
+		- 結果を送信するWhisper
 
 0x3803
-タイプ：IZ
-構造：<cmd> .W <packet_len> .W <wispname>。？ B <permission> .L <message>。？ B
-インデックス：0,2,4,4 + NAME_LENGTH、8 + NAME_LENGTH
-len：変数：mes_len + 8 + NAME_LENGTH
-パラメータ：
-- cmd：識別パケット（0x3003）
-- packet_len：mes_len + 8 + NAME_LENGTH
-- wisp_name
-許可
-- メッセージ
-desc：
-- GMのアナリストウィスパー
+	タイプ：IZ
+	構造：<cmd> .W <packet_len> .W <wispname>。？ B <permission> .L <message>。？ B
+	インデックス：0,2,4,4 + NAME_LENGTH、8 + NAME_LENGTH
+	len：変数：mes_len + 8 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パケット（0x3003）
+		- packet_	len：mes_len + 8 + NAME_LENGTH
+		- wisp_name
+	許可
+		- メッセージ
+	desc：
+		- GMのアナリストウィスパー
 
 0x3804
-タイプ：IZ
-構造：<cmd> .W <？> W <aid> .L <cid> .L <Type> .B
-インデックス：0,2,4,8,12
-len：変数：13またはp（Max = 5013）
-パラメータ：
-- cmd：識別パッケージ（0x3804）
-- ？
-援助
-CID
-- タイプ
-desc：
-- マップサーバーへのアカウント登録の転送
+	タイプ：IZ
+	構造：<cmd> .W <？> W <aid> .L <cid> .L <Type> .B
+	インデックス：0,2,4,8,12
+	len：変数：13またはp（Max = 5013）
+	パラメータ：
+		- cmd：識別パッケージ（0x3804）
+		- ？
+	援助
+	CID
+		- タイプ
+	desc：
+		- マップサーバーへのアカウント登録の転送
 
 0x3806
-タイプ：IZ
-構造：<cmd> .W <aid> .L <cid> .L <Type> .B <flag> .B <name> .B
-インデックス：0,2,6,10,11,12
-len：13
-パラメータ：
-- cmd：識別パック（0x3806）
-援助
-CID
-- タイプ
-フラグ
-名
-desc：
-- mapif_namechange_ack
+	タイプ：IZ
+	構造：<cmd> .W <aid> .L <cid> .L <Type> .B <flag> .B <name> .B
+	インデックス：0,2,6,10,11,12
+	len：13
+	パラメータ：
+		- cmd：識別パック（0x3806）
+	援助
+	CID
+		- タイプ
+	フラグ
+	名
+	desc：
+		- mapif_namechange_ack
 
 0x3807
-タイプ：IZ
-構造：<cmd> .W <len> .W <u_fd> .L <aid> .L <msg_out>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + len
-パラメータ：
-- cmd：識別パッケージ（0x3807）
-len
-- u_fd
-援助
-- msg_out
-desc：
-- fdを使用しているにもかかわらず、ユーザー（umfd）のマップサーバー（fd）にメッセージを送信し、安全な検証のために援助します。
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <u_fd> .L <aid> .L <msg_out>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + len
+	パラメータ：
+		- cmd：識別パッケージ（0x3807）
+	len
+		- u_fd
+	援助
+		- msg_out
+	desc：
+		- fdを使用しているにもかかわらず、ユーザー（umfd）のマップサーバー（fd）にメッセージを送信し、安全な検証のために	援助します。
 
 0x3818
-タイプ：IZ
-構造：<cmd> .W <len> .W <aid> .L <guild_id> .L <flag> .B <guild_storage>。
-インデックス：0,2,4,8,12,13
-len：変数：13 + guild_storage
-パラメータ：
-- cmd：識別パッケージ（0x3818）
-len
-援助
-- guild_id
-フラグ
-- ギルドストア
-desc：
-- mapif_load_guild_storage
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <aid> .L <guild_id> .L <flag> .B <guild_storage>。
+	インデックス：0,2,4,8,12,13
+	len：変数：13 + guild_storage
+	パラメータ：
+		- cmd：識別パッケージ（0x3818）
+	len
+	援助
+		- guild_id
+	フラグ
+		- ギルドストア
+	desc：
+		- mapif_load_guild_storage
 
 0x3819
-タイプ：IZ
-構造：<cmd> .W <aid> .L <guild_id> .L <fail> .B
-インデックス：0,2,6,10
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x3819）
-援助
-- guild_id
+	タイプ：IZ
+	構造：<cmd> .W <aid> .L <guild_id> .L <fail> .B
+	インデックス：0,2,6,10
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x3819）
+	援助
+		- guild_id
 失敗します
-desc：
-- mapif_save_guild_storage_ack
+	desc：
+		- mapif_save_guild_storage_ack
 
 0x3820
-タイプ：IZ
-構造：<cmd> .W <aid> .L <char_id> .L <？> .B <party_id> .L <name>。？ B
-インデックス：0,2,6,10,11,15
-len：39
-パラメータ：
-- cmd：識別パッケージ（0x3820）
-援助
-- char_id
-- ？
-- party_id
-名
-desc：
-- パーティー作成の確認
+	タイプ：IZ
+	構造：<cmd> .W <aid> .L <char_id> .L <？> .B <party_id> .L <name>。？ B
+	インデックス：0,2,6,10,11,15
+	len：39
+	パラメータ：
+		- cmd：識別パッケージ（0x3820）
+	援助
+		- char_id
+		- ？
+		- party_id
+	名
+	desc：
+		- パーティー作成の確認
 
 0x3821
-タイプ：IZ
-構造：<cmd> .W <？> W <char_id> .L <party_id> .L
-インデックス：0,2,4,8
-len：12
-パラメータ：
-- cmd：識別パケット（0x3821）
-- ？
-- char_id
-- party_id
-desc：
-- パーティ情報が見つかりません
+	タイプ：IZ
+	構造：<cmd> .W <？> W <char_id> .L <party_id> .L
+	インデックス：0,2,4,8
+	len：12
+	パラメータ：
+		- cmd：識別パケット（0x3821）
+		- ？
+		- char_id
+		- party_id
+	desc：
+		- パーティ情報が見つかりません
 
 0x3822
-タイプ：IZ
-構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <flag> .B
-インデックス：0,2,6,10,14
-len：15
-パラメータ：
-- cmd：識別パケット（0x3822）
-- party_id
-- アカウントID
-- char_id
-フラグ
-desc：
-- mapif_party_memberadded
+	タイプ：IZ
+	構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <flag> .B
+	インデックス：0,2,6,10,14
+	len：15
+	パラメータ：
+		- cmd：識別パケット（0x3822）
+		- party_id
+		- アカウントID
+		- char_id
+	フラグ
+	desc：
+		- mapif_party_memberadded
 
 0x3823
-タイプ：IZ
-構造：<cmd> .W <party_id> .L <account_id> .L <exp> .W <item> .W <flag> .B
-インデックス：0,2,6,10,12,14,15？
-len：16？
-パラメータ：
-- cmd：識別パッケージ（0x3823）
-- party_id
-- アカウントID
-経験
-項目
-フラグ
-- ？
-desc：
-- パーティー構成の変更通知
+	タイプ：IZ
+	構造：<cmd> .W <party_id> .L <account_id> .L <exp> .W <item> .W <flag> .B
+	インデックス：0,2,6,10,12,14,15？
+	len：16？
+	パラメータ：
+		- cmd：識別パッケージ（0x3823）
+		- party_id
+		- アカウントID
+	経験
+	項目
+	フラグ
+		- ？
+	desc：
+		- パーティー構成の変更通知
 
 0x3824
-タイプ：IZ
-構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <？>。？ B
-インデックス：0,2,6,10,14
-len：16？
-パラメータ：
-- cmd：識別パック（0x3824）
-- party_ud
-- アカウントID
-- char_id
-- ？
-desc：
-- 当事者からの撤回の通知
+	タイプ：IZ
+	構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <？>。？ B
+	インデックス：0,2,6,10,14
+	len：16？
+	パラメータ：
+		- cmd：識別パック（0x3824）
+		- party_ud
+		- アカウントID
+		- char_id
+		- ？
+	desc：
+		- 当事者からの撤回の通知
 
 0x3825
-タイプ：IZ
-構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <map> .W <online> .B <lv> .W <？>。？ B
-インデックス：0,2,6,10,14,16,17,19
-len：20？
-パラメータ：
-- cmd：識別パッケージ（0x3825）
-- party_id
-- アカウントID
-- char_id
-地図
-- オンライン
-lv
-- ？
-desc：
-- パーティマップ更新通知
+	タイプ：IZ
+	構造：<cmd> .W <party_id> .L <account_id> .L <char_id> .L <map> .W <online> .B <lv> .W <？>。？ B
+	インデックス：0,2,6,10,14,16,17,19
+	len：20？
+	パラメータ：
+		- cmd：識別パッケージ（0x3825）
+		- party_id
+		- アカウントID
+		- char_id
+	地図
+		- オンライン
+	lv
+		- ？
+	desc：
+		- パーティマップ更新通知
 
 0x3826
-タイプ：IZ
-構造：<cmd> .W <party_id> .L <flag> .B <？>。？ B
-インデックス：0,2,6,7
-len：16
-パラメータ：
-- cmd：識別パック（0x3826）
-- party_id
-フラグ
-- ？
-desc：
-- 党の解散の通知
+	タイプ：IZ
+	構造：<cmd> .W <party_id> .L <flag> .B <？>。？ B
+	インデックス：0,2,6,7
+	len：16
+	パラメータ：
+		- cmd：識別パック（0x3826）
+		- party_id
+	フラグ
+		- ？
+	desc：
+		- 党の解散の通知
 
 0x3827
-タイプ：IZ
-構造：<cmd> .W <len> .W <party_id> .L <account_id> .L <mes>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + len（max = 512）
-パラメータ：
-- cmd：識別パッケージ（0x3827）
-len
-- party_id
-- アカウントID
-- 月
-desc：
-- mapif_party_message
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <party_id> .L <account_id> .L <mes>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + len（max = 512）
+	パラメータ：
+		- cmd：識別パッケージ（0x3827）
+	len
+		- party_id
+		- アカウントID
+		- 月
+	desc：
+		- mapif_party_message
 
 0x3830
-タイプ：IZ
-構造：<cmd> .W <account_id> .L <guild_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x3830）
-- アカウントID
-- guild_id
-desc：
-- mapif_guild_created
+	タイプ：IZ
+	構造：<cmd> .W <account_id> .L <guild_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x3830）
+		- アカウントID
+		- guild_id
+	desc：
+		- mapif_guild_created
 
 0x3831
-タイプ：IZ
-構造：<cmd> .W <？> W <guild_id> .L <？>。？ B
-インデックス：0,2,4,8
-len：12
-パラメータ：
-- cmd：識別パック（0x3831）
-- ？
-- guild_id
-- ？
-desc：
-- mapif_guild_noinfo
+	タイプ：IZ
+	構造：<cmd> .W <？> W <guild_id> .L <？>。？ B
+	インデックス：0,2,4,8
+	len：12
+	パラメータ：
+		- cmd：識別パック（0x3831）
+		- ？
+		- guild_id
+		- ？
+	desc：
+		- mapif_guild_noinfo
 
 0x3832
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <flag> .B
-インデックス：0,2,6,10,14
-len：15
-パラメータ：
-- cmd：識別パッケージ（0x3832）
-- guild_id
-- アカウントID
-- char_id
-フラグ
-desc：
-- 会員の追加確認
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <flag> .B
+	インデックス：0,2,6,10,14
+	len：15
+	パラメータ：
+		- cmd：識別パッケージ（0x3832）
+		- guild_id
+		- アカウントID
+		- char_id
+	フラグ
+	desc：
+		- 会員の追加確認
 
 0x3834
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <フラグ> .B <月> .40B <名前>。？ B
-インデックス：0,2,6,10,14,15,55
-len：変数：55 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x3834）
-- guild_id
-- アカウントID
-- char_id
-フラグ
-- 月
-名
-desc：
-- mapif_guild_withdraw
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <	フラグ> .B <月> .40B <	名前>。？ B
+	インデックス：0,2,6,10,14,15,55
+	len：変数：55 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x3834）
+		- guild_id
+		- アカウントID
+		- char_id
+	フラグ
+		- 月
+	名
+	desc：
+		- mapif_guild_withdraw
 
 0x3835
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <online> .B <lv> .W <class _> .W
-インデックス：0,2,6,10,14,15,17
-len：19
-パラメータ：
-- cmd：識別パッケージ（0x3835）
-- guild_id
-- アカウントID
-- char_id
-- オンライン
-lv
-クラス
-desc：
-- ギルドメンバーから小さな情報を送る
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <account_id> .L <char_id> .L <online> .B <lv> .W <class _> .W
+	インデックス：0,2,6,10,14,15,17
+	len：19
+	パラメータ：
+		- cmd：識別パッケージ（0x3835）
+		- guild_id
+		- アカウントID
+		- char_id
+		- オンライン
+	lv
+	クラス
+	desc：
+		- ギルドメンバーから小さな情報を送る
 
 0x3836
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <flag> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x3836）
-- guild_id
-フラグ
-desc：
-- mapif_guild_broken
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <flag> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x3836）
+		- guild_id
+	フラグ
+	desc：
+		- mapif_guild_broken
 
 0x3837
-タイプ：IZ
-構造：<cmd> .W <len> .W <guild_id> .L <account_id> .L <mes>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + len（max = 512）
-パラメータ：
-- cmd：識別パック（0x3837）
-len
-- guild_id
-- アカウントID
-- 月
-desc：
-- ギルドメッセージを送る
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <guild_id> .L <account_id> .L <mes>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + len（max = 512）
+	パラメータ：
+		- cmd：識別パック（0x3837）
+	len
+		- guild_id
+		- アカウントID
+		- 月
+	desc：
+		- ギルドメッセージを送る
 
 0x3839
-タイプ：IZ
-構造：<cmd> .W <len> .W <guild_id> .L <Type> .W <data>。？ B
-インデックス：0,2,4,8,10
-len：変数：10 + len（最大= 2048）
-パラメータ：
-- cmd：識別パッケージ（0x3839）
-len
-- guild_id
-- タイプ
-日付
-desc：
-- mapif_guild_basicinfochanged
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <guild_id> .L <Type> .W <data>。？ B
+	インデックス：0,2,4,8,10
+	len：変数：10 + len（最大= 2048）
+	パラメータ：
+		- cmd：識別パッケージ（0x3839）
+	len
+		- guild_id
+		- タイプ
+	日付
+	desc：
+		- mapif_guild_basicinfochanged
 
 0x383a
-タイプ：IZ
-構造：<cmd> .W <len> .W <guild_id> .L <account_id> .L <char_id> .L <タイプ> .W <データ>。
-インデックス：0,2,4,8,12,16,18
-len：変数：18 + len（最大= 2048）
-パラメータ：
-- cmd：識別パケット（0x383a）
-len
-- guild_id
-- アカウントID
-- char_id
-- タイプ
-日付
-desc：
-- mapif_guild_memberinfochanged
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <guild_id> .L <account_id> .L <char_id> .L <タイプ> .W <データ>。
+	インデックス：0,2,4,8,12,16,18
+	len：変数：18 + len（最大= 2048）
+	パラメータ：
+		- cmd：識別パケット（0x383a）
+	len
+		- guild_id
+		- アカウントID
+		- char_id
+		- タイプ
+	日付
+	desc：
+		- mapif_guild_memberinfochanged
 
 0x383b
-タイプ：IZ
-構造：<cmd> .W <len> .W <guild_id> .L <idx> .L <position>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + guild_position
-パラメータ：
-- cmd：識別パケット（0x383b）
-len
-- guild_id
-- idx
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <guild_id> .L <idx> .L <position>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + guild_position
+	パラメータ：
+		- cmd：識別パケット（0x383b）
+	len
+		- guild_id
+		- idx
 ポジション
-desc：
-- mapif_guild_position
+	desc：
+		- mapif_guild_position
 
 0x383c
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <skill_id> .L <account_id> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パケット（0x383c）
-- guild_id
-- skill_id
-- アカウントID
-desc：
-- ギルドスキルの向上の確認
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <skill_id> .L <account_id> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パケット（0x383c）
+		- guild_id
+		- skill_id
+		- アカウントID
+	desc：
+		- ギルドスキルの向上の確認
 
 0x383d
-タイプ：IZ
-構造：<cmd> .W <guild_id1> .L <guild_id2> .L <account_id1> .L <account_id2> .L <flag> .B <name1>。？ B <name2>。？ B
-インデックス：0,2,6,10,14,18,19
-len：変数：19 + 2 * NAME_LENGTH
-パラメータ：
-- cmd：識別パケット（0x383d）
-- guild_id1
-- guild_id2
-- account_id1
-- account_id2
-desc：
-- ギルド同盟の確認
+	タイプ：IZ
+	構造：<cmd> .W <guild_id1> .L <guild_id2> .L <account_id1> .L <account_id2> .L <flag> .B <name1>。？ B <name2>。？ B
+	インデックス：0,2,6,10,14,18,19
+	len：変数：19 + 2 * NAME_LENGTH
+	パラメータ：
+		- cmd：識別パケット（0x383d）
+		- guild_id1
+		- guild_id2
+		- account_id1
+		- account_id2
+	desc：
+		- ギルド同盟の確認
 
 0x383e
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <mes1> .60B <mes2> .120B <？>。？ B
-インデックス：0,2,6,66,186
-len：256
-パラメータ：
-- cmd：識別パッケージ（0x383e）
-- guild_id
-- mes1
-- mes2
-- ？
-desc：
-- ギルドに警告を送る
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <mes1> .60B <mes2> .120B <？>。？ B
+	インデックス：0,2,6,66,186
+	len：256
+	パラメータ：
+		- cmd：識別パッケージ（0x383e）
+		- guild_id
+		- mes1
+		- mes2
+		- ？
+	desc：
+		- ギルドに警告を送る
 
 0x383f
-タイプ：IZ
-構造：<cmd> .W <len> .W <guild_id> .L <badge_id> .L <date_blank>。
-インデックス：0,2,4,8,12
-len：変数：12 + emblem_data
-パラメータ：
-- cmd：識別パッケージ（0x383f）
-len
-- guild_id
-- エンブレム_id
-- エンブレム_データ
-desc：
-- バッジの詳細を送信する
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <guild_id> .L <badge_id> .L <date_blank>。
+	インデックス：0,2,4,8,12
+	len：変数：12 + emblem_data
+	パラメータ：
+		- cmd：識別パッケージ（0x383f）
+	len
+		- guild_id
+		- エンブレム_id
+		- エンブレム_データ
+	desc：
+		- バッジの詳細を送信する
 
 0x3840
-タイプ：IZ
-構造：<cmd> .W <len> .W <gc>。？ B
-指数：0.2,4
-len：変数：4 + num * gc
-パラメータ：
-- cmd：識別パケット（0x3840）
-len
-gc
-desc：
-- mapif_guild_castle_dataload
+	タイプ：IZ
+	構造：<cmd> .W <len> .W <gc>。？ B
+	指数：0.2,4
+	len：変数：4 + num * gc
+	パラメータ：
+		- cmd：識別パケット（0x3840）
+	len
+	gc
+	desc：
+		- mapif_guild_castle_dataload
 
 0x3843
-タイプ：IZ
-構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パッケージ（0x3843）
-- guild_id
-援助
-CID
-desc：
-- mapif_guild_master_changed
+	タイプ：IZ
+	構造：<cmd> .W <guild_id> .L <aid> .L <cid> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パッケージ（0x3843）
+		- guild_id
+	援助
+	CID
+	desc：
+		- mapif_guild_master_changed
 
 0x3848
-タイプ：IZ
-構造：<cmd> .W <size> .W <char_id> .L <flag> .B <md>。？ B
-インデックス：0,2,4,8,9
-len：変数：9 + md
-パラメータ：
-- cmd：識別パッケージ（0x3848）
-- サイズ
-- char_id
-フラグ
-- md：Mail
-desc：
-- プレーヤーからの電子メールの受信依頼
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <char_id> .L <flag> .B <md>。？ B
+	インデックス：0,2,4,8,9
+	len：変数：9 + md
+	パラメータ：
+		- cmd：識別パッケージ（0x3848）
+		- サイズ
+		- char_id
+	フラグ
+		- md：Mail
+	desc：
+		- プレーヤーからの電子メールの受信依頼
 
 0x3849
-タイプ：IZ
-構造：<cmd> .W <dest_id> .L <sender_id> .L <sender_name> .24B <mail_title> .40B
-インデックス：0,2,6,10,34
-len：74
-パラメータ：
-- cmd：識別パッケージ（0x3849）
-- dest_id
-- sender_id
-- 送信者名
-- mail_title
-desc：
-- 地図サーバー上で新しいメールを報告する
+	タイプ：IZ
+	構造：<cmd> .W <dest_id> .L <sender_id> .L <sender_name> .24B <mail_title> .40B
+	インデックス：0,2,6,10,34
+	len：74
+	パラメータ：
+		- cmd：識別パッケージ（0x3849）
+		- dest_id
+		- sender_id
+		- 送信者	名
+		- mail_title
+	desc：
+		- 地図サーバー上で新しいメールを報告する
 
 0x384a
-タイプ：IZ
-構造：<cmd> .W <size> .W <char_id> .L <zeny> .L <item>。？ B
-インデックス：0,2,4,8,12
-len：変数：12 + item
-パラメータ：
-- cmd：識別パケット（0x384a）
-- サイズ
-- char_id
-ゼニー
-項目
-desc：
-- 電子メールの添付ファイルを取得する
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <char_id> .L <zeny> .L <item>。？ B
+	インデックス：0,2,4,8,12
+	len：変数：12 + item
+	パラメータ：
+		- cmd：識別パケット（0x384a）
+		- サイズ
+		- char_id
+	ゼニー
+	項目
+	desc：
+		- 電子メールの添付ファイルを取得する
 
 0x384b
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <mail_id> .L <failed> .B
-インデックス：0,2,6,10,11
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x384b）
-- char_id
-- mail_id
-- 失敗：電子メールの削除の失敗のステータス
-desc：
-- プレーヤーの電子メールの削除に関するステータス
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <mail_id> .L <failed> .B
+	インデックス：0,2,6,10,11
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x384b）
+		- char_id
+		- mail_id
+		- 失敗：電子メールの削除の失敗のステータス
+	desc：
+		- プレーヤーの電子メールの削除に関するステータス
 
 0x384c
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <mail_id> .L <new_mail> .B
-インデックス：0,2,6,10,11
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x384c）
-- char_id
-- mail_id
-- new_mail
-desc：
-- 返信メールを受け取った
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <mail_id> .L <new_mail> .B
+	インデックス：0,2,6,10,11
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x384c）
+		- char_id
+		- mail_id
+		- new_mail
+	desc：
+		- 返信メールを受け取った
 
 0x384d
-タイプ：IZ
-構造：<cmd> .W <size> .W <mail_message>。？ B
-指数：0.2,4
-len：変数：4 + mail_message
-パラメータ：
-- cmd：識別パッケージ（0x384d）
-- サイズ
-- mail_message
-desc：
-- 電子メールのステータスを送信します（送信者がプレーヤーでオンラインの場合、プレーヤーの場合）
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <mail_message>。？ B
+	指数：0.2,4
+	len：変数：4 + mail_message
+	パラメータ：
+		- cmd：識別パッケージ（0x384d）
+		- サイズ
+		- mail_message
+	desc：
+		- 電子メールのステータスを送信します（送信者がプレーヤーでオンラインの場合、プレーヤーの場合）
 
 0x3850
-タイプ：IZ
-構造：<cmd> .W <size> .W <char_id> .L <count> .W <pages> .W <auction_data>。
-インデックス：0,2,4,8,10,12
-len：変数：12 + auction_data
-パラメータ：
-- cmd：識別パケット（0x3850）
-- サイズ
-- char_id
-カウント
-- ページ
-- auction_data
-desc：
-- オークションのリスト
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <char_id> .L <count> .W <pages> .W <auction_data>。
+	インデックス：0,2,4,8,10,12
+	len：変数：12 + auction_data
+	パラメータ：
+		- cmd：識別パケット（0x3850）
+		- サイズ
+		- char_id
+	カウント
+		- ページ
+		- auction_data
+	desc：
+		- オークションのリスト
 
 0x3851
-タイプ：IZ
-構造：<cmd> .W <size> .W <auction_data>。？ B
-指数：0.2,4
-len：変数：4 + auction_data
-パラメータ：
-- cmd：識別パッケージ（0x3851）
-- サイズ
-- auction_data
-desc：
-- オークションステータスの記録
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <auction_data>。？ B
+	指数：0.2,4
+	len：変数：4 + auction_data
+	パラメータ：
+		- cmd：識別パッケージ（0x3851）
+		- サイズ
+		- auction_data
+	desc：
+		- オークションステータスの記録
 
 0x3852
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <result> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x3852）
-- char_id
-結果
-desc：
-- プレーヤーが要求した入札を取り消す
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <result> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x3852）
+		- char_id
+	結果
+	desc：
+		- プレーヤーが要求した	入札を取り消す
 
 0x3853
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <result> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x3853）
-- char_id
-結果
-desc：
-- オークションが終了したという通知を受け取りました
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <result> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x3853）
+		- char_id
+	結果
+	desc：
+		- オークションが終了したという通知を受け取りました
 
 0x3855
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <bid> .L <result> .B
-インデックス：0,2,6,10
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x3855）
-- char_id
-入札
-結果
-desc：
-- オークションオークションからお金を取り戻す（他の誰かがそれを買収した）
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <bid> .L <result> .B
+	インデックス：0,2,6,10
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x3855）
+		- char_id
+	入札
+	結果
+	desc：
+		- オークションオークションからお金を取り戻す（他の誰かがそれを買収した）
 
 0x3856
-タイプ：IZ
-構造：<cmd> .W <aid> .L <guild_id> .W
-インデックス：0,2,6
-len：8
-パラメータ：
-- cmd：識別パッケージ（0x3856）
-- 援助：account_id
-- guild_id
-desc：
-- 関連アイテムの適切な除外を認識する
+	タイプ：IZ
+	構造：<cmd> .W <aid> .L <guild_id> .W
+	インデックス：0,2,6
+	len：8
+	パラメータ：
+		- cmd：識別パッケージ（0x3856）
+		- 	援助：account_id
+		- guild_id
+	desc：
+		- 関連アイテムの適切な除外を認識する
 
 0x3860
-タイプ：IZ
-構造：<cmd> .W <size> .W <char_id> .L <quest>。？ B
-インデックス：0,2,4,8
-len：変数：8 +クエスト
-パラメータ：
-- cmd：識別パケット（0x3860）
-- サイズ
-- char_id
-クエスト
-desc：
-- 1人のミッションログを送信する
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <char_id> .L <quest>。？ B
+	インデックス：0,2,4,8
+	len：変数：8 +クエスト
+	パラメータ：
+		- cmd：識別パケット（0x3860）
+		- サイズ
+		- char_id
+	クエスト
+	desc：
+		- 1人のミッションログを送信する
 
 0x3861
-タイプ：IZ
-構造：<cmd> .W <char_id> .L <success> .B
-指数：0.2,4
-len：5
-パラメータ：
-- cmd：識別パッケージ（0x3861）
-- char_id
-成功
-desc：
-- ミッションログから保存されたステータスを送信する
+	タイプ：IZ
+	構造：<cmd> .W <char_id> .L <success> .B
+	指数：0.2,4
+	len：5
+	パラメータ：
+		- cmd：識別パッケージ（0x3861）
+		- char_id
+	成功
+	desc：
+		- ミッションログから保存されたステータスを送信する
 
 0x3880
-タイプ：IZ
-構造：<cmd> .W <account_id> .L <class> .W <pet_id> .L
-インデックス：0,2,6,8
-len：12
-パラメータ：
-- cmd：識別パケット（0x3880）
-- アカウントID
-クラス
-- ペット_id
-desc：
-- ペットの卵の作成状況を送信する
+	タイプ：IZ
+	構造：<cmd> .W <account_id> .L <class> .W <pet_id> .L
+	インデックス：0,2,6,8
+	len：12
+	パラメータ：
+		- cmd：識別パケット（0x3880）
+		- アカウントID
+	クラス
+		- ペット_id
+	desc：
+		- ペットの卵の作成状況を送信する
 
 0x3881
-タイプ：IZ
-構造：<cmd> .W <size> .W <account_id> .L <status> .B <s_pet>。
-インデックス：0,2,4,6,8,9
-len：変数：9 + s_pet
-パラメータ：
-- cmd：識別パッケージ（0x3881）
-- サイズ
-- アカウントID
-- ステータス：1は、情報が利用可能であることを意味します。
-- s_pet：ペットデータ
-desc：
-- パケットデータをプレーヤーに送信する
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <account_id> .L <status> .B <s_pet>。
+	インデックス：0,2,4,6,8,9
+	len：変数：9 + s_pet
+	パラメータ：
+		- cmd：識別パッケージ（0x3881）
+		- サイズ
+		- アカウントID
+		- ステータス：1は、情報が利用可能であることを意味します。
+		- s_pet：ペットデータ
+	desc：
+		- パケットデータをプレーヤーに送信する
 
 0x3882
-タイプ：IZ
-構造：<cmd> .W <account_id> .L <flag> .B
-指数：0.2,4
-len：5
-パラメータ：
-- cmd：識別パッケージ（0x3882）
-- アカウントID
-- フラグ：1救助に失敗しました
-desc：
-- 保存されたペットステータスを送信する
+	タイプ：IZ
+	構造：<cmd> .W <account_id> .L <flag> .B
+	指数：0.2,4
+	len：5
+	パラメータ：
+		- cmd：識別パッケージ（0x3882）
+		- アカウントID
+		- 	フラグ：1救助に失敗しました
+	desc：
+		- 保存されたペットステータスを送信する
 
 0x3883
-タイプ：IZ
-構造：<cmd> .W <flag> .B
-指数：0.2
-len：3
-パラメータ：
-- cmd：識別パケット（0x3883）
-フラグ
-desc：
-- ペットの除外ステータスを送信する
+	タイプ：IZ
+	構造：<cmd> .W <flag> .B
+	指数：0.2
+	len：3
+	パラメータ：
+		- cmd：識別パケット（0x3883）
+	フラグ
+	desc：
+		- ペットの除外ステータスを送信する
 
 0x3890
-タイプ：IZ
-構造：<cmd> .W <size> .W <account_id> .L <flag> .B <s_homunculus>。
-インデックス：0,2,4,8,9
-len：変数：9 + s_homunculus
-パラメータ：
-- cmd：識別パッケージ（0x3890）
-- サイズ
-- アカウントID
-- フラグ：0は、ホムンクルスの作成が失敗したことを意味します。
-- s_homunculus：ホムンクルスデータ
-desc：
-- ホムンクルス創造のステータスを送る
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <account_id> .L <flag> .B <s_homunculus>。
+	インデックス：0,2,4,8,9
+	len：変数：9 + s_homunculus
+	パラメータ：
+		- cmd：識別パッケージ（0x3890）
+		- サイズ
+		- アカウントID
+		- 	フラグ：0は、ホムンクルスの作成が失敗したことを意味します。
+		- s_homunculus：ホムンクルスデータ
+	desc：
+		- ホムンクルス創造のステータスを送る
 
 0x3891
-タイプ：IZ
-構造：<cmd> .W <size> .W <account_id> .L <flag> .B <s_homunculus>。
-インデックス：0,2,4,8,9
-len：変数：9 + s_homunculus
-パラメータ：
-- cmd：識別パッケージ（0x3890）
-- サイズ
-- アカウントID
-- フラグ：0はホムンクルスデータを検索できなかったことを意味します
-- s_homunculus：ホムンクルスデータ
-desc：
-- ホムンクルスのデータをプレーヤーに送る
+	タイプ：IZ
+	構造：<cmd> .W <size> .W <account_id> .L <flag> .B <s_homunculus>。
+	インデックス：0,2,4,8,9
+	len：変数：9 + s_homunculus
+	パラメータ：
+		- cmd：識別パッケージ（0x3890）
+		- サイズ
+		- アカウントID
+		- 	フラグ：0はホムンクルスデータを検索できなかったことを意味します
+		- s_homunculus：ホムンクルスデータ
+	desc：
+		- ホムンクルスのデータをプレーヤーに送る
 
 0x3892
-タイプ：IZ
-構造：<cmd> .W <account_id> .L <flag> .B
-指数：0.2,4
-len：5
-パラメータ：
-- cmd：識別パッケージ（0x3892）
-- アカウントID
-- フラグ：1は成功を意味します
-desc：
-- 保存されたホムンクルスのステータスをプレイヤーに送信する
+	タイプ：IZ
+	構造：<cmd> .W <account_id> .L <flag> .B
+	指数：0.2,4
+	len：5
+	パラメータ：
+		- cmd：識別パッケージ（0x3892）
+		- アカウントID
+		- 	フラグ：1は成功を意味します
+	desc：
+		- 保存されたホムンクルスのステータスをプレイヤーに送信する
 
 0x3893
-タイプ：IZ
-構造：<cmd> .W <flag> .B
-指数：0.2
-len：3
-パラメータ：
-- cmd：識別パッケージ（0x3893）
-- フラグ：1ホムンクルスが削除されました
-desc：
-- ホムンクルス排除ステータスを送信する
+	タイプ：IZ
+	構造：<cmd> .W <flag> .B
+	指数：0.2
+	len：3
+	パラメータ：
+		- cmd：識別パッケージ（0x3893）
+		- 	フラグ：1ホムンクルスが削除されました
+	desc：
+		- ホムンクルス排除ステータスを送信する
 
 ============
 | 3.2チャーマップパケット|
 ============
 0x2af9
-タイプ：AZ
-構造：<cmd> .W <？> B
-指数：0.2
-len：3
-パラメータ：
-- cmd：識別パッケージ（0x2af9）
-- ？
-desc：
-- chrif_connectack
+	タイプ：AZ
+	構造：<cmd> .W <？> B
+	指数：0.2
+	len：3
+	パラメータ：
+		- cmd：識別パッケージ（0x2af9）
+		- ？
+	desc：
+		- chrif_connectack
 
 0x2afb
-タイプ：AZ
-構造：<cmd> .W <？> B
-指数：0.2
-len：変数：3 + NAME_LENGTH
-パラメータ：
-- cmd：識別パケット（0x2afb）
-- ？
-desc：
-- wispの名前をプレーヤーに送る
+	タイプ：AZ
+	構造：<cmd> .W <？> B
+	指数：0.2
+	len：変数：3 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パケット（0x2afb）
+		- ？
+	desc：
+		- wispの	名前をプレーヤーに送る
 
 0x2afd
-タイプ：AZ
-構造：<cmd> .W <mmo_charstatus_len> .W <account_id> .L <？> .L <？> .L <？> .L <？> .B <cd>。？ B
-インデックス：0,2,4,8,12,16,20,24,25
-len：変数：mmo_charstatus_len
-パラメータ：
-- cmd：識別パケット（0x2afd）
-- mmo_charstatus_len
-- アカウントID
-- ？
-- ？
-- ？
-- ？
-- ？
-- CD
-desc：
-- マップサーバ認証要求
+	タイプ：AZ
+	構造：<cmd> .W <mmo_charstatus_len> .W <account_id> .L <？> .L <？> .L <？> .L <？> .B <cd>。？ B
+	インデックス：0,2,4,8,12,16,20,24,25
+	len：変数：mmo_charstatus_len
+	パラメータ：
+		- cmd：識別パケット（0x2afd）
+		- mmo_charstatus_len
+		- アカウントID
+		- ？
+		- ？
+		- ？
+		- ？
+		- ？
+		- CD
+	desc：
+		- マップサーバ認証要求
 
 0x2b00
-タイプ：AZ
-構造：<cmd> .W <users> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2b00）
-desc：
-- このchar-servのユーザー数をマップサーバーに送信します（すべてのmapservの合計を意味します）
+	タイプ：AZ
+	構造：<cmd> .W <users> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2b00）
+	desc：
+		- このchar-servのユーザー数をマップサーバーに送信します（すべてのmapservの合計を意味します）
 
 0x2b03
-タイプ：AZ
-構造：<cmd> .W <account_id> .L <？> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パッケージ（0x2b03）
-- アカウントID
-- ？
-desc：
-- map_servからchar-selectを要求するプレーヤー
+	タイプ：AZ
+	構造：<cmd> .W <account_id> .L <？> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パッケージ（0x2b03）
+		- アカウントID
+		- ？
+	desc：
+		- map_servからchar-selectを要求するプレーヤー
 
 0x2b04
-タイプ：AZ
-構造：<cmd> .W <？> W <ip> .L <port> .W
-インデックス：0,2,4,8
-len
-パラメータ：
-- cmd：識別パッケージ（0x2b04）
-- ？
-ip
-ポート
-desc：
-- 他のマップサーバーのマップを受け取る（charサーバー経由で再送信される）
+	タイプ：AZ
+	構造：<cmd> .W <？> W <ip> .L <port> .W
+	インデックス：0,2,4,8
+	len
+	パラメータ：
+		- cmd：識別パッケージ（0x2b04）
+		- ？
+	ip
+	ポート
+	desc：
+		- 他のマップサーバーのマップを受け取る（charサーバー経由で再送信される）
 
 0x2b06
-タイプ：AZ
-構造<cmd> .W <account_id> .L <login_id1> .L <login_id2> .L <char_id> .L <map_index> .W <x> .W <and> .W <ip> .L <port>。 W
-インデックス：0,2,6,10,14,16,18,20,24,28
-len：30
-パラメータ：
-- cmd：識別パッケージ（0x2b06）
-- アカウントID
-- login_id1
-- login_id2
-- char_id
-- map_index
-バツ
-そして
-ip
-ポート
-desc：
-- 地図サーバの変更要求の認識（正または負）
+	タイプ：AZ
+	構造<cmd> .W <account_id> .L <login_id1> .L <login_id2> .L <char_id> .L <map_index> .W <x> .W <and> .W <ip> .L <port>。 W
+	インデックス：0,2,6,10,14,16,18,20,24,28
+	len：30
+	パラメータ：
+		- cmd：識別パッケージ（0x2b06）
+		- アカウントID
+		- login_id1
+		- login_id2
+		- char_id
+		- map_index
+	バツ
+	そして
+	ip
+	ポート
+	desc：
+		- 地図サーバの変更要求の認識（正または負）
 
 0x2b09
-タイプ：AZ
-構造：<cmd> .W <？>
-インデックス：0,2,6
-len：30
-パラメータ：
-- cmd：識別パッケージ（0x2b09）
-- ？
-- ？
-desc：
-- このchar_idが名前と一致するかどうか検索します。
+	タイプ：AZ
+	構造：<cmd> .W <？>
+	インデックス：0,2,6
+	len：30
+	パラメータ：
+		- cmd：識別パッケージ（0x2b09）
+		- ？
+		- ？
+	desc：
+		- このchar_idが	名前と一致するかどうか検索します。
 
 0x2b0b
-タイプ：AZ
-構造：<cmd> .W <len> .W <aid> .L <cid> .L <count> .W <skill_cooldown_data>。
-インデックス：0,2,4,8,12,14
-len：変数：14 + MAX_SKILLCOOLDOWN * skill_cooldown_data
-パラメータ：
-- cmd：識別パケット（0x2b0b）
-len
-援助
-CID
-カウント
-- skill_cooldown_data
-desc：
-- プレイヤーの能力の待ち時間を回復してロードする
+	タイプ：AZ
+	構造：<cmd> .W <len> .W <aid> .L <cid> .L <count> .W <skill_cooldown_data>。
+	インデックス：0,2,4,8,12,14
+	len：変数：14 + MAX_SKILLCOOLDOWN * skill_cooldown_data
+	パラメータ：
+		- cmd：識別パケット（0x2b0b）
+	len
+	援助
+	CID
+	カウント
+		- skill_cooldown_data
+	desc：
+		- プレイヤーの能力の待ち時間を回復してロードする
 
 0x2b0d
-タイプ：AZ
-構造：<cmd> .W <acc> .L <sex> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x2b0d）
-acc
-- 金
-desc：
-- char - serverのcharセックスの変更要求
+	タイプ：AZ
+	構造：<cmd> .W <acc> .L <sex> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x2b0d）
+	acc
+		- 金
+	desc：
+		- char 		- serverのcharセックスの変更要求
 
 0x2b0f
-タイプ：AZ
-構造体：<cmd> .W <aid> .L <name> .24B <operation> .W <result> .W
-インデックス：0,2,6,30,32
-len：34
-パラメータ：
-- cmd：識別パケット（0x2b0f）
-援助
-名
-操作
-結果
-desc：
-- chrif_req_login_operation（）への応答の処理（アカウントの変更要求）。
+	タイプ：AZ
+	構造体：<cmd> .W <aid> .L <name> .24B <operation> .W <result> .W
+	インデックス：0,2,6,30,32
+	len：34
+	パラメータ：
+		- cmd：識別パケット（0x2b0f）
+	援助
+	名
+	操作
+	結果
+	desc：
+		- chrif_req_login_operation（）への応答の処理（ア	カウントの変更要求）。
 
 0x2b12
-タイプ：AZ
-構造：<cmd> .W <partner_id1> .L <partner_id2> .L <？> .B
-インデックス：0,2,6,10
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x2b12）
-- partner_id1
-- partner_id2
-- ？
-desc：
-- 選手の離婚（ 'partner_id'がオフラインの場合のみ使用）
+	タイプ：AZ
+	構造：<cmd> .W <partner_id1> .L <partner_id2> .L <？> .B
+	インデックス：0,2,6,10
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x2b12）
+		- partner_id1
+		- partner_id2
+		- ？
+	desc：
+		- 選手の離婚（ 'partner_id'がオフラインの場合のみ使用）
 
 0x2b14
-タイプ：AZ
-構造：<cmd> .W <id> .L <res> .B <ret_status> .L
-インデックス：0,2,6,7
-len：11
-パラメータ：
-- cmd：識別パケット（0x2b14）
-id
-レス
-- ret_status
-desc：
-- プレーヤーの切断（アカウントはログイン/文字サーバのステータスを持つことが禁止されています）
+	タイプ：AZ
+	構造：<cmd> .W <id> .L <res> .B <ret_status> .L
+	インデックス：0,2,6,7
+	len：11
+	パラメータ：
+		- cmd：識別パケット（0x2b14）
+	id
+	レス
+		- ret_status
+	desc：
+		- プレーヤーの切断（ア	カウントはログイン/文字サーバのステータスを持つことが禁止されています）
 
 0x2b1b
-タイプ：AZ
-構造：<cmd> .W <サイズ> .W <サイズ> .W <サイズ> .W <smith_rank>。？ B <alchi_rank>。？ B <taek_rank>。？ B
-インデックス：0,2,4,6、？、？、？
+	タイプ：AZ
+	構造：<cmd> .W <サイズ> .W <サイズ> .W <サイズ> .W <smith_rank>。？ B <alchi_rank>。？ B <taek_rank>。？ B
+	インデックス：0,2,4,6、？、？、？
 len（最大= 32000）
-パラメータ：
-- cmd：識別パケット（0x2b1b）
-- サイズ：パッケージの全長
-- サイズ：錬金術師のブロックサイズ
-- サイズ：Blacksmithブロックサイズ
-- 
-- 
-- 
-desc：
-- マップサーバに名声のランキングリストを送信する
+	パラメータ：
+		- cmd：識別パケット（0x2b1b）
+		- サイズ：パッケージの全長
+		- サイズ：錬金術師のブロックサイズ
+		- サイズ：Blacksmithブロックサイズ
+		- 
+		- 
+		- 
+	desc：
+		- マップサーバに	名声のランキングリストを送信する
 
 0x2b1d
-タイプ：AZ
-構造：<cmd> .W <len> .W <aid> .L <cid> .L
-インデックス：0,2,4,8
-len：変数：14 + 50 * status_change_data
-パラメータ：
-- cmd：識別パケット（0x2b1d）
-len
-援助
-CID
-desc：
-- Map-servが、プレーヤーが保存したsc_dataのリストを送信するように要求しています
+	タイプ：AZ
+	構造：<cmd> .W <len> .W <aid> .L <cid> .L
+	インデックス：0,2,4,8
+	len：変数：14 + 50 * status_change_data
+	パラメータ：
+		- cmd：識別パケット（0x2b1d）
+	len
+	援助
+	CID
+	desc：
+		- Map-servが、プレーヤーが保存したsc_dataのリストを送信するように要求しています
 
 0x2b1e
-タイプ：AZ
-構造：<cmd> .W <new_ip> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パケット（0x2b1e）
-- new_ip
-desc：
-- IPインターサーバ同期のための転送されたchar-server要求
+	タイプ：AZ
+	構造：<cmd> .W <new_ip> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パケット（0x2b1e）
+		- new_ip
+	desc：
+		- IPインターサーバ同期のための転送されたchar-server要求
 
 0x2b1f
-タイプ：AZ
-構造：<cmd> .W <account_id> .L <reason> .B
-インデックス：0,2,6
-len：7
-パラメータ：
-- cmd：識別パケット（0x2b1f）
-- アカウントID
-理由
-desc：
-- 与えられた地図サーバからキャラクターを追放するよう要求する
+	タイプ：AZ
+	構造：<cmd> .W <account_id> .L <reason> .B
+	インデックス：0,2,6
+	len：7
+	パラメータ：
+		- cmd：識別パケット（0x2b1f）
+		- ア	カウントID
+	理由
+	desc：
+		- 与えられた地図サーバからキャラクターを追放するよう要求する
 
 0x2b20
-タイプ：AZ
-構造：<cmd> .W <len> .W <ip> .L <port> .W
-インデックス：0,2,4,8
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x2b20）
-len
-ip
-ポート
-desc：
-- 特定のマップを削除します（他のマップサーバが接続されていない場合に使用されます）
+	タイプ：AZ
+	構造：<cmd> .W <len> .W <ip> .L <port> .W
+	インデックス：0,2,4,8
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x2b20）
+	len
+	ip
+	ポート
+	desc：
+		- 特定のマップを削除します（他のマップサーバが接続されていない場合に使用されます）
 
 0x2b21
-タイプ：AZ
-構造：<cmd> .W <aid> .L <cid> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x2b21）
-desc：
-- chrif_save_ack（キャラクタがキャラクタサーバにおいて「最後に保存された」後に受信される）
+	タイプ：AZ
+	構造：<cmd> .W <aid> .L <cid> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x2b21）
+	desc：
+		- chrif_save_ack（キャラクタがキャラクタサーバにおいて「最後に保存された」後に受信される）
 
 0x2b22
-タイプ：AZ
-構造体：<cmd> .W <Type> .B <index> .B <fame> .L
-インデックス：0.2,3,4
-len：8
-パラメータ：
-- cmd：識別パケット（0x2b22）
-- タイプ
-索引
-名声
-desc：
-- 更新されたランクのランク付けされたランキングをマップサーバーに送信する
+	タイプ：AZ
+	構造体：<cmd> .W <Type> .B <index> .B <fame> .L
+	インデックス：0.2,3,4
+	len：8
+	パラメータ：
+		- cmd：識別パケット（0x2b22）
+		- タイプ
+	索引
+	名声
+	desc：
+		- 更新されたランクのランク付けされたランキングをマップサーバーに送信する
 
 0x2b24
-タイプ：AZ
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パッケージ（0x2b24）
-desc：
-- 地図サーバはパッケージを生かしたままにし、私たちが生きている地図に返答します
+	タイプ：AZ
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パッケージ（0x2b24）
+	desc：
+		- 地図サーバはパッケージを生かしたままにし、私たちが生きている地図に返答します
 
 0x2b25
-タイプ：AZ
-構造：<cmd> .W <father_id> .L <mother_id> .L <char_id> .L
-インデックス：0,2,6
-len（最大= 64）
-パラメータ：
-- cmd：識別パッケージ（0x2b25）
-father_id
-mother_id
-- char_id
-desc：
-- 親の身元確認と母親の身元確認から赤ちゃんを削除
+	タイプ：AZ
+	構造：<cmd> .W <father_id> .L <mother_id> .L <char_id> .L
+	インデックス：0,2,6
+	len（最大= 64）
+	パラメータ：
+		- cmd：識別パッケージ（0x2b25）
+	father_id
+	mother_id
+		- char_id
+	desc：
+		- 親の身元確認と母親の身元確認から赤ちゃんを削除
 
 0x2b27
-タイプ：AZ
-構造：<cmd> .W <account_id> .L <char_id> .L <login_id1> .L <sex> .B
-インデックス：0,2,6,10,14
-len：15
-パラメータ：
-- cmd：識別パック（0x2b27）
-- アカウントID
-- char_id
-- login_id1
-- 金
-desc：
-- クライアント認証に失敗しました
+	タイプ：AZ
+	構造：<cmd> .W <account_id> .L <char_id> .L <login_id1> .L <sex> .B
+	インデックス：0,2,6,10,14
+	len：15
+	パラメータ：
+		- cmd：識別パック（0x2b27）
+		- ア	カウントID
+		- char_id
+		- login_id1
+		- 金
+	desc：
+		- クライアント認証に失敗しました
 
 0x2b29
-タイプ：AZ
-構造：<cmd> .W <aid> .L <bank_vault> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x2b29）
-援助
-- 銀行の金庫室
-desc：
-- プレーヤーがロードされるために受け取った銀行データ
+	タイプ：AZ
+	構造：<cmd> .W <aid> .L <bank_vault> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x2b29）
+	援助
+		- 銀行の金庫室
+	desc：
+		- プレーヤーがロードされるために受け取った銀行データ
 
 0x2b2b
-タイプ：AZ
-構造体：<cmd> .W <aid> .L <vip_time> .L <isvip> .B <isgm> .B <groupid> .L
-インデックス：0,2,6,10,11,12
-len：16
-パラメータ：
-- cmd：識別パケット（0x2b2b）
-援助
-- vip_time
-- isvip
-- isgm
-- groupid
-desc：
-- char-servからvip-dataを受け取り、map-servデータを埋め込む
+	タイプ：AZ
+	構造体：<cmd> .W <aid> .L <vip_time> .L <isvip> .B <isgm> .B <groupid> .L
+	インデックス：0,2,6,10,11,12
+	len：16
+	パラメータ：
+		- cmd：識別パケット（0x2b2b）
+	援助
+		- vip_time
+		- isvip
+		- isgm
+		- groupid
+	desc：
+		- char-servからvip-dataを受け取り、map-servデータを埋め込む
 
 0x2b2f
-タイプ：AZ
-構造体：<cmd> .W <len> .W <cid> .L <count> .W
-インデックス：0,2,4,8
-len：変数：10 + 50 * bonus_script_data
-パラメータ：
-- cmd：識別パケット（0x2b2f）
-desc：
-- 読み込むテーブルからbonus_scriptデータを取得する
+	タイプ：AZ
+	構造体：<cmd> .W <len> .W <cid> .L <count> .W
+	インデックス：0,2,4,8
+	len：変数：10 + 50 * bonus_script_data
+	パラメータ：
+		- cmd：識別パケット（0x2b2f）
+	desc：
+		- 読み込むテーブルからbonus_scriptデータを取得する
 
 0x2736
-タイプ：ZA
-構造：<cmd> .W <ip> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2736）
-desc：
-- アップデートIPアドレス
+	タイプ：ZA
+	構造：<cmd> .W <ip> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2736）
+	desc：
+		- アップデートIPアド	レス
 
 0x2afa
-タイプ：ZA
-構造体：<cmd> .W <size> .W {<map_index> .W} * instance_start
-指数：0.2,4
-len：変数：4 + instance_start * 4
-パラメータ：
-- cmd：識別パック（0x2afa）
-- サイズ
-- map_index * instance_start
-desc：
-- ノーマルマップを利用可能にする。 chrif_sendmap
+	タイプ：ZA
+	構造体：<cmd> .W <size> .W {<map_index> .W} * instance_start
+	指数：0.2,4
+	len：変数：4 + instance_start * 4
+	パラメータ：
+		- cmd：識別パック（0x2afa）
+		- サイズ
+		- map_index * instance_start
+	desc：
+		- ノーマルマップを利用可能にする。 chrif_sendmap
 
 0x2afc
-タイプ：ZA
-構造：<cmd> .W <account_id> .L <char_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x2afc）
-- アカウントID
-- char_id
-desc：
-- char-serverからsc_dataを要求する
+	タイプ：ZA
+	構造：<cmd> .W <account_id> .L <char_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x2afc）
+		- ア	カウントID
+		- char_id
+	desc：
+		- char-serverからsc_dataを要求する
 
 0x2afe
-タイプ：ZA
-構造：<cmd> .W <map_usercount> .W
-指数：0.2
-len：4
-パラメータ：
-- cmd：識別パッケージ（0x2afe）
-desc：
-- send_usercount_tochar（未使用）
+	タイプ：ZA
+	構造：<cmd> .W <map_usercount> .W
+	指数：0.2
+	len：4
+	パラメータ：
+		- cmd：識別パッケージ（0x2afe）
+	desc：
+		- send_usercount_tochar（未使用）
 
 0x2aff
-タイプ：ZA
-構造：<cmd> .W <len> .W <users> .W <account_id> .L <char_id> .L
-インデックス：0,2,4,6 + 8 * i、6 + 8 + i + 4
-len：変数：6 + 8 *ユーザー
-パラメータ：
-- cmd：識別パケット（0x2aff）
-len
-ユーザー
-- アカウントID
-- char_id
-desc：
-- Map-servは、ユーザーのすべての情報（援助とcid）を送信して、online_char_dbを更新できます
+	タイプ：ZA
+	構造：<cmd> .W <len> .W <users> .W <account_id> .L <char_id> .L
+	インデックス：0,2,4,6 + 8 * i、6 + 8 + i + 4
+	len：変数：6 + 8 *ユーザー
+	パラメータ：
+		- cmd：識別パケット（0x2aff）
+	len
+	ユーザー
+		- ア	カウントID
+		- char_id
+	desc：
+		- Map-servは、ユーザーのすべての情報（	援助とcid）を送信して、online_char_dbを更新できます
 0x2b01
-タイプ：ZA
-構造体：<cmd> .W <mmo_charstatus_len> .W <account_id> .L <char_id> .L <flag> .B
-インデックス：0,2,4,8,12
-len：変数：mmo_charstatus_len
-パラメータ：
-- cmd：識別パケット（0x2b01）
-desc：
-- XY文字のXYアカウントをcharsaveする
+	タイプ：ZA
+	構造体：<cmd> .W <mmo_charstatus_len> .W <account_id> .L <char_id> .L <flag> .B
+	インデックス：0,2,4,8,12
+	len：変数：mmo_charstatus_len
+	パラメータ：
+		- cmd：識別パケット（0x2b01）
+	desc：
+		- XY文字のXYア	カウントをcharsaveする
 
 0x2b02
-タイプ：ZA
-構造：<cmd> .W <id> .L <login_id1> .L <login_id2> .L <s_ip> .L <packet_ver> .B
-インデックス：0,2,6,10,14,18
-len：19
-パラメータ：
-- cmd：識別パッケージ（0x2b02）
-id
-- login_id1
-- login_id2
-- s_ip
-- packet_ver
-desc：
-- chrif_charselectreq
+	タイプ：ZA
+	構造：<cmd> .W <id> .L <login_id1> .L <login_id2> .L <s_ip> .L <packet_ver> .B
+	インデックス：0,2,6,10,14,18
+	len：19
+	パラメータ：
+		- cmd：識別パッケージ（0x2b02）
+	id
+		- login_id1
+		- login_id2
+		- s_ip
+		- packet_ver
+	desc：
+		- chrif_charselectreq
 
 0x2b05
-タイプ：ZA
+	タイプ：ZA
 構造体<cmd> .W <id> .L <login_id1> .L <login_id2> .L <char_id> .L <mapindex> .W <x> .W <and> .W <ip> .L <port>。 W <sex> .B <client_addr> .L <group_id> .L
-インデックス：0,2,6,10,14,18,20,22,24,28,30,31,35
-len：39
-パラメータ：
-- cmd：識別パッケージ（0x2b05）
-id
-- login_id1
-- login_id2
-- char_id
-- mapindex
-バツ
-そして
-ip
-ポート
-- 金
-- client_addr
-- group_id
-desc：
-- charserverにマップ/検索を変更するように指示します
+	インデックス：0,2,6,10,14,18,20,22,24,28,30,31,35
+	len：39
+	パラメータ：
+		- cmd：識別パッケージ（0x2b05）
+	id
+		- login_id1
+		- login_id2
+		- char_id
+		- mapindex
+	バツ
+	そして
+	ip
+	ポート
+		- 金
+		- client_addr
+		- group_id
+	desc：
+		- charserverにマップ/検索を変更するように指示します
 
 0x2b07
-タイプ：ZA
-構造：<cmd> .W <char_id> .L <friend_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x2b07）
-- char_id
-- friend_id
-desc：
-- char_idのフレンドリストからfriend_idを削除するようにchar-serverに依頼する
+	タイプ：ZA
+	構造：<cmd> .W <char_id> .L <friend_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x2b07）
+		- char_id
+		- friend_id
+	desc：
+		- char_idのフレンドリストからfriend_idを削除するようにchar-serverに依頼する
 
 0x2b08
-タイプ：ZA
-構造：<cmd> .W <char_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パッケージ（0x2b08）
-desc：
-- char-servのidから検索文字
+	タイプ：ZA
+	構造：<cmd> .W <char_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パッケージ（0x2b08）
+	desc：
+		- char-servのidから検索文字
 
 0x2b0a
-タイプ：ZA
-構造：<cmd> .W <account_id> .L <char_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x2b0a）
-- アカウントID
-- char_id
-desc：
-- チャーサーバースキルの解消要請
+	タイプ：ZA
+	構造：<cmd> .W <account_id> .L <char_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x2b0a）
+		- ア	カウントID
+		- char_id
+	desc：
+		- チャーサーバースキルの解消要請
 
 0x2b0c
-タイプ：ZA
-構造：<cmd> .W <id> .W <current_email> .40B <new_email> .40B
-インデックス：0,2,6,46
-len：86
-パラメータ：
-- cmd：識別パケット（0x2b0c）
-id
-- 現在のメール
-- 新しいメール
-desc：
-- メールの変更
+	タイプ：ZA
+	構造：<cmd> .W <id> .W <current_email> .40B <new_email> .40B
+	インデックス：0,2,6,46
+	len：86
+	パラメータ：
+		- cmd：識別パケット（0x2b0c）
+	id
+		- 現在のメール
+		- 新しいメール
+	desc：
+		- メールの変更
 
 0x2b0e
-タイプ：ZA
-構造：<cmd> .W <aid> .L <name> .24B <operation_Type> .W <timediff> .L <val1> .L <val2> .L
-指数：0.30,36.40
-len：44
-パラメータ：
-- cmd：識別パッケージ（0x2b0e）
-援助
-名
-- operation_Type
-- タイムディフ
-- val1
-- val2
-desc：
-- （char-serverを介して）ログインサーバーにアカウント変更要求を送信します。
+	タイプ：ZA
+	構造：<cmd> .W <aid> .L <name> .24B <operation_Type> .W <timediff> .L <val1> .L <val2> .L
+	指数：0.30,36.40
+	len：44
+	パラメータ：
+		- cmd：識別パッケージ（0x2b0e）
+	援助
+	名
+		- operation_Type
+		- タイムディフ
+		- val1
+		- val2
+	desc：
+		- （char-serverを介して）ログインサーバーにア	カウント変更要求を送信します。
 
 0x2b10
-タイプ：ZA
-構造体：<cmd> .W <char_id> .L <fame> .L <Type> .B
-インデックス：0,2,6,10
-len：11
-パラメータ：
-- cmd：識別パッケージ（0x2b10）
-- char_id
-名声
-- タイプ
-desc：
-- 名声の10人の最高のキャラクターのリストを尋ねる/受け取る
+	タイプ：ZA
+	構造体：<cmd> .W <char_id> .L <fame> .L <Type> .B
+	インデックス：0,2,6,10
+	len：11
+	パラメータ：
+		- cmd：識別パッケージ（0x2b10）
+		- char_id
+	名声
+		- タイプ
+	desc：
+		- 	名声の10人の最高のキャラクターのリストを尋ねる/受け取る
 
 0x2b11
-タイプ：ZA
-構造：<cmd> .W <partner_id1> .L <partner_id2> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x2b11）
-- partner_id1
-- partner_id2
-desc：
-- Charサーバーにプレイヤーの延期を依頼する
+	タイプ：ZA
+	構造：<cmd> .W <partner_id1> .L <partner_id2> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x2b11）
+		- partner_id1
+		- partner_id2
+	desc：
+		- Charサーバーにプレイヤーの延期を依頼する
 
 0x2b15
-タイプ：ZA
-構造体：<cmd> .W <len> .W <account_id> .L <char_id> .L <count> .W
-インデックス：0,2,4,8,12
-len：変数：14 + MAX_SKILLCOOLDOWN * skill_cooldown_data
-パラメータ：
-- cmd：識別パック（0x2b15）
-len
-- アカウントID
-- char_id
-カウント
-desc：
-- スキルのクールダウンデータを保存するよう要求する
+	タイプ：ZA
+	構造体：<cmd> .W <len> .W <account_id> .L <char_id> .L <count> .W
+	インデックス：0,2,4,8,12
+	len：変数：14 + MAX_SKILLCOOLDOWN * skill_cooldown_data
+	パラメータ：
+		- cmd：識別パック（0x2b15）
+	len
+		- ア	カウントID
+		- char_id
+	カウント
+	desc：
+		- スキルのクールダウンデータを保存するよう要求する
 
 0x2b16
-タイプ：ZA
-構造：<cmd> .W <base_rate> .L <job_rate> .L <drop_rate> .L
-インデックス：0,2,6,10
-len：14
-パラメータ：
-- cmd：識別パケット（0x2b16）
-- 基準率
-- job_rate
+	タイプ：ZA
+	構造：<cmd> .W <base_rate> .L <job_rate> .L <drop_rate> .L
+	インデックス：0,2,6,10
+	len：14
+	パラメータ：
+		- cmd：識別パケット（0x2b16）
+		- 基準率
+		- job_rate
 drop_rate
-desc：
-- レートとmotdをchar-serverに送信する
+	desc：
+		- レートとmotdをchar-serverに送信する
 
 0x2b17
-タイプ：ZA
-構造：<cmd> .W <char_id> .L <account_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パケット（0x2b17）
-- char_id
-- アカウントID
-desc：
-- 不適切なコンテンツを報告する
+	タイプ：ZA
+	構造：<cmd> .W <char_id> .L <account_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パケット（0x2b17）
+		- char_id
+		- ア	カウントID
+	desc：
+		- 不適切なコンテンツを報告する
 
 0x2b18
-タイプ：ZA
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パッケージ（0x2b18）
-desc：
-- すべてのオフライン文字をリセットするようにchar-serverに指示します
+	タイプ：ZA
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パッケージ（0x2b18）
+	desc：
+		- すべてのオフライン文字をリセットするようにchar-serverに指示します
 
 0x2b19
-タイプ：ZA
-構造：<cmd> .W <char_id> .L <account_id> .L
-インデックス：0,2,6
-len：10
-パラメータ：
-- cmd：識別パッケージ（0x2b19）
-- char_id
-- アカウントID
-desc：
-- char-serverがオンラインであることを示します。
+	タイプ：ZA
+	構造：<cmd> .W <char_id> .L <account_id> .L
+	インデックス：0,2,6
+	len：10
+	パラメータ：
+		- cmd：識別パッケージ（0x2b19）
+		- char_id
+		- ア	カウントID
+	desc：
+		- char-serverがオンラインであることを示します。
 
 0x2b1a
-タイプ：ZA
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パケット（0x2b1a）
-desc：
-- 名声ランキングリストを作成して提出する。
+	タイプ：ZA
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パケット（0x2b1a）
+	desc：
+		- 	名声ランキングリストを作成して提出する。
 
 0x2b1c
-タイプ：ZA
-構造体：<cmd> .W <len> .W <account_id> .L <char_id> .L <count> .W
-インデックス：0,2,4,8,12
-len：変数：14 + SC_MAX * status_change_data
-パラメータ：
-- cmd：識別パケット（0x2b1c）
-len
-- アカウントID
-- char_id
-カウント
-desc：
-- プレーヤーのsc_dataを解析し、保存するためにchar-serverに送信する
+	タイプ：ZA
+	構造体：<cmd> .W <len> .W <account_id> .L <char_id> .L <count> .W
+	インデックス：0,2,4,8,12
+	len：変数：14 + SC_MAX * status_change_data
+	パラメータ：
+		- cmd：識別パケット（0x2b1c）
+	len
+		- ア	カウントID
+		- char_id
+	カウント
+	desc：
+		- プレーヤーのsc_dataを解析し、保存するためにchar-serverに送信する
 
 0x2b23
-タイプ：ZA
-構造：<cmd> .W
-インデックス：0
-len：2
-パラメータ：
-- cmd：識別パケット（0x2b23）
-desc：
-- charserverにpingを実行する（chrif_keepalive）
+	タイプ：ZA
+	構造：<cmd> .W
+	インデックス：0
+	len：2
+	パラメータ：
+		- cmd：識別パケット（0x2b23）
+	desc：
+		- charserverにpingを実行する（chrif_keepalive）
 
 0x2b26
-タイプ：ZA
-構造：<cmd> .W <account_id> .L <char_id> .L <login_id1> .L <sex> .B <client_addr> .L <autotrade> .B
-インデックス：0,2,6,10,14,15,19
-len：20
-パラメータ：
-- cmd：識別パッケージ（0x2b26）
-- アカウントID
-- char_id
-- login_id1
-- 金
-- client_addr
-自転車
-desc：
-- クライアント認証要求
+	タイプ：ZA
+	構造：<cmd> .W <account_id> .L <char_id> .L <login_id1> .L <sex> .B <client_addr> .L <autotrade> .B
+	インデックス：0,2,6,10,14,15,19
+	len：20
+	パラメータ：
+		- cmd：識別パッケージ（0x2b26）
+		- ア	カウントID
+		- char_id
+		- login_id1
+		- 金
+		- client_addr
+	自転車
+	desc：
+		- クライアント認証要求
 
 0x2b28
-タイプ：ZA
-構造：<cmd> .W <aid> .L <timediff> .L <character_name>。
-インデックス：0,2,6,10
-len：変数：10 + NAME_LENGTH
-パラメータ：
-- cmd：識別パッケージ（0x2b28）
-援助
-- タイムディフ
-- キャラクター名
-desc：
-- chrif_req_charban
+	タイプ：ZA
+	構造：<cmd> .W <aid> .L <timediff> .L <character_name>。
+	インデックス：0,2,6,10
+	len：変数：10 + NAME_LENGTH
+	パラメータ：
+		- cmd：識別パッケージ（0x2b28）
+	援助
+		- タイムディフ
+		- キャラクター	名
+	desc：
+		- chrif_req_charban
 
 0x2b2a
-タイプ：ZA
-構造：<cmd> .W <cid> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パケット（0x2b2a）
-desc：
-- chrif_req_charunban
+	タイプ：ZA
+	構造：<cmd> .W <cid> .L
+	指数：0.2
+	len：6
+	パラメータ：
+		- cmd：識別パケット（0x2b2a）
+	desc：
+		- chrif_req_charunban
 
 0x2b2d
-タイプ：ZA
-構造：<cmd> .W <char_id> .L
-指数：0.2
-len：6
-パラメータ：
-- cmd：識別パケット（0x2b2d）
-desc：
-- bonus_scriptデータをリクエストする
+	タイプ：ZA
+	構造：<cmd> .W <char_id> .L
+	指数：0.2
+	len：6
+	パラメータ：
+			- cmd：識別パケット（0x2b2d）
+	desc：
+			- bonus_scriptデータをリクエストする
 
 0x2b2e
-タイプ：ZA
-構造体：<cmd> .W <len> .W <char_id> .L <count> .W
-インデックス：0,2,4,8
-len：変数：10 + MAX_PC_BONUS_SCRIPT * bonus_script_data
-パラメータ：
-- cmd：識別パッケージ（0x2b2e）
-len
-- char_id
-カウント
-desc：
-- bonus_scriptデータをテーブルに保存します
+	タイプ：ZA
+	構造体：<cmd> .W <len> .W <char_id> .L <count> .W
+	インデックス：0,2,4,8
+	len：変数：10 + MAX_PC_BONUS_SCRIPT * bonus_script_data
+	パラメータ：
+			- cmd：識別パッケージ（0x2b2e）
+	len
+			- char_id
+	カウント
+	desc：
+						- bonus_scriptデータをテーブルに保存します
 
 0x3008
-タイプ：ZA
-構造：<cmd> .W <buf>。？ B
-指数：0.2
-len：変数：2 + len
-パラメータ：
-- cmd：識別パック（0x3008）
-- buf
-desc：
-- chrif_send_report
+	タイプ：ZA
+	構造：<cmd> .W <buf>。？ B
+	指数：0.2
+	len：変数：2 + len
+	パラメータ：
+			- cmd：識別パック（0x3008）
+			- buf
+	desc：
+			- chrif_send_report
