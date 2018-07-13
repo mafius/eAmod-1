@@ -21,6 +21,10 @@ un ejecutable para conectarse al mismo. Si alguien intenta usar otro .exe difere
 o un .exe modificado, no podrá logear. Util para combatir OpenKore (consola) y
 algunas modificaciones al cliente que no permites en tu comunidad.
 
+// Consideraciones
+
+Esta modificación solo se puede realizar en 2011 o ejecutables inferiores.
+
 // Modificando el Ejecutable, tu cliente:
 
 Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que harás será
