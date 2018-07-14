@@ -1,6 +1,6 @@
 # eAmod
 
-# The Server Folder
+## The Server Folder
 
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
 Made your selection about what do you want to use.
@@ -10,8 +10,8 @@ renewal mechanics coded by me.
 
 rAthena is currently under work at 80% to be completed.
 
-# Versions
+## Versions
 
-Trunk: A branch and probably unstable.
+*Trunk*: A branch and probably unstable.
 
-Stable: The original Master branch and stable.
+*Stable*: The original Master branch and stable.
