@@ -2,11 +2,8 @@
 
 # The Server Folder
 
-
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
 Made your selection about what do you want to use.
-
-----------------------------------
 
 - Classic : Inactive. The original and old version of eAmod. It includes some 3CeAM updates plus renewal code by me. I consider it
 outdated, but some people still use it. Does not support newest clients. It support old times servers (ep 7) and Advanced
@@ -26,11 +23,8 @@ but, it works fine.
 
 # The Server Folder
 
-
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
 Made your selection about what do you want to use.
-
-----------------------------------
 
 - Classic : Inactive. The original and old version of eAmod. It includes some 3CeAM updates plus renewal code by me. I consider it
 outdated, but some people still use it. Does not support newest clients. It support old times servers (ep 7) and Advanced
@@ -47,9 +41,7 @@ but, it works fine.
 
 - Hercules : On merging process. [Hybrid: More news about in 6 months] [28/06/2018]
 
-----------------------------------
-- Versions
-----------------------------------
+# Versions
 
 Trunk: A branch and probably unstable.
 
