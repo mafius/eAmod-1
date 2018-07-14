@@ -1,0 +1,23 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            Client Side Addons                            |
+// \_________________________________________________________________________/
+
+/*
+
+- Merge skulls_sprites.grf with your client grf.
+- Add2_*.* are files to merge with your current GRF files, do not overwrite, open the files and add the lines.
+- If your GRF don't have the file resnametable.txt take the base file from the main Ragnarok GRF (rdata.grf or data.grf), add the lines and put it inside your GRF.
+
+*/
