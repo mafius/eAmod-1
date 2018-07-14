@@ -1,7 +1,7 @@
 # eAmod
-----------------------------------
+
 # The Server Folder
-----------------------------------
+
 
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
 Made your selection about what do you want to use.
@@ -23,9 +23,9 @@ but, it works fine.
 
 - Hercules : On merging process. [Hybrid: More news about ETA later this week] [28/04/2018]
 
-----------------------------------
+
 # The Server Folder
-----------------------------------
+
 
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
 Made your selection about what do you want to use.
