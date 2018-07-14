@@ -575,8 +575,8 @@
 53,12132,9	// Red_Bag
 53,12260,1	// Cool_Summer_Outfit
 // Xmas_Gift
-54,14550,3	// Fire_Cracker_Xmas
-54,14546,3	// Fire_Cracker_Love
+//54,14550,3	// Fire_Cracker_Xmas
+//54,14546,3	// Fire_Cracker_Love
 54,644,33	// Gift_Box
 54,12702,18	// Old_Bleu_Box
 54,12105,3	// Set_Of_Taiming_Item

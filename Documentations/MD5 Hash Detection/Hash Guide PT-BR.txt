@@ -21,6 +21,10 @@ um executável para se conectar a ele. Se alguém tentar usar outro arquivo .exe
 ou um .exe modificado, não poderá fazer o login. Isto é útil para combater sistemas de Bot
 como o OpenKore (console) e algumas modificações no cliente que você não permite em sua comunidade.
 
+// Considerações
+
+Essa modificação só pode ser feita em executáveis 2011 ou inferiores.
+
 // Modificando o executável do seu cliente:
 
 Você precisa de um editor hexadecimal, como o Hex Workshop.
