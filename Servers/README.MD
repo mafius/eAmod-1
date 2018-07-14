@@ -1,5 +1,5 @@
 # eAmod
-=====
+
 # The Server Folder
 
 Here you will find the popular different Ragnarok Emulators already merged with eAmod.
